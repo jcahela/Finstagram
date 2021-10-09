@@ -22,6 +22,40 @@ class User(db.Model, UserMixin):
         backref=db.backref('followers', lazy='dynamic'), lazy='dynamic'
     )
 
+    def is_following(self, user):
+        return self.followed.filter(
+            followers.c.followed_id == user.id).count() > 0
+
+    def follow(self, user):
+        if not self.is_following(user) and user.id != self.id:
+            self.followed.append(user)
+            
+    def unfollow(self, user):
+        if self.is_following(user):
+            self.followed.remove(user)
+
+    def followed_users(self):
+        users = self.followed.all()
+        # return [user.id for user in users]
+        followed_ids = {}
+        for user in users:
+            followed_ids[user.id] = {
+                'username': user.username,
+                'email': user.email,
+            }
+        return followed_ids
+
+    def follower_users(self):
+        users = self.followers.all()
+        # return [user.id for user in users]
+        follower_ids = {}
+        for user in users:
+            follower_ids[user.id] = {
+                'username': user.username,
+                'email': user.email,
+            }
+        return follower_ids
+
     @property
     def password(self):
         return self.hashed_password
@@ -37,5 +71,7 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'followed': self.followed_users(),
+            'followers': self.follower_users()
         }

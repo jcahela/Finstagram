@@ -11,6 +11,8 @@ class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
+    firstname = db.Column(db.String(50), nullable=False)
+    lastname = db.Column(db.String(50), nullable=False)
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
@@ -36,10 +38,11 @@ class User(db.Model, UserMixin):
 
     def followed_users(self):
         users = self.followed.all()
-        # return [user.id for user in users]
         followed_ids = {}
         for user in users:
             followed_ids[user.id] = {
+                'firstname': user.firstname,
+                'lastname': user.lastname,
                 'username': user.username,
                 'email': user.email,
             }
@@ -47,10 +50,11 @@ class User(db.Model, UserMixin):
 
     def follower_users(self):
         users = self.followers.all()
-        # return [user.id for user in users]
         follower_ids = {}
         for user in users:
             follower_ids[user.id] = {
+                'firstname': user.firstname,
+                'lastname': user.lastname,
                 'username': user.username,
                 'email': user.email,
             }
@@ -70,6 +74,8 @@ class User(db.Model, UserMixin):
     def to_dict(self):
         return {
             'id': self.id,
+            'firstname': self.firstname,
+            'lastname': self.lastname,
             'username': self.username,
             'email': self.email,
             'followed': self.followed_users(),

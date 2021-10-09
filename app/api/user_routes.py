@@ -17,3 +17,20 @@ def users():
 def user(id):
     user = User.query.get(id)
     return user.to_dict()
+
+# Uncomment to use this route to explore the user follower/followed relationship
+# @user_routes.route('/follow')
+# def follows():
+#     user1 = User.query.filter(User.id == 1).first()
+#     user2 = User.query.filter(User.id == 2).first()
+#     user3 = User.query.filter(User.id == 3).first()
+
+#     user1.follow(user2)
+#     user1.follow(user3)
+#     user2.follow(user3)
+
+#     return {
+#         'user1': user1.to_dict(),
+#         'user2': user2.to_dict(),
+#         'user3': user3.to_dict()
+#         }

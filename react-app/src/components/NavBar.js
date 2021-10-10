@@ -1,15 +1,23 @@
-
-import React from 'react';
+import React, { useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
+import HomeLight from './icons/HomeLight';
+import HomeDark from './icons/HomeDark';
+import { useLocation } from 'react-router';
+import './NavBar.css'
 
 const NavBar = () => {
+  const location = useLocation();
   return (
-    <nav>
+    <nav className="nav-container">
       <ul>
         <li>
-          <NavLink to='/' exact={true} activeClassName='active'>
-            Home
+          <NavLink to='/feed' exact={true} activeClassName='active'>
+            { location.pathname === '/feed' ? (
+              <HomeDark className="home-icon"/>
+              ) : (
+              <HomeLight className="home-icon"/>
+            ) }
           </NavLink>
         </li>
         <li>
@@ -25,6 +33,15 @@ const NavBar = () => {
         <li>
           <NavLink to='/users' exact={true} activeClassName='active'>
             Users
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to='/users' exact={true} activeClassName='active'>
+            { location.pathname === '/users' ? (
+              <i class="fas fa-compass explore-icon"></i>
+              ) : (
+                <i className="far fa-compass explore-icon"></i>
+              )}
           </NavLink>
         </li>
         <li>

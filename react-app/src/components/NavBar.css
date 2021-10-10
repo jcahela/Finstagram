@@ -1,0 +1,13 @@
+.nav-container {
+    border: 1px solid;
+}
+
+.home-icon {
+    height: 30px;
+    width: 30px;
+    font-weight: lighter;
+}
+
+.explore-icon {
+    font-size: 28px;
+}

@@ -19,7 +19,7 @@ a {
     text-decoration: none;
 }
 
-a:hover {
+a:not(.nav-container a):hover {
     text-decoration: underline;
     text-underline-offset: 3px;
 }

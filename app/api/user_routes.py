@@ -18,7 +18,7 @@ def user(id):
     return user.to_dict()
 
 # Uncomment to use this route to explore the user follower/followed relationship
-# @user_routes.route('/follow')
+# @user_routes.route('/feed')
 # def follows():
 #     user1 = User.query.filter(User.id == 1).first()
 #     user2 = User.query.filter(User.id == 2).first()

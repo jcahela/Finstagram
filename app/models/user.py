@@ -31,13 +31,17 @@ class User(db.Model, UserMixin):
     def follow(self, user):
         if not self.is_following(user) and user.id != self.id:
             self.followed.append(user)
+            db.session.add(self)
+            db.session.commit()
             
     def unfollow(self, user):
         if self.is_following(user):
             self.followed.remove(user)
+            db.session.add(self)
+            db.session.commit()
 
     def followed_users(self):
-        users = self.followed.all()
+        users = self.followed
         followed_ids = {}
         for user in users:
             followed_ids[user.id] = {

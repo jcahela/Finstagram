@@ -29,7 +29,7 @@ const NavBar = () => {
           <div>
             <NavLink to='/explore' exact={true} activeClassName='active'>
               { location.pathname === '/explore' ? (
-                <i class="fas fa-compass explore-icon"></i>
+                <i className="fas fa-compass explore-icon"></i>
                 ) : (
                   <i className="far fa-compass explore-icon"></i>
                 )}

@@ -2,14 +2,16 @@
     border: 1vw solid blue;
 }
 
-.finstagram-logo {
+#finstagram-logo {
+    user-select: none;
+    cursor: default;
     font-family: 'Grand Hotel', cursive;
     font-size: 30px;
     font-weight: 600;
 }
 
-.finstagram-logo:hover {
-    cursor: pointer;
+#finstagram-logo:hover {
+    background-color: #F56040;
 }
 
 #login-email-div {
@@ -20,6 +22,11 @@
     border: 0.25vw solid black;
 }
 
-#login-button {
+#login-button-div {
+    cursor: pointer;
     border: 0.25vw solid black;
+}
+
+#login-button-div > button {
+    cursor: pointer;
 }

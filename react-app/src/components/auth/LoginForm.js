@@ -33,6 +33,7 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={onLogin} id='login-form'>
+      <div id="finstagram-logo">Finstagram</div>
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
@@ -58,7 +59,9 @@ const LoginForm = () => {
           onChange={updatePassword}
         />
       </div>
-        <button type='submit' id='login-button'>Login</button>
+      <div id='login-button-div'>
+        <button type='submit'>Login</button>
+      </div>
     </form>
   );
 };

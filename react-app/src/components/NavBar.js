@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import HomeLight from './icons/HomeLight';
 import HomeDark from './icons/HomeDark';
-import { useLocation } from 'react-router';
+import { useLocation, useHistory } from 'react-router';
 import './NavBar.css'
 import { useSelector } from 'react-redux';
 
 const NavBar = () => {
   const location = useLocation();
+  const [dropdown, setDropdown] = useState(false)
   const user = useSelector(state => state.session.user)
+  const history = useHistory();
+
+  function toggleDropdown() {
+    setDropdown(!dropdown);
+  }
+
   return (
     <nav className="nav-container">
       <div className="nav-content">
@@ -49,17 +56,28 @@ const NavBar = () => {
               </NavLink>
             </div>
           }
-          <div>
-            <NavLink to='/users' exact={true} activeClassName='active'>
-              Users
-            </NavLink>
-          </div>
-          {user && 
-            <div>
-              <LogoutButton />
+          {user && (
+            <div 
+              className={`profile-picture-container`}
+              onClick={toggleDropdown}
+            >
+              <img className={`profile-picture dropdown-${dropdown}`} src={user.profile_picture} alt="User profile avatar" />
+              {dropdown && 
+                <div className="profile-dropdown">
+                  <div 
+                    className="profile-button-container"
+                    // onClick={history.push(`/profiles/${user.id}`)}
+                  >
+                    <i className="far fa-user-circle profile-icon"></i>Profile
+                  </div>
+                  <div className="logout-divider"></div>
+                  <div className="logout-button-container">
+                    <LogoutButton />
+                  </div>
+                </div>
+              }
             </div>
-          }
-
+          )}
       </div>
 
       </div>

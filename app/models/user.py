@@ -108,6 +108,7 @@ class User(db.Model, UserMixin):
             'lastname': self.lastname,
             'username': self.username,
             'email': self.email,
+            'profile_picture': self.profile_picture,
             'followed': self.followed_users(),
             'followers': self.follower_users()
         }

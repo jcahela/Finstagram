@@ -31,15 +31,78 @@
 }
 
 .links-container > div {
-    margin-right: 10px;
+    margin-right: 20px;
 }
 
 .home-icon {
-    height: 30px;
-    width: 30px;
+    height: 28px;
+    width: 28px;
     font-weight: lighter;
+    position: relative;
+    top: 2px;
 }
 
 .explore-icon {
-    font-size: 28px;
+    font-size: 26px;
+}
+
+.profile-picture-container {
+    position: relative;
+    top: 2px;
+}
+
+.profile-picture {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    padding: 2px;
+    padding-bottom: 3px;
+    margin: 0 auto;
+}
+
+.dropdown-true {
+    border: 1px solid rgb(0, 0, 0);
+}
+
+.profile-picture:hover {
+    cursor: pointer;
+}
+
+.profile-dropdown {
+    box-shadow: 0px 0px 5px 1px #dfdfdf;
+    position: absolute;
+    background-color: white;
+    bottom: -80px;
+    left: -100px;
+    width: 200px;
+    border-radius: 5px;
+}
+
+.profile-button-container,
+.logout-button-container {
+    padding: 8px 12px;
+}
+
+.profile-button-container:hover,
+.logout-button-container:hover {
+    cursor: pointer;
+}
+
+.profile-border {
+    border: 1px solid;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    bottom: -1px;
+    right: -3px;
+}
+
+.profile-icon {
+    margin-right: 7px;
+}
+
+.logout-button-container {
+    border-top: 1px solid rgba(0, 0, 0, 0.205)
 }

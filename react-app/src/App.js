@@ -8,6 +8,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
+import { getUsersThunk } from './store/users';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -16,6 +17,7 @@ function App() {
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
+      await dispatch(getUsersThunk())
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -40,8 +42,11 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
+        <ProtectedRoute path='/feed' exact={true} >
+          <h1>My Feed</h1>
+        </ProtectedRoute>
+        <ProtectedRoute path='/explore' exact={true} >
+          <h1>My Explore Page</h1>
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

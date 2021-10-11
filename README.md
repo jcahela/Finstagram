@@ -132,3 +132,8 @@ of your Heroku app in the url and tag name:
    ```bash=3
    docker push registry.heroku.com/{NAME_OF_HEROKU_APP}/web
    ```
+
+### Flask Commands
++ flask db init
++ flask db migrate -m 'create simple_people table'
++ flask db upgrade

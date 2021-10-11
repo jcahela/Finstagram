@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
+import './auth_css/Auth.css';
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -31,33 +32,33 @@ const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={onLogin}>
+    <form onSubmit={onLogin} id='login-form'>
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
       </div>
-      <div>
-        <label htmlFor='email'>Email</label>
+      <div id='login-email-div'>
         <input
           name='email'
           type='text'
+          aria-label='Email'
           placeholder='Email'
           value={email}
           onChange={updateEmail}
         />
       </div>
-      <div>
-        <label htmlFor='password'>Password</label>
+      <div id='login-password-div'>
         <input
           name='password'
           type='password'
+          aria-label='Password'
           placeholder='Password'
           value={password}
           onChange={updatePassword}
         />
-        <button type='submit'>Login</button>
       </div>
+        <button type='submit' id='login-button'>Login</button>
     </form>
   );
 };

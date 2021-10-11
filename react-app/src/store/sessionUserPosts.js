@@ -1,7 +1,7 @@
 
 // constants
-const GET_SESSION_USER_POSTS = 'users/GET_SESSION_USER_POSTS'
-const REMOVE_SESSION_USER_POSTS = 'users/REMOVE_SESSION_USER_POSTS'
+const GET_SESSION_USER_POSTS = 'sessionUsersPosts/GET_SESSION_USER_POSTS'
+const REMOVE_SESSION_USER_POSTS = 'sessionUsersPosts/REMOVE_SESSION_USER_POSTS'
 
 const getSessionUsersPosts = (posts) => ({
     type: GET_SESSION_USER_POSTS,

@@ -6,13 +6,13 @@ post_routes = Blueprint('posts', __name__)
 
 
 @post_routes.route('/')
-# @login_required
+@login_required
 def session_user_posts():
-    #current_user.id
+    
     """
     Gets all of the session user's posts
     """
-    posts = Post.query.filter(Post.user_id == 1).all()
+    posts = Post.query.filter(Post.user_id == current_user.id).all()
 
     return {
         "posts": [post.to_dict() for post in posts]

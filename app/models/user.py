@@ -31,12 +31,6 @@ class User(db.Model, UserMixin):
         back_populates="users_liked"
     )
 
-    # commented_posts = db.relationship(
-    #     "Post",
-    #     secondary=comments,
-    #     back_populates="users_commented"
-    # )
-
     followed = db.relationship(
         'User', secondary=followers,
         primaryjoin=(followers.c.follower_id == id),

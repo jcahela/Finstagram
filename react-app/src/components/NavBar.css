@@ -85,7 +85,8 @@
 }
 
 .profile-button-container:hover,
-.logout-button-container:hover {
+.logout-button-container:hover,
+.logout-comp:hover {
     cursor: pointer;
 }
 

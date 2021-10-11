@@ -17,6 +17,10 @@ const NavBar = () => {
     setDropdown(!dropdown);
   }
 
+  function sendToProfile() {
+    history.push(`/`)
+  }
+
   return (
     <nav className="nav-container">
       <div className="nav-content">
@@ -66,7 +70,7 @@ const NavBar = () => {
                 <div className="profile-dropdown">
                   <div 
                     className="profile-button-container"
-                    // onClick={history.push(`/profiles/${user.id}`)}
+                    onClick={sendToProfile}
                   >
                     <i className="far fa-user-circle profile-icon"></i>Profile
                   </div>

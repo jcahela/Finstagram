@@ -11,16 +11,18 @@
     border: 1px solid #dbdbdb;
     border-radius: 1px;
     padding: 10px;
-    width: 200px;
+    height: 200px;
+    width: 250px;
     display: grid;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
 .outer-form-ele {
     border: 1.5px solid #dbdbdb;
     border-radius: 2px;
-    font-size: 10px;
+    font-size: 16px;
     margin: 5px;
     padding: 2px;
 }
@@ -29,7 +31,7 @@
     width: 100%;
 }
 
-#finstagram-logo {
+#finstagram-logo-div {
     user-select: none;
     cursor: default;
     font-family: 'Grand Hotel', cursive;
@@ -37,16 +39,12 @@
     font-weight: 500;
 }
 
-#finstagram-logo:hover {
+#finstagram-logo-div:hover {
     background-color: #F56040;
 }
 
-#login-email-div {
-
-}
-
-#login-password-div {
-
+#visBtn {
+    cursor: pointer;
 }
 
 #login-button-div {

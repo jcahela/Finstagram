@@ -3,6 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from datetime import datetime
 from .post import likes
+from .comment import Comment
 
 followers = db.Table('followers',
     db.Column('follower_id', db.Integer, db.ForeignKey('users.id')),
@@ -48,8 +49,11 @@ class User(db.Model, UserMixin):
         db.session.add(self)
         db.session.commit()
 
-    # def comment(self, post):
-    #     self.commented_posts.append(post)
+    def comment(self, post, description):
+        comment = Comment(user_id=self.id, post_id=post.id, description=description)
+        db.session.add(comment)
+        db.session.commit()
+
 
     def is_following(self, user):
         return self.followed.filter(

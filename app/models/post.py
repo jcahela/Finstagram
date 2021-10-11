@@ -1,5 +1,6 @@
 from .db import db
 from datetime import datetime
+from .comment import Comment
 
 likes = db.Table(
     "likes",
@@ -16,26 +17,6 @@ likes = db.Table(
         primary_key=True
     )
 )
-
-# comments = db.Table(
-#     "comments",
-#     db.Column(
-#         "post_id",
-#         db.Integer,
-#         db.ForeignKey("posts.id"),
-#         primary_key=True
-#     ),
-#     db.Column(
-#         "user_id",
-#         db.Integer,
-#         db.ForeignKey("users.id"),
-#         primary_key=True
-#     ),
-#     db.Column(
-#         "description",
-#         db.Text
-#     )
-# )
 
 class Post(db.Model):
     __tablename__ = "posts"
@@ -56,11 +37,28 @@ class Post(db.Model):
         back_populates="liked_posts"
     )
 
-    # users_commented = db.relationship(
-    #     "User",
-    #     secondary=comments,
-    #     back_populates="commented_posts"
-    # )
+    def post_likes(self):
+        users = self.users_liked
+        all_users = {}
+        for user in users:
+            all_users[user.id] = {
+                'firstname': user.firstname,
+                'lastname': user.lastname,
+                'username': user.username,
+                'email': user.email,
+            }
+        return all_users
+
+    def post_comments(self):
+        comments = Comment.query.filter(Comment.post_id == self.id).all()
+        all_comments = {}
+        for comment in comments:
+            all_comments[comment.id] = {
+                'user_id': comment.user_id,
+                'post_id': comment.post_id,
+                'description': comment.description
+            }
+        return all_comments
 
     def to_dict(self):
         return {
@@ -68,5 +66,6 @@ class Post(db.Model):
             'user_id': self.user_id,
             'description': self.description,
             'content': self.content,
-            # 'likes': self.users_liked
+            'likes': self.post_likes(),
+            'comments': self.post_comments()
         }

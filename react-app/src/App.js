@@ -7,6 +7,7 @@ import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
+import ExplorePage from './components/ExplorePage';
 import { authenticate } from './store/session';
 import { getUsersThunk } from './store/users';
 import { getSessionUsersPostsThunk } from './store/sessionUserPosts'
@@ -55,6 +56,7 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/explore' exact={true} >
           <h1>My Explore Page</h1>
+          <ExplorePage />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

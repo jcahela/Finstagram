@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import session from './session';
 import usersReducer from './users';
 import sessionUserPostsReducer from './sessionUserPosts';
+import nonFollowedUsersPostsReducer from './nonFollowedUsersPosts';
 
 const rootReducer = combineReducers({
   session,
   "users": usersReducer,
-  "sessionUsersPosts": sessionUserPostsReducer
+  "sessionUsersPosts": sessionUserPostsReducer,
+  "nonFollowedUsersPosts": nonFollowedUsersPostsReducer
 });
 
 

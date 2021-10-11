@@ -1,13 +1,40 @@
+#login-form-container {
+    background-color: #fafafa;
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-rows: 1fr 1fr;
+}
+
 #login-form {
-    border: 1vw solid blue;
+    border: 1px solid #dbdbdb;
+    border-radius: 1px;
+    padding: 10px;
+    width: 200px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.outer-form-ele {
+    border: 1.5px solid #dbdbdb;
+    border-radius: 2px;
+    font-size: 10px;
+    margin: 5px;
+    padding: 2px;
+}
+
+.inner-form-ele {
+    width: 100%;
 }
 
 #finstagram-logo {
     user-select: none;
     cursor: default;
     font-family: 'Grand Hotel', cursive;
-    font-size: 30px;
-    font-weight: 600;
+    font-size: 45px;
+    font-weight: 500;
 }
 
 #finstagram-logo:hover {
@@ -15,18 +42,21 @@
 }
 
 #login-email-div {
-    border: 0.25vw solid black;
+
 }
 
 #login-password-div {
-    border: 0.25vw solid black;
+
 }
 
 #login-button-div {
     cursor: pointer;
-    border: 0.25vw solid black;
+    text-align: center;
+    background-color: #0095f6;
 }
 
 #login-button-div > button {
     cursor: pointer;
+    color: white;
+    border-radius: 3px;
 }

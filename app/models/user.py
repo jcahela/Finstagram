@@ -1,6 +1,7 @@
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from datetime import datetime
 
 followers = db.Table('followers',
     db.Column('follower_id', db.Integer, db.ForeignKey('users.id')),
@@ -16,6 +17,10 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    createdAt = db.Column(db.DateTime, nullable=False, default=datetime.now())
+    updatedAt = db.Column(db.DateTime, nullable=False, default=datetime.now())
+
+    posts = db.relationship("Post", back_populates="user")
 
     followed = db.relationship(
         'User', secondary=followers,
@@ -33,7 +38,7 @@ class User(db.Model, UserMixin):
             self.followed.append(user)
             db.session.add(self)
             db.session.commit()
-            
+
     def unfollow(self, user):
         if self.is_following(user):
             self.followed.remove(user)

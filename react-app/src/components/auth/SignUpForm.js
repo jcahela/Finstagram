@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import Footer from '../Footer/Footer';
+import './auth_css/Auth.css';
+import './auth_css/SignupForm.css';
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -43,51 +46,59 @@ const SignUpForm = () => {
   }
 
   return (
-    <form onSubmit={onSignUp}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
-      <div>
-        <label>User Name</label>
-        <input
-          type='text'
-          name='username'
-          onChange={updateUsername}
-          value={username}
-        ></input>
-      </div>
-      <div>
-        <label>Email</label>
-        <input
-          type='text'
-          name='email'
-          onChange={updateEmail}
-          value={email}
-        ></input>
-      </div>
-      <div>
-        <label>Password</label>
-        <input
-          type='password'
-          name='password'
-          onChange={updatePassword}
-          value={password}
-        ></input>
-      </div>
-      <div>
-        <label>Repeat Password</label>
-        <input
-          type='password'
-          name='repeat_password'
-          onChange={updateRepeatPassword}
-          value={repeatPassword}
-          required={true}
-        ></input>
-      </div>
-      <button type='submit'>Sign Up</button>
-    </form>
+    <div className='auth-page'>
+      <form onSubmit={onSignUp} id='signup-form' className='auth-form' autoComplete='off'>
+        <div id="signup-logo-div" className='auth-logo-div'>
+          <span className='auth-logo'>Finstagram</span>
+        </div>
+        <div className='outer-signup-form-ele'>
+          <input
+            type='text'
+            onChange={updateUsername}
+            value={username}
+            aria-label='Username'
+            placeholder='Username'
+            ></input>
+        </div>
+        <div className='outer-signup-form-ele'>
+          <input
+            type='email'
+            onChange={updateEmail}
+            value={email}
+            aria-label='Email'
+            placeholder='user@example.com'
+            ></input>
+        </div>
+        <div className='outer-signup-form-ele'>
+          <input
+            type='password'
+            onChange={updatePassword}
+            value={password}
+            aria-label='Password'
+            placeholder='Password'
+            ></input>
+        </div>
+        <div className='outer-signup-form-ele'>
+          <input
+            type='password'
+            onChange={updateRepeatPassword}
+            value={repeatPassword}
+            required={true}
+            aria-label='Repeat Password'
+            placeholder='Repeat Password'
+            ></input>
+        </div>
+        <div className='auth-button-div'>
+          <button id='signup-button' className='inner-form-ele' type='submit'>Sign Up</button>
+        </div>
+        <div id='signup-errors-div' className='auth-errors-div'>
+          {errors.map((error, ind) => (
+            <div key={ind}>{error}</div>
+          ))}
+        </div>
+      </form>
+      <Footer />
+    </div>
   );
 };
 

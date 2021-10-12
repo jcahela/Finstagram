@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import { getSessionUsersPostsThunk } from '../../store/sessionUserPosts';
+import Footer from '../Footer/Footer';
 import './auth_css/Auth.css';
 import './auth_css/LoginForm.css';
 
@@ -54,24 +55,24 @@ const LoginForm = () => {
   }
 
   return (
-    <div id='login-page' className='auth-page'>
-      <form onSubmit={onLogin} id='login-form' autoComplete='off'>
-        <div id="finstagram-logo-div"><span id='finstagram-logo'>Finstagram</span></div>
-        <div id='login-email-div' className='outer-form-ele'>
+    <div className='auth-page'>
+      <form onSubmit={onLogin} id='login-form' className='auth-form' autoComplete='off'>
+        <div id="login-logo-div" className='auth-logo-div'>
+          <span className='auth-logo'>Finstagram</span>
+        </div>
+        <div id='login-email-div' className='outer-login-form-ele'>
           <input
             className='inner-form-ele'
-            name='email'
-            type='text'
+            type='email'
             aria-label='Email'
             placeholder='Email'
             value={email}
             onChange={updateEmail}
           />
         </div>
-        <div id='login-password-div' className='outer-form-ele'>
+        <div id='login-password-div' className='outer-login-form-ele'>
           <input
             className='inner-form-ele'
-            name='password'
             type={passwordVisibility}
             aria-label='Password'
             placeholder='Password'
@@ -85,15 +86,16 @@ const LoginForm = () => {
           id={btnVisibility}
           display='none'
         >{btnText}</button>
-        <div id='login-button-div'>
+        <div className='auth-button-div'>
           <button id='login-button' className='inner-form-ele' type='submit'>Log In</button>
         </div>
-        <div id='login-errors-div'>
+        <div id='login-errors-div' className='auth-errors-div'>
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}
         </div>
       </form>
+      <Footer />
     </div>
   );
 };

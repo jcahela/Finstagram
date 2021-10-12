@@ -55,7 +55,6 @@ function App() {
           <h1>My Feed</h1>
         </ProtectedRoute>
         <ProtectedRoute path='/explore' exact={true} >
-          <h1>My Explore Page</h1>
           <ExplorePage />
         </ProtectedRoute>
       </Switch>

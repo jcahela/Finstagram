@@ -74,6 +74,14 @@ def seed_posts():
         user_id=2, description="Beautiful Lorem Picsum Image", content="https://picsum.photos/200/300"
     )
 
+    post19 = Post(
+        user_id=2, description="Beautiful Lorem Picsum Image", content="https://picsum.photos/300/200"
+    )
+
+    post20 = Post(
+        user_id=2, description="Beautiful Lorem Picsum Image", content="https://picsum.photos/300"
+    )
+
     db.session.add(post1)
     db.session.add(post2)
     db.session.add(post3)
@@ -92,6 +100,8 @@ def seed_posts():
     db.session.add(post16)
     db.session.add(post17)
     db.session.add(post18)
+    db.session.add(post19)
+    db.session.add(post20)
     db.session.commit()
 
 def undo_posts():

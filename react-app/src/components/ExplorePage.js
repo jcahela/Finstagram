@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { getNonFollowedPostsThunk } from '../store/nonFollowedUsersPosts';
 import { useDispatch, useSelector } from 'react-redux';
+import './ExplorePage.css'
 
 function ExplorePage() {
     let dispatch = useDispatch();
@@ -11,16 +12,22 @@ function ExplorePage() {
 
     const posts = useSelector(state => state.nonFollowedUsersPosts);
     // console.log(posts);
+    // may have to use useState for explore_posts to persist between renders
+    const explore_posts = {...posts}
+
+    /*
+        Object.keys(explore_posts).map((key, index) => (
+
+        ))
+    */
 
     return (
         <>
-            {Object.keys(posts).map(key => (
-                <ul>
-                    <li>User Id: {posts[key].user_id}</li>
-                    <li>Description: {posts[key].description}</li>
-                    <li>Content: {posts[key].content}</li>
-                </ul>
-            ))}
+            <div className="explore-page-container">
+                {Object.keys(explore_posts).map((key, index) => (
+                        <img src={explore_posts[key].content} alt="something" className="explore-posts"/>
+                ))}
+            </div>
         </>
     )
 }

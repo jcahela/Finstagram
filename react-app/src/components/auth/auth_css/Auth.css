@@ -75,3 +75,14 @@
     position: relative;
     text-align: center;
 }
+
+#auth-footer {
+    grid-area: footer;
+
+}
+
+#auth-footer-list {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+}

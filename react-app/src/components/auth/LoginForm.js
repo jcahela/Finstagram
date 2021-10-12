@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import { getSessionUsersPostsThunk } from '../../store/sessionUserPosts';
-import Footer from '../Footer/Footer'
+import Footer from '../Footer/Footer';
 import './auth_css/Auth.css';
 import './auth_css/LoginForm.css';
 
@@ -95,7 +95,7 @@ const LoginForm = () => {
           ))}
         </div>
       </form>
-      <Footer className='footer' />
+      <Footer />
     </div>
   );
 };

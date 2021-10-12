@@ -93,7 +93,7 @@ const SignUpForm = () => {
             onChange={updateEmail}
             value={email}
             aria-label='Email'
-            placeholder='user@example.com'
+            placeholder='user@example.io'
             ></input>
         </div>
         <div className={outerEleTheme}>

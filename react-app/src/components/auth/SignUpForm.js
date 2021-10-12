@@ -40,7 +40,8 @@ const SignUpForm = () => {
     e.preventDefault();
     if (password === repeatPassword) {
       const data = await dispatch(signUp(username, email, password));
-      console.log('This is the data', data);
+      console.log('This is the data');
+      console.log(data);
       if (data) {
         setErrors(data)
       }

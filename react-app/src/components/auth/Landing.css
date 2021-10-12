@@ -1,0 +1,17 @@
+.login-content-container {
+    display: flex;
+    margin-top: 100px;
+    align-items: flex-start;
+}
+
+.carousel-holder {
+    height: 550px;
+    width: 460px;
+    background-position: center;
+    background-size: 90%;
+    background-repeat: no-repeat;
+}
+
+.link-to-signup-container {
+    border: 1px solid rgb(196, 196, 196);
+}

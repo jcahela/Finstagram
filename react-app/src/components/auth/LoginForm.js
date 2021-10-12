@@ -4,9 +4,10 @@ import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import { getSessionUsersPostsThunk } from '../../store/sessionUserPosts';
 import Footer from '../Footer/Footer';
+import { Link } from 'react-router-dom';
 import './auth_css/Auth.css';
 import './auth_css/LoginForm.css';
-// import './Landing.css'
+import './Landing.css'
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -79,50 +80,58 @@ const LoginForm = () => {
 
   return (
     <div className='auth-page'>
-      <form onSubmit={onLogin} id='login-form' className={easterEgg} autoComplete='off'>
-        <div
-          id="login-logo-div"
-          className='auth-logo-div'
-          onClick={themeToggleHandler}
-        >
-          <span className='auth-logo'>Finstagram</span>
+      <div className="login-content-container">
+        <div className="carousel-holder" style={{backgroundImage:"url('https://cdn.discordapp.com/attachments/886336420552269847/897622826859773972/landing-carousel-holder.png')"}}></div>
+        <div className="form-and-link-container">
+          <form onSubmit={onLogin} id='login-form' className={easterEgg} autoComplete='off'>
+            <div
+              id="login-logo-div"
+              className='auth-logo-div'
+              onClick={themeToggleHandler}
+            >
+              <span className='auth-logo'>Finstagram</span>
+            </div>
+            <div id='login-email-div' className={outerEleTheme}>
+              <input
+                className={innerEleTheme}
+                type='email'
+                aria-label='Email'
+                placeholder='Email'
+                value={email}
+                onChange={updateEmail}
+              />
+            </div>
+            <div id='login-password-div' className={outerEleTheme}>
+              <input
+                className={innerEleTheme}
+                type={passwordVisibility}
+                aria-label='Password'
+                placeholder='Password'
+                value={password}
+                onChange={updatePassword}
+              />
+            </div>
+            <button
+              type='button'
+              onClick={visibilityHandler}
+              data-vis-btn-pos={visBtnPos}
+              id={btnVisibility}
+              display='none'
+            >{btnText}</button>
+            <div className='auth-button-div'>
+              <button id='login-button' className={innerEleTheme} type='submit'>Log In</button>
+            </div>
+            <div id='login-errors-div' className='auth-errors-div'>
+              {errors.map((error, ind) => (
+                <div key={ind}>{error}</div>
+              ))}
+            </div>
+          </form>
+          <div className="link-to-signup-container">
+                Don't have an account? <span><Link to="/signup">Sign up here</Link></span>
+          </div>
         </div>
-        <div id='login-email-div' className={outerEleTheme}>
-          <input
-            className={innerEleTheme}
-            type='email'
-            aria-label='Email'
-            placeholder='Email'
-            value={email}
-            onChange={updateEmail}
-          />
-        </div>
-        <div id='login-password-div' className={outerEleTheme}>
-          <input
-            className={innerEleTheme}
-            type={passwordVisibility}
-            aria-label='Password'
-            placeholder='Password'
-            value={password}
-            onChange={updatePassword}
-          />
-        </div>
-        <button
-          type='button'
-          onClick={visibilityHandler}
-          data-vis-btn-pos={visBtnPos}
-          id={btnVisibility}
-          display='none'
-        >{btnText}</button>
-        <div className='auth-button-div'>
-          <button id='login-button' className={innerEleTheme} type='submit'>Log In</button>
-        </div>
-        <div id='login-errors-div' className='auth-errors-div'>
-          {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
-        </div>
-      </form>
+      </div>
       <Footer />
     </div>
   );

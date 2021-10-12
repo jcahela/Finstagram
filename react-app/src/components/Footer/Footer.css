@@ -1,3 +1,16 @@
 #auth-footer-list > li {
     cursor: pointer;
 }
+
+#auth-footer {
+    position: absolute;
+    bottom: 5px;
+}
+
+.about-link {
+    margin-right: 20px;
+}
+
+.contact-link {
+    margin-left: 20px;
+}

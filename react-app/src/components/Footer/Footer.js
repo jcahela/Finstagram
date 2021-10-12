@@ -15,8 +15,8 @@ export default function Footer() {
     return (
         <div id='auth-footer'>
             <ul id='auth-footer-list'>
-                <li onClick={clickHandler}>About</li>
-                <li onClick={clickHandler}>Contact</li>
+                <li className="about-link" onClick={clickHandler}>About</li>
+                <li className="contact-link" onClick={clickHandler}>Contact</li>
             </ul>
         </div>
     )

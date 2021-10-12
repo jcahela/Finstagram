@@ -26,14 +26,13 @@
     grid-area: form;
 
     border: 1px solid #dbdbdb;
-    border-radius: 10px;
     padding: 10px;
 
     display: grid;
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin-top: 10%;
+    margin-top: 10px;
 }
 
 .auth-form-easter-egg {
@@ -70,8 +69,9 @@
 
 .inner-form-ele {
     width: 100%;
-    border: 1px solid #dbdbdb;
     padding: 2% 25% 2% 2%;
+    border: 1px solid rgb(196, 196, 196);
+    border-radius: 5px;
 }
 
 .inner-form-ele-easter-egg {
@@ -82,13 +82,9 @@
 
 .auth-button-div {
     cursor: pointer;
-    border-radius: 3px;
+    border-radius: 5px;
     background-color: #0095f6;
     text-align: center;
-}
-
-.auth-button-div:hover {
-    box-shadow: 0 0 5px black;
 }
 
 .auth-errors-div {

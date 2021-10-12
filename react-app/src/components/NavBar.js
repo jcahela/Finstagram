@@ -6,12 +6,15 @@ import HomeDark from './icons/HomeDark';
 import { useLocation, useHistory } from 'react-router';
 import './NavBar.css'
 import { useSelector } from 'react-redux';
+import { useModal } from '../context/Modal';
+import PostForm from './PostForm';
 
 const NavBar = () => {
   const location = useLocation();
   const [dropdown, setDropdown] = useState(false)
   const user = useSelector(state => state.session.user)
   const history = useHistory();
+  const { toggleModal, setModalContent } = useModal();
 
   function toggleDropdown() {
     setDropdown(!dropdown);
@@ -19,6 +22,13 @@ const NavBar = () => {
 
   function sendToProfile() {
     history.push(`/`)
+  }
+
+  function openPostFormModal() {
+    setModalContent((
+      <PostForm />
+    ))
+    toggleModal();
   }
 
   return (
@@ -29,7 +39,7 @@ const NavBar = () => {
         </NavLink>
         <div className="links-container">
           <div>
-            <i class="far fa-plus-square new-post-button"></i>
+            <i onClick={openPostFormModal} className="far fa-plus-square new-post-button"></i>
           </div>
           <div>
             <NavLink to='/feed' exact={true} activeClassName='active'>
@@ -77,7 +87,6 @@ const NavBar = () => {
                   >
                     <i className="far fa-user-circle profile-icon"></i>Profile
                   </div>
-                  <div className="logout-divider"></div>
                   <div className="logout-button-container">
                     <LogoutButton />
                   </div>

@@ -18,9 +18,17 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    position: relative;
 }
 
-.explore-posts:hover {
+.explore-posts img:hover {
     cursor: pointer;
     filter:brightness(70%);
+}
+
+.like-icon {
+    position: absolute;
+    left: 30%;
+    top: 45%;
+    color: white;
 }

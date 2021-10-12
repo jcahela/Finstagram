@@ -16,7 +16,7 @@ function ExplorePage() {
     // console.log(posts);
     // may have to use useState for explore_posts to persist between renders
     const explore_posts = {...posts}
-
+    console.log(explore_posts);
     return (
         <>
             <div className="explore-page-container">
@@ -24,6 +24,9 @@ function ExplorePage() {
                     <div className="explore-posts" onMouseEnter={() => setStats(`${key}`)} onMouseLeave={() => setStats(false)}>
                         <img src={explore_posts[key].content} alt="something" className="explore-posts" key={explore_posts[key].id}/>
                         {stats === key && <span className={`material-icons like-icon`}>favorite</span>}
+                        {stats === key && <span className="likes-count">{Object.keys(explore_posts[key].likes).length}</span>}
+                        {stats === key && <i class="fas fa-comment comment-icon"></i>}
+                        {stats === key && <span className="comment-count">{Object.keys(explore_posts[key].comments).length}</span>}
                     </div>
                 ))}
             </div>

@@ -1,9 +1,9 @@
-#login-form {
-    height: 300px;
-    width: 300px;
+#signup-form {
+    height: 600px;
+    width: 400px;
 }
 
-#login-logo-div {
+#signup-logo-div {
     user-select: none;
     font-size: 45px;
 }
@@ -18,6 +18,7 @@
     top: 30%;
     border-radius: 2px;
 }
+
 
 #visibility-button-visible {
     cursor: pointer;

@@ -1,0 +1,1 @@
++ Initially I removed some awaits on dispatches, which I had researched should only be present on methods that return Promises. Upon removing it from my onLogin method, however, it crashed as soon as an error arose, albeit my linter stated 'await' has no effect on the type of this expression.

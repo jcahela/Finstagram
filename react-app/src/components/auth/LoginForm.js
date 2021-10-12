@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import { getSessionUsersPostsThunk } from '../../store/sessionUserPosts';
+import Footer from '../Footer/Footer'
 import './auth_css/Auth.css';
 import './auth_css/LoginForm.css';
 
@@ -54,9 +55,9 @@ const LoginForm = () => {
   }
 
   return (
-    <div id='login-page' className='auth-page'>
-      <form onSubmit={onLogin} id='login-form' autoComplete='off'>
-        <div id="finstagram-logo-div"><span id='finstagram-logo'>Finstagram</span></div>
+    <div className='auth-page'>
+      <form onSubmit={onLogin} className='auth-form' id='login-form' autoComplete='off'>
+        <div id="login-logo-div"><span className='finstagram-logo'>Finstagram</span></div>
         <div id='login-email-div' className='outer-form-ele'>
           <input
             className='inner-form-ele'
@@ -94,6 +95,7 @@ const LoginForm = () => {
           ))}
         </div>
       </form>
+      <Footer className='footer' />
     </div>
   );
 };

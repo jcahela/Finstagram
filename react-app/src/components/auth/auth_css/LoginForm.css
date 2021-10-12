@@ -9,6 +9,15 @@
     padding: 5px;
 
     position: relative;
+    top: 30%;
+}
+
+.outer-login-form-ele-easter-egg {
+    font-size: 14px;
+    margin: 5px;
+    padding: 5px;
+
+    position: relative;
     right: 10%;
     top: 30%;
 }
@@ -30,6 +39,8 @@
 #visibility-button-invisible {
     visibility: hidden;
 }
+
+button[data-vis-btn-pos='']
 
 #login-button {
     font-size: 14px;

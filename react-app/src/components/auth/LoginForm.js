@@ -15,9 +15,27 @@ const LoginForm = () => {
   const [btnText, setBtnTxt] = useState('Show');
   const [btnVisibility, setBtnVisibility] = useState('visibility-button-invisible');
   const [passwordVisibility, setPasswordVisibility] = useState('password');
+  const [toggleTheme, setToggleTheme] = useState(false);
+  const [easterEgg, setEasterEgg] = useState('auth-form');
+  const [innerEleTheme, setInnerEleTheme] = useState('inner-form-ele');
+  const [outerEleTheme, setOuterEleTheme] = useState('outer-login-form-ele');
+  const [visBtnPos, setVisBtnPos] = useState('')
 
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+
+  const themeToggleHandler = (e) => {
+    if (!toggleTheme) {
+      setEasterEgg('auth-form-easter-egg');
+      setInnerEleTheme('inner-form-ele-easter-egg');
+      setOuterEleTheme('outer-login-form-ele-easter-egg');
+    }
+    else {
+      setEasterEgg('auth-form');
+      setInnerEleTheme('inner-form-ele');
+    }
+    setToggleTheme(prevTheme => !prevTheme);
+  }
 
   const visibilityHandler = (e) => {
     if (!toggleState) {
@@ -29,6 +47,7 @@ const LoginForm = () => {
     }
     setToggleState(prevState => !prevState);
   }
+
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -56,13 +75,17 @@ const LoginForm = () => {
 
   return (
     <div className='auth-page'>
-      <form onSubmit={onLogin} id='login-form' className='auth-form' autoComplete='off'>
-        <div id="login-logo-div" className='auth-logo-div'>
+      <form onSubmit={onLogin} id='login-form' className={easterEgg} autoComplete='off'>
+        <div
+          id="login-logo-div"
+          className='auth-logo-div'
+          onClick={themeToggleHandler}
+        >
           <span className='auth-logo'>Finstagram</span>
         </div>
-        <div id='login-email-div' className='outer-login-form-ele'>
+        <div id='login-email-div' className={outerEleTheme}>
           <input
-            className='inner-form-ele'
+            className={innerEleTheme}
             type='email'
             aria-label='Email'
             placeholder='Email'
@@ -70,9 +93,9 @@ const LoginForm = () => {
             onChange={updateEmail}
           />
         </div>
-        <div id='login-password-div' className='outer-login-form-ele'>
+        <div id='login-password-div' className={outerEleTheme}>
           <input
-            className='inner-form-ele'
+            className={innerEleTheme}
             type={passwordVisibility}
             aria-label='Password'
             placeholder='Password'
@@ -83,11 +106,12 @@ const LoginForm = () => {
         <button
           type='button'
           onClick={visibilityHandler}
+          data-vis-btn-pos={}
           id={btnVisibility}
           display='none'
         >{btnText}</button>
         <div className='auth-button-div'>
-          <button id='login-button' className='inner-form-ele' type='submit'>Log In</button>
+          <button id='login-button' className={innerEleTheme} type='submit'>Log In</button>
         </div>
         <div id='login-errors-div' className='auth-errors-div'>
           {errors.map((error, ind) => (

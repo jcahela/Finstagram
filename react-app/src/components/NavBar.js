@@ -29,7 +29,7 @@ const NavBar = () => {
         </NavLink>
         <div className="links-container">
           <div>
-            <i class="far fa-plus-square new-post-button"></i>
+            <i className="far fa-plus-square new-post-button"></i>
           </div>
           <div>
             <NavLink to='/feed' exact={true} activeClassName='active'>

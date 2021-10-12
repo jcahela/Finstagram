@@ -24,7 +24,7 @@ const PostForm = () => {
             <label 
                 className={`post-file-button content-${contentFile !== ''}`} 
                 htmlFor="post-file"
-            >{contentFile === '' ? "Add Picture or Video": "Added"}
+            >{contentFile === '' ? "Upload Image/Video": "Added"}
             </label>
             <input 
                 id="post-file"

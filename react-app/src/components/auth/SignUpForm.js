@@ -40,27 +40,20 @@ const SignUpForm = () => {
     e.preventDefault();
     if (password === repeatPassword) {
       const data = await dispatch(signUp(username, email, password));
+      console.log('This is the data', data);
       if (data) {
         setErrors(data)
       }
     }
   };
 
-  const updateUsername = (e) => {
-    setUsername(e.target.value);
-  };
+  const updateUsername = (e) => setUsername(e.target.value);
 
-  const updateEmail = (e) => {
-    setEmail(e.target.value);
-  };
+  const updateEmail = (e) => setEmail(e.target.value);
 
-  const updatePassword = (e) => {
-    setPassword(e.target.value);
-  };
+  const updatePassword = (e) => setPassword(e.target.value);
 
-  const updateRepeatPassword = (e) => {
-    setRepeatPassword(e.target.value);
-  };
+  const updateRepeatPassword = (e) => setRepeatPassword(e.target.value);
 
   if (user) {
     return <Redirect to='/' />;

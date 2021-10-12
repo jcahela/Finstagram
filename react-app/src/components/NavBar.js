@@ -58,7 +58,7 @@ const NavBar = () => {
           }
           {!user &&
             <div>
-              <NavLink to='/sign-up' exact={true} activeClassName='active'>
+              <NavLink to='/signup' exact={true} activeClassName='active'>
                 Sign Up
               </NavLink>
             </div>

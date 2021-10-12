@@ -1,6 +1,11 @@
+* {
+    box-sizing: border-box;
+}
+
 #login-form-container {
-    background-color: #fafafa;
     height: 100vh;
+    background-color: #fafafa;
+
     display: grid;
     justify-content: center;
     align-items: center;
@@ -8,53 +13,77 @@
 }
 
 #login-form {
+    height: 300px;
+    width: 300px;
+
     border: 1px solid #dbdbdb;
-    border-radius: 1px;
+    border-radius: 10px;
     padding: 10px;
-    height: 200px;
-    width: 250px;
+
     display: grid;
     justify-content: center;
     align-items: center;
     text-align: center;
+    background: linear-gradient(25deg, #fccc63, #fbad50, #e95950, #bc2a8d, #8a3ab9, #833AB4);
+    background-size: 300% 300%;
+    animation: login-spread 3s ease-in-out infinite;
+}
+
+#login-form:hover {
+    background: linear-gradient(25deg, #fccc63, #fbad50, #e95950, #bc2a8d, #8a3ab9, #833AB4);
+}
+
+@keyframes login-spread {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .outer-form-ele {
-    border: 1.5px solid #dbdbdb;
-    border-radius: 2px;
-    font-size: 16px;
+    font-size: 14px;
     margin: 5px;
-    padding: 2px;
+    padding: 5px;
+
+    position: relative;
+    right: 20%;
+    border-radius: 2px;
 }
 
 .inner-form-ele {
     width: 100%;
+    color: white;
 }
 
 #finstagram-logo-div {
     user-select: none;
-    cursor: default;
-    font-family: 'Grand Hotel', cursive;
     font-size: 45px;
-    font-weight: 500;
 }
 
-#finstagram-logo-div:hover {
-    background-color: #F56040;
+#finstagram-logo {
+    font-family: 'Grand Hotel', cursive;
 }
 
-#visBtn {
+#visibilityButton {
     cursor: pointer;
+    position: relative;
+    left: 90%;
+    bottom: 125%;
+    width: 20%;
 }
 
 #login-button-div {
     cursor: pointer;
-    text-align: center;
+    border-radius: 3px;
     background-color: #0095f6;
+    text-align: center;
 }
 
-#login-button-div > button {
+#login-button-div:hover {
+    box-shadow: 0 0 15px whitesmoke;
+}
+
+#login-button {
+    font-size: 14px;
     cursor: pointer;
-    color: white;
-    border-radius: 3px;
+    padding: 5px;
 }

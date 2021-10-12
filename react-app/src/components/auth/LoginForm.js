@@ -49,7 +49,7 @@ const LoginForm = () => {
   return (
     <div id='login-form-container'>
       <form onSubmit={onLogin} id='login-form'>
-        <div id="finstagram-logo-div"><span>Finstagram</span></div>
+        <div id="finstagram-logo-div"><span id='finstagram-logo'>Finstagram</span></div>
         <div>
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
@@ -76,10 +76,10 @@ const LoginForm = () => {
             value={password}
             onChange={updatePassword}
           />
-          <button type='button' onClick={visibilityHandler} id='visBtn'>{btnText}</button>
         </div>
-        <div id='login-button-div' className='outer-form-ele'>
-          <button className='inner-form-ele' type='submit'>Log In</button>
+        <button type='button' onClick={visibilityHandler} id='visibilityButton'>{btnText}</button>
+        <div id='login-button-div'>
+          <button id='login-button' className='inner-form-ele' type='submit'>Log In</button>
         </div>
       </form>
     </div>

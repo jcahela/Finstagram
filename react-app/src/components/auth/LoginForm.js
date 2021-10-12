@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import './auth_css/Auth.css';
+import './auth_css/LoginForm.css';
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -47,41 +48,43 @@ const LoginForm = () => {
   }
 
   return (
-    <div id='login-form-container'>
-      <form onSubmit={onLogin} id='login-form'>
-        <div id="finstagram-logo-div"><span id='finstagram-logo'>Finstagram</span></div>
-        <div>
-          {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
-        </div>
-        <div id='login-email-div' className='outer-form-ele'>
-          <input
-            className='inner-form-ele'
-            name='email'
-            type='text'
-            aria-label='Email'
-            placeholder='Email'
-            value={email}
-            onChange={updateEmail}
-          />
-        </div>
-        <div id='login-password-div' className='outer-form-ele'>
-          <input
-            className='inner-form-ele'
-            name='password'
-            type={passwordVisibility}
-            aria-label='Password'
-            placeholder='Password'
-            value={password}
-            onChange={updatePassword}
-          />
-        </div>
-        <button type='button' onClick={visibilityHandler} id='visibilityButton'>{btnText}</button>
-        <div id='login-button-div'>
-          <button id='login-button' className='inner-form-ele' type='submit'>Log In</button>
-        </div>
-      </form>
+    <div id='login-page'>
+      <div id='login-form-container'>
+        <form onSubmit={onLogin} id='login-form'>
+          <div id="finstagram-logo-div"><span id='finstagram-logo'>Finstagram</span></div>
+          <div id='login-email-div' className='outer-form-ele'>
+            <input
+              className='inner-form-ele'
+              name='email'
+              type='text'
+              aria-label='Email'
+              placeholder='Email'
+              value={email}
+              onChange={updateEmail}
+            />
+          </div>
+          <div id='login-password-div' className='outer-form-ele'>
+            <input
+              className='inner-form-ele'
+              name='password'
+              type={passwordVisibility}
+              aria-label='Password'
+              placeholder='Password'
+              value={password}
+              onChange={updatePassword}
+            />
+          </div>
+          <button type='button' onClick={visibilityHandler} id='visibilityButton'>{btnText}</button>
+          <div id='login-button-div'>
+            <button id='login-button' className='inner-form-ele' type='submit'>Log In</button>
+          </div>
+          <div id='login-errors-div'>
+            {errors.map((error, ind) => (
+              <div key={ind}>{error}</div>
+            ))}
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

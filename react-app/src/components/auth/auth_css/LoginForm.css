@@ -3,11 +3,7 @@
     width: 300px;
 }
 
-#login-logo-div {
-    font-size: 45px;
-}
-
-.outer-form-ele {
+.outer-login-form-ele {
     font-size: 14px;
     margin: 5px;
     padding: 5px;
@@ -15,7 +11,10 @@
     position: relative;
     right: 10%;
     top: 30%;
-    border-radius: 2px;
+}
+
+#login-logo-div {
+    font-size: 45px;
 }
 
 #visibility-button-visible {
@@ -30,10 +29,6 @@
 
 #visibility-button-invisible {
     visibility: hidden;
-}
-
-#login-button-div {
-
 }
 
 #login-button {

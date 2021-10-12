@@ -1,0 +1,1 @@
+- [ ] Validations errors should display on auth pages. Currently, only "An error occurred. Please try again." is being displayed when anything goes wrong (from mismatched passwords to incorrect users). Be mindful that changing this could distort the form. Alert Alejandro if this occurs.

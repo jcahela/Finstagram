@@ -46,31 +46,29 @@ const SignUpForm = () => {
 
   return (
     <div className='auth-page'>
-      <form onSubmit={onSignUp} id='signup-form' className='auth-form' >
+      <form onSubmit={onSignUp} id='signup-form' className='auth-form' autoComplete='off'>
         <div id="signup-logo-div" className='auth-logo-div'>
           <span className='auth-logo'>Finstagram</span>
         </div>
-        <div>
+        <div className='outer-signup-form-ele'>
           <input
             type='text'
             onChange={updateUsername}
             value={username}
             aria-label='Username'
             placeholder='Username'
-            autoComplete='off'
             ></input>
         </div>
-        <div>
+        <div className='outer-signup-form-ele'>
           <input
             type='email'
             onChange={updateEmail}
             value={email}
             aria-label='Email'
-            placeholder='Email'
-            autoComplete='off'
+            placeholder='user@example.com'
             ></input>
         </div>
-        <div>
+        <div className='outer-signup-form-ele'>
           <input
             type='password'
             onChange={updatePassword}
@@ -79,7 +77,7 @@ const SignUpForm = () => {
             placeholder='Password'
             ></input>
         </div>
-        <div>
+        <div className='outer-signup-form-ele'>
           <input
             type='password'
             onChange={updateRepeatPassword}
@@ -92,7 +90,7 @@ const SignUpForm = () => {
         <div className='auth-button-div'>
           <button id='signup-button' className='inner-form-ele' type='submit'>Sign Up</button>
         </div>
-        <div className='auth-errors-div'>
+        <div id='signup-errors-div' className='auth-errors-div'>
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}

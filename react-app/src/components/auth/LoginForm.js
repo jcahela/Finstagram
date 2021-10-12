@@ -60,7 +60,7 @@ const LoginForm = () => {
         <div id="login-logo-div" className='auth-logo-div'>
           <span className='auth-logo'>Finstagram</span>
         </div>
-        <div id='login-email-div' className='outer-form-ele'>
+        <div id='login-email-div' className='outer-login-form-ele'>
           <input
             className='inner-form-ele'
             type='email'
@@ -70,7 +70,7 @@ const LoginForm = () => {
             onChange={updateEmail}
           />
         </div>
-        <div id='login-password-div' className='outer-form-ele'>
+        <div id='login-password-div' className='outer-login-form-ele'>
           <input
             className='inner-form-ele'
             type={passwordVisibility}

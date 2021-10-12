@@ -34,10 +34,19 @@
     margin-right: 20px;
 }
 
+.new-post-button {
+    font-size: 26px;
+    position: relative;
+    top: 1px;
+}
+
+.new-post-button:hover {
+    cursor: pointer;
+}
+
 .home-icon {
     height: 28px;
     width: 28px;
-    font-weight: lighter;
     position: relative;
     top: 2px;
 }

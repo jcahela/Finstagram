@@ -7,6 +7,7 @@ import { useLocation, useHistory } from 'react-router';
 import './NavBar.css'
 import { useSelector } from 'react-redux';
 import { useModal } from '../context/Modal';
+import PostForm from './PostForm';
 
 const NavBar = () => {
   const location = useLocation();
@@ -25,13 +26,7 @@ const NavBar = () => {
 
   function openPostFormModal() {
     setModalContent((
-      <>
-        <h1>Hiwada wad awd awd awd awd awd awd </h1>
-        <h1>Hiwada wad awd awd awd awd awd awd </h1>
-        <h1>Hiwada wad awd awd awd awd awd awd </h1>
-        <h1>Hiwada wad awd awd awd awd awd awd </h1>
-        <h1>Hiwada wad awd awd awd awd awd awd </h1>
-      </>
+      <PostForm />
     ))
     toggleModal();
   }
@@ -92,7 +87,6 @@ const NavBar = () => {
                   >
                     <i className="far fa-user-circle profile-icon"></i>Profile
                   </div>
-                  <div className="logout-divider"></div>
                   <div className="logout-button-container">
                     <LogoutButton />
                   </div>

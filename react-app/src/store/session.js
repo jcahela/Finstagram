@@ -85,11 +85,6 @@ export const signUp = (firstname, lastname, username, email, password) => async 
     }),
   });
 
-console.log('response', response);
-console.log('username', username);
-console.log('password', password);
-console.log('email', email);
-
   if (response.ok) {
     const data = await response.json();
     dispatch(setUser(data))

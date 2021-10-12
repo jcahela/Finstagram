@@ -1,13 +1,8 @@
-<<<<<<< HEAD
 """Post Routes."""
 
-from flask import Blueprint
-from app.models import Post
-=======
 from flask import Blueprint, request
 from flask_migrate import current
 from app.models import Post, db
->>>>>>> main
 from flask_login import login_required, current_user
 from app.aws import (
     upload_file_to_s3, allowed_file, get_unique_filename
@@ -44,12 +39,12 @@ def add_post():
     # aws upload and error handling
     if "content" not in request.files:
         return {"errors": "content required"}, 400
-    
+
     content = request.files["content"]
 
     if not allowed_file(content.filename):
         return {"errors": "file type not permitted"}, 400
-    
+
     content.filename = get_unique_filename(content.filename)
 
     upload = upload_file_to_s3(content)

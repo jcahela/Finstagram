@@ -21,11 +21,15 @@ function ExplorePage() {
         ))
     */
 
+    function test(){
+        console.log("This works")
+    }
+
     return (
         <>
             <div className="explore-page-container">
                 {Object.keys(explore_posts).map((key, index) => (
-                        <img src={explore_posts[key].content} alt="something" className="explore-posts"/>
+                        <img src={explore_posts[key].content} onClick={test} alt="something" className="explore-posts" key={explore_posts[key].id}/>
                 ))}
             </div>
         </>

@@ -8,6 +8,8 @@ import './auth_css/SignupForm.css';
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
+  const [firstname, setFirstname] = useState('');
+  const [lastname, setLastname] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -39,9 +41,7 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
-      console.log('This is the data');
-      console.log(data);
+      const data = await dispatch(signUp(firstname, lastname, username, email, password));
       if (data) {
         setErrors(data)
       }
@@ -69,6 +69,26 @@ const SignUpForm = () => {
           onClick={themeToggleHandler}
         >
           <span className='auth-logo'>Finstagram</span>
+        </div>
+        <div className={outerEleTheme}>
+          <input
+            type='text'
+            className={innerEleTheme}
+            onChange={(e) => setFirstname(e.target.value)}
+            value={firstname}
+            aria-label='First Name'
+            placeholder='First Name'
+            ></input>
+        </div>
+        <div className={outerEleTheme}>
+          <input
+            type='text'
+            className={innerEleTheme}
+            onChange={(e) => setLastname(e.target.value)}
+            value={lastname}
+            aria-label='Last Name'
+            placeholder='Last Name'
+            ></input>
         </div>
         <div className={outerEleTheme}>
           <input

@@ -83,9 +83,10 @@
     position: absolute;
     background-color: white;
     bottom: -80px;
-    left: -100px;
+    left: -180px;
     width: 200px;
     border-radius: 5px;
+    z-index: 500;
 }
 
 .profile-button-container,

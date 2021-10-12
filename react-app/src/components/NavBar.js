@@ -29,7 +29,7 @@ const NavBar = () => {
         </NavLink>
         <div className="links-container">
           <div>
-            <i class="far fa-plus-square new-post-button"></i>
+            <i className="far fa-plus-square new-post-button"></i>
           </div>
           <div>
             <NavLink to='/feed' exact={true} activeClassName='active'>
@@ -56,7 +56,7 @@ const NavBar = () => {
               </NavLink>
               </div>
           }
-          {!user && 
+          {!user &&
             <div>
               <NavLink to='/sign-up' exact={true} activeClassName='active'>
                 Sign Up
@@ -64,14 +64,14 @@ const NavBar = () => {
             </div>
           }
           {user && (
-            <div 
+            <div
               className={`profile-picture-container`}
               onClick={toggleDropdown}
             >
               <img className={`profile-picture dropdown-${dropdown}`} src={user.profile_picture} alt="User profile avatar" />
-              {dropdown && 
+              {dropdown &&
                 <div className="profile-dropdown">
-                  <div 
+                  <div
                     className="profile-button-container"
                     onClick={sendToProfile}
                   >

@@ -56,13 +56,14 @@ const LoginForm = () => {
 
   return (
     <div className='auth-page'>
-      <form onSubmit={onLogin} className='auth-form' id='login-form' autoComplete='off'>
-        <div id="login-logo-div"><span className='finstagram-logo'>Finstagram</span></div>
+      <form onSubmit={onLogin} id='login-form' className='auth-form' autoComplete='off'>
+        <div id="login-logo-div" className='auth-logo-div'>
+          <span className='auth-logo'>Finstagram</span>
+        </div>
         <div id='login-email-div' className='outer-form-ele'>
           <input
             className='inner-form-ele'
-            name='email'
-            type='text'
+            type='email'
             aria-label='Email'
             placeholder='Email'
             value={email}
@@ -72,7 +73,6 @@ const LoginForm = () => {
         <div id='login-password-div' className='outer-form-ele'>
           <input
             className='inner-form-ele'
-            name='password'
             type={passwordVisibility}
             aria-label='Password'
             placeholder='Password'
@@ -86,10 +86,10 @@ const LoginForm = () => {
           id={btnVisibility}
           display='none'
         >{btnText}</button>
-        <div id='login-button-div'>
+        <div className='auth-button-div'>
           <button id='login-button' className='inner-form-ele' type='submit'>Log In</button>
         </div>
-        <div id='login-errors-div'>
+        <div id='login-errors-div' className='auth-errors-div'>
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}

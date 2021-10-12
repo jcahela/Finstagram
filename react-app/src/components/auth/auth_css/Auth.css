@@ -46,11 +46,32 @@
     100% { background-position: 0% 50%; }
 }
 
-.finstagram-logo {
+.auth-logo-div {
+    user-select: none;
+}
+
+.auth-logo {
+    cursor: default;
     font-family: 'Grand Hotel', cursive;
 }
 
 .inner-form-ele {
     width: 100%;
     color: white;
+}
+
+.auth-button-div {
+    cursor: pointer;
+    border-radius: 3px;
+    background-color: #0095f6;
+    text-align: center;
+}
+
+.auth-button-div:hover {
+    box-shadow: 0 0 5px whitesmoke;
+}
+
+.auth-errors-div {
+    position: relative;
+    text-align: center;
 }

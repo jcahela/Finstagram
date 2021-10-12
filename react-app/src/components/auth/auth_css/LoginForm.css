@@ -4,7 +4,6 @@
 }
 
 #login-logo-div {
-    user-select: none;
     font-size: 45px;
 }
 
@@ -34,14 +33,7 @@
 }
 
 #login-button-div {
-    cursor: pointer;
-    border-radius: 3px;
-    background-color: #0095f6;
-    text-align: center;
-}
 
-#login-button-div:hover {
-    box-shadow: 0 0 5px whitesmoke;
 }
 
 #login-button {
@@ -51,10 +43,9 @@
 }
 
 #login-errors-div {
-    text-align: center;
-    font-size: 13px;
-    bottom: 5%;
-    position: relative;
     height: 20px;
     width: 200px;
+
+    font-size: 13px;
+    bottom: 5%;
 }

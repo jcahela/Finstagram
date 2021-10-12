@@ -46,53 +46,57 @@ const SignUpForm = () => {
 
   return (
     <div className='auth-page'>
-      <form onSubmit={onSignUp} className='auth-form' id='signup-form' autoComplete='off'>
-      <div id="signup-logo-div"><span className='finstagram-logo'>Finstagram</span></div>
-        <div>
-          {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
+      <form onSubmit={onSignUp} id='signup-form' className='auth-form' >
+        <div id="signup-logo-div" className='auth-logo-div'>
+          <span className='auth-logo'>Finstagram</span>
         </div>
         <div>
           <input
             type='text'
-            name='username'
             onChange={updateUsername}
             value={username}
-            aria-label='User Name'
-            placeholder='User Name'
-          ></input>
+            aria-label='Username'
+            placeholder='Username'
+            autoComplete='off'
+            ></input>
         </div>
         <div>
           <input
-            type='text'
-            name='email'
+            type='email'
             onChange={updateEmail}
             value={email}
             aria-label='Email'
             placeholder='Email'
-          ></input>
+            autoComplete='off'
+            ></input>
         </div>
         <div>
-          <label>Password</label>
           <input
             type='password'
-            name='password'
             onChange={updatePassword}
             value={password}
-          ></input>
+            aria-label='Password'
+            placeholder='Password'
+            ></input>
         </div>
         <div>
-          <label>Repeat Password</label>
           <input
             type='password'
-            name='repeat_password'
             onChange={updateRepeatPassword}
             value={repeatPassword}
             required={true}
-          ></input>
+            aria-label='Repeat Password'
+            placeholder='Repeat Password'
+            ></input>
         </div>
-        <button type='submit'>Sign Up</button>
+        <div className='auth-button-div'>
+          <button id='signup-button' className='inner-form-ele' type='submit'>Sign Up</button>
+        </div>
+        <div className='auth-errors-div'>
+          {errors.map((error, ind) => (
+            <div key={ind}>{error}</div>
+          ))}
+        </div>
       </form>
     </div>
   );

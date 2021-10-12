@@ -30,14 +30,23 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+}
+
+.auth-form-easter-egg {
+    grid-area: form;
+
+    border: 1px solid #dbdbdb;
+    border-radius: 10px;
+    padding: 10px;
+
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 
     background: linear-gradient(25deg, #fccc63, #fbad50, #e95950, #bc2a8d, #8a3ab9, #833AB4);
     background-size: 300% 300%;
     animation: login-spread 3s ease-in-out infinite;
-}
-
-.auth-form:hover {
-    background: linear-gradient(25deg, #fccc63, #fbad50, #e95950, #bc2a8d, #8a3ab9, #833AB4);
 }
 
 @keyframes login-spread {
@@ -51,13 +60,20 @@
 }
 
 .auth-logo {
-    cursor: default;
+    cursor: pointer;
     font-family: 'Grand Hotel', cursive;
 }
 
 .inner-form-ele {
     width: 100%;
+    border: 1px solid #dbdbdb;
+    padding: 2% 25% 2% 2%;
+}
+
+.inner-form-ele-easter-egg {
+    width: 100%;
     color: white;
+    padding: 2% 25% 2% 2%;
 }
 
 .auth-button-div {
@@ -68,7 +84,7 @@
 }
 
 .auth-button-div:hover {
-    box-shadow: 0 0 5px whitesmoke;
+    box-shadow: 0 0 5px black;
 }
 
 .auth-errors-div {

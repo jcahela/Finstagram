@@ -11,9 +11,11 @@ import ExplorePage from './components/ExplorePage';
 import { authenticate } from './store/session';
 import { getUsersThunk } from './store/users';
 import { getSessionUsersPostsThunk } from './store/sessionUserPosts'
+import Modal from './components/Modal';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const currentSessionUser = useSelector(state => state.session.user);
 
@@ -37,7 +39,8 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
+      <Modal open={isOpen} onClose={() => setIsOpen(false)}></Modal>
+      <NavBar setIsOpen={setIsOpen} isOpen={isOpen}/>
       <Switch>
         <Route path='/login' exact={true}>
           <LoginForm />

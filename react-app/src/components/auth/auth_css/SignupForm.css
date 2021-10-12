@@ -4,8 +4,13 @@
 }
 
 .outer-signup-form-ele {
-    font-size: 14px;
+    font-size: 20px;
+    position: relative;
+    top: 30%;
+}
 
+.outer-signup-form-ele-easter-egg {
+    font-size: 20px;
     position: relative;
     right: 20%;
     top: 30%;

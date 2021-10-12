@@ -4,7 +4,14 @@
 }
 
 .outer-login-form-ele {
-    font-size: 14px;
+    font-size: 18px;
+    position: relative;
+    top: 30%;
+    padding: 2%;
+}
+
+.outer-login-form-ele-easter-egg {
+    font-size: 18px;
     margin: 5px;
     padding: 5px;
 
@@ -31,8 +38,12 @@
     visibility: hidden;
 }
 
+button[data-vis-btn-pos='skewed-left'] {
+    margin-left: -16%;
+}
+
 #login-button {
-    font-size: 14px;
+    font-size: 17px;
     cursor: pointer;
     padding: 5px;
 }

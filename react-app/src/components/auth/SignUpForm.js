@@ -12,8 +12,29 @@ const SignUpForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
+  const [toggleTheme, setToggleTheme] = useState(false);
+  const [easterEgg, setEasterEgg] = useState('auth-form');
+  const [innerEleTheme, setInnerEleTheme] = useState('inner-form-ele');
+  const [outerEleTheme, setOuterEleTheme] = useState('outer-signup-form-ele');
+
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+
+
+  const themeToggleHandler = (e) => {
+    if (!toggleTheme) {
+      setEasterEgg('auth-form-easter-egg');
+      setInnerEleTheme('inner-form-ele-easter-egg');
+      setOuterEleTheme('outer-signup-form-ele-easter-egg');
+    }
+    else {
+      setEasterEgg('auth-form');
+      setInnerEleTheme('inner-form-ele');
+      setOuterEleTheme('outer-signup-form-ele');
+    }
+    setToggleTheme(prevTheme => !prevTheme);
+  }
+
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -47,40 +68,48 @@ const SignUpForm = () => {
 
   return (
     <div className='auth-page'>
-      <form onSubmit={onSignUp} id='signup-form' className='auth-form' autoComplete='off'>
-        <div id="signup-logo-div" className='auth-logo-div'>
+      <form onSubmit={onSignUp} id='signup-form' className={easterEgg} autoComplete='off'>
+        <div
+          id="signup-logo-div"
+          className='auth-logo-div'
+          onClick={themeToggleHandler}
+        >
           <span className='auth-logo'>Finstagram</span>
         </div>
-        <div className='outer-signup-form-ele'>
+        <div className={outerEleTheme}>
           <input
             type='text'
+            className={innerEleTheme}
             onChange={updateUsername}
             value={username}
             aria-label='Username'
             placeholder='Username'
             ></input>
         </div>
-        <div className='outer-signup-form-ele'>
+        <div className={outerEleTheme}>
           <input
             type='email'
+            className={innerEleTheme}
             onChange={updateEmail}
             value={email}
             aria-label='Email'
             placeholder='user@example.com'
             ></input>
         </div>
-        <div className='outer-signup-form-ele'>
+        <div className={outerEleTheme}>
           <input
             type='password'
+            className={innerEleTheme}
             onChange={updatePassword}
             value={password}
             aria-label='Password'
             placeholder='Password'
             ></input>
         </div>
-        <div className='outer-signup-form-ele'>
+        <div className={outerEleTheme}>
           <input
             type='password'
+            className={innerEleTheme}
             onChange={updateRepeatPassword}
             value={repeatPassword}
             required={true}
@@ -89,7 +118,7 @@ const SignUpForm = () => {
             ></input>
         </div>
         <div className='auth-button-div'>
-          <button id='signup-button' className='inner-form-ele' type='submit'>Sign Up</button>
+          <button id='signup-button' className={innerEleTheme} type='submit'>Sign Up</button>
         </div>
         <div id='signup-errors-div' className='auth-errors-div'>
           {errors.map((error, ind) => (

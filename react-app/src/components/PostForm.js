@@ -1,17 +1,35 @@
 import { useState } from "react"
 import './PostForm.css'
+import { useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+
 
 const PostForm = () => {
     const [description, setDescription] = useState('');
     const [contentFile, setContentFile] = useState('');
+    const [contentLoading, setContentLoading] = useState(false);
+    const history = useHistory();
+    const dispatch = useDispatch();
 
     const updateFile = (e) => {
         const file = e.target.files[0];
         if (file) setContentFile(file);
     }
 
+    const submitPost = async (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append("content", contentFile)
+        formData.append("description", description)
+        
+        setContentLoading(true);
+        
+        await dispatch()
+        
+    }
+
     return (
-        <form className="post-form-container">
+        <form onSubmit={submitPost} className="post-form-container">
             <span className='post-form-logo'>Post</span>
             <textarea
                 className="post-description"

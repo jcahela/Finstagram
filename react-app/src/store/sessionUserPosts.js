@@ -2,6 +2,7 @@
 // constants
 const GET_SESSION_USER_POSTS = 'sessionUsersPosts/GET_SESSION_USER_POSTS'
 const REMOVE_SESSION_USER_POSTS = 'sessionUsersPosts/REMOVE_SESSION_USER_POSTS'
+const ADD_NEW_POST = 'sessionUsersPosts/ADD_NEW_POST'
 
 const getSessionUsersPosts = (posts) => ({
     type: GET_SESSION_USER_POSTS,
@@ -10,6 +11,11 @@ const getSessionUsersPosts = (posts) => ({
 
 export const removeSessionUsersPosts = () => ({
     type: REMOVE_SESSION_USER_POSTS
+})
+
+const addNewPost = (post) => ({
+    type: ADD_NEW_POST,
+    payload: post
 })
 
 const initialState = { };
@@ -22,6 +28,13 @@ export const getSessionUsersPostsThunk = () => async (dispatch) => {
         await dispatch(getSessionUsersPosts(posts))
         return null
     }
+}
+
+export const addNewPostThunk = (formData) => async (dispatch) => {
+    const response = await fetch('/api/posts/', {
+        method: 'POST',
+        body: formData
+    })
 }
 
 function sessionUserPostsReducer(state = initialState, action) {
@@ -40,5 +53,7 @@ function sessionUserPostsReducer(state = initialState, action) {
             return state
     }
 }
+
+
 
 export default sessionUserPostsReducer

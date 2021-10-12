@@ -40,7 +40,9 @@
     visibility: hidden;
 }
 
-button[data-vis-btn-pos='']
+button[data-vis-btn-pos='skewed-left'] {
+    margin-left: -17%;
+}
 
 #login-button {
     font-size: 14px;

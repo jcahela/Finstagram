@@ -19,7 +19,7 @@ const LoginForm = () => {
   const [easterEgg, setEasterEgg] = useState('auth-form');
   const [innerEleTheme, setInnerEleTheme] = useState('inner-form-ele');
   const [outerEleTheme, setOuterEleTheme] = useState('outer-login-form-ele');
-  const [visBtnPos, setVisBtnPos] = useState('')
+  const [visBtnPos, setVisBtnPos] = useState('skewed-left');
 
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
@@ -29,10 +29,13 @@ const LoginForm = () => {
       setEasterEgg('auth-form-easter-egg');
       setInnerEleTheme('inner-form-ele-easter-egg');
       setOuterEleTheme('outer-login-form-ele-easter-egg');
+      setVisBtnPos('');
     }
     else {
       setEasterEgg('auth-form');
       setInnerEleTheme('inner-form-ele');
+      setOuterEleTheme('outer-login-form-ele');
+      setVisBtnPos('skewed-left');
     }
     setToggleTheme(prevTheme => !prevTheme);
   }
@@ -106,7 +109,7 @@ const LoginForm = () => {
         <button
           type='button'
           onClick={visibilityHandler}
-          data-vis-btn-pos={}
+          data-vis-btn-pos={visBtnPos}
           id={btnVisibility}
           display='none'
         >{btnText}</button>

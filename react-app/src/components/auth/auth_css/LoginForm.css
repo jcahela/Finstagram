@@ -1,20 +1,20 @@
 #login-page {
     height: 100vh;
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
-}
-
-#login-form-container {
-    height: 100%;
     background-color: #fafafa;
 
     display: grid;
     justify-content: center;
     align-items: center;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 2fr 6fr 1fr;
+    grid-template-areas:
+    '.'
+    'form'
+    '.'
+    'footer';
 }
 
 #login-form {
+    grid-area: form;
     height: 300px;
     width: 300px;
 
@@ -26,6 +26,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+
     background: linear-gradient(25deg, #fccc63, #fbad50, #e95950, #bc2a8d, #8a3ab9, #833AB4);
     background-size: 300% 300%;
     animation: login-spread 3s ease-in-out infinite;
@@ -39,6 +40,15 @@
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
+}
+
+#finstagram-logo-div {
+    user-select: none;
+    font-size: 45px;
+}
+
+#finstagram-logo {
+    font-family: 'Grand Hotel', cursive;
 }
 
 .outer-form-ele {
@@ -57,16 +67,8 @@
     color: white;
 }
 
-#finstagram-logo-div {
-    user-select: none;
-    font-size: 45px;
-}
 
-#finstagram-logo {
-    font-family: 'Grand Hotel', cursive;
-}
-
-#visibilityButton {
+#visibility-button-visible {
     cursor: pointer;
     font-weight: 500;
 
@@ -74,6 +76,10 @@
     left: 90%;
     bottom: 85%;
     width: 20%;
+}
+
+#visibility-button-invisible {
+    visibility: hidden;
 }
 
 #login-button-div {
@@ -100,9 +106,4 @@
     position: relative;
     height: 20px;
     width: 200px;
-}
-
-#login-errors-div > div {
-
-
 }

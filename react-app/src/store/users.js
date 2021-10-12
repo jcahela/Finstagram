@@ -18,7 +18,7 @@ export const getUsersThunk = () => async (dispatch) => {
     }
 }
 
-export function usersReducer(state = initialState, action) {
+function usersReducer(state = initialState, action) {
     let newState = {...state}
     switch (action.type) {
         case GET_USERS:

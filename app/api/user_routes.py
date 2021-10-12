@@ -37,8 +37,8 @@ def follows():
 
 @user_routes.route('/like')
 def like():
-    post1 = Post.query.filter(Post.id == 1).first()
-    user1 = User.query.filter(User.id == 2).first()
+    post1 = Post.query.filter(Post.id == 2).first()
+    user1 = User.query.filter(User.id == 1).first()
     user1.like(post1)
 
     return post1.to_dict()
@@ -48,6 +48,5 @@ def like():
 def comment():
     post1 = Post.query.filter(Post.id == 1).first()
     user1 = User.query.filter(User.id == 1).first()
-    comment = Comment("user_id": user_id, "post_id": post_id, "description": description)
-    db.session.add(new_comment)
-    db.session.commit()
+    user1.comment(post1, "This is a comment")
+    return "Lets gooooooooooooooooo"

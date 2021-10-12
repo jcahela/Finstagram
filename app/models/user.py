@@ -2,7 +2,8 @@ from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from datetime import datetime
-from .post import likes, comments
+from .post import likes
+from .comment import Comment
 
 followers = db.Table('followers',
     db.Column('follower_id', db.Integer, db.ForeignKey('users.id')),
@@ -18,6 +19,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    profile_picture = db.Column(db.Text, default="https://cdn.discordapp.com/attachments/886336420552269847/897242211253645332/Default_pfp.png")
     createdAt = db.Column(db.DateTime, nullable=False, default=datetime.now())
     updatedAt = db.Column(db.DateTime, nullable=False, default=datetime.now())
 
@@ -29,12 +31,6 @@ class User(db.Model, UserMixin):
         secondary=likes,
         back_populates="users_liked"
     )
-
-    # commented_posts = db.relationship(
-    #     "Post",
-    #     secondary=comments,
-    #     back_populates="users_commented"
-    # )
 
     followed = db.relationship(
         'User', secondary=followers,
@@ -48,8 +44,11 @@ class User(db.Model, UserMixin):
         db.session.add(self)
         db.session.commit()
 
-    # def comment(self, post):
-    #     self.commented_posts.append(post)
+    def comment(self, post, description):
+        comment = Comment(user_id=self.id, post_id=post.id, description=description)
+        db.session.add(comment)
+        db.session.commit()
+
 
     def is_following(self, user):
         return self.followed.filter(
@@ -109,6 +108,7 @@ class User(db.Model, UserMixin):
             'lastname': self.lastname,
             'username': self.username,
             'email': self.email,
+            'profile_picture': self.profile_picture,
             'followed': self.followed_users(),
             'followers': self.follower_users()
         }

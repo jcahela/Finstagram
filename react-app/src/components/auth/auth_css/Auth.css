@@ -67,12 +67,13 @@
 .inner-form-ele {
     width: 100%;
     border: 1px solid #dbdbdb;
-    padding-right: 25%;
+    padding: 2% 25% 2% 2%;
 }
 
 .inner-form-ele-easter-egg {
     width: 100%;
     color: white;
+    padding: 2% 25% 2% 2%;
 }
 
 .auth-button-div {

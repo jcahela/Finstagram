@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { getNonFollowedPostsThunk } from '../store/nonFollowedUsersPosts';
 import { useDispatch, useSelector } from 'react-redux';
 import './ExplorePage.css'

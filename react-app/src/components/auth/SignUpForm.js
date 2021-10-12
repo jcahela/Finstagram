@@ -48,21 +48,13 @@ const SignUpForm = () => {
     }
   };
 
-  const updateUsername = (e) => {
-    setUsername(e.target.value);
-  };
+  const updateUsername = (e) => setUsername(e.target.value);
 
-  const updateEmail = (e) => {
-    setEmail(e.target.value);
-  };
+  const updateEmail = (e) => setEmail(e.target.value);
 
-  const updatePassword = (e) => {
-    setPassword(e.target.value);
-  };
+  const updatePassword = (e) => setPassword(e.target.value);
 
-  const updateRepeatPassword = (e) => {
-    setRepeatPassword(e.target.value);
-  };
+  const updateRepeatPassword = (e) => setRepeatPassword(e.target.value);
 
   if (user) {
     return <Redirect to='/' />;
@@ -115,7 +107,7 @@ const SignUpForm = () => {
             onChange={updateEmail}
             value={email}
             aria-label='Email'
-            placeholder='user@example.com'
+            placeholder='user@example.io'
             ></input>
         </div>
         <div className={outerEleTheme}>

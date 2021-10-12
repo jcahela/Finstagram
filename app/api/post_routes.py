@@ -1,3 +1,5 @@
+"""Post Routes."""
+
 from flask import Blueprint, request
 from flask_migrate import current
 from app.models import Post, db
@@ -9,14 +11,10 @@ from app.forms import PostForm
 
 post_routes = Blueprint('posts', __name__)
 
-
 @post_routes.route('/')
 @login_required
 def session_user_posts():
-
-    """
-    Gets all of the session user's posts
-    """
+    """Get all of the session user's posts."""
     posts = Post.query.filter(Post.user_id == current_user.id).all()
 
     return {
@@ -26,6 +24,7 @@ def session_user_posts():
 @post_routes.route('/explore')
 @login_required
 def explore_posts():
+    """Get all of the explore page posts."""
     followed_users = current_user.followed_users()
     followed_ids = followed_users.keys()
 
@@ -40,12 +39,12 @@ def add_post():
     # aws upload and error handling
     if "content" not in request.files:
         return {"errors": "content required"}, 400
-    
+
     content = request.files["content"]
 
     if not allowed_file(content.filename):
         return {"errors": "file type not permitted"}, 400
-    
+
     content.filename = get_unique_filename(content.filename)
 
     upload = upload_file_to_s3(content)

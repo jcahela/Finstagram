@@ -63,9 +63,7 @@ const LoginForm = () => {
     await dispatch(getSessionUsersPostsThunk())
   };
 
-  const updateEmail = (e) => {
-    setEmail(e.target.value);
-  };
+  const updateEmail = (e) => setEmail(e.target.value);
 
   const updatePassword = (e) => {
     const tVal = e.target.value;

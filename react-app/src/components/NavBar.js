@@ -62,26 +62,26 @@ const NavBar = () => {
           {!user &&
             <div>
               <NavLink to='/login' exact={true} activeClassName='active'>
-                Login
+                Log In
               </NavLink>
               </div>
           }
-          {!user && 
+          {!user &&
             <div>
-              <NavLink to='/sign-up' exact={true} activeClassName='active'>
+              <NavLink to='/signup' exact={true} activeClassName='active'>
                 Sign Up
               </NavLink>
             </div>
           }
           {user && (
-            <div 
+            <div
               className={`profile-picture-container`}
               onClick={toggleDropdown}
             >
               <img className={`profile-picture dropdown-${dropdown}`} src={user.profile_picture} alt="User profile avatar" />
-              {dropdown && 
+              {dropdown &&
                 <div className="profile-dropdown">
-                  <div 
+                  <div
                     className="profile-button-container"
                     onClick={sendToProfile}
                   >

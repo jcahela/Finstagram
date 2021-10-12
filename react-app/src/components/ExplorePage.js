@@ -24,9 +24,9 @@ function ExplorePage() {
     return (
         <>
             <div className="explore-page-container">
-                {Object.keys(explore_posts).map((key, index) => {
-                        return <img src={explore_posts[key].content} alt="something" className="explore-posts"/>
-                })}
+                {Object.keys(explore_posts).map((key, index) => (
+                        <img src={explore_posts[key].content} alt="something" className="explore-posts"/>
+                ))}
             </div>
         </>
     )

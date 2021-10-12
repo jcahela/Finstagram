@@ -35,6 +35,11 @@ export const addNewPostThunk = (formData) => async (dispatch) => {
         method: 'POST',
         body: formData
     })
+    if (response.ok) {
+        const newPost = await response.json();
+        await dispatch(addNewPost(newPost))
+        return null
+    }
 }
 
 function sessionUserPostsReducer(state = initialState, action) {
@@ -48,6 +53,10 @@ function sessionUserPostsReducer(state = initialState, action) {
             return newState
         case REMOVE_SESSION_USER_POSTS:
             newState = {};
+            return newState
+        case ADD_NEW_POST:
+            const post = action.payload;
+            newState[post.id] = post;
             return newState
         default:
             return state

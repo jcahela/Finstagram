@@ -2,7 +2,8 @@ import { useState } from "react"
 import './PostForm.css'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-
+import { addNewPostThunk, getSessionUsersPostsThunk } from "../store/sessionUserPosts"
+import { useModal } from '../context/Modal'
 
 const PostForm = () => {
     const [description, setDescription] = useState('');
@@ -10,6 +11,7 @@ const PostForm = () => {
     const [contentLoading, setContentLoading] = useState(false);
     const history = useHistory();
     const dispatch = useDispatch();
+    const { closeModal } = useModal();
 
     const updateFile = (e) => {
         const file = e.target.files[0];
@@ -24,8 +26,11 @@ const PostForm = () => {
         
         setContentLoading(true);
         
-        await dispatch()
-        
+        await dispatch(addNewPostThunk(formData));
+        setContentLoading(false);
+        await dispatch(getSessionUsersPostsThunk());
+        closeModal();
+        history.push('/feed')
     }
 
     return (
@@ -44,6 +49,9 @@ const PostForm = () => {
                 htmlFor="post-file"
             >{contentFile === '' ? "Upload Image/Video": "Added"}
             </label>
+            {contentLoading && (
+                <p>Loading...</p>
+            )}
             <input 
                 id="post-file"
                 className="post-file-input"

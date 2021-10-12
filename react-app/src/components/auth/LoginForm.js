@@ -6,6 +6,7 @@ import { getSessionUsersPostsThunk } from '../../store/sessionUserPosts';
 import Footer from '../Footer/Footer';
 import './auth_css/Auth.css';
 import './auth_css/LoginForm.css';
+// import './Landing.css'
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);

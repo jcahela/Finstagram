@@ -14,6 +14,55 @@
     grid-row: span 2;
 }
 
+/*
+    Selects the like counter on the larger tiles in explore page
+*/
+.explore-page-container > .explore-posts:nth-child(5n) .likes-count{
+    /* grid-column: span 2;
+    grid-row: span 2; */
+    position: absolute;
+    left: 48%;
+    top: 50.3%;
+    pointer-events: none;
+}
+
+/*
+    Selects the like icon on the larger tiles in explore page
+*/
+.explore-page-container > .explore-posts:nth-child(5n) .like-icon{
+    /* grid-column: span 2;
+    grid-row: span 2; */
+    position: absolute;
+    left: 43%;
+    top: 50%;
+    pointer-events: none;
+}
+
+/*
+    Selects the comment counter on the larger tiles in explore page
+*/
+.explore-page-container > .explore-posts:nth-child(5n) .comment-count{
+    /* grid-column: span 2;
+    grid-row: span 2; */
+    position: absolute;
+    left: 60.5%;
+    top: 50.4%;
+    pointer-events: none;
+}
+
+/*
+    Selects the comment icon on the larger tiles in explore page
+*/
+.explore-page-container > .explore-posts:nth-child(5n) .comment-icon{
+    /* grid-column: span 2;
+    grid-row: span 2; */
+    position: absolute;
+    left: 56%;
+    top: 50.5%;
+    font-size: 20px;
+    pointer-events: none;
+}
+
 .explore-posts {
     width: 100%;
     height: 100%;
@@ -26,9 +75,41 @@
     filter:brightness(70%);
 }
 
+/*
+    Selects the like icon on the smaller tiles in explore page
+*/
 .like-icon {
     position: absolute;
-    left: 30%;
+    left: 35%;
     top: 45%;
     color: white;
+    pointer-events: none;
+}
+
+/*
+    Selects the like counter on the smaller tiles in explore page
+*/
+.likes-count {
+    position: absolute;
+    left: 45%;
+    top: 46%;
+    color: white;
+    pointer-events: none;
+}
+
+.comment-icon {
+    position: absolute;
+    left: 58%;
+    top: 46%;
+    color: white;
+    font-size: 20px;
+    pointer-events: none;
+}
+
+.comment-count {
+    position: absolute;
+    left: 67%;
+    top: 46%;
+    color: white;
+    pointer-events: none;
 }

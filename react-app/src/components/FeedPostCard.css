@@ -26,7 +26,7 @@
 
 .post-user {
     font-size: 14px;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 .options {
@@ -49,7 +49,7 @@
 .feed-likes-count {
     margin-left: 15px;
     margin-bottom: 15px;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 .feed-like-icon,
@@ -73,7 +73,7 @@
 
 .post-description-user,
 .comment-user {
-    font-weight: bold;
+    font-weight: 600;
     margin-right: 6px;
 }
 
@@ -83,4 +83,32 @@
 
 .feed-comment {
     margin-bottom: 5px;
+}
+
+.feed-new-comment-form {
+    border-top: 1px solid #83838360;
+    display: flex;
+}
+
+.feed-new-comment-input {
+    width: 100%;
+    min-height: fit-content;
+    padding: 18px 18px;
+    word-wrap: break-word;
+    resize: none;
+}
+
+.feed-new-comment-input::placeholder {
+    font-size: 14px;
+}
+
+.feed-new-comment-button {
+    color: #0095F6;
+    font-size: 14px;
+    font-weight: 600;
+    margin-right: 15px;
+}
+
+.disabled-true {
+    color: #0095F6;
 }

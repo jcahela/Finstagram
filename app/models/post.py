@@ -56,7 +56,8 @@ class Post(db.Model):
             all_comments[comment.id] = {
                 'user_id': comment.user_id,
                 'post_id': comment.post_id,
-                'description': comment.description
+                'description': comment.description,
+                'created_at': comment.createdAt,
             }
         return all_comments
 

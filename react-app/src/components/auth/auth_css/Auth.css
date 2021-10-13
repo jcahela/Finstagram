@@ -65,6 +65,8 @@
 }
 
 .inner-form-ele-easter-egg {
+    position: relative;
+    left: 1px;
     width: 85%;
     height: 45px;
     padding: 2% 25% 2% 2%;

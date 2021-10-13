@@ -1,0 +1,86 @@
+.post-container {
+    border: 1px solid #83838360;
+    height: fit-content;
+    margin-bottom: 30px;
+    border-radius: 2px;
+}
+
+.post-header {
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-header-user-info {
+    display: flex;
+    align-items: center;
+}
+
+.post-profile-picture {
+    height: 30px;
+    border-radius: 50%;
+    margin-left: 20px;
+    margin-right: 15px;
+}
+
+.post-user {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.options {
+    margin-right: 20px;
+    font-weight: lighter;
+    font-size: 25px;
+}
+
+.post-image {
+    height: auto;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.post-interaction-icons-container {
+    padding-left: 15px;
+    margin-bottom: 15px;
+}
+
+.feed-likes-count {
+    margin-left: 15px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.feed-like-icon,
+.feed-comment-icon {
+    font-size: 25px;
+    margin-right: 20px;
+}
+
+.post-page-description-container,
+.comments-container,
+.view-comments {
+    font-size: 14px;
+    padding-left: 15px;
+    margin-bottom: 5px;
+}
+
+.view-comments {
+    color: #838383;
+    font-size: 15px;
+}
+
+.post-description-user,
+.comment-user {
+    font-weight: bold;
+    margin-right: 6px;
+}
+
+.comments-container {
+    height: fit-content;
+}
+
+.feed-comment {
+    margin-bottom: 5px;
+}

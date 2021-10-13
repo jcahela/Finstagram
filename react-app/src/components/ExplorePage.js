@@ -34,7 +34,7 @@ function ExplorePage() {
                         <img src={explore_posts[key].content} onClick={() => openExplorePostModal(key)} alt="something" className="explore-posts" key={explore_posts[key].id}/>
                         {stats === key && <span className={`material-icons like-icon`}>favorite</span>}
                         {stats === key && <span className="likes-count">{Object.keys(explore_posts[key].likes).length}</span>}
-                        {stats === key && <i class="fas fa-comment comment-icon"></i>}
+                        {stats === key && <i className="fas fa-comment comment-icon"></i>}
                         {stats === key && <span className="comment-count">{Object.keys(explore_posts[key].comments).length}</span>}
                     </div>
                 ))}

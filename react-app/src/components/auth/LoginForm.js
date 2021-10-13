@@ -126,7 +126,7 @@ const LoginForm = () => {
             </div>
           </form>
           <div className="link-to-signup-container">
-                Don't have an account? <span><Link id="signup-link" className="signup-link" to="/sign-up">Sign up here</Link></span>
+                Don't have an account? <span><Link id="signup-link" className="signup-link" to="/signup">Sign up here</Link></span>
           </div>
         </div>
       </div>

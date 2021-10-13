@@ -92,14 +92,12 @@
 
 .auth-errors-div {
     position: relative;
-    left: 23%;
     color: red;
     text-align: left;
 }
 
 .auth-errors-div-easter-egg {
     position: relative;
-    left: 23%;
     color: white;
     text-align: left;
 }

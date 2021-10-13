@@ -23,8 +23,8 @@ const LoginForm = () => {
   const [easterEgg, setEasterEgg] = useState('auth-form');
   const [innerEleTheme, setInnerEleTheme] = useState('inner-form-ele');
   const [outerEleTheme, setOuterEleTheme] = useState('outer-login-form-ele');
-  const [visBtnPos, setVisBtnPos] = useState('skewed-left');
   const [buttonTheme, setButtonTheme] = useState('auth-button-div');
+  const [errorsTheme, setErrorsTheme] = useState('auth-errors-div');
   const [textColor, setTextColor] = useState('dark-auth-text');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
@@ -47,7 +47,7 @@ const LoginForm = () => {
       setEasterEgg('auth-form-easter-egg');
       setInnerEleTheme('inner-form-ele-easter-egg');
       setOuterEleTheme('outer-login-form-ele-easter-egg');
-      setVisBtnPos('');
+      setErrorsTheme('auth-errors-div-easter-egg');
       setButtonTheme('auth-button-div-easter-egg');
       setTextColor('light-auth-text');
     }
@@ -55,7 +55,7 @@ const LoginForm = () => {
       setEasterEgg('auth-form');
       setInnerEleTheme('inner-form-ele');
       setOuterEleTheme('outer-login-form-ele');
-      setVisBtnPos('skewed-left');
+      setErrorsTheme('auth-errors-div');
       setButtonTheme('auth-button-div');
       setTextColor('dark-auth-text');
     }
@@ -161,14 +161,13 @@ const LoginForm = () => {
             <button
               type='button'
               onClick={visibilityHandler}
-              data-vis-btn-pos={visBtnPos}
               id={btnVisibility}
               display='none'
             >{btnText}</button>
             <div className={buttonTheme}>
               <button id='login-button' type='submit'>Log In</button>
             </div>
-            <div id='login-errors-div' className='auth-errors-div'>
+            <div id='login-errors-div' className={errorsTheme}>
               {errors.map((error, ind) => (
                 <div key={ind}>{error}</div>
               ))}

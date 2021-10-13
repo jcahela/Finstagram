@@ -22,17 +22,13 @@
     font-weight: 500;
 
     position: relative;
-    left: 85%;
+    left: 70%;
     bottom: 110%;
     width: 20%;
 }
 
 #visibility-button-invisible {
     visibility: hidden;
-}
-
-button[data-vis-btn-pos='skewed-left'] {
-    margin-left: -16%;
 }
 
 #login-button {
@@ -48,6 +44,7 @@ button[data-vis-btn-pos='skewed-left'] {
 #login-errors-div {
     font-size: 13px;
     bottom: 5%;
+    left: 8.5%;
     height: 20px;
     width: 200px;
 }

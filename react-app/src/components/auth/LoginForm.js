@@ -29,7 +29,7 @@ const LoginForm = () => {
 
   const carouselImages = [
     'https://cdn.discordapp.com/attachments/886336420552269847/897666081974521856/unknown.png',
-    'https://cdn.discordapp.com/attachments/886336420552269847/897665208066134087/unknown.png',
+    'https://cdn.discordapp.com/attachments/886336420552269847/897875397943898122/unknown.png',
     'https://cdn.discordapp.com/attachments/886336420552269847/897666379401023508/unknown.png',
     'https://cdn.discordapp.com/attachments/886336420552269847/897666832004173824/unknown.png',
     'https://cdn.discordapp.com/attachments/886336420552269847/897666972538523668/unknown.png'

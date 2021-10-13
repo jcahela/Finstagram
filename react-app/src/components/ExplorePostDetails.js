@@ -1,7 +1,16 @@
-import './ExplorePostDetails.css'
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getUsersThunk } from '../store/users';
+import './ExplorePostDetails.css';
 
 function ExplorePostDetails({postKey, posts}) {
+    let dispatch = useDispatch();
 
+    useEffect(() => {
+        dispatch(getUsersThunk())
+    }, [dispatch])
+
+    let users = useSelector(state => state.users)
 
     return (
         <div className="details-container">

@@ -25,6 +25,7 @@ const LoginForm = () => {
   const [outerEleTheme, setOuterEleTheme] = useState('outer-login-form-ele');
   const [visBtnPos, setVisBtnPos] = useState('skewed-left');
   const [buttonTheme, setButtonTheme] = useState('auth-button-div');
+  const [textColor, setTextColor] = useState('dark-auth-text');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
@@ -48,6 +49,7 @@ const LoginForm = () => {
       setOuterEleTheme('outer-login-form-ele-easter-egg');
       setVisBtnPos('');
       setButtonTheme('auth-button-div-easter-egg');
+      setTextColor('light-auth-text');
     }
     else {
       setEasterEgg('auth-form');
@@ -55,6 +57,7 @@ const LoginForm = () => {
       setOuterEleTheme('outer-login-form-ele');
       setVisBtnPos('skewed-left');
       setButtonTheme('auth-button-div');
+      setTextColor('dark-auth-text');
     }
     setToggleTheme(prevTheme => !prevTheme);
   }
@@ -163,7 +166,7 @@ const LoginForm = () => {
               display='none'
             >{btnText}</button>
             <div className={buttonTheme}>
-              <button id='login-button' className={innerEleTheme} type='submit'>Log In</button>
+              <button id='login-button' type='submit'>Log In</button>
             </div>
             <div id='login-errors-div' className='auth-errors-div'>
               {errors.map((error, ind) => (
@@ -171,7 +174,7 @@ const LoginForm = () => {
               ))}
             </div>
             <div className="or-container">
-              <div className="or-divider" /> <span className="or-text">OR</span> <div className="or-divider" />
+              <div className="or-divider" /> <span className={textColor}>OR</span> <div className="or-divider" />
             </div>
             <span onClick={loginAsDemo} className="demo-button">Login as a Demo User</span>
           </form>

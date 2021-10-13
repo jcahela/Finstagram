@@ -20,6 +20,7 @@ const SignUpForm = () => {
   const [outerEleTheme, setOuterEleTheme] = useState('outer-signup-form-ele');
   const [buttonTheme, setButtonTheme] = useState('auth-button-div');
   const [errorsTheme, setErrorsTheme] = useState('auth-errors-div');
+  const [textColor, setTextColor] = useState('dark-auth-text');
 
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ const SignUpForm = () => {
       setOuterEleTheme('outer-signup-form-ele-easter-egg');
       setErrorsTheme('auth-errors-div-easter-egg');
       setButtonTheme('auth-button-div-easter-egg');
+      setTextColor('light-auth-text');
     }
     else {
       setEasterEgg('auth-form');
@@ -39,6 +41,7 @@ const SignUpForm = () => {
       setOuterEleTheme('outer-signup-form-ele');
       setErrorsTheme('auth-errors-div');
       setButtonTheme('auth-button-div');
+      setTextColor('dark-auth-text');
     }
     setToggleTheme(prevTheme => !prevTheme);
   }
@@ -77,7 +80,7 @@ const SignUpForm = () => {
           onClick={themeToggleHandler}
         >
           <span className='auth-logo'>Finstagram</span>
-          <p id='signup-form-text'>Sign up to see photos and videos from your friends.</p>
+          <p id='signup-form-text' className={textColor}>Sign up to see photos and videos from your friends.</p>
         </div>
         <div className={outerEleTheme}>
           <input
@@ -141,7 +144,7 @@ const SignUpForm = () => {
             ></input>
         </div>
         <div className={buttonTheme}>
-          <button id='signup-button' className={innerEleTheme} type='submit'>Sign Up</button>
+          <button id='signup-button' type='submit'>Sign Up</button>
         </div>
         <div id='signup-errors-div' className={errorsTheme}>
           {errors.map((error, ind) => (

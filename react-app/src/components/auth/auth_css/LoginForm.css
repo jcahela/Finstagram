@@ -4,13 +4,13 @@
 }
 
 .outer-login-form-ele {
-    font-size: 18px;
-    position: relative;
+    font-size: 15.5px;
+    height: 35px;
 }
 
 .outer-login-form-ele-easter-egg {
-    font-size: 20px;
-    position: relative;
+    font-size: 15.5px;
+    height: 35px;
 }
 
 #login-logo-div {
@@ -22,8 +22,8 @@
     font-weight: 500;
 
     position: relative;
-    left: 90%;
-    bottom: 85%;
+    left: 85%;
+    bottom: 110%;
     width: 20%;
 }
 

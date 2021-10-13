@@ -7,6 +7,7 @@
 .auth-page {
     height: 100vh;
     background-color: #fafafa;
+    padding-top: 2%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -69,11 +70,21 @@
 }
 
 .auth-button-div {
-    cursor: pointer;
     border-radius: 5px;
     background-color: #0095f6;
     margin-top: 15px;
     width: 85%;
+    height: 40px;
+    position: relative;
+    left: 7.5%;
+}
+
+.auth-button-div-easter-egg {
+    border-radius: 5px;
+    background-color: #bc2a8d;
+    margin-top: 15px;
+    width: 85%;
+    height: 40px;
     position: relative;
     left: 7.5%;
 }

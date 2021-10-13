@@ -18,7 +18,8 @@ const SignUpForm = () => {
   const [easterEgg, setEasterEgg] = useState('auth-form');
   const [innerEleTheme, setInnerEleTheme] = useState('inner-form-ele');
   const [outerEleTheme, setOuterEleTheme] = useState('outer-signup-form-ele');
-  const [errorsTheme, setErrorsTheme] = useState('auth-errors-div-easter-egg');
+  const [buttonTheme, setButtonTheme] = useState('auth-button-div');
+  const [errorsTheme, setErrorsTheme] = useState('auth-errors-div');
 
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
@@ -30,12 +31,14 @@ const SignUpForm = () => {
       setInnerEleTheme('inner-form-ele-easter-egg');
       setOuterEleTheme('outer-signup-form-ele-easter-egg');
       setErrorsTheme('auth-errors-div-easter-egg');
+      setButtonTheme('auth-button-div-easter-egg');
     }
     else {
       setEasterEgg('auth-form');
       setInnerEleTheme('inner-form-ele');
       setOuterEleTheme('outer-signup-form-ele');
       setErrorsTheme('auth-errors-div');
+      setButtonTheme('auth-button-div');
     }
     setToggleTheme(prevTheme => !prevTheme);
   }
@@ -137,7 +140,7 @@ const SignUpForm = () => {
             placeholder='Repeat Password'
             ></input>
         </div>
-        <div className='auth-button-div'>
+        <div className={buttonTheme}>
           <button id='signup-button' className={innerEleTheme} type='submit'>Sign Up</button>
         </div>
         <div id='signup-errors-div' className={errorsTheme}>

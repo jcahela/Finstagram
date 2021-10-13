@@ -84,7 +84,7 @@ function FeedPostCard({post}) {
                     value={comment}
                     onChange={(e) => setComment(e.target.value)}
                 />
-                <button className={`feed-new-comment-button disabled-${comment.replace(/\s/g, '').length===0}`} disabled={comment.replace(/\s/g, '').length === 0}>Post</button>
+                <button className={`feed-new-comment-button disabled-${comment.replace(/\s/g, '').length === 0}`} disabled={comment.replace(/\s/g, '').length === 0}>Post</button>
             </form>
         </div>
     )

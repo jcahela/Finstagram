@@ -1,6 +1,8 @@
 .post-container {
-    border: 1px solid #838383;
+    border: 1px solid #83838360;
     height: fit-content;
+    margin-bottom: 30px;
+    border-radius: 2px;
 }
 
 .post-header {

@@ -2,17 +2,15 @@ import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import './FeedPostCard.css'
 
-function FeedPostCard() {
+function FeedPostCard({post}) {
     const [showComments, setShowComments] = useState(false);
-    const sessionUsersPosts = useSelector(state => state.sessionUsersPosts)
     const users = useSelector(state => state.users)
-    const samplePost = sessionUsersPosts[25]
-    const user = users[samplePost?.user_id]
+    const user = users[post?.user_id]
     let likesArr;
-    if (samplePost) likesArr = Object.values(samplePost.likes)
+    if (post) likesArr = Object.values(post.likes)
     let commentsArr;
     let lastComment;
-    if (samplePost) commentsArr = Object.values(samplePost.comments)
+    if (post) commentsArr = Object.values(post.comments)
     if (commentsArr) lastComment = commentsArr[commentsArr.length -1]
     return (
         <div className="post-container">
@@ -23,17 +21,18 @@ function FeedPostCard() {
                 </div>
                 <i className="fas fa-ellipsis-h options"></i>
             </div>
-            <img className="post-image" src={samplePost?.content} alt="" />
+            <img className="post-image" src={post?.content} alt="" />
             <div className="post-interaction-icons-container">
-                <i class="far fa-heart feed-like-icon"></i>
-                <i class="far fa-comment feed-comment-icon"></i>
+                <i className="far fa-heart feed-like-icon"></i>
+                <i className="far fa-comment feed-comment-icon"></i>
             </div>
             <p className="feed-likes-count">{likesArr?.length} likes</p>
             <div className="post-page-description-container">
                 <span className="post-description-user">{user?.username}</span>
-                <span className="post-page-description">{samplePost?.description}</span>
+                <span className="post-page-description">{post?.description}</span>
             </div>
-            {!showComments && <div className="view-comments" onClick={() => setShowComments(true)}>View all {commentsArr?.length} comments</div>}
+            {!showComments && (commentsArr.length > 0) && <div className="view-comments" onClick={() => setShowComments(true)}>View all {commentsArr?.length} comments</div>}
+            {commentsArr.length === 0 && <div className="view-comments">No comments</div>}
             <div className="comments-container">
                 {showComments === true ? (
                     commentsArr?.map((comment, index) => {

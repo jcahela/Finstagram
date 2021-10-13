@@ -15,7 +15,10 @@ class Comment(db.Model):
     user = db.relationship("User", back_populates="comments")
     post = db.relationship("Post", back_populates="comments")
 
-    # def add_comment(self, post_id, user_id, description):
-    #     new_comment = self("user_id": user_id, "post_id": post_id, "description": description)
-    #     db.session.add(new_comment)
-    #     db.session.commit()
+    def to_dict(self):
+        return {
+            'user_id': self.user_id,
+            'post_id': self.post_id,
+            'description': self.description,
+            'created_at': self.createdAt
+        }

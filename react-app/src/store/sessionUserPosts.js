@@ -42,6 +42,29 @@ export const addNewPostThunk = (formData) => async (dispatch) => {
     }
 }
 
+export const addCommentThunk = (comment) => async (dispatch) => {
+    const { description, post_id } = comment;
+    const response = await fetch(`/api/posts/${comment.post_id}/comments`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            description, 
+            post_id
+        })
+    })
+
+    if (response.ok) {
+        return null
+    } else {
+        if (response.status < 500) {
+            const data = await response.json();
+            if (data.errors) {
+                return data.errors;
+            }
+        }
+    }
+}
+
 function sessionUserPostsReducer(state = initialState, action) {
     let newState = {...state}
     switch(action.type) {

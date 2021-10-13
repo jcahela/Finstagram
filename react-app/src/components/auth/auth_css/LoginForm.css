@@ -48,3 +48,13 @@
     height: 20px;
     width: 200px;
 }
+
+#demo-button {
+    cursor: pointer;
+    color: #0095F6;
+}
+
+#demo-button-easter-egg {
+    cursor: pointer;
+    color: white;
+}

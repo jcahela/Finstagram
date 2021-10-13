@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import Footer from '../Footer/Footer';
 import './auth_css/Auth.css';
@@ -152,6 +152,9 @@ const SignUpForm = () => {
           ))}
         </div>
       </form>
+      <div className="link-to-login-container">
+                Have an account? <span><Link id="login-link" className="login-link" to="/login">Sign in</Link></span>
+      </div>
       <Footer />
     </div>
   );

@@ -44,3 +44,21 @@
     height: 40px;
     width: 100%;
 }
+
+.link-to-login-container {
+    border: 1px solid rgb(196, 196, 196);
+    height: 60px;
+    width: 400px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-link {
+    margin-left: 10px;
+}
+
+#login-link {
+    color: #0095F6;
+}

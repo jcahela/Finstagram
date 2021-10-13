@@ -25,6 +25,7 @@ const LoginForm = () => {
   const [outerEleTheme, setOuterEleTheme] = useState('outer-login-form-ele');
   const [buttonTheme, setButtonTheme] = useState('auth-button-div');
   const [errorsTheme, setErrorsTheme] = useState('auth-errors-div');
+  const [demoButtonTheme, setDemoButtonTheme] = useState('demo-button')
   const [textColor, setTextColor] = useState('dark-auth-text');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
@@ -49,6 +50,7 @@ const LoginForm = () => {
       setOuterEleTheme('outer-login-form-ele-easter-egg');
       setErrorsTheme('auth-errors-div-easter-egg');
       setButtonTheme('auth-button-div-easter-egg');
+      setDemoButtonTheme('demo-button-easter-egg');
       setTextColor('light-auth-text');
     }
     else {
@@ -57,6 +59,7 @@ const LoginForm = () => {
       setOuterEleTheme('outer-login-form-ele');
       setErrorsTheme('auth-errors-div');
       setButtonTheme('auth-button-div');
+      setDemoButtonTheme('demo-button');
       setTextColor('dark-auth-text');
     }
     setToggleTheme(prevTheme => !prevTheme);
@@ -175,10 +178,10 @@ const LoginForm = () => {
             <div className="or-container">
               <div className="or-divider" /> <span className={textColor}>OR</span> <div className="or-divider" />
             </div>
-            <span onClick={loginAsDemo} className="demo-button">Login as a Demo User</span>
+            <span onClick={loginAsDemo} id={demoButtonTheme}>Log in as a demo user</span>
           </form>
           <div className="link-to-signup-container">
-                Don't have an account? <span><Link id="signup-link" className="signup-link" to="/signup">Sign up here</Link></span>
+                Don't have an account? <span><Link id="signup-link" className="signup-link" to="/signup">Sign up</Link></span>
           </div>
         </div>
       </div>

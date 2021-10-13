@@ -7,37 +7,22 @@
 .auth-page {
     height: 100vh;
     background-color: #fafafa;
-
-    /* display: grid;
-    justify-content: center;
-    align-items: center;
-    grid-template-rows: 1fr 2fr 6fr 1fr;
-    grid-template-areas:
-    '.'
-    'form'
-    '.'
-    'footer'; */
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .auth-form {
-    grid-area: form;
-
     border: 1px solid #dbdbdb;
-    padding: 10px;
+    margin-top: 10px;
 
     display: grid;
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin-top: 10px;
 }
 
 .auth-form-easter-egg {
-    grid-area: form;
-
     border: 1px solid #dbdbdb;
     border-radius: 10px;
     padding: 10px;
@@ -60,6 +45,8 @@
 
 .auth-logo-div {
     user-select: none;
+    display: grid;
+    justify-content: center;
 }
 
 .auth-logo {
@@ -68,7 +55,7 @@
 }
 
 .inner-form-ele {
-    width: 100%;
+    width: 85%;
     height: 45px;
     padding: 2% 25% 2% 2%;
     border: 1px solid rgb(196, 196, 196);
@@ -76,7 +63,7 @@
 }
 
 .inner-form-ele-easter-egg {
-    width: 100%;
+    width: 85%;
     color: white;
     padding: 2% 25% 2% 2%;
 }
@@ -85,12 +72,22 @@
     cursor: pointer;
     border-radius: 5px;
     background-color: #0095f6;
-    text-align: center;
+    margin-top: 15px;
+    width: 85%;
+    position: relative;
+    left: 7.5%;
 }
 
 .auth-errors-div {
     position: relative;
-    text-align: center;
+    color: red;
+    text-align: left;
+}
+
+.auth-errors-div-easter-egg {
+    position: relative;
+    color: white;
+    text-align: left;
 }
 
 #auth-footer {

@@ -18,6 +18,7 @@ const SignUpForm = () => {
   const [easterEgg, setEasterEgg] = useState('auth-form');
   const [innerEleTheme, setInnerEleTheme] = useState('inner-form-ele');
   const [outerEleTheme, setOuterEleTheme] = useState('outer-signup-form-ele');
+  const [errorsTheme, setErrorsTheme] = useState('auth-errors-div-easter-egg');
 
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
@@ -28,11 +29,13 @@ const SignUpForm = () => {
       setEasterEgg('auth-form-easter-egg');
       setInnerEleTheme('inner-form-ele-easter-egg');
       setOuterEleTheme('outer-signup-form-ele-easter-egg');
+      setErrorsTheme('auth-errors-div-easter-egg');
     }
     else {
       setEasterEgg('auth-form');
       setInnerEleTheme('inner-form-ele');
       setOuterEleTheme('outer-signup-form-ele');
+      setErrorsTheme('auth-errors-div');
     }
     setToggleTheme(prevTheme => !prevTheme);
   }
@@ -45,6 +48,8 @@ const SignUpForm = () => {
       if (data) {
         setErrors(data)
       }
+    } else {
+      setErrors(['Password fields do not match.'])
     }
   };
 
@@ -69,6 +74,7 @@ const SignUpForm = () => {
           onClick={themeToggleHandler}
         >
           <span className='auth-logo'>Finstagram</span>
+          <p id='signup-form-text'>Sign up to see photos and videos from your friends.</p>
         </div>
         <div className={outerEleTheme}>
           <input
@@ -134,7 +140,7 @@ const SignUpForm = () => {
         <div className='auth-button-div'>
           <button id='signup-button' className={innerEleTheme} type='submit'>Sign Up</button>
         </div>
-        <div id='signup-errors-div' className='auth-errors-div'>
+        <div id='signup-errors-div' className={errorsTheme}>
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}

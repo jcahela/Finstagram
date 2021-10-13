@@ -1,35 +1,43 @@
 #signup-form {
-    height: 600px;
-    width: 400px;
+    height: 700px;
+    width: 450px;
 }
 
 .outer-signup-form-ele {
-    font-size: 20px;
+    font-size: 15.5px;
     position: relative;
-    top: 30%;
+    height: 15px;
 }
 
 .outer-signup-form-ele-easter-egg {
     font-size: 20px;
     position: relative;
-    right: 20%;
-    top: 30%;
+    height: 15px;
 }
 
 #signup-logo-div {
-    font-size: 45px;
+    font-size: 70px;
+    width: 50%;
+    position: relative;
+    left: 25%;
+    overflow-wrap: break-word;
+}
+
+#signup-form-text {
+    font-size: 16px;
+    margin-top: 10%;
 }
 
 #signup-button {
     font-size: 16px;
     cursor: pointer;
     padding: 5px;
+    width: 100%;
 }
 
 #signup-errors-div {
-    height: 40px;
-    width: 200px;
-
+    bottom: 15%;
     font-size: 14px;
-    bottom: 5%;
+    height: 40px;
+    width: 100%;
 }

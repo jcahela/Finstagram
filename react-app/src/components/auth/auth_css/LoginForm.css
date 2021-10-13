@@ -48,6 +48,7 @@ button[data-vis-btn-pos='skewed-left'] {
     padding: 5px;
     color: white;
     border-radius: 5px;
+    width: 100%;
 }
 
 #login-errors-div {

@@ -80,10 +80,10 @@ const LoginForm = () => {
   const loginAsDemo = async (e) => {
     e.preventDefault();
     const data = await dispatch(login("demo@aa.io", "password"));
+    await dispatch(getSessionUsersPostsThunk());
     if (data) {
       setErrors(data);
     }
-    await dispatch(getSessionUsersPostsThunk());
   }
 
   const updateEmail = (e) => setEmail(e.target.value);

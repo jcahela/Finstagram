@@ -1,0 +1,20 @@
+.feed-page-container {
+    height: fit-content;
+    max-width: 880px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 30px;
+}
+
+.feed-container {
+    height: fit-content;
+    width: 600px;
+}
+
+.profile-container {
+    height: 60px;
+    width: 250px;
+    border: 1px solid;
+
+}

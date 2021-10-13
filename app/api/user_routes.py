@@ -41,17 +41,20 @@ def follows():
 @user_routes.route('/like')
 def like():
     """Get likes. Hit this route to load likes onto db."""
-    post1 = Post.query.filter(Post.id == 2).first()
-    user1 = User.query.filter(User.id == 1).first()
-    user1.like(post1)
+    post25 = Post.query.filter(Post.id == 25).first()
+    user2 = User.query.filter(User.id == 2).first()
+    user3 = User.query.filter(User.id == 3).first()
+    user2.like(post25)
+    user3.like(post25)
 
-    return post1.to_dict()
+    return post25.to_dict()
 
 
 @user_routes.route('/comment')
 def comment():
     """Get comments. Hit this route to load comments onto db."""
-    post1 = Post.query.filter(Post.id == 1).first()
-    user1 = User.query.filter(User.id == 1).first()
-    user1.comment(post1, "This is a comment")
+    post25 = Post.query.filter(Post.id == 25).first()
+    user2 = User.query.filter(User.id == 2).first()
+    user2.comment(post25, "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here'")
+    user2.comment(post25, "vable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't an")
     return "Lets gooooooooooooooooo"

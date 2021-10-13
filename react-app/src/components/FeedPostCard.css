@@ -53,9 +53,14 @@
 }
 
 .feed-like-icon,
-.feed-comment-icon {
+.feed-comment-icon,
+.feed-like-icon-filled {
     font-size: 25px;
     margin-right: 20px;
+}
+
+.feed-like-icon-filled {
+    color: red;
 }
 
 .post-page-description-container,

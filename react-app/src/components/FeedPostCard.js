@@ -50,7 +50,8 @@ function FeedPostCard({post}) {
             </div>
             <img className="post-image" src={post?.content} alt="" />
             <div className="post-interaction-icons-container">
-                <i className="far fa-heart feed-like-icon"></i>
+                {/* <i className="far fa-heart feed-like-icon"></i> */}
+                <i class="fas fa-heart feed-like-icon-filled"></i>
                 <i className="far fa-comment feed-comment-icon"></i>
             </div>
             <p className="feed-likes-count">{likesArr?.length} likes</p>

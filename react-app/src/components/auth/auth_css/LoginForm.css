@@ -1,6 +1,6 @@
 #login-form {
-    height: 300px;
-    width: 300px;
+    height: 400px;
+    width: 350px;
 }
 
 .outer-login-form-ele {
@@ -46,6 +46,8 @@ button[data-vis-btn-pos='skewed-left'] {
     font-size: 17px;
     cursor: pointer;
     padding: 5px;
+    color: white;
+    border-radius: 5px;
 }
 
 #login-errors-div {

@@ -40,24 +40,28 @@ function App() {
   return (
     <BrowserRouter>
       <Modal open={isOpen} onClose={() => setIsOpen(false)}></Modal>
-      <NavBar setIsOpen={setIsOpen} isOpen={isOpen}/>
       <Switch>
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
         <Route path='/signup' exact={true}>
+          <NavBar setIsOpen={setIsOpen} isOpen={isOpen}/>
           <SignupForm />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
+          <NavBar setIsOpen={setIsOpen} isOpen={isOpen}/>
           <UsersList/>
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
+          <NavBar setIsOpen={setIsOpen} isOpen={isOpen}/>
           <User />
         </ProtectedRoute>
         <ProtectedRoute path='/feed' exact={true} >
+          <NavBar setIsOpen={setIsOpen} isOpen={isOpen}/>
           <h1>My Feed</h1>
         </ProtectedRoute>
         <ProtectedRoute path='/explore' exact={true} >
+          <NavBar setIsOpen={setIsOpen} isOpen={isOpen}/>
           <ExplorePage />
         </ProtectedRoute>
       </Switch>

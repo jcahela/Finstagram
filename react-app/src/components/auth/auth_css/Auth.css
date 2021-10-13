@@ -8,7 +8,7 @@
     height: 100vh;
     background-color: #fafafa;
 
-    display: grid;
+    /* display: grid;
     justify-content: center;
     align-items: center;
     grid-template-rows: 1fr 2fr 6fr 1fr;
@@ -16,20 +16,23 @@
     '.'
     'form'
     '.'
-    'footer';
+    'footer'; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .auth-form {
     grid-area: form;
 
     border: 1px solid #dbdbdb;
-    border-radius: 10px;
     padding: 10px;
 
     display: grid;
     justify-content: center;
     align-items: center;
     text-align: center;
+    margin-top: 10px;
 }
 
 .auth-form-easter-egg {
@@ -66,8 +69,10 @@
 
 .inner-form-ele {
     width: 100%;
-    border: 1px solid #dbdbdb;
+    height: 45px;
     padding: 2% 25% 2% 2%;
+    border: 1px solid rgb(196, 196, 196);
+    border-radius: 5px;
 }
 
 .inner-form-ele-easter-egg {
@@ -78,13 +83,9 @@
 
 .auth-button-div {
     cursor: pointer;
-    border-radius: 3px;
+    border-radius: 5px;
     background-color: #0095f6;
     text-align: center;
-}
-
-.auth-button-div:hover {
-    box-shadow: 0 0 5px black;
 }
 
 .auth-errors-div {
@@ -94,7 +95,6 @@
 
 #auth-footer {
     grid-area: footer;
-
 }
 
 #auth-footer-list {

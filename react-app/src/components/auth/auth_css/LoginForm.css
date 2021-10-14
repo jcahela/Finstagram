@@ -73,10 +73,10 @@
 }
 
 .signup-link {
-    margin-left: 10px;
-    /* font-weight: 900; */
+    margin-left: 4px;
 }
 
 #signup-link {
     color: #0095F6;
+    text-decoration: none;
 }

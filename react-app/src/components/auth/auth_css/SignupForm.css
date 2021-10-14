@@ -1,24 +1,19 @@
 #signup-form {
-    height: 580px;
+    height: 520px;
     width: 350px;
-}
-
-.inputs-and-button-container {
-    /* display: grid; */
-
 }
 
 #signup-logo-div {
     font-size: 55px;
-    width: 50%;
+    width: 175px;
     position: relative;
-    left: 25%;
+    left: calc(.05 * 350px);
     overflow-wrap: break-word;
 }
 
 #signup-form-text {
     font-size: 15px;
-    margin-top: 10%;
+    margin-top: 15px;
     font-weight: 600;
 }
 
@@ -30,7 +25,6 @@
     display: grid;
     align-items: center;
     justify-content: center;
-    grid-gap: 5px;
 }
 
 #signup-button {
@@ -45,10 +39,10 @@
 
 #signup-errors-div {
     font-size: 14px;
-    bottom: 25%;
-    left: 23%;
-    height: 40px;
+    bottom: 10px;
+    height: 65px;
     width: 100%;
+    background-color: rebeccapurple;
 }
 
 .link-to-login-container {
@@ -62,9 +56,10 @@
 }
 
 .login-link {
-    margin-left: 10px;
+    margin-left: 4px;
 }
 
 #login-link {
     color: #0095F6;
+    text-decoration: none;
 }

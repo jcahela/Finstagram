@@ -57,7 +57,7 @@ function ExplorePostDetails({postKey, posts}) {
                         </p>
                     </div>
                 </div>
-                <div>
+                <div className="explore-comment-input">
                     <form
                     className="feed-new-comment-form"
                     onSubmit={submitComment}

@@ -42,9 +42,9 @@ def follows():
 def like():
     """Get likes. Hit this route to load likes onto db."""
     post25 = Post.query.filter(Post.id == 25).first()
-    user2 = User.query.filter(User.id == 2).first()
+    user1 = User.query.filter(User.id == 1).first()
     user3 = User.query.filter(User.id == 3).first()
-    user2.like(post25)
+    user1.like(post25)
     user3.like(post25)
 
     return post25.to_dict()

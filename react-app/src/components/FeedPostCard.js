@@ -13,15 +13,21 @@ function FeedPostCard({post}) {
     const commentRef = useRef();
     const dispatch = useDispatch();
     const users = useSelector(state => state.users)
+    const sessionUser = useSelector(state => state.session.user)
     const user = users[post?.user_id]
     let likesArr;
-    if (post) likesArr = Object.values(post.likes)
     let commentsArr;
     let lastComment;
-    if (post) commentsArr = Object.values(post.comments)
+    if (post) likesArr = Object.values(post?.likes)
+    if (post) commentsArr = Object.values(post?.comments)
     if (commentsArr) lastComment = commentsArr[commentsArr.length -1]
 
-
+    const isVideo = post.content.slice(-3) === 'mp4' || 
+                    post.content.slice(-3) === 'mov' || 
+                    post.content.slice(-3) === 'wmv' || 
+                    post.content.slice(-3) === 'avi' || 
+                    post.content.slice(-4) === 'webm' || 
+                    post.content.slice(-5) === 'html5'
 
 
     const submitComment = async (e) => {
@@ -48,10 +54,17 @@ function FeedPostCard({post}) {
                 </div>
                 <i className="fas fa-ellipsis-h options"></i>
             </div>
-            <img className="post-image" src={post?.content} alt="" />
+            {isVideo ? (
+                <video className="post-image" src={post?.content} controls></video>
+            ):(
+                <img className="post-image" src={post?.content} alt="" />
+            )}
             <div className="post-interaction-icons-container">
-                {/* <i className="far fa-heart feed-like-icon"></i> */}
-                <i class="fas fa-heart feed-like-icon-filled"></i>
+                {sessionUser.id in post.likes ? (
+                    <i className="fas fa-heart feed-like-icon-filled"></i>
+                ): (
+                    <i className="far fa-heart feed-like-icon"></i>
+                )}
                 <i className="far fa-comment feed-comment-icon"></i>
             </div>
             <p className="feed-likes-count">{likesArr?.length} likes</p>

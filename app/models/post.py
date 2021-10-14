@@ -7,13 +7,13 @@ likes = db.Table(
     db.Column(
         "post_id",
         db.Integer,
-        db.ForeignKey("posts.id"),
+        db.ForeignKey("posts.id", ondelete="CASCADE"),
         primary_key=True
     ),
     db.Column(
         "user_id",
         db.Integer,
-        db.ForeignKey("users.id"),
+        db.ForeignKey("users.id", ondelete="CASCADE"),
         primary_key=True
     )
 )

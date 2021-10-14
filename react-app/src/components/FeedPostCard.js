@@ -73,7 +73,7 @@ function FeedPostCard({post}) {
                     <img className="post-profile-picture" src={user?.profile_picture} alt="" />
                     <p className="post-user">{user?.username}</p>
                 </div>
-                <i className="fas fa-ellipsis-h options"></i>
+                {post.user_id == sessionUser.id && <i className="fas fa-ellipsis-h options"></i>}
             </div>
             {isVideo ? (
                 <video className="post-image" src={post?.content} controls></video>

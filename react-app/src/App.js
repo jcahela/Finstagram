@@ -49,7 +49,6 @@ function App() {
           <LoginForm />
         </Route>
         <Route path='/signup' exact={true}>
-          <NavBar setIsOpen={setIsOpen} isOpen={isOpen}/>
           <SignupForm />
         </Route>
         <ProtectedRoute path='/users' exact={true} >

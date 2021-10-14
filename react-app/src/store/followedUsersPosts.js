@@ -24,7 +24,6 @@ const followedUsersPostsReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_FOLLOWED_USERS_POSTS:
             const posts = action.payload.followed_users_posts
-            console.log(action.payload);
             const newState = {...state};
             Object.values(posts).forEach(post => newState[post.id] = post);
             return newState;

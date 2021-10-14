@@ -33,7 +33,7 @@
     padding: 10px;
 }
 
-.profile-pic {
+.explore-profile-pic {
     height: 30px;
     width: 30px;
     border-radius: 50%;
@@ -60,4 +60,28 @@
 
 .explore-follow:hover {
     cursor: pointer;
+}
+
+.user-name-description {
+    font-size: 14px;
+    font-weight: 600;
+    margin-right: 5px;
+}
+
+.user-name-description:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.explore-photo-description {
+    /* display: inline-block;
+    align-items: stretch;
+    box-sizing: border-box; */
+    display: flex;
+    align-items: flex-start;
+    padding: 10px;
+}
+
+.explore-comment-text {
+    font-size: 14px;
 }

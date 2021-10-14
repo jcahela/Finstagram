@@ -1,7 +1,7 @@
 #login-form {
     height: 350px;
     width: 300px;
-    padding-top: 10px;
+    padding-top: 20px;
 }
 
 #login-logo-div {
@@ -25,6 +25,11 @@
 
 #visibility-button-invisible {
     visibility: hidden;
+}
+
+#login-button-and-errors-div {
+    position: relative;
+    bottom: 10px;
 }
 
 #login-button {
@@ -51,7 +56,7 @@
 
 .or-container {
     position: relative;
-    bottom: 40px;
+    bottom: 55px;
 }
 
 .or-divider {
@@ -67,7 +72,7 @@
 
 .demo-user-text {
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 25px;
     font-size: 14px;
     font-weight: 600;
 

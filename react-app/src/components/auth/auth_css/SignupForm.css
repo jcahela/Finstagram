@@ -1,7 +1,7 @@
 #signup-form {
     height: 515px;
     width: 350px;
-    padding-top: 10px;
+    padding-top: 20px;
 }
 
 #signup-logo-div {
@@ -14,6 +14,10 @@
     margin: 15px 0;
     width: 300px;
     font-weight: 600;
+}
+
+#signup-button-and-errors-div {
+    margin-top: 15px;
 }
 
 #signup-button {

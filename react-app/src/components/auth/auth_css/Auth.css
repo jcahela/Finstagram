@@ -67,7 +67,6 @@
 }
 
 .auth-button-and-errors-div {
-    margin-top: 15px;
     display: grid;
     justify-content: center;
     grid-template-rows: 30px 65px;

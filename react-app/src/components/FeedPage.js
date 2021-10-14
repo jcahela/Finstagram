@@ -1,6 +1,8 @@
-import FeedPostCard from './FeedPostCard'
-import './FeedPage.css'
-import { useSelector } from 'react-redux'
+import FeedPostCard from './FeedPostCard';
+import './FeedPage.css';
+import { useEffect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { getFollowedUsersPostsThunk } from '../store/followedUsersPosts';
 
 
 function FeedPage() {

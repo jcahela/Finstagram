@@ -1,20 +1,24 @@
 #login-form {
-    height: 400px;
+    height: 350px;
     width: 350px;
-}
-
-.outer-login-form-ele {
-    font-size: 15.5px;
-    height: 35px;
-}
-
-.outer-login-form-ele-easter-egg {
-    font-size: 15.5px;
-    height: 35px;
 }
 
 #login-logo-div {
     font-size: 45px;
+    margin-bottom: 15%;
+}
+
+.outer-login-form-ele {
+    font-size: 15.5px;
+}
+
+.outer-login-form-ele-easter-egg {
+    font-size: 15.5px;
+}
+
+#login-password-input {
+    margin-top: 3%;
+    padding-right: 25%;
 }
 
 #visibility-button-visible {
@@ -44,9 +48,9 @@
 #login-errors-div {
     font-size: 13px;
     bottom: 5%;
-    left: 8.5%;
+    left: 8%;
     height: 20px;
-    width: 200px;
+    width: 230px;
 }
 
 #demo-button {

@@ -17,7 +17,6 @@ const SignUpForm = () => {
   const [toggleTheme, setToggleTheme] = useState(false);
   const [easterEgg, setEasterEgg] = useState('auth-form');
   const [innerEleTheme, setInnerEleTheme] = useState('inner-form-ele');
-  const [outerEleTheme, setOuterEleTheme] = useState('outer-signup-form-ele');
   const [buttonTheme, setButtonTheme] = useState('auth-button-div');
   const [errorsTheme, setErrorsTheme] = useState('auth-errors-div');
   const [textColor, setTextColor] = useState('dark-auth-text');
@@ -30,7 +29,6 @@ const SignUpForm = () => {
     if (!toggleTheme) {
       setEasterEgg('auth-form-easter-egg');
       setInnerEleTheme('inner-form-ele-easter-egg');
-      setOuterEleTheme('outer-signup-form-ele-easter-egg');
       setErrorsTheme('auth-errors-div-easter-egg');
       setButtonTheme('auth-button-div-easter-egg');
       setTextColor('light-auth-text');
@@ -38,7 +36,6 @@ const SignUpForm = () => {
     else {
       setEasterEgg('auth-form');
       setInnerEleTheme('inner-form-ele');
-      setOuterEleTheme('outer-signup-form-ele');
       setErrorsTheme('auth-errors-div');
       setButtonTheme('auth-button-div');
       setTextColor('dark-auth-text');
@@ -82,7 +79,7 @@ const SignUpForm = () => {
           <span className='auth-logo'>Finstagram</span>
           <p id='signup-form-text' className={textColor}>Sign up to see photos and videos from your friends.</p>
         </div>
-        <div className={outerEleTheme}>
+        <div className='outer-signup-form-ele'>
           <input
             type='text'
             className={innerEleTheme}
@@ -92,7 +89,7 @@ const SignUpForm = () => {
             placeholder='First Name'
             ></input>
         </div>
-        <div className={outerEleTheme}>
+        <div className='outer-signup-form-ele'>
           <input
             type='text'
             className={innerEleTheme}
@@ -102,7 +99,7 @@ const SignUpForm = () => {
             placeholder='Last Name'
             ></input>
         </div>
-        <div className={outerEleTheme}>
+        <div className='outer-signup-form-ele'>
           <input
             type='text'
             className={innerEleTheme}
@@ -112,7 +109,7 @@ const SignUpForm = () => {
             placeholder='Username'
             ></input>
         </div>
-        <div className={outerEleTheme}>
+        <div className='outer-signup-form-ele'>
           <input
             type='email'
             className={innerEleTheme}
@@ -122,7 +119,7 @@ const SignUpForm = () => {
             placeholder='user@example.io'
             ></input>
         </div>
-        <div className={outerEleTheme}>
+        <div className='outer-signup-form-ele'>
           <input
             type='password'
             className={innerEleTheme}
@@ -132,7 +129,7 @@ const SignUpForm = () => {
             placeholder='Password'
             ></input>
         </div>
-        <div className={outerEleTheme}>
+        <div className='outer-signup-form-ele'>
           <input
             type='password'
             className={innerEleTheme}

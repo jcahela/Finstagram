@@ -16,7 +16,7 @@
 
 .auth-form {
     border: 1px solid #dbdbdb;
-    padding: 10px;
+    padding: 5%;
 
     display: grid;
     justify-content: center;
@@ -26,7 +26,7 @@
 
 .auth-form-easter-egg {
     border: 1px solid #dbdbdb;
-    padding: 10px;
+    padding: 5%;
     border-radius: 10px;
 
     display: grid;
@@ -57,51 +57,44 @@
 }
 
 .inner-form-ele {
-    width: 85%;
-    height: 45px;
-    padding: 2% 25% 2% 2%;
     border: 1px solid rgb(196, 196, 196);
-    border-radius: 5px;
+    border-radius: 3px;
+    width: 100%;
+    height: 25px;
+    padding: 15px 15px;
 }
 
 .inner-form-ele-easter-egg {
+    color: white;
     position: relative;
     left: 1px;
-    width: 85%;
-    height: 45px;
-    padding: 2% 25% 2% 2%;
+    width: 100%;
+    height: 25px;
+    margin: 0;
 }
 
 .auth-button-div {
     border-radius: 5px;
     background-color: #0095f6;
-    margin-top: 15px;
-    width: 85%;
+    width: 100%;
     height: 40px;
-    position: relative;
-    left: 7.5%;
 }
 
 .auth-button-div-easter-egg {
     border-radius: 5px;
     background-color: #fccc63;
-    margin-top: 15px;
-    width: 85%;
+    width: 100%;
     height: 40px;
-    position: relative;
-    left: 7.5%;
 }
 
 .auth-errors-div {
-    position: relative;
     color: red;
-    text-align: left;
+    text-align: center;
 }
 
 .auth-errors-div-easter-egg {
-    position: relative;
     color: white;
-    text-align: left;
+    text-align: center;
 }
 
 .light-auth-text {
@@ -113,7 +106,8 @@
 }
 
 #auth-footer {
-    grid-area: footer;
+    display: grid;
+    justify-content: center;
 }
 
 #auth-footer-list {

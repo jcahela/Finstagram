@@ -143,6 +143,7 @@ const LoginForm = () => {
             </div>
             <div id='login-email-div' className={outerEleTheme}>
               <input
+                id='login-email-input'
                 className={innerEleTheme}
                 type='email'
                 aria-label='Email'
@@ -153,6 +154,7 @@ const LoginForm = () => {
             </div>
             <div id='login-password-div' className={outerEleTheme}>
               <input
+                id='login-password-input'
                 className={innerEleTheme}
                 type={passwordVisibility}
                 aria-label='Password'

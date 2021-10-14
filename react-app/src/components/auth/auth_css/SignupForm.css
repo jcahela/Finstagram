@@ -17,11 +17,6 @@
     font-weight: 600;
 }
 
-.outer-signup-form-ele {
-    font-size: 13px;
-    margin: 5px;
-}
-
 #signup-button {
     cursor: pointer;
     font-size: 14px;
@@ -34,24 +29,4 @@
     font-size: 14px;
     bottom: 10px;
     width: 100%;
-}
-
-.link-to-login-container {
-    font-size: 13.5px;
-    border: 1px solid rgb(196, 196, 196);
-    height: 60px;
-    margin-top: 10px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.login-link {
-    margin-left: 4px;
-}
-
-#login-link {
-    color: #0095F6;
-    text-decoration: none;
 }

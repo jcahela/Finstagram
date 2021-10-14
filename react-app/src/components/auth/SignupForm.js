@@ -76,7 +76,7 @@ const SignUpForm = () => {
             <span className='auth-logo'>Finstagram</span>
             <p id='signup-form-text' className={textColor}>Sign up to see photos and videos from your friends.</p>
           </div>
-          <div className='outer-signup-form-ele'>
+          <div className='outer-auth-form-ele'>
             <input
               type='text'
               className={innerEleTheme}
@@ -86,7 +86,7 @@ const SignUpForm = () => {
               placeholder='First Name'
             ></input>
           </div>
-          <div className='outer-signup-form-ele'>
+          <div className='outer-auth-form-ele'>
             <input
               type='text'
               className={innerEleTheme}
@@ -96,7 +96,7 @@ const SignUpForm = () => {
               placeholder='Last Name'
               ></input>
           </div>
-          <div className='outer-signup-form-ele'>
+          <div className='outer-auth-form-ele'>
             <input
               type='text'
               className={innerEleTheme}
@@ -106,7 +106,7 @@ const SignUpForm = () => {
               placeholder='Username'
               ></input>
           </div>
-          <div className='outer-signup-form-ele'>
+          <div className='outer-auth-form-ele'>
             <input
               type='email'
               className={innerEleTheme}
@@ -116,7 +116,7 @@ const SignUpForm = () => {
               placeholder='user@example.io'
               ></input>
           </div>
-          <div className='outer-signup-form-ele'>
+          <div className='outer-auth-form-ele'>
             <input
               type='password'
               className={innerEleTheme}
@@ -126,7 +126,7 @@ const SignUpForm = () => {
               placeholder='Password'
               ></input>
           </div>
-          <div className='outer-signup-form-ele'>
+          <div className='outer-auth-form-ele'>
             <input
               type='password'
               className={innerEleTheme}
@@ -137,7 +137,7 @@ const SignUpForm = () => {
               placeholder='Repeat Password'
               ></input>
           </div>
-          <div className='signup-button-and-errors-div'>
+          <div className='auth-button-and-errors-div'>
             <button  id='signup-button' className={buttonTheme} type='submit'>Sign Up</button>
             <div id='signup-errors-div' className={errorsTheme}>
               {errors.map((error, ind) => (
@@ -146,8 +146,8 @@ const SignUpForm = () => {
             </div>
           </div>
         </form>
-        <div className="link-to-login-container">
-            Have an account? <span><Link id="login-link" className="login-link" to="/login"><b>Log in</b></Link></span>
+        <div className="link-to-auth-container">
+            Have an account? <Link className="outer-auth-link" to="/login"><span className='inner-auth-link'>Log in</span></Link>
         </div>
       </div>
       <Footer />

@@ -138,7 +138,7 @@ const LoginForm = () => {
             >
               <span className='auth-logo'>Finstagram</span>
             </div>
-            <div id='login-email-div' className='outer-login-form-ele'>
+            <div id='login-email-div' className='outer-auth-form-ele'>
               <input
                 id='login-email-input'
                 className={innerEleTheme}
@@ -149,7 +149,7 @@ const LoginForm = () => {
                 onChange={updateEmail}
               />
             </div>
-            <div id='login-password-div' className='outer-login-form-ele'>
+            <div id='login-password-div' className='outer-auth-form-ele'>
               <input
                 id='login-password-input'
                 className={innerEleTheme}
@@ -166,21 +166,21 @@ const LoginForm = () => {
               id={btnVisibility}
               display='none'
             >{btnText}</button>
-            <div className='signup-button-and-errors-div'>
+            <div className='auth-button-and-errors-div'>
               <button id='login-button' className={buttonTheme} type='submit'>Log In</button>
-            </div>
-            <div id='login-errors-div' className={errorsTheme}>
-              {errors.map((error, ind) => (
-                <div key={ind}>{error}</div>
-              ))}
+              <div id='login-errors-div' className={errorsTheme}>
+                {errors.map((error, ind) => (
+                  <div key={ind}>{error}</div>
+                ))}
+              </div>
             </div>
             <div className="or-container">
-              <div className="or-divider" /> <span className={textColor}>OR</span> <div className="or-divider" />
-              <p onClick={loginAsDemo} id={demoButtonTheme} className='demo-user-text'><b>Log in as a demo user</b></p>
+              <div className="or-divider" /> <span id='or-text' className={textColor}>OR</span> <div className="or-divider" />
+              <p onClick={loginAsDemo} id={demoButtonTheme} className='demo-user-text'>Log in as a demo user</p>
             </div>
           </form>
-          <div className="link-to-signup-container">
-                Don't have an account? <span><Link id="signup-link" className="signup-link" to="/signup"><b>Sign up</b></Link></span>
+          <div className="link-to-auth-container">
+                Don't have an account? <Link className="outer-auth-link"  to="/signup"><span className="inner-auth-link">Sign up</span></Link>
           </div>
         </div>
       </div>

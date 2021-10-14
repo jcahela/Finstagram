@@ -16,18 +16,24 @@ function FeedPostCard({post}) {
     const sessionUser = useSelector(state => state.session.user)
     const user = users[post?.user_id]
     let likesArr;
+    let numLikes;
     let commentsArr;
     let lastComment;
-    if (post) likesArr = Object.values(post?.likes)
-    if (post) commentsArr = Object.values(post?.comments)
+    if (post && post.likes !== undefined) {
+        console.log(post)
+        console.log(post.likes, '<---------------------POST LIKES -------------------------')
+        likesArr = Object.values(post.likes)
+        numLikes = likesArr.length
+    }
+    if (post && post.likes !== undefined) commentsArr = Object.values(post.comments)
     if (commentsArr) lastComment = commentsArr[commentsArr.length -1]
 
-    const isVideo = post.content.slice(-3) === 'mp4' || 
-                    post.content.slice(-3) === 'mov' || 
-                    post.content.slice(-3) === 'wmv' || 
-                    post.content.slice(-3) === 'avi' || 
-                    post.content.slice(-4) === 'webm' || 
-                    post.content.slice(-5) === 'html5'
+    const isVideo = post.content?.slice(-3) === 'mp4' || 
+                    post.content?.slice(-3) === 'mov' || 
+                    post.content?.slice(-3) === 'wmv' || 
+                    post.content?.slice(-3) === 'avi' || 
+                    post.content?.slice(-4) === 'webm' || 
+                    post.content?.slice(-5) === 'html5'
 
 
     const submitComment = async (e) => {
@@ -44,6 +50,9 @@ function FeedPostCard({post}) {
         await dispatch(getNonFollowedPostsThunk());
     }
 
+    const focusComment = () => {
+        commentRef.current.focus();
+    }
 
     return (
         <div className="post-container">
@@ -60,14 +69,14 @@ function FeedPostCard({post}) {
                 <img className="post-image" src={post?.content} alt="" />
             )}
             <div className="post-interaction-icons-container">
-                {sessionUser.id in post.likes ? (
+                {post.likes && sessionUser.id in post.likes ? (
                     <i className="fas fa-heart feed-like-icon-filled"></i>
                 ): (
                     <i className="far fa-heart feed-like-icon"></i>
                 )}
-                <i className="far fa-comment feed-comment-icon"></i>
+                <i onClick={focusComment} className="far fa-comment feed-comment-icon"></i>
             </div>
-            <p className="feed-likes-count">{likesArr?.length} likes</p>
+            <p className="feed-likes-count">{numLikes} likes</p>
             <div className="post-page-description-container">
                 <span className="post-description-user">{user?.username}</span>
                 <span className="post-page-description">{post?.description}</span>

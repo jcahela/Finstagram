@@ -20,15 +20,6 @@
     margin-top: 15px;
 }
 
-#signup-button {
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 600;
-    color: white;
-    width: 100%;
-    height: 100%;
-}
-
 #signup-errors-div {
     font-size: 14px;
     bottom: 10px;

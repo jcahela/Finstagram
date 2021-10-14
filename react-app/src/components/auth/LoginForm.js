@@ -22,7 +22,7 @@ const LoginForm = () => {
   const [toggleTheme, setToggleTheme] = useState(false);
   const [easterEgg, setEasterEgg] = useState('auth-form');
   const [innerEleTheme, setInnerEleTheme] = useState('inner-form-ele');
-  const [buttonTheme, setButtonTheme] = useState('auth-button-div');
+  const [buttonTheme, setButtonTheme] = useState('auth-button');
   const [errorsTheme, setErrorsTheme] = useState('auth-errors-div');
   const [demoButtonTheme, setDemoButtonTheme] = useState('demo-button')
   const [textColor, setTextColor] = useState('dark-auth-text');
@@ -47,7 +47,7 @@ const LoginForm = () => {
       setEasterEgg('auth-form-easter-egg');
       setInnerEleTheme('inner-form-ele-easter-egg');
       setErrorsTheme('auth-errors-div-easter-egg');
-      setButtonTheme('auth-button-div-easter-egg');
+      setButtonTheme('auth-button-easter-egg');
       setDemoButtonTheme('demo-button-easter-egg');
       setTextColor('light-auth-text');
     }
@@ -55,7 +55,7 @@ const LoginForm = () => {
       setEasterEgg('auth-form');
       setInnerEleTheme('inner-form-ele');
       setErrorsTheme('auth-errors-div');
-      setButtonTheme('auth-button-div');
+      setButtonTheme('auth-button');
       setDemoButtonTheme('demo-button');
       setTextColor('dark-auth-text');
     }

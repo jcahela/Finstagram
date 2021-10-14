@@ -7,45 +7,23 @@
 .auth-page {
     height: 100vh;
     background-color: #fafafa;
+    padding-top: 35px;
 
-    /* display: grid;
-    justify-content: center;
-    align-items: center;
-    grid-template-rows: 1fr 2fr 6fr 1fr;
-    grid-template-areas:
-    '.'
-    'form'
-    '.'
-    'footer'; */
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .auth-form {
-    grid-area: form;
-
     border: 1px solid #dbdbdb;
-    padding: 10px;
-
-    display: grid;
-    justify-content: center;
-    align-items: center;
     text-align: center;
-    margin-top: 10px;
+    background-color: white;
 }
 
 .auth-form-easter-egg {
-    grid-area: form;
-
     border: 1px solid #dbdbdb;
-    border-radius: 10px;
-    padding: 10px;
-
-    display: grid;
-    justify-content: center;
-    align-items: center;
     text-align: center;
+    border-radius: 10px;
 
     background: linear-gradient(25deg, #fccc63, #fbad50, #e95950, #bc2a8d, #8a3ab9, #833AB4);
     background-size: 300% 300%;
@@ -60,6 +38,8 @@
 
 .auth-logo-div {
     user-select: none;
+    display: grid;
+    justify-content: center;
 }
 
 .auth-logo {
@@ -67,34 +47,99 @@
     font-family: 'Grand Hotel', cursive;
 }
 
+.outer-auth-form-ele {
+    font-size: 13px;
+    margin: 5px;
+}
+
 .inner-form-ele {
-    width: 100%;
-    height: 45px;
-    padding: 2% 25% 2% 2%;
     border: 1px solid rgb(196, 196, 196);
-    border-radius: 5px;
+    border-radius: 3px;
+    width: 250px;
+    padding: 10px;
+    background-color: #fafafa;
 }
 
 .inner-form-ele-easter-egg {
-    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0);
     color: white;
-    padding: 2% 25% 2% 2%;
+    width: 250px;
+    padding: 10px;
 }
 
-.auth-button-div {
-    cursor: pointer;
-    border-radius: 5px;
+.auth-button-and-errors-div {
+    display: grid;
+    justify-content: center;
+    grid-template-rows: 30px 65px;
+    grid-template-columns: 250px;
+    grid-gap: 5px;
+}
+
+.auth-button {
+    border-radius: 3px;
     background-color: #0095f6;
-    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    width: 100%;
+    height: 100%;
+}
+
+.auth-button-easter-egg {
+    border-radius: 3px;
+    background-color: #fbad50;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    color: black;
+    width: 100%;
+    height: 100%;
 }
 
 .auth-errors-div {
-    position: relative;
+    color: red;
     text-align: center;
 }
 
+.auth-errors-div-easter-egg {
+    color: white;
+    text-align: center;
+}
+
+.light-auth-text {
+    color: white;
+}
+
+.dark-auth-text {
+    color: gray;
+}
+
+.link-to-auth-container {
+    font-size: 14px;
+    border: 1px solid rgb(196, 196, 196);
+    height: 60px;
+    margin-top: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.outer-auth-link {
+    margin-left: 4px;
+    font-weight: 600;
+    text-decoration: none!important;
+}
+
+.inner-auth-link {
+    color: #0095F6;
+}
+
 #auth-footer {
-    grid-area: footer;
+    display: grid;
+    justify-content: center;
 }
 
 #auth-footer-list {

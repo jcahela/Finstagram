@@ -22,8 +22,10 @@ const LoginForm = () => {
   const [toggleTheme, setToggleTheme] = useState(false);
   const [easterEgg, setEasterEgg] = useState('auth-form');
   const [innerEleTheme, setInnerEleTheme] = useState('inner-form-ele');
-  const [outerEleTheme, setOuterEleTheme] = useState('outer-login-form-ele');
-  const [visBtnPos, setVisBtnPos] = useState('skewed-left');
+  const [buttonTheme, setButtonTheme] = useState('auth-button');
+  const [errorsTheme, setErrorsTheme] = useState('auth-errors-div');
+  const [demoButtonTheme, setDemoButtonTheme] = useState('demo-button')
+  const [textColor, setTextColor] = useState('dark-auth-text');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
@@ -44,14 +46,18 @@ const LoginForm = () => {
     if (!toggleTheme) {
       setEasterEgg('auth-form-easter-egg');
       setInnerEleTheme('inner-form-ele-easter-egg');
-      setOuterEleTheme('outer-login-form-ele-easter-egg');
-      setVisBtnPos('');
+      setErrorsTheme('auth-errors-div-easter-egg');
+      setButtonTheme('auth-button-easter-egg');
+      setDemoButtonTheme('demo-button-easter-egg');
+      setTextColor('light-auth-text');
     }
     else {
       setEasterEgg('auth-form');
       setInnerEleTheme('inner-form-ele');
-      setOuterEleTheme('outer-login-form-ele');
-      setVisBtnPos('skewed-left');
+      setErrorsTheme('auth-errors-div');
+      setButtonTheme('auth-button');
+      setDemoButtonTheme('demo-button');
+      setTextColor('dark-auth-text');
     }
     setToggleTheme(prevTheme => !prevTheme);
   }
@@ -132,8 +138,9 @@ const LoginForm = () => {
             >
               <span className='auth-logo'>Finstagram</span>
             </div>
-            <div id='login-email-div' className={outerEleTheme}>
+            <div id='login-email-div' className='outer-auth-form-ele'>
               <input
+                id='login-email-input'
                 className={innerEleTheme}
                 type='email'
                 aria-label='Email'
@@ -142,8 +149,9 @@ const LoginForm = () => {
                 onChange={updateEmail}
               />
             </div>
-            <div id='login-password-div' className={outerEleTheme}>
+            <div id='login-password-div' className='outer-auth-form-ele'>
               <input
+                id='login-password-input'
                 className={innerEleTheme}
                 type={passwordVisibility}
                 aria-label='Password'
@@ -155,25 +163,24 @@ const LoginForm = () => {
             <button
               type='button'
               onClick={visibilityHandler}
-              data-vis-btn-pos={visBtnPos}
               id={btnVisibility}
               display='none'
             >{btnText}</button>
-            <div className='auth-button-div'>
-              <button id='login-button' className={innerEleTheme} type='submit'>Log In</button>
+            <div id='login-button-and-errors-div' className='auth-button-and-errors-div'>
+              <button id='login-button' className={buttonTheme} type='submit'>Log In</button>
+              <div id='login-errors-div' className={errorsTheme}>
+                {errors.map((error, ind) => (
+                  <div key={ind}>{error}</div>
+                ))}
+              </div>
             </div>
-            <div id='login-errors-div' className='auth-errors-div'>
-              {errors.map((error, ind) => (
-                <div key={ind}>{error}</div>
-              ))}
+            <div className="or-container">
+              <div className="or-divider" /> <span id='or-text' className={textColor}>OR</span> <div className="or-divider" />
+              <p onClick={loginAsDemo} id={demoButtonTheme} className='demo-user-text'>Log in as a demo user</p>
             </div>
-            <div className="or-container">            
-              <div className="or-divider" /> <span className="or-text">OR</span> <div className="or-divider" />
-            </div>
-            <span onClick={loginAsDemo} className="demo-button">Login as a Demo User</span>
           </form>
-          <div className="link-to-signup-container">
-                Don't have an account? <span><Link id="signup-link" className="signup-link" to="/signup">Sign up here</Link></span>
+          <div className="link-to-auth-container">
+                Don't have an account? <Link className="outer-auth-link"  to="/signup"><span className="inner-auth-link">Sign up</span></Link>
           </div>
         </div>
       </div>

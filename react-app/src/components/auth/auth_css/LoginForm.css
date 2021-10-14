@@ -1,27 +1,16 @@
 #login-form {
-    height: 400px;
-    width: 350px;
-}
-
-.outer-login-form-ele {
-    font-size: 18px;
-    position: relative;
-    top: 30%;
-    padding: 2%;
-}
-
-.outer-login-form-ele-easter-egg {
-    font-size: 18px;
-    margin: 5px;
-    padding: 5px;
-
-    position: relative;
-    right: 10%;
-    top: 30%;
+    height: 350px;
+    width: 300px;
+    padding-top: 20px;
 }
 
 #login-logo-div {
     font-size: 45px;
+    margin-bottom: 25px;
+}
+
+#login-password-input {
+    padding-right: 45px;
 }
 
 #visibility-button-visible {
@@ -29,31 +18,53 @@
     font-weight: 500;
 
     position: relative;
-    left: 90%;
-    bottom: 85%;
-    width: 20%;
+    bottom: 33px;
+    left: 100px;
 }
 
 #visibility-button-invisible {
     visibility: hidden;
 }
 
-button[data-vis-btn-pos='skewed-left'] {
-    margin-left: -16%;
-}
-
-#login-button {
-    font-size: 17px;
-    cursor: pointer;
-    padding: 5px;
-    color: white;
-    border-radius: 5px;
+#login-button-and-errors-div {
+    position: relative;
+    bottom: 10px;
 }
 
 #login-errors-div {
-    height: 20px;
-    width: 200px;
+    font-size: 14px;
+    bottom: 10px;
+    width: 100%;
+    margin-top: 5px;
+}
 
+#demo-button {
+    color: #385185;
+}
+
+#demo-button-easter-egg {
+    color: white;
+}
+
+.or-container {
+    position: relative;
+    bottom: 35px;
+}
+
+.or-divider {
+    display: inline-block;
+    border: 1px solid rgb(196, 196, 196);
+    width: 100px;
+}
+
+#or-text {
     font-size: 13px;
-    bottom: 5%;
+    font-weight: 600;
+}
+
+.demo-user-text {
+    cursor: pointer;
+    margin-top: 25px;
+    font-size: 14px;
+    font-weight: 600;
 }

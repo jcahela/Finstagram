@@ -81,3 +81,22 @@ def add_comment(post_id):
         return {
             "message": "successful!"
         }
+
+
+@post_routes.route('/<int:post_id>/likes', methods=['POST'])
+@login_required
+def add_like(post_id):
+    post = Post.query.filter(Post.id == post_id).first()
+    current_user.like(post)
+    return {
+        "message": "successful!"
+    }
+
+@post_routes.route('/<int:post_id>/likes', methods=['DELETE'])
+@login_required
+def remove_like(post_id):
+    post = Post.query.filter(Post.id == post_id).first()
+    current_user.unlike(post)
+    return {
+        "message": "successful"
+    }

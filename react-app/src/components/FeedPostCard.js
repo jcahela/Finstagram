@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { useState, useRef } from 'react';
-import { addCommentThunk } from '../store/sessionUserPosts';
+import { addCommentThunk, addLikeThunk, removeLikeThunk } from '../store/sessionUserPosts';
 import { useDispatch } from 'react-redux';
 import { getSessionUsersPostsThunk } from '../store/sessionUserPosts';
 import { getNonFollowedPostsThunk } from '../store/nonFollowedUsersPosts';
@@ -22,8 +22,6 @@ function FeedPostCard({post}) {
     if (post?.comments) commentsArr = Object.values(post.comments)
     if (commentsArr) lastComment = commentsArr[commentsArr.length -1]
 
-    console.log(post, '<-----------------------------THIS IS THE POSTSTTTTT')
-    console.log(likesArr, '<-----------------------THIS IS THE LIKES ARRAY')
     const isVideo = post.content?.slice(-3) === 'mp4' || 
                     post.content?.slice(-3) === 'mov' || 
                     post.content?.slice(-3) === 'wmv' || 
@@ -45,9 +43,27 @@ function FeedPostCard({post}) {
         await dispatch(getSessionUsersPostsThunk());
         await dispatch(getNonFollowedPostsThunk());
     }
-
+    
     const focusComment = () => {
         commentRef.current.focus();
+    }
+    
+    const addLike = async () => {
+        const newLike = {
+            'post_id': post.id,
+        }
+        await dispatch(addLikeThunk(newLike));
+        await dispatch(getSessionUsersPostsThunk());
+        await dispatch(getNonFollowedPostsThunk());
+    }
+    
+    const removeLike = async () => {
+        const likeToDelete = {
+            'post_id': post.id
+        }
+        await dispatch(removeLikeThunk(likeToDelete));
+        await dispatch(getSessionUsersPostsThunk());
+        await dispatch(getNonFollowedPostsThunk());
     }
 
     return (
@@ -66,9 +82,9 @@ function FeedPostCard({post}) {
             )}
             <div className="post-interaction-icons-container">
                 {post.likes && sessionUser.id in post.likes ? (
-                    <i className="fas fa-heart feed-like-icon-filled"></i>
+                    <i onClick={removeLike} className="fas fa-heart feed-like-icon-filled"></i>
                 ): (
-                    <i className="far fa-heart feed-like-icon"></i>
+                    <i onClick={addLike} className="far fa-heart feed-like-icon"></i>
                 )}
                 <i onClick={focusComment} className="far fa-comment feed-comment-icon"></i>
             </div>

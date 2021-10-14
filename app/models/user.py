@@ -44,6 +44,11 @@ class User(db.Model, UserMixin):
         db.session.add(self)
         db.session.commit()
 
+    def unlike(self, post):
+        self.liked_posts.remove(post)
+        db.session.add(self)
+        db.session.commit()
+
     def comment(self, post, description):
         comment = Comment(user_id=self.id, post_id=post.id, description=description)
         db.session.add(comment)

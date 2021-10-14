@@ -53,13 +53,26 @@
 }
 
 .feed-like-icon,
-.feed-comment-icon,
-.feed-like-icon-filled {
+.feed-comment-icon {
     font-size: 25px;
     margin-right: 20px;
+    font-weight: lighter;
+}
+
+.feed-like-icon:hover,
+.feed-comment-icon:hover,
+.feed-like-icon-filled:hover {
+    cursor: pointer;
+}
+
+.feed-like-icon:hover,
+.feed-comment-icon:hover {
+    color: #bbbbbb;
 }
 
 .feed-like-icon-filled {
+    font-size: 25px;
+    margin-right: 20px;
     color: red;
 }
 

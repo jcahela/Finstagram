@@ -15,19 +15,15 @@ function FeedPostCard({post}) {
     const users = useSelector(state => state.users)
     const sessionUser = useSelector(state => state.session.user)
     const user = users[post?.user_id]
-    let likesArr;
-    let numLikes;
-    let commentsArr;
+    let likesArr = [];
+    let commentsArr = [];
     let lastComment;
-    if (post && post.likes !== undefined) {
-        console.log(post)
-        console.log(post.likes, '<---------------------POST LIKES -------------------------')
-        likesArr = Object.values(post.likes)
-        numLikes = likesArr.length
-    }
-    if (post && post.likes !== undefined) commentsArr = Object.values(post.comments)
+    if (post?.likes) likesArr = Object.values(post.likes)
+    if (post?.comments) commentsArr = Object.values(post.comments)
     if (commentsArr) lastComment = commentsArr[commentsArr.length -1]
 
+    console.log(post, '<-----------------------------THIS IS THE POSTSTTTTT')
+    console.log(likesArr, '<-----------------------THIS IS THE LIKES ARRAY')
     const isVideo = post.content?.slice(-3) === 'mp4' || 
                     post.content?.slice(-3) === 'mov' || 
                     post.content?.slice(-3) === 'wmv' || 
@@ -76,12 +72,12 @@ function FeedPostCard({post}) {
                 )}
                 <i onClick={focusComment} className="far fa-comment feed-comment-icon"></i>
             </div>
-            <p className="feed-likes-count">{numLikes} likes</p>
+            <p className="feed-likes-count">{likesArr.length} likes</p>
             <div className="post-page-description-container">
                 <span className="post-description-user">{user?.username}</span>
                 <span className="post-page-description">{post?.description}</span>
             </div>
-            {!showComments && (commentsArr.length > 0) && <div className="view-comments" onClick={() => setShowComments(true)}>View all {commentsArr?.length} comments</div>}
+            {!showComments && (commentsArr.length > 1) && <div className="view-comments" onClick={() => setShowComments(true)}>View all {commentsArr?.length} comments</div>}
             {commentsArr.length === 0 && <div className="view-comments">No comments</div>}
             <div className="comments-container">
                 {showComments === true ? (

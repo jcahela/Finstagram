@@ -1,14 +1,24 @@
 import { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getUsersThunk } from '../store/users';
-import { addCommentThunk } from '../store/sessionUserPosts';
+import { addCommentThunk, addLikeThunk, removeLikeThunk } from '../store/sessionUserPosts';
 import { getNonFollowedPostsThunk } from '../store/nonFollowedUsersPosts';
 import './ExplorePostDetails.css';
+import './FeedPostCard.css';
 
 function ExplorePostDetails({postKey, posts}) {
     let dispatch = useDispatch();
     const [comment, setComment] = useState('')
     const commentRef = useRef();
+    const sessionUser = useSelector(state => state.session.user)
+
+    let users = useSelector(state => state.users)
+
+    let user_id = posts[postKey].user_id
+
+    let commentsObj = useSelector(state => state.nonFollowedUsersPosts[postKey].comments);
+
+    let likesObj = useSelector(state => state.nonFollowedUsersPosts[postKey].likes);
 
     useEffect(() => {
         dispatch(getUsersThunk())
@@ -27,9 +37,26 @@ function ExplorePostDetails({postKey, posts}) {
         await dispatch(getNonFollowedPostsThunk());
     }
 
-    let users = useSelector(state => state.users)
+    const focusComment = () => {
+        commentRef.current.focus();
+    }
 
-    let user_id = posts[postKey].user_id
+    const addLike = async () => {
+        const newLike = {
+            'post_id': posts[postKey].id,
+        }
+        await dispatch(addLikeThunk(newLike));
+        await dispatch(getNonFollowedPostsThunk());
+    }
+
+    const removeLike = async () => {
+        const likeToDelete = {
+            'post_id': posts[postKey].id
+        }
+        await dispatch(removeLikeThunk(likeToDelete));
+        await dispatch(getNonFollowedPostsThunk());
+    }
+
 
     // comments(pin): {}
     // content(pin):"https://picsum.photos/200/300"
@@ -57,11 +84,38 @@ function ExplorePostDetails({postKey, posts}) {
                             <span className="explore-comment-text">{posts[postKey].description}</span>
                         </p>
                     </div>
+                    <div className="explore-comments-div">
+                        {
+                            Object.values(commentsObj)?.map((comment, index) => {
+                                const commentUser = users[comment.user_id];
+                                return (
+                                    <div className="explore-commenter-container">
+                                        <img src={commentUser.profile_picture} className="explore-profile-pic" alt="this is something"/>
+                                        <p>
+                                            <span className="user-name-description">{commentUser.firstname} {commentUser.lastname}</span>
+                                            <span className="explore-comment-text">{comment.description}</span>
+                                        </p>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+                </div>
+                <div className="explore-post-interaction-icons-container">
+                    {likesObj && sessionUser.id in likesObj ? (
+                        <i onClick={removeLike} className="fas fa-heart feed-like-icon-filled"></i>
+                    ): (
+                        <i onClick={addLike} className="far fa-heart feed-like-icon"></i>
+                    )}
+                    <i onClick={focusComment} className="far fa-comment feed-comment-icon"></i>
+                </div>
+                <div className="explore-likes-counter-container">
+                    <p className="explore-likes-counter">{Object.keys(likesObj).length} likes</p>
                 </div>
                 <div className="explore-comment-input">
                     <form
-                    className="feed-new-comment-form"
-                    onSubmit={submitComment}
+                        className="feed-new-comment-form"
+                        onSubmit={submitComment}
                     >
                     <textarea
                         ref = {commentRef}

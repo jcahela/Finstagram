@@ -30,7 +30,7 @@ function ExplorePage() {
         <>
             <div className="explore-page-container">
                 {Object.keys(explore_posts).map((key) => (
-                    <div className="explore-posts" onMouseEnter={() => setStats(`${key}`)} onMouseLeave={() => setStats(false)}>
+                    <div className="explore-posts" onMouseOver={() => setStats(`${key}`)} onMouseLeave={() => setStats(false)}>
                         <img src={explore_posts[key].content} onClick={() => openExplorePostModal(key)} alt="something" className="explore-posts" key={explore_posts[key].id}/>
                         {stats === key && <span className={`material-icons like-icon`}>favorite</span>}
                         {stats === key && <span className="likes-count">{Object.keys(explore_posts[key].likes).length}</span>}

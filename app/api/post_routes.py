@@ -1,7 +1,8 @@
 """Post Routes."""
 
+from operator import pos
 from flask import Blueprint, request
-from app.models import Post, db
+from app.models import Post, User, db
 from flask_login import login_required, current_user
 from app.aws import (
     upload_file_to_s3, allowed_file, get_unique_filename
@@ -19,6 +20,16 @@ def session_user_posts():
 
     return {
         "posts": [post.to_dict() for post in posts]
+    }
+
+@post_routes.route('/feed/<userID>')
+@login_required
+def get_feed_posts():
+    """Get all of a user's feed page posts."""
+    posts = Post.query.filter(Post.user_id.query(followers.followed) == current_user.id).all()
+    print(posts)
+    return {
+        "followed_users_posts": [post.to_dict for post in posts]
     }
 
 @post_routes.route('/explore')

@@ -138,7 +138,7 @@ const SignUpForm = () => {
               ></input>
           </div>
           <div className={buttonTheme}>
-            <button id='signup-button' className='auth-button' type='submit'>Sign Up</button>
+            <button id='signup-button' type='submit'>Sign Up</button>
             <div id='signup-errors-div' className={errorsTheme}>
               {errors.map((error, ind) => (
                <div key={ind}>{error}</div>

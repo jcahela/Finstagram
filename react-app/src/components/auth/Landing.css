@@ -25,25 +25,3 @@
     width: 100%;
     /* height: 430px; */
 }
-
-.or-divider {
-    display: inline-block;
-    border: 1px solid rgb(196, 196, 196);
-    width: 100px;
-    position: relative;
-    bottom: 4px;
-}
-
-.or-text {
-    color: rgb(151, 151, 151);
-}
-
-.demo-button {
-    color: #0095F6;
-}
-
-.demo-button:hover {
-    cursor: pointer;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-}

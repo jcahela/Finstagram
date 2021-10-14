@@ -1,27 +1,24 @@
 #signup-form {
-    height: 520px;
+    height: 550px;
     width: 350px;
+    padding-top: 10px;
 }
 
 #signup-logo-div {
-    font-size: 55px;
-    width: 175px;
-    position: relative;
-    left: calc(.05 * 350px);
+    font-size: 50px;
+    width: 330px;
     overflow-wrap: break-word;
 }
 
 #signup-form-text {
-    font-size: 15px;
+    font-size: 17px;
     margin-top: 15px;
+    width: 295px;
     font-weight: 600;
 }
 
 .outer-signup-form-ele {
     font-size: 13px;
-    height: 100%;
-    width: 100%;
-
     display: grid;
     align-items: center;
     justify-content: center;
@@ -30,9 +27,7 @@
 #signup-button {
     cursor: pointer;
     font-size: 14px;
-    padding: 5px;
     color: white;
-    border-radius: 5px;
     width: 100%;
     height: 100%;
 }
@@ -49,7 +44,8 @@
     font-size: 13.5px;
     border: 1px solid rgb(196, 196, 196);
     height: 60px;
-    margin-top: 20px;
+    margin-top: 10px;
+
     display: flex;
     justify-content: center;
     align-items: center;

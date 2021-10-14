@@ -9,3 +9,4 @@
             text-decoration: none;
         }`;
     ```
++ In the backend, to include an 'in' in a filter in SQLAlchemy, you need to do ex. Post.query.filter(Post.id.in_(followed_users)).all(), or Post.query.filter(Post.id.not_in(followed_users)).all()

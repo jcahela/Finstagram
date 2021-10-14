@@ -1,6 +1,6 @@
 #login-form {
     height: 350px;
-    width: 350px;
+    width: 300px;
 }
 
 #login-logo-div {
@@ -9,11 +9,8 @@
 }
 
 .outer-login-form-ele {
-    font-size: 15.5px;
-}
-
-.outer-login-form-ele-easter-egg {
-    font-size: 15.5px;
+    font-size: 13px;
+    height: 21px;
 }
 
 #login-password-input {

@@ -22,7 +22,6 @@ const LoginForm = () => {
   const [toggleTheme, setToggleTheme] = useState(false);
   const [easterEgg, setEasterEgg] = useState('auth-form');
   const [innerEleTheme, setInnerEleTheme] = useState('inner-form-ele');
-  const [outerEleTheme, setOuterEleTheme] = useState('outer-login-form-ele');
   const [buttonTheme, setButtonTheme] = useState('auth-button-div');
   const [errorsTheme, setErrorsTheme] = useState('auth-errors-div');
   const [demoButtonTheme, setDemoButtonTheme] = useState('demo-button')
@@ -47,7 +46,6 @@ const LoginForm = () => {
     if (!toggleTheme) {
       setEasterEgg('auth-form-easter-egg');
       setInnerEleTheme('inner-form-ele-easter-egg');
-      setOuterEleTheme('outer-login-form-ele-easter-egg');
       setErrorsTheme('auth-errors-div-easter-egg');
       setButtonTheme('auth-button-div-easter-egg');
       setDemoButtonTheme('demo-button-easter-egg');
@@ -56,7 +54,6 @@ const LoginForm = () => {
     else {
       setEasterEgg('auth-form');
       setInnerEleTheme('inner-form-ele');
-      setOuterEleTheme('outer-login-form-ele');
       setErrorsTheme('auth-errors-div');
       setButtonTheme('auth-button-div');
       setDemoButtonTheme('demo-button');
@@ -141,7 +138,7 @@ const LoginForm = () => {
             >
               <span className='auth-logo'>Finstagram</span>
             </div>
-            <div id='login-email-div' className={outerEleTheme}>
+            <div id='login-email-div' className='outer-login-form-ele'>
               <input
                 id='login-email-input'
                 className={innerEleTheme}
@@ -152,7 +149,7 @@ const LoginForm = () => {
                 onChange={updateEmail}
               />
             </div>
-            <div id='login-password-div' className={outerEleTheme}>
+            <div id='login-password-div' className='outer-login-form-ele'>
               <input
                 id='login-password-input'
                 className={innerEleTheme}

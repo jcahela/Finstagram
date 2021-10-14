@@ -11,7 +11,9 @@ import ExplorePage from './components/ExplorePage';
 import FeedPage from './components/FeedPage';
 import { authenticate } from './store/session';
 import { getUsersThunk } from './store/users';
-import { getSessionUsersPostsThunk } from './store/sessionUserPosts'
+import { getSessionUsersPostsThunk } from './store/sessionUserPosts';
+import { getFollowedUsersPostsThunk } from './store/followedUsersPosts';
+
 import Modal from './components/Modal';
 
 function App() {
@@ -31,6 +33,7 @@ function App() {
   useEffect(() => {
     (async() => {
       if (currentSessionUser) await dispatch(getSessionUsersPostsThunk());
+      if (currentSessionUser) await dispatch(getFollowedUsersPostsThunk());
     })();
   }, [dispatch, currentSessionUser]);
 

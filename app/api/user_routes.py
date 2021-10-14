@@ -21,22 +21,22 @@ def user(id):
     return user.to_dict()
 
 # Uncomment to use this route to explore the user follower/followed relationship
-@user_routes.route('/feed')
-def follows():
-    """Get followers. Hit this route to load followers onto db."""
-    user1 = User.query.filter(User.id == 1).first()
-    user2 = User.query.filter(User.id == 2).first()
-    user3 = User.query.filter(User.id == 3).first()
+# @user_routes.route('/feed')
+# def follows():
+#     """Get followers. Hit this route to load followers onto db."""
+#     user1 = User.query.filter(User.id == 1).first()
+#     user2 = User.query.filter(User.id == 2).first()
+#     user3 = User.query.filter(User.id == 3).first()
 
-    user1.follow(user2)
-    user1.follow(user3)
-    user2.follow(user3)
+#     user1.follow(user2)
+#     user1.follow(user3)
+#     user2.follow(user3)
 
-    return {
-        'user1': user1.to_dict(),
-        'user2': user2.to_dict(),
-        'user3': user3.to_dict()
-        }
+#     return {
+#         'user1': user1.to_dict(),
+#         'user2': user2.to_dict(),
+#         'user3': user3.to_dict()
+#         }
 
 @user_routes.route('/like')
 def like():

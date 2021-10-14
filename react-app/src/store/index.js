@@ -4,12 +4,14 @@ import session from './session';
 import usersReducer from './users';
 import sessionUserPostsReducer from './sessionUserPosts';
 import nonFollowedUsersPostsReducer from './nonFollowedUsersPosts';
+import followedUsersPostsReducer from './followedUsersPosts';
 
 const rootReducer = combineReducers({
   session,
-  "users": usersReducer,
-  "sessionUsersPosts": sessionUserPostsReducer,
-  "nonFollowedUsersPosts": nonFollowedUsersPostsReducer
+  'users': usersReducer,
+  'sessionUsersPosts': sessionUserPostsReducer,
+  'nonFollowedUsersPosts': nonFollowedUsersPostsReducer,
+  'followedUsersPosts': followedUsersPostsReducer
 });
 
 

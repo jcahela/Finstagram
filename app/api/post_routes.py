@@ -1,7 +1,8 @@
 """Post Routes."""
 
+from operator import pos
 from flask import Blueprint, request
-from app.models import Post, db
+from app.models import Post, User, db
 from flask_login import login_required, current_user
 from app.aws import (
     upload_file_to_s3, allowed_file, get_unique_filename
@@ -16,9 +17,38 @@ post_routes = Blueprint('posts', __name__)
 def session_user_posts():
     """Get all of the session user's posts."""
     posts = Post.query.filter(Post.user_id == current_user.id).all()
-
+    print('this is posts in api/posts/')
     return {
         "posts": [post.to_dict() for post in posts]
+    }
+
+# @post_routes.route('/feed')
+# @login_required
+# def get_feed_posts():
+#     """Get all of a user's feed page posts pertianing to followed users."""
+#     followed_users = current_user.followed_users()
+#     followed_ids = followed_users.keys()
+
+#     posts = Post.query.filter(Post.user_id in followed_users.keys()).all()
+#     print('here is the Post.id', Post.query.filter(Post.user_id in followed_users.keys()).all())
+#     # print('here is the followed_users', followed_users)
+#     print('here is the response: ', posts)
+#     # print(followed_users)
+#     return {
+#         "followed_users_posts": [post.to_dict() for post in posts]
+#     }
+
+
+@post_routes.route('/feed')
+@login_required
+def get_feed_posts():
+    """Get all of a user's feed page posts pertianing to followed users."""
+    followed_users = current_user.followed_users()
+
+    posts = Post.query.filter(Post.user_id.in_(followed_users)).all()
+
+    return {
+        "followed_users_posts": [post.to_dict() for post in posts]
     }
 
 @post_routes.route('/explore')
@@ -26,9 +56,8 @@ def session_user_posts():
 def explore_posts():
     """Get all of the explore page posts."""
     followed_users = current_user.followed_users()
-    followed_ids = followed_users.keys()
 
-    posts = Post.query.filter(Post.user_id not in followed_ids and Post.user_id != current_user.id).all()
+    posts = Post.query.filter(Post.user_id.not_in(followed_users), Post.user_id != current_user.id).all()
     return {
         "posts": [post.to_dict() for post in posts]
     }

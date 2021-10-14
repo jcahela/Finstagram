@@ -8,7 +8,8 @@ import { getFollowedUsersPostsThunk } from '../store/followedUsersPosts';
 function FeedPage() {
     const dispatch = useDispatch();
     const sessionUsersPosts = useSelector(state => state.sessionUsersPosts);
-    const sessionUsersPostsArr = Object.values(sessionUsersPosts);
+    const followedUsersPosts = useSelector(state => state.followedUsersPosts);
+    const feedPosts = [...Object.values(sessionUsersPosts), ...Object.values(followedUsersPosts)];
 
     useEffect(() => {
         dispatch(getFollowedUsersPostsThunk());
@@ -17,7 +18,7 @@ function FeedPage() {
     return (
         <div className="feed-page-container">
             <div className="feed-container">
-                {sessionUsersPostsArr.map((post) => (
+                {feedPosts.map((post) => (
                     <FeedPostCard key={post.id} post={post}/>
                 ))}
             </div>

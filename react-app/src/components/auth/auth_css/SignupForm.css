@@ -1,5 +1,5 @@
 #signup-form {
-    height: 550px;
+    height: 515px;
     width: 350px;
     padding-top: 10px;
 }
@@ -12,16 +12,14 @@
 
 #signup-form-text {
     font-size: 17px;
-    margin-top: 15px;
+    margin: 15px 0;
     width: 295px;
     font-weight: 600;
 }
 
 .outer-signup-form-ele {
     font-size: 13px;
-    display: grid;
-    align-items: center;
-    justify-content: center;
+    margin: 5px;
 }
 
 #signup-button {
@@ -35,9 +33,7 @@
 #signup-errors-div {
     font-size: 14px;
     bottom: 10px;
-    height: 65px;
     width: 100%;
-    background-color: rebeccapurple;
 }
 
 .link-to-login-container {

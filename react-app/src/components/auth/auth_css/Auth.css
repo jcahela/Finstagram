@@ -16,19 +16,12 @@
 
 .auth-form {
     border: 1px solid #dbdbdb;
-    display: grid;
-    justify-content: center;
-    align-items: center;
     text-align: center;
 }
 
 .auth-form-easter-egg {
     border: 1px solid #dbdbdb;
     border-radius: 10px;
-
-    display: grid;
-    justify-content: center;
-    align-items: center;
     text-align: center;
 
     background: linear-gradient(25deg, #fccc63, #fbad50, #e95950, #bc2a8d, #8a3ab9, #833AB4);
@@ -68,12 +61,23 @@
     padding: 10px;
 }
 
+.signup-button-and-errors-div {
+    margin-top: 15px;
+
+    display: grid;
+    justify-content: center;
+    grid-template-rows: 30px 65px;
+    grid-template-columns: 250px;
+    grid-gap: 5px;
+}
+
+
 .auth-button-div {
     border: none;
     border-radius: 3px;
     background-color: #0095f6;
-    width: 100%;
-    height: 30px;
+    /* width: 250px; */
+    /* height: 30px; */
 }
 
 .auth-button-div-easter-egg {

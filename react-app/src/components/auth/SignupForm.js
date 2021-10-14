@@ -137,8 +137,8 @@ const SignUpForm = () => {
               placeholder='Repeat Password'
               ></input>
           </div>
-          <div className={buttonTheme}>
-            <button id='signup-button' type='submit'>Sign Up</button>
+          <div className='signup-button-and-errors-div'>
+            <button  id='signup-button' className={buttonTheme} type='submit'>Sign Up</button>
             <div id='signup-errors-div' className={errorsTheme}>
               {errors.map((error, ind) => (
                <div key={ind}>{error}</div>

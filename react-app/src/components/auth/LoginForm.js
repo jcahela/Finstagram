@@ -166,8 +166,8 @@ const LoginForm = () => {
               id={btnVisibility}
               display='none'
             >{btnText}</button>
-            <div className={buttonTheme}>
-              <button id='login-button' type='submit'>Log In</button>
+            <div className='signup-button-and-errors-div'>
+              <button id='login-button' className={buttonTheme} type='submit'>Log In</button>
             </div>
             <div id='login-errors-div' className={errorsTheme}>
               {errors.map((error, ind) => (

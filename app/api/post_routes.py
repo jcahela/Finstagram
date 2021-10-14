@@ -22,7 +22,7 @@ def session_user_posts():
         "posts": [post.to_dict() for post in posts]
     }
 
-@post_routes.route('/feed/<userID>')
+@post_routes.route('/feed')
 @login_required
 def get_feed_posts():
     """Get all of a user's feed page posts."""

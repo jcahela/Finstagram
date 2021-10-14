@@ -11,7 +11,7 @@ const getFollowedUsersPosts = (posts) => ({
 
 //$ Thunk
 export const getFollowedUsersPostsThunk = (userID) => async dispatch => {
-    const response = await csrfFetch(`/api/posts/feed/:${userID}`);
+    const response = await csrfFetch(`/api/posts/feed`);
     if (response.ok) {
         const posts = await response.json();
         dispatch(getFollowedUsersPosts(posts));

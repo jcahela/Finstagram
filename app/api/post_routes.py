@@ -1,13 +1,13 @@
 """Post Routes."""
 
 from flask import Blueprint, request
-from flask_migrate import current
 from app.models import Post, db
 from flask_login import login_required, current_user
 from app.aws import (
     upload_file_to_s3, allowed_file, get_unique_filename
 )
 from app.forms import PostForm
+from app.forms import CommentForm
 
 post_routes = Blueprint('posts', __name__)
 
@@ -67,4 +67,17 @@ def add_post():
         db.session.commit()
         return {
             "post": new_post.to_dict()
+        }
+
+@post_routes.route('/<int:post_id>/comments', methods=['POST'])
+@login_required
+def add_comment(post_id):
+    post = Post.query.filter(Post.id == post_id).first()
+    comment = CommentForm()
+    comment['csrf_token'].data = request.cookies['csrf_token']
+    if comment.validate_on_submit():
+        description = comment.data['description']
+        current_user.comment(post, description)
+        return {
+            "message": "successful!"
         }

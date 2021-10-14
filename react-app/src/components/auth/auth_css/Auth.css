@@ -17,6 +17,7 @@
 .auth-form {
     border: 1px solid #dbdbdb;
     text-align: center;
+    background-color: white;
 }
 
 .auth-form-easter-egg {
@@ -56,12 +57,12 @@
     border-radius: 3px;
     width: 250px;
     padding: 10px;
+    background-color: #fafafa;
 }
 
 .inner-form-ele-easter-egg {
+    border: 1px solid rgba(255, 255, 255, 0);
     color: white;
-    position: relative;
-    left: 1px;
     width: 250px;
     padding: 10px;
 }
@@ -74,7 +75,6 @@
     grid-gap: 5px;
 }
 
-
 .auth-button-div {
     border-radius: 3px;
     background-color: #0095f6;
@@ -82,7 +82,7 @@
 
 .auth-button-div-easter-egg {
     border-radius: 3px;
-    background-color: #fccc63;
+    background-color: #fbad50;
 }
 
 .auth-errors-div {
@@ -103,17 +103,6 @@
     color: gray;
 }
 
-#auth-footer {
-    display: grid;
-    justify-content: center;
-}
-
-#auth-footer-list {
-    list-style-type: none;
-    display: flex;
-    justify-content: space-around;
-}
-
 .link-to-auth-container {
     font-size: 14px;
     border: 1px solid rgb(196, 196, 196);
@@ -123,6 +112,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: white;
 }
 
 .outer-auth-link {
@@ -133,4 +123,15 @@
 
 .inner-auth-link {
     color: #0095F6;
+}
+
+#auth-footer {
+    display: grid;
+    justify-content: center;
+}
+
+#auth-footer-list {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
 }

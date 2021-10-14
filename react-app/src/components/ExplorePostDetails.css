@@ -22,6 +22,9 @@
 
 .details {
     width: 300px;
+    height: inherit;
+    display: flex;
+    flex-direction: column;
 }
 
 .user-info {
@@ -80,6 +83,10 @@
     display: flex;
     align-items: flex-start;
     padding: 10px;
+}
+
+.explore-comment-section {
+    flex: 1;
 }
 
 .explore-comment-text {

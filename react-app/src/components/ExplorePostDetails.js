@@ -50,6 +50,7 @@ function ExplorePostDetails({postKey, posts}) {
                 </div>
                 <div className="explore-comment-section">
                     <div className="explore-photo-description">
+                        {/* This div contains the photos description along with username */}
                         <img src={users[user_id].profile_picture} className="explore-profile-pic" alt="this is something"/>
                         <p>
                             <span className="user-name-description">{users[user_id].firstname} {users[user_id].lastname}</span>

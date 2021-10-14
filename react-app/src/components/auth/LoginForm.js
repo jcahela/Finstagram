@@ -177,10 +177,10 @@ const LoginForm = () => {
             <div className="or-container">
               <div className="or-divider" /> <span className={textColor}>OR</span> <div className="or-divider" />
             </div>
-            <span onClick={loginAsDemo} id={demoButtonTheme}>Log in as a demo user</span>
+            <span onClick={loginAsDemo} id={demoButtonTheme}><b>Log in as a demo user</b></span>
           </form>
           <div className="link-to-signup-container">
-                Don't have an account? <span><Link id="signup-link" className="signup-link" to="/signup">Sign up</Link></span>
+                Don't have an account? <span><Link id="signup-link" className="signup-link" to="/signup"><b>Sign up</b></Link></span>
           </div>
         </div>
       </div>

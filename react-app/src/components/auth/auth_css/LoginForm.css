@@ -34,7 +34,7 @@
 
 #login-button {
     cursor: pointer;
-    font-size: 17px;
+    font-size: 14px;
     padding: 5px;
     color: white;
     border-radius: 5px;
@@ -53,9 +53,30 @@
 #demo-button {
     cursor: pointer;
     color: #0095F6;
+    font-size: 13px;
 }
 
 #demo-button-easter-egg {
     cursor: pointer;
     color: white;
+    font-size: 13px;
+}
+
+.link-to-signup-container {
+    border: 1px solid rgb(196, 196, 196);
+    height: 60px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+}
+
+.signup-link {
+    margin-left: 10px;
+    /* font-weight: 900; */
+}
+
+#signup-link {
+    color: #0095F6;
 }

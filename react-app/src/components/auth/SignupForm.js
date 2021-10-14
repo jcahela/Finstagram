@@ -70,87 +70,85 @@ const SignUpForm = () => {
 
   return (
     <div className='auth-page'>
-      <form onSubmit={onSignUp} id='signup-form' className={easterEgg} autoComplete='off'>
-        <div
-          id="signup-logo-div"
-          className='auth-logo-div'
-          onClick={themeToggleHandler}
-        >
-          <span className='auth-logo'>Finstagram</span>
-          <p id='signup-form-text' className={textColor}>Sign up to see photos and videos from your friends.</p>
-        </div>
-        <div className='outer-signup-form-ele'>
-          <input
-            type='text'
-            className={innerEleTheme}
-            onChange={(e) => setFirstname(e.target.value)}
-            value={firstname}
-            aria-label='First Name'
-            placeholder='First Name'
+      <div className="form-and-link-container">
+        <form onSubmit={onSignUp} id='signup-form' className={easterEgg} autoComplete='off'>
+          <div id="signup-logo-div" className='auth-logo-div' onClick={themeToggleHandler}>
+            <span className='auth-logo'>Finstagram</span>
+            <p id='signup-form-text' className={textColor}>Sign up to see photos and videos from your friends.</p>
+          </div>
+          <div className='outer-signup-form-ele'>
+            <input
+              type='text'
+              className={innerEleTheme}
+              onChange={(e) => setFirstname(e.target.value)}
+              value={firstname}
+              aria-label='First Name'
+              placeholder='First Name'
             ></input>
+          </div>
+          <div className='outer-signup-form-ele'>
+            <input
+              type='text'
+              className={innerEleTheme}
+              onChange={(e) => setLastname(e.target.value)}
+              value={lastname}
+              aria-label='Last Name'
+              placeholder='Last Name'
+              ></input>
+          </div>
+          <div className='outer-signup-form-ele'>
+            <input
+              type='text'
+              className={innerEleTheme}
+              onChange={updateUsername}
+              value={username}
+              aria-label='Username'
+              placeholder='Username'
+              ></input>
+          </div>
+          <div className='outer-signup-form-ele'>
+            <input
+              type='email'
+              className={innerEleTheme}
+              onChange={updateEmail}
+              value={email}
+              aria-label='Email'
+              placeholder='user@example.io'
+              ></input>
+          </div>
+          <div className='outer-signup-form-ele'>
+            <input
+              type='password'
+              className={innerEleTheme}
+              onChange={updatePassword}
+              value={password}
+              aria-label='Password'
+              placeholder='Password'
+              ></input>
+          </div>
+          <div className='outer-signup-form-ele'>
+            <input
+              type='password'
+              className={innerEleTheme}
+              onChange={updateRepeatPassword}
+              value={repeatPassword}
+              required={true}
+              aria-label='Repeat Password'
+              placeholder='Repeat Password'
+              ></input>
+          </div>
+          <div className={buttonTheme}>
+            <button id='signup-button' className='auth-button' type='submit'>Sign Up</button>
+            <div id='signup-errors-div' className={errorsTheme}>
+              {errors.map((error, ind) => (
+               <div key={ind}>{error}</div>
+                ))}
+            </div>
+          </div>
+        </form>
+        <div className="link-to-login-container">
+            Have an account? <span><Link id="login-link" className="login-link" to="/login"><b>Log in</b></Link></span>
         </div>
-        <div className='outer-signup-form-ele'>
-          <input
-            type='text'
-            className={innerEleTheme}
-            onChange={(e) => setLastname(e.target.value)}
-            value={lastname}
-            aria-label='Last Name'
-            placeholder='Last Name'
-            ></input>
-        </div>
-        <div className='outer-signup-form-ele'>
-          <input
-            type='text'
-            className={innerEleTheme}
-            onChange={updateUsername}
-            value={username}
-            aria-label='Username'
-            placeholder='Username'
-            ></input>
-        </div>
-        <div className='outer-signup-form-ele'>
-          <input
-            type='email'
-            className={innerEleTheme}
-            onChange={updateEmail}
-            value={email}
-            aria-label='Email'
-            placeholder='user@example.io'
-            ></input>
-        </div>
-        <div className='outer-signup-form-ele'>
-          <input
-            type='password'
-            className={innerEleTheme}
-            onChange={updatePassword}
-            value={password}
-            aria-label='Password'
-            placeholder='Password'
-            ></input>
-        </div>
-        <div className='outer-signup-form-ele'>
-          <input
-            type='password'
-            className={innerEleTheme}
-            onChange={updateRepeatPassword}
-            value={repeatPassword}
-            required={true}
-            aria-label='Repeat Password'
-            placeholder='Repeat Password'
-            ></input>
-        </div>
-        <div className={buttonTheme}>
-          <button id='signup-button' type='submit'>Sign Up</button>
-        </div>
-        <div id='signup-errors-div' className={errorsTheme}>
-          {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
-        </div>
-      </form>
-      <div className="link-to-login-container">
-                Have an account? <span><Link id="login-link" className="login-link" to="/login">Sign in</Link></span>
       </div>
       <Footer />
     </div>

@@ -22,22 +22,6 @@ def session_user_posts():
         "posts": [post.to_dict() for post in posts]
     }
 
-# @post_routes.route('/feed')
-# @login_required
-# def get_feed_posts():
-#     """Get all of a user's feed page posts pertianing to followed users."""
-#     followed_users = current_user.followed_users()
-#     followed_ids = followed_users.keys()
-
-#     posts = Post.query.filter(Post.user_id in followed_users.keys()).all()
-#     print('here is the Post.id', Post.query.filter(Post.user_id in followed_users.keys()).all())
-#     # print('here is the followed_users', followed_users)
-#     print('here is the response: ', posts)
-#     # print(followed_users)
-#     return {
-#         "followed_users_posts": [post.to_dict() for post in posts]
-#     }
-
 
 @post_routes.route('/feed')
 @login_required
@@ -110,3 +94,22 @@ def add_comment(post_id):
         return {
             "message": "successful!"
         }
+
+
+@post_routes.route('/<int:post_id>/likes', methods=['POST'])
+@login_required
+def add_like(post_id):
+    post = Post.query.filter(Post.id == post_id).first()
+    current_user.like(post)
+    return {
+        "message": "successful!"
+    }
+
+@post_routes.route('/<int:post_id>/likes', methods=['DELETE'])
+@login_required
+def remove_like(post_id):
+    post = Post.query.filter(Post.id == post_id).first()
+    current_user.unlike(post)
+    return {
+        "message": "successful"
+    }

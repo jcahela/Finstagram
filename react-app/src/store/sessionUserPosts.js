@@ -65,6 +65,48 @@ export const addCommentThunk = (comment) => async (dispatch) => {
     }
 }
 
+export const addLikeThunk = (like) => async (dispatch) => {
+    const { post_id } = like;
+
+    const response = await fetch(`/api/posts/${post_id}/likes`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            post_id
+        })
+    })
+
+    if (response.ok) {
+        return null
+    } else {
+        if (response.status < 500) {
+            const data = await response.json();
+            if (data.errors) {
+                return data.errors;
+            }
+        }
+    }
+}
+
+export const removeLikeThunk = (likeToRemove) => async (dispatch) => {
+    const { post_id } = likeToRemove;
+
+    const response = await fetch(`/api/posts/${post_id}/likes`, {
+        method: 'DELETE'
+    })
+    
+    if (response.ok) {
+        return null
+    } else {
+        if (response.status < 500) {
+            const data = await response.json();
+            if (data.errors) {
+                return data.errors;
+            }
+        }
+    }
+}
+
 function sessionUserPostsReducer(state = initialState, action) {
     let newState = {...state}
     switch(action.type) {

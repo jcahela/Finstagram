@@ -1,35 +1,27 @@
 #signup-form {
-    height: 600px;
-    width: 400px;
-}
-
-.outer-signup-form-ele {
-    font-size: 20px;
-    position: relative;
-    top: 30%;
-}
-
-.outer-signup-form-ele-easter-egg {
-    font-size: 20px;
-    position: relative;
-    right: 20%;
-    top: 30%;
+    height: 525px;
+    width: 350px;
+    padding-top: 20px;
 }
 
 #signup-logo-div {
-    font-size: 45px;
+    font-size: 50px;
+    overflow-wrap: break-word;
 }
 
-#signup-button {
-    font-size: 16px;
-    cursor: pointer;
-    padding: 5px;
+#signup-form-text {
+    font-size: 17px;
+    margin: 15px 0;
+    width: 300px;
+    font-weight: 600;
+}
+
+#signup-button-and-errors-div {
+    margin-top: 15px;
 }
 
 #signup-errors-div {
-    height: 40px;
-    width: 200px;
-
     font-size: 14px;
-    bottom: 5%;
+    bottom: 10px;
+    width: 100%;
 }

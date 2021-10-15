@@ -12,7 +12,7 @@ import './FeedPostCard.css'
 function FeedPostCard({post}) {
     const { toggleModal, setModalContent } = useModal();
     const [showComments, setShowComments] = useState(false);
-    const [heartPulse, setHeartPulse] = useState('feed-like-icon')
+    const [heartPulse, setHeartPulse] = useState('feed-like-icon');
     const [comment, setComment] = useState('')
     const commentRef = useRef();
     const dispatch = useDispatch();

@@ -8,11 +8,15 @@ export const ModalProvider = ({children}) => {
     const [modalContent, setModalContent] = useState(null)
 
     function toggleModal() {
-        setIsOpen(() => !isOpen);
-      }
-    
+        setIsOpen(true);
+        const body = document.querySelector("body");
+        body.style.overflow = "hidden";
+    }
+
     function closeModal() {
         setIsOpen(false);
+        const body = document.querySelector("body");
+        body.style.overflow = "auto";
     }
 
     return (

@@ -1,16 +1,69 @@
-import { useEffect } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getUsersThunk } from '../store/users';
+import { addCommentThunk, addLikeThunk, removeLikeThunk } from '../store/sessionUserPosts';
+import { getNonFollowedPostsThunk } from '../store/nonFollowedUsersPosts';
 import './ExplorePostDetails.css';
+import './FeedPostCard.css';
 
 function ExplorePostDetails({postKey, posts}) {
     let dispatch = useDispatch();
+    const [comment, setComment] = useState('')
+    const commentRef = useRef();
+    const sessionUser = useSelector(state => state.session.user)
+
+    let users = useSelector(state => state.users)
+
+    let user_id = posts[postKey].user_id
+
+    let commentsObj = useSelector(state => state.nonFollowedUsersPosts[postKey].comments);
+
+    let likesObj = useSelector(state => state.nonFollowedUsersPosts[postKey].likes);
 
     useEffect(() => {
         dispatch(getUsersThunk())
     }, [dispatch])
 
-    let users = useSelector(state => state.users)
+    const submitComment = async (e) => {
+        e.preventDefault();
+        const newComment = {
+            'description': comment,
+            'post_id': posts[postKey].id
+        }
+
+        commentRef.current.value = '';
+        setComment('');
+        await dispatch(addCommentThunk(newComment));
+        await dispatch(getNonFollowedPostsThunk());
+    }
+
+    const focusComment = () => {
+        commentRef.current.focus();
+    }
+
+    const addLike = async () => {
+        const newLike = {
+            'post_id': posts[postKey].id,
+        }
+        await dispatch(addLikeThunk(newLike));
+        await dispatch(getNonFollowedPostsThunk());
+    }
+
+    const removeLike = async () => {
+        const likeToDelete = {
+            'post_id': posts[postKey].id
+        }
+        await dispatch(removeLikeThunk(likeToDelete));
+        await dispatch(getNonFollowedPostsThunk());
+    }
+
+
+    // comments(pin): {}
+    // content(pin):"https://picsum.photos/200/300"
+    // description(pin):"Beautiful Lorem Picsum Image"
+    // id(pin):3
+    // likes(pin): {}
+    // user_id(pin):2
 
     return (
         <div className="details-container">
@@ -19,10 +72,62 @@ function ExplorePostDetails({postKey, posts}) {
             </div>
             <div className="details">
                 <div className="user-info">
-                    <img src={users[posts[postKey].user_id].profile_picture} className="profile-pic" alt="this is something"/>
-                    <p className="user-name">{users[posts[postKey].user_id].firstname} {users[posts[postKey].user_id].lastname}</p> <span>•</span> <span className="explore-follow">Follow</span>
+                    <img src={users[user_id].profile_picture} className="explore-profile-pic" alt="this is something"/>
+                    <p className="user-name">{users[user_id].firstname} {users[user_id].lastname}</p> <span>•</span> <span className="explore-follow">Follow</span>
                 </div>
-                <p>stuff</p>
+                <div className="explore-comment-section">
+                    <div className="explore-photo-description">
+                        {/* This div contains the photos description along with username */}
+                        <img src={users[user_id].profile_picture} className="explore-profile-pic" alt="this is something"/>
+                        <p>
+                            <span className="user-name-description">{users[user_id].firstname} {users[user_id].lastname}</span>
+                            <span className="explore-comment-text">{posts[postKey].description}</span>
+                        </p>
+                    </div>
+                    <div className="explore-comments-div">
+                        {
+                            Object.values(commentsObj)?.map((comment, index) => {
+                                const commentUser = users[comment.user_id];
+                                return (
+                                    <div className="explore-commenter-container">
+                                        <img src={commentUser.profile_picture} className="explore-profile-pic" alt="this is something"/>
+                                        <p>
+                                            <span className="user-name-description">{commentUser.firstname} {commentUser.lastname}</span>
+                                            <span className="explore-comment-text">{comment.description}</span>
+                                        </p>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+                </div>
+                <div className="explore-post-interaction-icons-container">
+                    {likesObj && sessionUser.id in likesObj ? (
+                        <i onClick={removeLike} className="fas fa-heart feed-like-icon-filled"></i>
+                    ): (
+                        <i onClick={addLike} className="far fa-heart feed-like-icon"></i>
+                    )}
+                    <i onClick={focusComment} className="far fa-comment feed-comment-icon"></i>
+                </div>
+                <div className="explore-likes-counter-container">
+                    <p className="explore-likes-counter">{Object.keys(likesObj).length} likes</p>
+                </div>
+                <div className="explore-comment-input">
+                    <form
+                        className="feed-new-comment-form"
+                        onSubmit={submitComment}
+                    >
+                    <textarea
+                        ref = {commentRef}
+                        rows="1"
+                        placeholder="Add a comment..."
+                        className="feed-new-comment-input"
+                        value={comment}
+                        onChange={(e) => setComment(e.target.value)}
+                    />
+                    <button className={`feed-new-comment-button disabled-${comment.replace(/\s/g, '').length === 0}`} disabled={comment.replace(/\s/g, '').length === 0}>Post</button>
+                    </form>
+                </div>
             </div>
         </div>
     )

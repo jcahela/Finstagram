@@ -125,12 +125,16 @@
 }
 
 .profile-new-comment-button {
+    cursor: pointer;
     color: #0095F6;
+    height: fit-content;
+    align-self: center;
     font-size: 14px;
     font-weight: 600;
     margin-right: 15px;
 }
 
 .disabled-true {
+    cursor: not-allowed;
     color: #0094f65d;
 }

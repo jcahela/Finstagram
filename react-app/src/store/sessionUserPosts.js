@@ -28,7 +28,6 @@ const initialState = { };
 
 export const getSessionUsersPostsThunk = () => async (dispatch) => {
     const response = await fetch('/api/posts/')
-
     if (response.ok) {
         const posts = await response.json();
         await dispatch(getSessionUsersPosts(posts))
@@ -41,6 +40,7 @@ export const addNewPostThunk = (formData) => async (dispatch) => {
         method: 'POST',
         body: formData
     })
+
     if (response.ok) {
         const newPost = await response.json();
         await dispatch(addNewPost(newPost))
@@ -54,7 +54,7 @@ export const addCommentThunk = (comment) => async (dispatch) => {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
-            description, 
+            description,
             post_id
         })
     })
@@ -100,7 +100,7 @@ export const removeLikeThunk = (likeToRemove) => async (dispatch) => {
     const response = await fetch(`/api/posts/${post_id}/likes`, {
         method: 'DELETE'
     })
-    
+
     if (response.ok) {
         return null
     } else {

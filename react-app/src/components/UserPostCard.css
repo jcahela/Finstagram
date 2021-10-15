@@ -1,8 +1,9 @@
-.post-container {
-    border: 1px solid #83838360;
+.profile-post-container {
+    cursor: pointer;
+    width: fit-content;
     height: fit-content;
-    margin-bottom: 30px;
-    border-radius: 2px;
+    margin: 2vw;
+    border-radius: 10px;
 }
 
 .post-header {
@@ -35,15 +36,13 @@
     font-size: 25px;
 }
 
-.options:hover,
-.comment-options-icon:hover {
+.options:hover {
     cursor: pointer;
 }
 
-.post-image {
-    height: auto;
-    width: 100%;
-    margin-bottom: 15px;
+.profile-post-image {
+    height: 25vw;
+    width: 25vw;
 }
 
 .post-interaction-icons-container {
@@ -51,20 +50,20 @@
     margin-bottom: 15px;
 }
 
-.feed-likes-count {
+.profile-likes-count {
     margin-left: 15px;
     margin-bottom: 15px;
     font-weight: 600;
 }
 
-.feed-like-icon,
-.feed-comment-icon {
+.profile-like-icon,
+.profile-comment-icon {
     font-size: 25px;
     margin-right: 20px;
     font-weight: lighter;
 }
 
-.feed-like-icon-pressed {
+.profile-like-icon-pressed {
     font-size: 25px;
     margin-right: 20px;
     font-weight: lighter;
@@ -72,23 +71,18 @@
     animation: pulse;
 }
 
-@keyframes pulse {
-    0% { transform: scale(0.75); }
-    100% { transform: scale(1); }
-}
-
-.feed-like-icon:hover,
-.feed-comment-icon:hover,
-.feed-like-icon-filled:hover {
+.profile-like-icon:hover,
+.profile-comment-icon:hover,
+.profile-like-icon-filled:hover {
     cursor: pointer;
 }
 
-.feed-like-icon:hover,
-.feed-comment-icon:hover {
+.profile-like-icon:hover,
+.profile-comment-icon:hover {
     color: #bbbbbb;
 }
 
-.feed-like-icon-filled {
+.profile-like-icon-filled {
     font-size: 25px;
     margin-right: 20px;
     color: red;
@@ -100,10 +94,6 @@
     font-size: 14px;
     padding-left: 15px;
     margin-bottom: 5px;
-}
-
-.post-page-description-container {
-    margin-bottom: 20px;
 }
 
 .view-comments {
@@ -121,35 +111,16 @@
     height: fit-content;
 }
 
-.comment-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-
-.comment-options-container {
-    max-width: 40px;
-    min-width: 40px;
-}
-
-.comment-options-icon {
-    margin-right: 20px;
-    font-weight: lighter;
-    font-size: 20px;
-}
-
-
-.feed-comment {
+.profile-comment {
     margin-bottom: 5px;
 }
 
-.feed-new-comment-form {
+.profile-new-comment-form {
     border-top: 1px solid #83838360;
     display: flex;
 }
 
-.feed-new-comment-input {
+.profile-new-comment-input {
     width: 100%;
     min-height: fit-content;
     padding: 18px 18px;
@@ -157,11 +128,11 @@
     resize: none;
 }
 
-.feed-new-comment-input::placeholder {
+.profile-new-comment-input::placeholder {
     font-size: 14px;
 }
 
-.feed-new-comment-button {
+.profile-new-comment-button {
     cursor: pointer;
     color: #0095F6;
     height: fit-content;

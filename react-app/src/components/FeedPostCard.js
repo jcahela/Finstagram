@@ -12,7 +12,11 @@ import './FeedPostCard.css'
 function FeedPostCard({post}) {
     const { toggleModal, setModalContent } = useModal();
     const [showComments, setShowComments] = useState(false);
+<<<<<<< HEAD
     const [showCommentOptions, setShowCommentOptions] = useState(false);
+=======
+    const [heartPulse, setHeartPulse] = useState('feed-like-icon');
+>>>>>>> main
     const [comment, setComment] = useState('')
     const commentRef = useRef();
     const commentOptionsRef = useRef();
@@ -27,11 +31,11 @@ function FeedPostCard({post}) {
     if (post?.comments) commentsArr = Object.values(post.comments)
     if (commentsArr) lastComment = commentsArr[commentsArr.length -1]
 
-    const isVideo = post.content?.slice(-3) === 'mp4' || 
-                    post.content?.slice(-3) === 'mov' || 
-                    post.content?.slice(-3) === 'wmv' || 
-                    post.content?.slice(-3) === 'avi' || 
-                    post.content?.slice(-4) === 'webm' || 
+    const isVideo = post.content?.slice(-3) === 'mp4' ||
+                    post.content?.slice(-3) === 'mov' ||
+                    post.content?.slice(-3) === 'wmv' ||
+                    post.content?.slice(-3) === 'avi' ||
+                    post.content?.slice(-4) === 'webm' ||
                     post.content?.slice(-5) === 'html5'
 
 
@@ -48,24 +52,27 @@ function FeedPostCard({post}) {
         await dispatch(getSessionUsersPostsThunk());
         await dispatch(getFollowedUsersPostsThunk());
     }
-    
+
     const focusComment = () => {
         commentRef.current.focus();
     }
-    
+
     const addLike = async () => {
         const newLike = {
             'post_id': post.id,
         }
+        setHeartPulse('feed-like-icon-pressed');
         await dispatch(addLikeThunk(newLike));
         await dispatch(getSessionUsersPostsThunk());
         await dispatch(getFollowedUsersPostsThunk());
     }
-    
+
     const removeLike = async () => {
         const likeToDelete = {
             'post_id': post.id
         }
+
+        setHeartPulse('feed-like-icon');
         await dispatch(removeLikeThunk(likeToDelete));
         await dispatch(getSessionUsersPostsThunk());
         await dispatch(getFollowedUsersPostsThunk());
@@ -92,7 +99,7 @@ function FeedPostCard({post}) {
                     <img className="post-profile-picture" src={user?.profile_picture} alt="" />
                     <p className="post-user">{user?.username}</p>
                 </div>
-                {post.user_id == sessionUser.id && <i onClick={openDeletePostModal} className="fas fa-ellipsis-h options"></i>}
+                {post.user_id === sessionUser.id && <i onClick={openDeletePostModal} className="fas fa-ellipsis-h options"></i>}
             </div>
             {isVideo ? (
                 <video className="post-image" src={post?.content} controls></video>
@@ -103,7 +110,7 @@ function FeedPostCard({post}) {
                 {post.likes && sessionUser.id in post.likes ? (
                     <i onClick={removeLike} className="fas fa-heart feed-like-icon-filled"></i>
                 ): (
-                    <i onClick={addLike} className="far fa-heart feed-like-icon"></i>
+                    <i onClick={addLike} className={`far fa-heart ${heartPulse}`}></i>
                 )}
                 <i onClick={focusComment} className="far fa-comment feed-comment-icon"></i>
             </div>
@@ -146,14 +153,14 @@ function FeedPostCard({post}) {
                     </div>
                 )}
             </div>
-            <form 
+            <form
                 className="feed-new-comment-form"
                 onSubmit={submitComment}
             >
-                <textarea 
+                <textarea
                     ref = {commentRef}
-                    rows="1" 
-                    placeholder="Add a comment..." 
+                    rows="1"
+                    placeholder="Add a comment..."
                     className="feed-new-comment-input"
                     value={comment}
                     onChange={(e) => setComment(e.target.value)}

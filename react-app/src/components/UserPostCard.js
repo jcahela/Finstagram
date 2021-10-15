@@ -7,15 +7,13 @@ import { getNonFollowedPostsThunk } from '../store/nonFollowedUsersPosts';
 import DeletePostModal from './DeletePostModal';
 import { useModal } from '../context/Modal';
 // TODO: Add getFollowedPostsThunk to submitComment as well
-import './UserPostCard.css'
+import './ExplorePostDetails.css'
 
 function UserPostCard({ postKey, posts }) {
     const [comment, setComment] = useState('')
     const commentRef = useRef();
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
-    const followedUsersPosts = useSelector(state => state.followedUsersPosts);
-    const nonFollowedUsersPosts = useSelector(state => state.nonFollowedUsersPosts);
 
     // console.log(postKey,something, "======================================================")
     let post = posts[postKey];
@@ -89,13 +87,13 @@ function UserPostCard({ postKey, posts }) {
     }
 
     return (
-        <div className="profile-post-container">
+        <div className="details-container">
                                   {/* Header */}
-            <div className="profile-post-image-container">
+            <div className="details-image-container">
                 {isVideo ? (
-                    <video className="profile-post-image" src={post?.content} controls></video>
+                    <video className="detail-image" src={post?.content} controls></video>
                 ):(
-                    <img className="profile-post-image" src={post?.content} alt="" />
+                    <img className="detail-image" src={post?.content} alt="" />
                 )}
             </div>
             <div className="details">

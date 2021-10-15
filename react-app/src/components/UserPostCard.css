@@ -1,8 +1,8 @@
 .profile-post-container {
-    /* border: 1px solid #83838360; */
+    cursor: pointer;
     width: fit-content;
     height: fit-content;
-    margin-bottom: 30px;
+    margin: 2vw;
     border-radius: 10px;
 }
 

@@ -25,12 +25,12 @@ function UserPostCard({post}) {
     if (post?.comments) commentsArr = Object.values(post.comments)
     if (commentsArr) lastComment = commentsArr[commentsArr.length -1]
 
-    const isVideo = post.content?.slice(-3) === 'mp4' ||
-                    post.content?.slice(-3) === 'mov' ||
-                    post.content?.slice(-3) === 'wmv' ||
-                    post.content?.slice(-3) === 'avi' ||
-                    post.content?.slice(-4) === 'webm' ||
-                    post.content?.slice(-5) === 'html5'
+    const isVideo = post?.content?.slice(-3) === 'mp4' ||
+                    post?.content?.slice(-3) === 'mov' ||
+                    post?.content?.slice(-3) === 'wmv' ||
+                    post?.content?.slice(-3) === 'avi' ||
+                    post?.content?.slice(-4) === 'webm' ||
+                    post?.content?.slice(-5) === 'html5';
 
 
     const submitComment = async (e) => {
@@ -76,6 +76,14 @@ function UserPostCard({post}) {
         toggleModal();
     }
 
+    const openProfileModal = (e) => {
+        console.log('this is post', e);
+        setModalContent((
+            <UserPostCard postId={e.target.id} />
+        ));
+        toggleModal();
+   }
+
     return (
         <div className="profile-post-container">
                                   {/* Header */}
@@ -87,9 +95,9 @@ function UserPostCard({post}) {
                 {post.user_id === sessionUser.id && <i onClick={openDeletePostModal} className="fas fa-ellipsis-h options"></i>}
             </div> */}
             {isVideo ? (
-                <video className="profile-post-image" src={post?.content} controls></video>
+                <video className="profile-post-image" src={post?.content} onClick={openProfileModal} controls></video>
             ):(
-                <img className="profile-post-image" src={post?.content} alt="" />
+                <img className="profile-post-image" src={post?.content} onClick={openProfileModal} alt="" />
             )}
                                 {/* Interactions */}
             {/* <div className="post-interaction-icons-container">

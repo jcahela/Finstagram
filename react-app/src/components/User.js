@@ -27,15 +27,16 @@ const User = () => {
     dispatch(getSessionUsersPostsThunk());
   }, [dispatch])
 
-  const openProfileModal = (post) => {
-    setModalContent((
-        <UserPostCard postId={post.id} />
-    ));
-    toggleModal();
-}
-
+//   const openProfileModal = (e) => {
+//         console.log('this is post', e);
+//         setModalContent((
+//             <UserPostCard postId={e.id} />
+//         ));
+//         toggleModal();
+//    }
+// onClick={openProfileModal}
   const profilePageCards = sessionUsersPostsArr.map(post => (
-    <UserPostCard key={post.id} post={post} onClick={openProfileModal} className='profile-page-cards' />
+    <UserPostCard key={post.id} post={post} className='profile-page-cards' />
   ));
 
   if (!user) return null;

@@ -3,6 +3,7 @@
 const GET_SESSION_USER_POSTS = 'sessionUsersPosts/GET_SESSION_USER_POSTS'
 const REMOVE_SESSION_USER_POSTS = 'sessionUsersPosts/REMOVE_SESSION_USER_POSTS'
 const ADD_NEW_POST = 'sessionUsersPosts/ADD_NEW_POST'
+const REMOVE_POST = 'sessionUsersPosts/REMOVE_POST'
 
 const getSessionUsersPosts = (posts) => ({
     type: GET_SESSION_USER_POSTS,
@@ -16,6 +17,11 @@ export const removeSessionUsersPosts = () => ({
 const addNewPost = (post) => ({
     type: ADD_NEW_POST,
     payload: post
+})
+
+const removePost = (postId) => ({
+    type: REMOVE_POST,
+    payload: postId
 })
 
 const initialState = { };
@@ -107,6 +113,14 @@ export const removeLikeThunk = (likeToRemove) => async (dispatch) => {
     }
 }
 
+export const removePostThunk = (postId) => async (dispatch) => {
+    const response = await fetch(`/api/posts/${postId}`, {
+        method: 'DELETE'
+    })
+
+    await dispatch(removePost(postId))
+}
+
 function sessionUserPostsReducer(state = initialState, action) {
     let newState = {...state}
     switch(action.type) {
@@ -116,14 +130,18 @@ function sessionUserPostsReducer(state = initialState, action) {
             console.log('this is reducer posts', action);
             posts.posts.forEach(post => postsObj[post.id] = post)
             newState = postsObj;
-            return newState
+            return newState;
         case REMOVE_SESSION_USER_POSTS:
             newState = {};
-            return newState
+            return newState;
         case ADD_NEW_POST:
             const post = action.payload;
             newState[post.id] = post;
-            return newState
+            return newState;
+        case REMOVE_POST:
+            const postId = action.payload;
+            delete newState.postId
+            return newState;
         default:
             return state
     }

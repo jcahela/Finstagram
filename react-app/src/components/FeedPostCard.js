@@ -4,10 +4,13 @@ import { addCommentThunk, addLikeThunk, removeLikeThunk } from '../store/session
 import { useDispatch } from 'react-redux';
 import { getSessionUsersPostsThunk } from '../store/sessionUserPosts';
 import { getNonFollowedPostsThunk } from '../store/nonFollowedUsersPosts';
+import DeletePostModal from './DeletePostModal';
+import { useModal } from '../context/Modal';
 // TODO: Add getFollowedPostsThunk to submitComment as well
 import './FeedPostCard.css'
 
 function FeedPostCard({post}) {
+    const { toggleModal, setModalContent } = useModal();
     const [showComments, setShowComments] = useState(false);
     const [comment, setComment] = useState('')
     const commentRef = useRef();
@@ -66,6 +69,13 @@ function FeedPostCard({post}) {
         await dispatch(getNonFollowedPostsThunk());
     }
 
+    const openDeletePostModal = () => {
+        setModalContent((
+            <DeletePostModal postId={post.id} />
+        ));
+        toggleModal();
+    }
+
     return (
         <div className="post-container">
             <div className="post-header">
@@ -73,7 +83,7 @@ function FeedPostCard({post}) {
                     <img className="post-profile-picture" src={user?.profile_picture} alt="" />
                     <p className="post-user">{user?.username}</p>
                 </div>
-                <i className="fas fa-ellipsis-h options"></i>
+                {post.user_id == sessionUser.id && <i onClick={openDeletePostModal} className="fas fa-ellipsis-h options"></i>}
             </div>
             {isVideo ? (
                 <video className="post-image" src={post?.content} controls></video>

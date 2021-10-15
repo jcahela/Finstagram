@@ -138,6 +138,26 @@ export const removeCommentThunk = (commentId) => async (dispatch) => {
     }
 }
 
+export const editCommentThunk = (comment) => async (dispatch) => {
+    const { id, description, post_id } = comment;
+    const response = await fetch(`/api/comments/${comment.id}`, {
+        method: 'PATCH',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            id,
+            description,
+            post_id
+        })
+    })
+
+    if (response.ok) {
+        const data = await response.json();
+        return data;
+    }
+
+    
+}
+
 function sessionUserPostsReducer(state = initialState, action) {
     let newState = {...state}
     switch(action.type) {

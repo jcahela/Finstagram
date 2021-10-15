@@ -5,10 +5,42 @@
 
 .edit-comment-go-back {
     color: blue;
+    margin-bottom: 10px;
 }
 
 .edit-comment-go-back:hover {
     cursor: pointer;
     text-decoration: underline;
     text-underline-offset: 3px;
+}
+
+.edit-comment-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-comment-form-description {
+    border: 1px solid #838383;
+    padding: 10px;
+    resize: none;
+    margin-bottom: 20px;
+}
+
+.edit-comment-form-button {
+    background-color: #0095F6;
+    color: white;
+    padding: 10px 0;
+    border-radius: 4px;
+}
+
+.edit-comment-form-cancel {
+    border: 1px solid #838383;
+    border-radius: 4px;
+    height: 40px;
+    margin-top: 10px;
+}
+
+.edit-comment-form-button:hover,
+.edit-comment-form-cancel:hover {
+    cursor: pointer;
 }

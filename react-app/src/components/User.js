@@ -2,11 +2,13 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getSessionUsersPostsThunk } from '../store/sessionUserPosts';
-import FeedPostCard from './FeedPostCard';
+import { useModal } from '../context/Modal';
+import UserPostCard from './UserPostCard';
 import './User.css'
 
 const User = () => {
   const dispatch = useDispatch();
+  const { toggleModal, setModalContent } = useModal();
   const [user, setUser] = useState({});
   const { userId }  = useParams();
   const sessionUsersPosts = useSelector(state => state.sessionUsersPosts);
@@ -25,15 +27,22 @@ const User = () => {
     dispatch(getSessionUsersPostsThunk());
   }, [dispatch])
 
+  const openProfileModal = (post) => {
+    setModalContent((
+        <UserPostCard postId={post.id} />
+    ));
+    toggleModal();
+}
+
   const profilePageCards = sessionUsersPostsArr.map(post => (
-    <FeedPostCard key={post.id} post={post} />
+    <UserPostCard key={post.id} post={post} onClick={openProfileModal} className='profile-page-cards' />
   ));
 
   if (!user) return null;
 
   return (
     <div id='profile-page-container'>
-        <div id='profile-page-cards'>
+        <div id='profile-page-cards-container'>
           {profilePageCards}
         </div>
     </div>

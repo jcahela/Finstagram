@@ -3,18 +3,20 @@ import { useState, useRef } from 'react';
 import { addCommentThunk, addLikeThunk, removeLikeThunk } from '../store/sessionUserPosts';
 import { useDispatch } from 'react-redux';
 import { getSessionUsersPostsThunk } from '../store/sessionUserPosts';
-import { getNonFollowedPostsThunk } from '../store/nonFollowedUsersPosts';
+import { getFollowedUsersPostsThunk } from '../store/followedUsersPosts'
+import EditDeleteCommentModal from './EditDeleteCommentModal';
 import DeletePostModal from './DeletePostModal';
 import { useModal } from '../context/Modal';
-// TODO: Add getFollowedPostsThunk to submitComment as well
 import './FeedPostCard.css'
 
 function FeedPostCard({post}) {
     const { toggleModal, setModalContent } = useModal();
     const [showComments, setShowComments] = useState(false);
-    const [heartPulse, setHeartPulse] = useState('feed-like-icon');
+    const [showCommentOptions, setShowCommentOptions] = useState(false);
     const [comment, setComment] = useState('')
     const commentRef = useRef();
+    const commentOptionsRef = useRef();
+    const likeRef = useRef();
     const dispatch = useDispatch();
     const users = useSelector(state => state.users)
     const sessionUser = useSelector(state => state.session.user)
@@ -45,7 +47,7 @@ function FeedPostCard({post}) {
         setComment('');
         await dispatch(addCommentThunk(newComment));
         await dispatch(getSessionUsersPostsThunk());
-        await dispatch(getNonFollowedPostsThunk());
+        await dispatch(getFollowedUsersPostsThunk());
     }
 
     const focusComment = () => {
@@ -56,21 +58,18 @@ function FeedPostCard({post}) {
         const newLike = {
             'post_id': post.id,
         }
-        setHeartPulse('feed-like-icon-pressed');
         await dispatch(addLikeThunk(newLike));
         await dispatch(getSessionUsersPostsThunk());
-        await dispatch(getNonFollowedPostsThunk());
+        await dispatch(getFollowedUsersPostsThunk());
     }
 
     const removeLike = async () => {
         const likeToDelete = {
             'post_id': post.id
         }
-
-        setHeartPulse('feed-like-icon');
         await dispatch(removeLikeThunk(likeToDelete));
         await dispatch(getSessionUsersPostsThunk());
-        await dispatch(getNonFollowedPostsThunk());
+        await dispatch(getFollowedUsersPostsThunk());
     }
 
     const openDeletePostModal = () => {
@@ -78,6 +77,24 @@ function FeedPostCard({post}) {
             <DeletePostModal postId={post.id} />
         ));
         toggleModal();
+    }
+
+    const openCommentOptionsModal = (comment) => {
+        setModalContent((
+            <EditDeleteCommentModal comment={comment}/>
+        ));
+        console.log(comment)
+        toggleModal();
+    }
+
+    const buttonClickAnimationShrink = () => {
+        const likeIcon = likeRef.current;
+        likeIcon.style.transform = 'scale(0.8)'
+    }
+
+    const buttonClickAnimationGrow = () => {
+        const likeIcon = likeRef.current;
+        likeIcon.style.transform = 'scale(1)'
     }
 
     return (
@@ -96,9 +113,9 @@ function FeedPostCard({post}) {
             )}
             <div className="post-interaction-icons-container">
                 {post.likes && sessionUser.id in post.likes ? (
-                    <i onClick={removeLike} className="fas fa-heart feed-like-icon-filled"></i>
+                    <i ref={likeRef} onMouseDown={buttonClickAnimationShrink} onMouseUp={buttonClickAnimationGrow}  onClick={removeLike} className="fas fa-heart feed-like-icon-filled"></i>
                 ): (
-                    <i onClick={addLike} className={`far fa-heart ${heartPulse}`}></i>
+                    <i ref={likeRef} onMouseDown={buttonClickAnimationShrink} onMouseUp={buttonClickAnimationGrow} onClick={addLike} className={`far fa-heart feed-like-icon`}></i>
                 )}
                 <i onClick={focusComment} className="far fa-comment feed-comment-icon"></i>
             </div>
@@ -113,12 +130,32 @@ function FeedPostCard({post}) {
                 {showComments === true ? (
                     commentsArr?.map((comment, index) => {
                         const commentUser = users[comment.user_id];
+                        const randomKey = (comment.id + index) / comment.id + comment.user_id
                         return (
-                            <div className="feed-comment" key={index}><span className="comment-user">{commentUser?.username}</span> {comment.description}</div>
+                            <div 
+                                key={randomKey} 
+                                onMouseEnter={() => setShowCommentOptions(comment)} 
+                                onMouseLeave={() => setShowCommentOptions(false)} 
+                                className="comment-row"
+                            >
+                                <div className="feed-comment"><span className="comment-user">{commentUser?.username}</span> {comment.description}</div>
+                                <div className="comment-options-container">
+                                    {showCommentOptions === comment && comment.user_id === sessionUser.id && <i onClick={() => openCommentOptionsModal(comment)} ref={commentOptionsRef} className={`fas fa-ellipsis-h comment-options-icon`}></i>}
+                                </div>
+                            </div>
                         )
                     })
                 ): (
-                    <div className="feed-comment"><span className="comment-user">{users[lastComment?.user_id]?.username}</span> {lastComment?.description}</div>
+                    <div
+                        onMouseEnter={() => setShowCommentOptions(lastComment)} 
+                        onMouseLeave={() => setShowCommentOptions(false)} 
+                        className="comment-row"
+                    >
+                        <div className="feed-comment"><span className="comment-user">{users[lastComment?.user_id]?.username}</span> {lastComment?.description}</div>
+                        <div className="comment-options-container">
+                            {showCommentOptions === lastComment && lastComment?.user_id === sessionUser.id && <i onClick={() => openCommentOptionsModal(lastComment)} ref={commentOptionsRef} className={`fas fa-ellipsis-h comment-options-icon`}></i>}
+                        </div>
+                    </div>
                 )}
             </div>
             <form

@@ -29,7 +29,7 @@ class Post(db.Model):
     updatedAt = db.Column(db.DateTime, nullable=False, default=datetime.now())
 
     user = db.relationship("User", back_populates="posts")
-    comments = db.relationship("Comment", back_populates="post")
+    comments = db.relationship("Comment", back_populates="post", cascade="all, delete-orphan")
 
     users_liked = db.relationship(
         "User",
@@ -54,6 +54,7 @@ class Post(db.Model):
         all_comments = {}
         for comment in comments:
             all_comments[comment.id] = {
+                'id': comment.id,
                 'user_id': comment.user_id,
                 'post_id': comment.post_id,
                 'description': comment.description,

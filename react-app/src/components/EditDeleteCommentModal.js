@@ -1,28 +1,31 @@
 import { useModal } from "../context/Modal"
-import { removePostThunk, getSessionUsersPostsThunk } from "../store/sessionUserPosts";
+import { removeCommentThunk, getSessionUsersPostsThunk } from "../store/sessionUserPosts";
+import { getFollowedUsersPostsThunk } from "../store/followedUsersPosts";
 import { useDispatch } from "react-redux";
+import EditCommentModal from "./EditCommentModal";
 import './EditDeleteCommentModal.css'
 
 function EditDeleteCommentModal({ comment }) {
     const dispatch = useDispatch();
-    const { closeModal } = useModal();
+    const { closeModal, toggleModal, setModalContent } = useModal();
 
     const deleteComment = async () => {
-        // await dispatch(removePostThunk(postId));
-        // await dispatch(getSessionUsersPostsThunk());
-        // closeModal();
-        console.log(comment)
+        await dispatch(removeCommentThunk(comment.id));
+        await dispatch(getSessionUsersPostsThunk());
+        await dispatch(getFollowedUsersPostsThunk());
+        closeModal();
     }
-    
-    const editComment = async () => {
-        // await dispatch(removePostThunk(postId));
-        // await dispatch(getSessionUsersPostsThunk());
-        // closeModal();
+
+    const openEditCommentModal = () => {
+        console.log(comment)
+        setModalContent((
+            <EditCommentModal comment={comment}/>
+        ))
     }
 
     return (
         <div className="editdelete-comment-container">
-            <div onClick={editComment} className="edit-comment-button">Edit</div>
+            <div onClick={openEditCommentModal} className="edit-comment-button">Edit</div>
             <div onClick={deleteComment} className="delete-comment-button">Delete</div>
             <div onClick={closeModal} className="editdelete-comment-cancel">Cancel</div>
         </div>

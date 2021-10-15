@@ -12,14 +12,11 @@ import './FeedPostCard.css'
 function FeedPostCard({post}) {
     const { toggleModal, setModalContent } = useModal();
     const [showComments, setShowComments] = useState(false);
-<<<<<<< HEAD
     const [showCommentOptions, setShowCommentOptions] = useState(false);
-=======
-    const [heartPulse, setHeartPulse] = useState('feed-like-icon');
->>>>>>> main
     const [comment, setComment] = useState('')
     const commentRef = useRef();
     const commentOptionsRef = useRef();
+    const likeRef = useRef();
     const dispatch = useDispatch();
     const users = useSelector(state => state.users)
     const sessionUser = useSelector(state => state.session.user)
@@ -61,7 +58,6 @@ function FeedPostCard({post}) {
         const newLike = {
             'post_id': post.id,
         }
-        setHeartPulse('feed-like-icon-pressed');
         await dispatch(addLikeThunk(newLike));
         await dispatch(getSessionUsersPostsThunk());
         await dispatch(getFollowedUsersPostsThunk());
@@ -71,8 +67,6 @@ function FeedPostCard({post}) {
         const likeToDelete = {
             'post_id': post.id
         }
-
-        setHeartPulse('feed-like-icon');
         await dispatch(removeLikeThunk(likeToDelete));
         await dispatch(getSessionUsersPostsThunk());
         await dispatch(getFollowedUsersPostsThunk());
@@ -89,7 +83,18 @@ function FeedPostCard({post}) {
         setModalContent((
             <EditDeleteCommentModal comment={comment}/>
         ));
+        console.log(comment)
         toggleModal();
+    }
+
+    const buttonClickAnimationShrink = () => {
+        const likeIcon = likeRef.current;
+        likeIcon.style.transform = 'scale(0.8)'
+    }
+
+    const buttonClickAnimationGrow = () => {
+        const likeIcon = likeRef.current;
+        likeIcon.style.transform = 'scale(1)'
     }
 
     return (
@@ -108,9 +113,9 @@ function FeedPostCard({post}) {
             )}
             <div className="post-interaction-icons-container">
                 {post.likes && sessionUser.id in post.likes ? (
-                    <i onClick={removeLike} className="fas fa-heart feed-like-icon-filled"></i>
+                    <i ref={likeRef} onMouseDown={buttonClickAnimationShrink} onMouseUp={buttonClickAnimationGrow}  onClick={removeLike} className="fas fa-heart feed-like-icon-filled"></i>
                 ): (
-                    <i onClick={addLike} className={`far fa-heart ${heartPulse}`}></i>
+                    <i ref={likeRef} onMouseDown={buttonClickAnimationShrink} onMouseUp={buttonClickAnimationGrow} onClick={addLike} className={`far fa-heart feed-like-icon`}></i>
                 )}
                 <i onClick={focusComment} className="far fa-comment feed-comment-icon"></i>
             </div>

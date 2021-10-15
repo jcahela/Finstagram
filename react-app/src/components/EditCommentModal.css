@@ -1,0 +1,14 @@
+.edit-comment-container {
+    background-color: #fff;
+    padding: 20px;
+}
+
+.edit-comment-go-back {
+    color: blue;
+}
+
+.edit-comment-go-back:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}

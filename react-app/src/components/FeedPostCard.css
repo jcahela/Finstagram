@@ -64,19 +64,6 @@
     font-weight: lighter;
 }
 
-.feed-like-icon-pressed {
-    font-size: 25px;
-    margin-right: 20px;
-    font-weight: lighter;
-    transform: translate(0px, -3px);
-    animation: pulse;
-}
-
-@keyframes pulse {
-    0% { transform: scale(0.75); }
-    100% { transform: scale(1); }
-}
-
 .feed-like-icon:hover,
 .feed-comment-icon:hover,
 .feed-like-icon-filled:hover {

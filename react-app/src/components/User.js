@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useModal } from '../context/Modal';
 import UserPostCard from './UserPostCard';
 import './User.css'
 
 const User = () => {
-  const dispatch = useDispatch();
   const { toggleModal, setModalContent } = useModal();
   // const [user, setUser] = useState({});
   const [loaded, setLoaded] = useState(false);
@@ -24,7 +23,6 @@ const User = () => {
   useEffect(() => {
     (async () => {
       if (sessionUser.id === +userId) {
-        console.log(typeof(+userId), typeof(sessionUser.id), "GETTING HERE -----------------------------------------------------")
         setPosts(sessionUsersPosts);
         setLoaded(true)
       } else if (Object.keys(sessionUser.followed).includes(userId)) {
@@ -76,7 +74,7 @@ const User = () => {
 
   function openProfilePostModal(postKey) {
     setModalContent((
-      <UserPostCard postKey={postKey} posts={profile_posts}/>
+      <UserPostCard postKey={postKey} posts={profile_posts} />
     ))
     toggleModal();
   }

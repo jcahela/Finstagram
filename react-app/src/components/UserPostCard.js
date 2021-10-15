@@ -9,22 +9,66 @@ import { useModal } from '../context/Modal';
 // TODO: Add getFollowedPostsThunk to submitComment as well
 import './UserPostCard.css'
 
-function UserPostCard({post}) {
-    const { toggleModal, setModalContent } = useModal();
-    const [showComments, setShowComments] = useState(false);
+function UserPostCard({ postKey, posts }) {
+    // const { toggleModal, setModalContent } = useModal();
+    // const [showComments, setShowComments] = useState(false);
     const [heartPulse, setHeartPulse] = useState('profile-like-icon');
     const [comment, setComment] = useState('')
     const commentRef = useRef();
     const dispatch = useDispatch();
-    const users = useSelector(state => state.users)
-    const sessionUser = useSelector(state => state.session.user)
-    const user = users[post?.user_id]
-    let likesArr = [];
-    let commentsArr = [];
-    let lastComment;
-    if (post?.likes) likesArr = Object.values(post.likes)
-    if (post?.comments) commentsArr = Object.values(post.comments)
-    if (commentsArr) lastComment = commentsArr[commentsArr.length -1]
+    // const users = useSelector(state => state.users)
+    const sessionUser = useSelector(state => state.session.user);
+    const sessionUsersPosts = useSelector(state => state.sessionUsersPosts);
+    const followedUsersPosts = useSelector(state => state.followedUsersPosts);
+    const nonFollowedUsersPosts = useSelector(state => state.nonFollowedUsersPosts);
+    // const user = users[post?.user_id]
+    // let likesArr = [];
+    // let commentsArr = [];
+    // let lastComment;
+    // if (post?.likes) likesArr = Object.values(post.likes)
+    // if (post?.comments) commentsArr = Object.values(post.comments)
+    // if (commentsArr) lastComment = commentsArr[commentsArr.length -1]
+    let something = useSelector(state => state.nonFollowedUsersPosts)
+    console.log(postKey,something, "======================================================")
+    let post = posts[postKey];
+
+    let users = useSelector(state => state.users)
+
+    let user_id = posts[postKey].user_id
+
+    let commentsObj = useSelector(state => state.nonFollowedUsersPosts[postKey].comments);
+
+    let likesObj = useSelector(state => state.nonFollowedUsersPosts[postKey].likes);
+
+    if (sessionUser.id === +user_id) {
+
+
+      } else if (Object.keys(sessionUser.followed).includes(user_id)) {
+        let followedPostsArr = Object.values(followedUsersPosts).filter(post => (
+          post.user_id === user_id
+        ))
+
+        let followedPosts = {}
+
+        followedPostsArr.forEach(post => (
+          followedPosts[post.id] = post
+        ))
+
+
+      } else {
+
+        let nonFollowedPostsArr = Object.values(nonFollowedUsersPosts).filter(post => (
+          post.user_id === user_id
+        ))
+
+        let nonFollowedPosts = {};
+
+        nonFollowedPostsArr.forEach(post => (
+          nonFollowedPosts[post.id] = post
+        ))
+
+
+      }
 
     const isVideo = post?.content?.slice(-3) === 'mp4' ||
                     post?.content?.slice(-3) === 'mov' ||
@@ -75,13 +119,6 @@ function UserPostCard({post}) {
     return (
         <div className="profile-post-container">
                                   {/* Header */}
-            {/* <div className="post-header">
-                <div className="post-header-user-info">
-                    <img className="post-profile-picture" src={user?.profile_picture} alt="" />
-                    <p className="post-user">{user?.username}</p>
-                </div>
-                {post.user_id === sessionUser.id && <i onClick={openDeletePostModal} className="fas fa-ellipsis-h options"></i>}
-            </div> */}
             <div className="profile-post-image-container">
                 {isVideo ? (
                     <video className="profile-post-image" src={post?.content} controls></video>
@@ -89,51 +126,69 @@ function UserPostCard({post}) {
                     <img className="profile-post-image" src={post?.content} alt="" />
                 )}
             </div>
-                                {/* Interactions */}
-            {/* <div className="post-interaction-icons-container">
-                {post.likes && sessionUser.id in post.likes ? (
-                    <i onClick={removeLike} className="fas fa-heart profile-like-icon-filled"></i>
-                ): (
-                    <i onClick={addLike} className={`far fa-heart ${heartPulse}`}></i>
-                )}
-                <i onClick={focusComment} className="far fa-comment profile-comment-icon"></i>
-            </div>
-            <p className="profile-likes-count">{likesArr.length} likes</p> */}
+            <div className="details">
+                <div className="user-info">
+                    <img src={users[user_id].profile_picture} className="explore-profile-pic" alt="this is something"/>
+                    <p className="user-name">{users[user_id].firstname} {users[user_id].lastname}</p> <span>•</span> <span className="explore-follow">Follow</span>
+                </div>
+                <div className="explore-comment-section">
                                  {/* Description */}
-            {/* <div className="post-page-description-container">
-                <span className="post-description-user">{user?.username}</span>
-                <span className="post-page-description">{post?.description}</span>
-            </div> */}
+                    <div className="explore-photo-description">
+                        {/* This div contains the photos description along with username */}
+                        <img src={users[user_id].profile_picture} className="explore-profile-pic" alt="this is something"/>
+                        <p>
+                            <span className="user-name-description">{users[user_id].firstname} {users[user_id].lastname}</span>
+                            <span className="explore-comment-text">{posts[postKey].description}</span>
+                        </p>
+                    </div>
                                    {/* Comments */}
-            {/* {!showComments && (commentsArr.length > 1) && <div className="view-comments" onClick={() => setShowComments(true)}>View all {commentsArr?.length} comments</div>}
-            {commentsArr.length === 0 && <div className="view-comments">No comments</div>}
-            <div className="comments-container">
-                {showComments === true ? (
-                    commentsArr?.map((comment, index) => {
-                        const commentUser = users[comment.user_id];
-                        return (
-                            <div className="profile-comment" key={index}><span className="comment-user">{commentUser?.username}</span> {comment.description}</div>
-                        )
-                    })
-                ): (
-                    <div className="profile-comment"><span className="comment-user">{users[lastComment?.user_id]?.username}</span> {lastComment?.description}</div>
-                )}
-            </div> */}
+                    <div className="explore-comments-div">
+                        {
+                            Object.values(commentsObj)?.map((comment, index) => {
+                                const commentUser = users[comment.user_id];
+                                return (
+                                    <div className="explore-commenter-container">
+                                        <img src={commentUser.profile_picture} className="explore-profile-pic" alt="this is something"/>
+                                        <p>
+                                            <span className="user-name-description">{commentUser.firstname} {commentUser.lastname}</span>
+                                            <span className="explore-comment-text">{comment.description}</span>
+                                        </p>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+                </div>
+                                {/* Interactions */}
+                <div className="explore-post-interaction-icons-container">
+                    {likesObj && sessionUser.id in likesObj ? (
+                        <i onClick={removeLike} className="fas fa-heart feed-like-icon-filled"></i>
+                    ): (
+                        <i onClick={addLike} className="far fa-heart feed-like-icon"></i>
+                    )}
+                    <i onClick={focusComment} className="far fa-comment feed-comment-icon"></i>
+                </div>
+                <div className="explore-likes-counter-container">
+                    <p className="explore-likes-counter">{Object.keys(likesObj).length} likes</p>
+                </div>
                                  {/* Add Comment */}
-            {/* <form
-                className="profile-new-comment-form"
-                onSubmit={submitComment}
-            >
-                <textarea
-                    ref = {commentRef}
-                    rows="1"
-                    placeholder="Add a comment..."
-                    className="profile-new-comment-input"
-                    value={comment}
-                    onChange={(e) => setComment(e.target.value)}
-                />
-                <button className={`profile-new-comment-button disabled-${comment.replace(/\s/g, '').length === 0}`} disabled={comment.replace(/\s/g, '').length === 0}>Post</button>
-            </form> */}
+                <div className="explore-comment-input">
+                    <form
+                        className="feed-new-comment-form"
+                        onSubmit={submitComment}
+                    >
+                    <textarea
+                        ref = {commentRef}
+                        rows="1"
+                        placeholder="Add a comment..."
+                        className="feed-new-comment-input"
+                        value={comment}
+                        onChange={(e) => setComment(e.target.value)}
+                    />
+                    <button className={`feed-new-comment-button disabled-${comment.replace(/\s/g, '').length === 0}`} disabled={comment.replace(/\s/g, '').length === 0}>Post</button>
+                    </form>
+                </div>
+            </div>
         </div>
     )
 }

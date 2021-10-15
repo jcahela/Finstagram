@@ -18,11 +18,11 @@ function ExplorePostDetails({postKey, posts}) {
 
     let user_id = posts[postKey].user_id
 
-    let commentsObj = useSelector(state => state.nonFollowedUsersPosts[postKey].comments);
+    let commentsObj = useSelector(state => state.nonFollowedUsersPosts[postKey]?.comments) || {};
 
-    let likesObj = useSelector(state => state.nonFollowedUsersPosts[postKey].likes);
+    let likesObj = useSelector(state => state.nonFollowedUsersPosts[postKey]?.likes) || {};
 
-    let followedUsers = useSelector(state => state.session.user.followed)
+    let followedUsers = useSelector(state => state.session.user?.followed) || {};
 
     useEffect(() => {
         dispatch(getUsersThunk())

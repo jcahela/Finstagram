@@ -35,6 +35,10 @@
     font-size: 25px;
 }
 
+.options:hover {
+    cursor: pointer;
+}
+
 .post-image {
     height: auto;
     width: 100%;

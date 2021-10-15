@@ -1,5 +1,6 @@
 .details-container {
     display: flex;
+    background-color: #fff;
 }
 
 .details-image-container {

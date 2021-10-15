@@ -72,21 +72,6 @@ function UserPostCard({post}) {
         await dispatch(getNonFollowedPostsThunk());
     }
 
-    const openDeletePostModal = () => {
-        setModalContent((
-            <DeletePostModal postId={post.id} />
-        ));
-        toggleModal();
-    }
-
-    const openProfileModal = (e) => {
-        console.log('this is post', e);
-        setModalContent((
-            <UserPostCard postId={e.target.id} />
-        ));
-        toggleModal();
-   }
-
     return (
         <div className="profile-post-container">
                                   {/* Header */}
@@ -97,11 +82,13 @@ function UserPostCard({post}) {
                 </div>
                 {post.user_id === sessionUser.id && <i onClick={openDeletePostModal} className="fas fa-ellipsis-h options"></i>}
             </div> */}
-            {isVideo ? (
-                <video className="profile-post-image" src={post?.content} onClick={openProfileModal} controls></video>
-            ):(
-                <img className="profile-post-image" src={post?.content} onClick={openProfileModal} alt="" />
-            )}
+            <div className="profile-post-image-container">
+                {isVideo ? (
+                    <video className="profile-post-image" src={post?.content} controls></video>
+                ):(
+                    <img className="profile-post-image" src={post?.content} alt="" />
+                )}
+            </div>
                                 {/* Interactions */}
             {/* <div className="post-interaction-icons-container">
                 {post.likes && sessionUser.id in post.likes ? (

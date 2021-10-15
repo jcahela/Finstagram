@@ -40,6 +40,14 @@
     cursor: pointer;
 }
 
+.profile-post-image-container {
+    min-width: 480px;
+    max-width: 600px;
+    min-height: 400px;
+    max-height: 720px;
+    height: auto;
+}
+
 .profile-post-image {
     height: 25vw;
     width: 25vw;

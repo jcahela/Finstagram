@@ -1,0 +1,33 @@
+.delete-post-container {
+    height: fit-content;
+    width: 400px;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.delete-post-button,
+.delete-post-cancel {
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+}
+
+.delete-post-button:hover,
+.delete-post-cancel:hover {
+    cursor: pointer;
+}
+
+.delete-post-button {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    color: red;
+    font-weight: 600;
+    border-bottom: 1px solid rgb(197, 197, 197);
+}
+
+.delete-post-cancel {
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}

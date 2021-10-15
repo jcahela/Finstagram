@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom'
 import './HoverUserCard.css'
 import { getFollowedUsersPostsThunk } from '../store/followedUsersPosts'
 
-function HoverUserCard({ user }) {
+function HoverUserCard({ isFollowing, setIsFollowing, followRef, user }) {
     const dispatch = useDispatch();
     const history = useHistory();
     const sessionUserPosts = useSelector(state => state.sessionUsersPosts)
@@ -32,11 +32,14 @@ function HoverUserCard({ user }) {
     const unfollowUser = async (userId) => {
         await dispatch(unfollowUserThunk(userId))
         await dispatch(authenticate())
+        followRef.current.innerText = 'Follow'
+        setIsFollowing(false)
     }
 
     const followUser = async (userId) => {
         await dispatch(followUserThunk(userId))
         await dispatch(authenticate())
+        setIsFollowing(true)
     }
 
     const sendToProfile = () => {
@@ -78,7 +81,7 @@ function HoverUserCard({ user }) {
                 </div>
             </div>
             { user.id !== sessionUser.id ? (
-                user.id in followedUsers ? (
+                isFollowing || user.id in followedUsers ? (
                     <span onClick={() => unfollowUser(user.id)} className="hover-user-card-following-button">Following</span>
                 ):(
                     <span onClick={() => followUser(user.id)} className="hover-user-card-follow-button">Follow</span>

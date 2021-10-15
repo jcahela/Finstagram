@@ -3,22 +3,29 @@ import { useState, useRef } from 'react';
 import { addCommentThunk, addLikeThunk, removeLikeThunk } from '../store/sessionUserPosts';
 import { useDispatch } from 'react-redux';
 import { getSessionUsersPostsThunk } from '../store/sessionUserPosts';
-import { getFollowedUsersPostsThunk } from '../store/followedUsersPosts'
+import { getFollowedUsersPostsThunk } from '../store/followedUsersPosts';
+import { getAllPostsThunk } from '../store/allPosts';
 import EditDeleteCommentModal from './EditDeleteCommentModal';
 import DeletePostModal from './DeletePostModal';
 import HoverUserCard from './HoverUserCard';
 import { useModal } from '../context/Modal';
+import { followUserThunk } from '../store/sessionUserPosts';
+import { authenticate } from '../store/session';
 import './FeedPostCard.css'
 
-function FeedPostCard({post}) {
+function FeedPostCard({postId}) {
     const { toggleModal, setModalContent } = useModal();
     const [showComments, setShowComments] = useState(false);
     const [showCommentOptions, setShowCommentOptions] = useState(false);
     const [comment, setComment] = useState('')
     const [showHoverUserCard, setShowHoverUserCard] = useState(false);
+    const followedUsers = useSelector(state => state.session.user?.followed) || {}
+    const post = useSelector(state => state.allPosts[postId])
+    const [isFollowing, setIsFollowing] = useState(post?.user_id in followedUsers)
     const commentRef = useRef();
     const commentOptionsRef = useRef();
     const likeRef = useRef();
+    const followRef = useRef();
     const dispatch = useDispatch();
     const users = useSelector(state => state.users)
     const sessionUser = useSelector(state => state.session.user)
@@ -31,12 +38,12 @@ function FeedPostCard({post}) {
     if (post?.comments) commentsArr = Object.values(post.comments)
     if (commentsArr) lastComment = commentsArr[commentsArr.length -1]
 
-    const isVideo = post.content?.slice(-3) === 'mp4' ||
-                    post.content?.slice(-3) === 'mov' ||
-                    post.content?.slice(-3) === 'wmv' ||
-                    post.content?.slice(-3) === 'avi' ||
-                    post.content?.slice(-4) === 'webm' ||
-                    post.content?.slice(-5) === 'html5'
+    const isVideo = post?.content?.slice(-3) === 'mp4' ||
+                    post?.content?.slice(-3) === 'mov' ||
+                    post?.content?.slice(-3) === 'wmv' ||
+                    post?.content?.slice(-3) === 'avi' ||
+                    post?.content?.slice(-4) === 'webm' ||
+                    post?.content?.slice(-5) === 'html5'
 
 
     const submitComment = async (e) => {
@@ -51,12 +58,13 @@ function FeedPostCard({post}) {
         await dispatch(addCommentThunk(newComment));
         await dispatch(getSessionUsersPostsThunk());
         await dispatch(getFollowedUsersPostsThunk());
+        await dispatch(getAllPostsThunk());
     }
-
+    
     const focusComment = () => {
         commentRef.current.focus();
     }
-
+    
     const addLike = async () => {
         const newLike = {
             'post_id': post.id,
@@ -64,8 +72,9 @@ function FeedPostCard({post}) {
         await dispatch(addLikeThunk(newLike));
         await dispatch(getSessionUsersPostsThunk());
         await dispatch(getFollowedUsersPostsThunk());
+        await dispatch(getAllPostsThunk());
     }
-
+    
     const removeLike = async () => {
         const likeToDelete = {
             'post_id': post.id
@@ -73,6 +82,7 @@ function FeedPostCard({post}) {
         await dispatch(removeLikeThunk(likeToDelete));
         await dispatch(getSessionUsersPostsThunk());
         await dispatch(getFollowedUsersPostsThunk());
+        await dispatch(getAllPostsThunk());
     }
 
     const openDeletePostModal = () => {
@@ -121,15 +131,26 @@ function FeedPostCard({post}) {
         }, 500)
     }
 
+    const followUser = async (userId) => {
+        followRef.current.innerText = ''
+        await dispatch(followUserThunk(userId))
+        await dispatch(getFollowedUsersPostsThunk())
+        await dispatch(authenticate())
+        setIsFollowing(true)
+    }
+
     return (
         <div className="post-container">
             <div className="post-header">
                 <div onMouseLeave={closeHoverUserCard} className="post-header-user-info">
                     <img onMouseOver={openHoverUserCard} className="post-profile-picture" src={user?.profile_picture} alt="" />
                     <p onMouseOver={openHoverUserCard} className="post-user">{user?.username}</p>
-                    {showHoverUserCard && <HoverUserCard user={users[post.user_id]}/>}
+                    { !(post?.user_id in followedUsers) && sessionUser.id !== post?.user_id && (
+                        <span ref={followRef} onClick={() => followUser(post.user_id)} className="explore-follow">Follow</span>
+                    )}
+                    {showHoverUserCard && <HoverUserCard isFollowing={isFollowing} setIsFollowing={setIsFollowing} followRef={followRef} user={users[post.user_id]}/>}
                 </div>
-                {post.user_id === sessionUser.id && <i onClick={openDeletePostModal} className="fas fa-ellipsis-h options"></i>}
+                {post?.user_id === sessionUser.id && <i onClick={openDeletePostModal} className="fas fa-ellipsis-h options"></i>}
             </div>
             {isVideo ? (
                 <video className="post-image" src={post?.content} controls></video>
@@ -137,7 +158,7 @@ function FeedPostCard({post}) {
                 <img className="post-image" src={post?.content} alt="" />
             )}
             <div className="post-interaction-icons-container">
-                {post.likes && sessionUser.id in post.likes ? (
+                {post?.likes && sessionUser.id in post?.likes ? (
                     <i ref={likeRef} onMouseDown={buttonClickAnimationShrink} onMouseUp={buttonClickAnimationGrow} onClick={removeLike} className="fas fa-heart feed-like-icon-filled"></i>
                 ): (
                     <i ref={likeRef} onMouseDown={buttonClickAnimationShrink} onMouseUp={buttonClickAnimationGrow} onClick={addLike} className={`far fa-heart feed-like-icon`}></i>

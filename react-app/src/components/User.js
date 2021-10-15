@@ -1,14 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { getSessionUsersPostsThunk } from '../store/sessionUserPosts';
+import FeedPostCard from './FeedPostCard';
+import './User.css'
 
-function User() {
+const User = () => {
+  const dispatch = useDispatch();
   const [user, setUser] = useState({});
   const { userId }  = useParams();
+  const sessionUsersPosts = useSelector(state => state.sessionUsersPosts);
+  const sessionUsersPostsArr = Object.values(sessionUsersPosts);
 
   useEffect(() => {
-    if (!userId) {
-      return;
-    }
+    if (!userId) return;
     (async () => {
       const response = await fetch(`/api/users/${userId}`);
       const user = await response.json();
@@ -16,22 +21,23 @@ function User() {
     })();
   }, [userId]);
 
-  if (!user) {
-    return null;
-  }
+  useEffect(() => {
+    dispatch(getSessionUsersPostsThunk());
+  }, [dispatch])
+
+  const profilePageCards = sessionUsersPostsArr.map(post => (
+    <FeedPostCard key={post.id} post={post} />
+  ));
+
+  if (!user) return null;
 
   return (
-    <ul>
-      <li>
-        <strong>User Id</strong> {userId}
-      </li>
-      <li>
-        <strong>Username</strong> {user.username}
-      </li>
-      <li>
-        <strong>Email</strong> {user.email}
-      </li>
-    </ul>
+    <div id='profile-page-container'>
+        <div id='profile-page-cards'>
+          {profilePageCards}
+        </div>
+    </div>
   );
 }
+
 export default User;

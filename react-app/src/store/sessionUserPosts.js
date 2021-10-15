@@ -22,9 +22,9 @@ const initialState = { };
 
 export const getSessionUsersPostsThunk = () => async (dispatch) => {
     const response = await fetch('/api/posts/')
-
     if (response.ok) {
         const posts = await response.json();
+        console.log('this is thunk for posts', posts);
         await dispatch(getSessionUsersPosts(posts))
         return null
     }
@@ -48,7 +48,7 @@ export const addCommentThunk = (comment) => async (dispatch) => {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
-            description, 
+            description,
             post_id
         })
     })
@@ -94,7 +94,7 @@ export const removeLikeThunk = (likeToRemove) => async (dispatch) => {
     const response = await fetch(`/api/posts/${post_id}/likes`, {
         method: 'DELETE'
     })
-    
+
     if (response.ok) {
         return null
     } else {
@@ -113,6 +113,7 @@ function sessionUserPostsReducer(state = initialState, action) {
         case GET_SESSION_USER_POSTS:
             const posts = action.payload;
             const postsObj = {};
+            console.log('this is reducer posts', action);
             posts.posts.forEach(post => postsObj[post.id] = post)
             newState = postsObj;
             return newState

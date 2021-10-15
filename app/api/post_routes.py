@@ -1,4 +1,4 @@
-"""Post Routes."""
+"""Post Routes: /api/posts/."""
 
 from operator import pos
 from flask import Blueprint, request
@@ -17,7 +17,7 @@ post_routes = Blueprint('posts', __name__)
 def session_user_posts():
     """Get all of the session user's posts."""
     posts = Post.query.filter(Post.user_id == current_user.id).all()
-    print('this is posts in api/posts/')
+
     return {
         "posts": [post.to_dict() for post in posts]
     }

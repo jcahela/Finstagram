@@ -4,6 +4,7 @@ import { getUsersThunk } from '../store/users';
 import { addCommentThunk, addLikeThunk, removeLikeThunk, followUserThunk, unfollowUserThunk } from '../store/sessionUserPosts';
 import { getNonFollowedPostsThunk } from '../store/nonFollowedUsersPosts';
 import { authenticate } from '../store/session';
+import { getAllPostsThunk } from '../store/allPosts';
 import './ExplorePostDetails.css';
 import './FeedPostCard.css';
 
@@ -18,9 +19,9 @@ function ExplorePostDetails({postKey, posts}) {
 
     let user_id = posts[postKey].user_id
 
-    let commentsObj = useSelector(state => state.nonFollowedUsersPosts[postKey]?.comments) || {};
+    let commentsObj = useSelector(state => state.allPosts[postKey]?.comments) || {};
 
-    let likesObj = useSelector(state => state.nonFollowedUsersPosts[postKey]?.likes) || {};
+    let likesObj = useSelector(state => state.allPosts[postKey]?.likes) || {};
 
     let followedUsers = useSelector(state => state.session.user?.followed) || {};
 
@@ -39,26 +40,29 @@ function ExplorePostDetails({postKey, posts}) {
         setComment('');
         await dispatch(addCommentThunk(newComment));
         await dispatch(getNonFollowedPostsThunk());
+        await dispatch(getAllPostsThunk());
     }
-
+    
     const focusComment = () => {
         commentRef.current.focus();
     }
-
+    
     const addLike = async () => {
         const newLike = {
             'post_id': posts[postKey].id,
         }
         await dispatch(addLikeThunk(newLike));
         await dispatch(getNonFollowedPostsThunk());
+        await dispatch(getAllPostsThunk());
     }
-
+    
     const removeLike = async () => {
         const likeToDelete = {
             'post_id': posts[postKey].id
         }
         await dispatch(removeLikeThunk(likeToDelete));
         await dispatch(getNonFollowedPostsThunk());
+        await dispatch(getAllPostsThunk());
     }
 
     const buttonClickAnimationShrink = () => {

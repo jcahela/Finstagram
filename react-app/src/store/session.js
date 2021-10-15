@@ -114,7 +114,6 @@ export default function reducer(state = initialState, action) {
       return { user: null }
     case REMOVE_FOLLOWED_USER:
       const userId = action.payload;
-      console.log(newState, 'THIS IS WHAT NEWSTATE LOOKS LIKE IN SESSION REDUCER')
       const sessionUserFollowedObj = newState.user.followed;
       delete sessionUserFollowedObj[userId]
       return newState;

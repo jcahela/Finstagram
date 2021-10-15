@@ -27,7 +27,7 @@ function FeedPage() {
         <div className="feed-page-container">
             <div className="feed-container">
                 {feedPostsOrdered.map((post) => (
-                    <FeedPostCard key={post.id} post={post}/>
+                    <FeedPostCard key={post.id} postId={post.id}/>
                 ))}
             </div>
             <div className="profile-container"></div>

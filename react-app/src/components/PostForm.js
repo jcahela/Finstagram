@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { addNewPostThunk, getSessionUsersPostsThunk } from "../store/sessionUserPosts"
 import { useModal } from '../context/Modal'
+import { getAllPostsThunk } from "../store/allPosts"
 
 const PostForm = () => {
     const [description, setDescription] = useState('');
@@ -29,8 +30,8 @@ const PostForm = () => {
         await dispatch(addNewPostThunk(formData));
         setContentLoading(false);
         await dispatch(getSessionUsersPostsThunk());
+        await dispatch(getAllPostsThunk())
         closeModal();
-        history.push('/feed')
     }
 
     return (

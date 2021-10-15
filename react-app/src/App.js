@@ -14,6 +14,7 @@ import { getUsersThunk } from './store/users';
 import { getSessionUsersPostsThunk } from './store/sessionUserPosts';
 import { getFollowedUsersPostsThunk } from './store/followedUsersPosts';
 import { getNonFollowedPostsThunk } from './store/nonFollowedUsersPosts';
+import { getAllPostsThunk } from './store/allPosts';
 
 import Modal from './components/Modal';
 
@@ -27,6 +28,7 @@ function App() {
     (async() => {
       await dispatch(authenticate());
       await dispatch(getUsersThunk());
+      await dispatch(getAllPostsThunk());
       setLoaded(true);
     })();
   }, [dispatch]);

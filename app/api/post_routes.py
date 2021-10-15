@@ -21,6 +21,15 @@ def session_user_posts():
         "posts": [post.to_dict() for post in posts]
     }
 
+@post_routes.route('/all')
+def get_all_posts():
+    """Get all posts"""
+    posts = Post.query.all()
+
+    return {
+        "posts": [post.to_dict() for post in posts]
+    }
+
 
 @post_routes.route('/feed')
 @login_required

@@ -1,8 +1,9 @@
-.post-container {
-    border: 1px solid #83838360;
+.profile-post-container {
+    /* border: 1px solid #83838360; */
+    width: fit-content;
     height: fit-content;
     margin-bottom: 30px;
-    border-radius: 2px;
+    border-radius: 10px;
 }
 
 .post-header {
@@ -39,10 +40,9 @@
     cursor: pointer;
 }
 
-.post-image {
-    height: auto;
-    width: 100%;
-    margin-bottom: 15px;
+.profile-post-image {
+    height: 25vw;
+    width: 25vw;
 }
 
 .post-interaction-icons-container {

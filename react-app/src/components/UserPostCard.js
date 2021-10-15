@@ -77,7 +77,7 @@ function UserPostCard({post}) {
     }
 
     return (
-        <div className="post-container">
+        <div className="profile-post-container">
                                   {/* Header */}
             {/* <div className="post-header">
                 <div className="post-header-user-info">
@@ -87,9 +87,9 @@ function UserPostCard({post}) {
                 {post.user_id === sessionUser.id && <i onClick={openDeletePostModal} className="fas fa-ellipsis-h options"></i>}
             </div> */}
             {isVideo ? (
-                <video className="post-image" src={post?.content} controls></video>
+                <video className="profile-post-image" src={post?.content} controls></video>
             ):(
-                <img className="post-image" src={post?.content} alt="" />
+                <img className="profile-post-image" src={post?.content} alt="" />
             )}
                                 {/* Interactions */}
             {/* <div className="post-interaction-icons-container">

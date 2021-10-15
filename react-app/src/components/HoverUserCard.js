@@ -29,17 +29,13 @@ function HoverUserCard({ isFollowing, setIsFollowing, followRef, user }) {
     const usersFollowed = Object.values(user.followed)
     const usersThreePosts = usersPosts.slice(0, 3)
 
-    useEffect(() => {
-        console.log(usersPosts)
-    })
-
     const unfollowUser = async (userId) => {
         await dispatch(unfollowUserThunk(userId))
         await dispatch(authenticate())
         followRef.current.innerText = 'Follow'
         setIsFollowing(false)
     }
-    
+
     const followUser = async (userId) => {
         await dispatch(followUserThunk(userId))
         await dispatch(authenticate())
@@ -90,7 +86,7 @@ function HoverUserCard({ isFollowing, setIsFollowing, followRef, user }) {
                 ):(
                     <span onClick={() => followUser(user.id)} className="hover-user-card-follow-button">Follow</span>
                     )
-                    
+
                 ):(
                     <span className="hover-user-card-follow-blank"></span>
                 )}

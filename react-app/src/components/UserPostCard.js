@@ -23,9 +23,9 @@ function UserPostCard({ postKey, posts }) {
     let users = useSelector(state => state.users)
 
     const commentsObj = useSelector(state => {
-        if (sessionUser.id === +user_id) {
+        if (sessionUser.id === user_id) {
             return state.sessionUsersPosts[postKey].comments;
-        } else if (Object.keys(sessionUser.followed).includes(user_id)) {
+        } else if (Object.keys(sessionUser.followed).includes(user_id.toString())) {
             return state.followedUsersPosts[postKey].comments;
         } else {
             return state.nonFollowedUsersPosts[postKey].comments;
@@ -33,9 +33,9 @@ function UserPostCard({ postKey, posts }) {
     });
 
     const likesObj = useSelector(state => {
-        if (sessionUser.id === +user_id) {
+        if (sessionUser.id === user_id) {
             return state.sessionUsersPosts[postKey].likes;
-        } else if (Object.keys(sessionUser.followed).includes(user_id)) {
+        } else if (Object.keys(sessionUser.followed).includes(user_id.toString())) {
             return state.followedUsersPosts[postKey].likes;
         } else {
             return state.nonFollowedUsersPosts[postKey].likes;

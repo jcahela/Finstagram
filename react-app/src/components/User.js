@@ -24,51 +24,30 @@ const User = () => {
     (async () => {
       if (sessionUser.id === +userId) {
         setPosts(sessionUsersPosts);
-        setLoaded(true)
+        setLoaded(true);
       } else if (Object.keys(sessionUser.followed).includes(userId)) {
-        let followedPostsArr = Object.values(followedUsersPosts).filter(post => (
-          post.user_id === userId
-        ))
-
+          let followedPostsArr = Object.values(followedUsersPosts).filter(post => (
+            post.user_id === +userId
+          ))
         let followedPosts = {}
-
         followedPostsArr.forEach(post => (
           followedPosts[post.id] = post
         ))
-
         setPosts(followedPosts);
-        setLoaded(true)
+        setLoaded(true);
       } else {
-
         let nonFollowedPostsArr = Object.values(nonFollowedUsersPosts).filter(post => (
-          post.user_id === userId
+          post.user_id === +userId
         ))
-
         let nonFollowedPosts = {};
-
         nonFollowedPostsArr.forEach(post => (
           nonFollowedPosts[post.id] = post
         ))
-
         setPosts(nonFollowedPosts);
-        setLoaded(true)
+        setLoaded(true);
       }
     })();
-     // eslint-disable-next-line
-  });
-
-  // useEffect(() => {
-  //   dispatch(getSessionUsersPostsThunk());
-  // }, [dispatch])
-
-//   const openProfileModal = (e) => {
-//         console.log('this is post', e);
-//         setModalContent((
-//             <UserPostCard postId={e.id} />
-//         ));
-//         toggleModal();
-//    }
-// onClick={openProfileModal}
+}, [followedUsersPosts, nonFollowedUsersPosts, sessionUser.followed, sessionUser.id, sessionUsersPosts, userId]);
 
   let profile_posts = {...posts}
 
@@ -79,7 +58,6 @@ const User = () => {
     toggleModal();
   }
 
-  // if (!user) return null;
   if (!loaded) {
     return null;
   }

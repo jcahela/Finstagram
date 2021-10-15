@@ -113,3 +113,13 @@ def remove_like(post_id):
     return {
         "message": "successful"
     }
+
+@post_routes.route('/<int:post_id>', methods=['DELETE'])
+@login_required
+def remove_post(post_id):
+    post = Post.query.filter(Post.id == post_id).first()
+    db.session.delete(post)
+    db.session.commit()
+    return {
+            "post": post.to_dict()
+        }

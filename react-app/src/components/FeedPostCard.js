@@ -12,6 +12,7 @@ import './FeedPostCard.css'
 function FeedPostCard({post}) {
     const { toggleModal, setModalContent } = useModal();
     const [showComments, setShowComments] = useState(false);
+    const [heartPulse, setHeartPulse] = useState('feed-like-icon')
     const [comment, setComment] = useState('')
     const commentRef = useRef();
     const dispatch = useDispatch();
@@ -55,6 +56,7 @@ function FeedPostCard({post}) {
         const newLike = {
             'post_id': post.id,
         }
+        setHeartPulse('feed-like-icon-pressed');
         await dispatch(addLikeThunk(newLike));
         await dispatch(getSessionUsersPostsThunk());
         await dispatch(getNonFollowedPostsThunk());
@@ -64,6 +66,8 @@ function FeedPostCard({post}) {
         const likeToDelete = {
             'post_id': post.id
         }
+
+        setHeartPulse('feed-like-icon');
         await dispatch(removeLikeThunk(likeToDelete));
         await dispatch(getSessionUsersPostsThunk());
         await dispatch(getNonFollowedPostsThunk());
@@ -94,7 +98,7 @@ function FeedPostCard({post}) {
                 {post.likes && sessionUser.id in post.likes ? (
                     <i onClick={removeLike} className="fas fa-heart feed-like-icon-filled"></i>
                 ): (
-                    <i onClick={addLike} className="far fa-heart feed-like-icon"></i>
+                    <i onClick={addLike} className={`far fa-heart ${heartPulse}`}></i>
                 )}
                 <i onClick={focusComment} className="far fa-comment feed-comment-icon"></i>
             </div>

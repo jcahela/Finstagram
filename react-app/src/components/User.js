@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getSessionUsersPostsThunk } from '../store/sessionUserPosts';
 import { useModal } from '../context/Modal';
 import UserPostCard from './UserPostCard';
 import './User.css'
@@ -9,23 +8,60 @@ import './User.css'
 const User = () => {
   const dispatch = useDispatch();
   const { toggleModal, setModalContent } = useModal();
-  const [user, setUser] = useState({});
+  // const [user, setUser] = useState({});
+  const [loaded, setLoaded] = useState(false);
+  const [posts, setPosts] = useState();
+  let [stats, setStats] = useState(false);
   const { userId }  = useParams();
   const sessionUsersPosts = useSelector(state => state.sessionUsersPosts);
-  const sessionUsersPostsArr = Object.values(sessionUsersPosts);
+  // const sessionUsersPostsArr = Object.values(sessionUsersPosts);
+  const sessionUser = useSelector(state => state.session.user);
+  // const allUsers = useSelector(state => state.users);
+  const followedUsersPosts = useSelector(state => state.followedUsersPosts);
+  const nonFollowedUsersPosts = useSelector(state => state.nonFollowedUsersPosts);
+
 
   useEffect(() => {
-    if (!userId) return;
     (async () => {
-      const response = await fetch(`/api/users/${userId}`);
-      const user = await response.json();
-      setUser(user);
-    })();
-  }, [userId]);
+      if (sessionUser.id === +userId) {
+        console.log(typeof(+userId), typeof(sessionUser.id), "GETTING HERE -----------------------------------------------------")
+        setPosts(sessionUsersPosts);
+        setLoaded(true)
+      } else if (Object.keys(sessionUser.followed).includes(userId)) {
+        let followedPostsArr = Object.values(followedUsersPosts).filter(post => (
+          post.user_id === userId
+        ))
 
-  useEffect(() => {
-    dispatch(getSessionUsersPostsThunk());
-  }, [dispatch])
+        let followedPosts = {}
+
+        followedPostsArr.forEach(post => (
+          followedPosts[post.id] = post
+        ))
+
+        setPosts(followedPosts);
+        setLoaded(true)
+      } else {
+
+        let nonFollowedPostsArr = Object.values(nonFollowedUsersPosts).filter(post => (
+          post.user_id === userId
+        ))
+
+        let nonFollowedPosts = {};
+
+        nonFollowedPostsArr.forEach(post => (
+          nonFollowedPosts[post.id] = post
+        ))
+
+        setPosts(nonFollowedPosts);
+        setLoaded(true)
+      }
+    })();
+     // eslint-disable-next-line
+  });
+
+  // useEffect(() => {
+  //   dispatch(getSessionUsersPostsThunk());
+  // }, [dispatch])
 
 //   const openProfileModal = (e) => {
 //         console.log('this is post', e);
@@ -35,17 +71,32 @@ const User = () => {
 //         toggleModal();
 //    }
 // onClick={openProfileModal}
-  const profilePageCards = sessionUsersPostsArr.map(post => (
-    <UserPostCard key={post.id} post={post} className='profile-page-cards' />
-  ));
 
-  if (!user) return null;
+  let profile_posts = {...posts}
+
+  function openProfilePostModal(postKey) {
+    setModalContent((
+      <UserPostCard postKey={postKey} posts={profile_posts}/>
+    ))
+    toggleModal();
+  }
+
+  // if (!user) return null;
+  if (!loaded) {
+    return null;
+  }
 
   return (
-    <div id='profile-page-container'>
-        <div id='profile-page-cards-container'>
-          {profilePageCards}
-        </div>
+    <div className="profile-posts-container">
+      {Object.keys(profile_posts).map((key) => (
+          <div className="profile-posts" onMouseOver={() => setStats(`${key}`)} onMouseLeave={() => setStats(false)}>
+              <img src={profile_posts[key].content} onClick={() => openProfilePostModal(key)} alt="something" className="profile-posts" key={profile_posts[key].id}/>
+              {stats === key && <span className={`material-icons like-icon`}>favorite</span>}
+              {stats === key && <span className="likes-count">{Object.keys(profile_posts[key].likes).length}</span>}
+              {stats === key && <i className="fas fa-comment comment-icon"></i>}
+              {stats === key && <span className="comment-count">{Object.keys(profile_posts[key].comments).length}</span>}
+          </div>
+      ))}
     </div>
   );
 }

@@ -13,6 +13,7 @@ import { authenticate } from './store/session';
 import { getUsersThunk } from './store/users';
 import { getSessionUsersPostsThunk } from './store/sessionUserPosts';
 import { getFollowedUsersPostsThunk } from './store/followedUsersPosts';
+import { getNonFollowedPostsThunk } from './store/nonFollowedUsersPosts';
 
 import Modal from './components/Modal';
 
@@ -34,6 +35,7 @@ function App() {
     (async() => {
       if (currentSessionUser) await dispatch(getSessionUsersPostsThunk());
       if (currentSessionUser) await dispatch(getFollowedUsersPostsThunk());
+      if (currentSessionUser) await dispatch(getNonFollowedPostsThunk());
     })();
   }, [dispatch, currentSessionUser]);
 

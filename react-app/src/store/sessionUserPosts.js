@@ -121,6 +121,23 @@ export const removePostThunk = (postId) => async (dispatch) => {
     await dispatch(removePost(postId))
 }
 
+export const removeCommentThunk = (commentId) => async (dispatch) => {
+    const response = await fetch(`/api/comments/${commentId}`, {
+        method: 'DELETE'
+    })
+
+    if (response.ok) {
+        return null
+    } else {
+        if (response.status < 500) {
+            const data = await response.json();
+            if (data.errors) {
+                return data.errors;
+            }
+        }
+    }
+}
+
 function sessionUserPostsReducer(state = initialState, action) {
     let newState = {...state}
     switch(action.type) {
@@ -138,7 +155,8 @@ function sessionUserPostsReducer(state = initialState, action) {
             newState[post.id] = post;
             return newState;
         case REMOVE_POST:
-            delete newState.postId
+            const postId = action.payload;
+            delete newState[postId]
             return newState;
         default:
             return state

@@ -1,8 +1,7 @@
 """Post Routes: /api/posts/."""
 
-from operator import pos
 from flask import Blueprint, request
-from app.models import Post, User, db
+from app.models import Post, db
 from flask_login import login_required, current_user
 from app.aws import (
     upload_file_to_s3, allowed_file, get_unique_filename

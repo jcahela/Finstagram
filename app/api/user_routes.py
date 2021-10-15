@@ -29,7 +29,7 @@ def follows():
     user3 = User.query.filter(User.id == 3).first()
 
     user1.unfollow(user2)
-    user1.follow(user3)
+    user2.follow(user1)
     user2.follow(user3)
 
     return {

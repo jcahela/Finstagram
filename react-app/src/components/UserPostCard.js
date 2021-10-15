@@ -7,12 +7,12 @@ import { getNonFollowedPostsThunk } from '../store/nonFollowedUsersPosts';
 import DeletePostModal from './DeletePostModal';
 import { useModal } from '../context/Modal';
 // TODO: Add getFollowedPostsThunk to submitComment as well
-import './FeedPostCard.css'
+import './UserPostCard.css'
 
-function FeedPostCard({post}) {
+function UserPostCard({post}) {
     const { toggleModal, setModalContent } = useModal();
     const [showComments, setShowComments] = useState(false);
-    const [heartPulse, setHeartPulse] = useState('feed-like-icon');
+    const [heartPulse, setHeartPulse] = useState('profile-like-icon');
     const [comment, setComment] = useState('')
     const commentRef = useRef();
     const dispatch = useDispatch();
@@ -26,12 +26,12 @@ function FeedPostCard({post}) {
     if (post?.comments) commentsArr = Object.values(post.comments)
     if (commentsArr) lastComment = commentsArr[commentsArr.length -1]
 
-    const isVideo = post.content?.slice(-3) === 'mp4' ||
-                    post.content?.slice(-3) === 'mov' ||
-                    post.content?.slice(-3) === 'wmv' ||
-                    post.content?.slice(-3) === 'avi' ||
-                    post.content?.slice(-4) === 'webm' ||
-                    post.content?.slice(-5) === 'html5'
+    const isVideo = post?.content?.slice(-3) === 'mp4' ||
+                    post?.content?.slice(-3) === 'mov' ||
+                    post?.content?.slice(-3) === 'wmv' ||
+                    post?.content?.slice(-3) === 'avi' ||
+                    post?.content?.slice(-4) === 'webm' ||
+                    post?.content?.slice(-5) === 'html5';
 
 
     const submitComment = async (e) => {
@@ -66,7 +66,6 @@ function FeedPostCard({post}) {
         const likeToDelete = {
             'post_id': post.id
         }
-
         setHeartPulse('feed-like-icon');
         await dispatch(removeLikeThunk(likeToDelete));
         await dispatch(getSessionUsersPostsThunk());
@@ -80,63 +79,76 @@ function FeedPostCard({post}) {
         toggleModal();
     }
 
+    const openProfileModal = (e) => {
+        console.log('this is post', e);
+        setModalContent((
+            <UserPostCard postId={e.target.id} />
+        ));
+        toggleModal();
+   }
+
     return (
-        <div className="post-container">
-            <div className="post-header">
+        <div className="profile-post-container">
+                                  {/* Header */}
+            {/* <div className="post-header">
                 <div className="post-header-user-info">
                     <img className="post-profile-picture" src={user?.profile_picture} alt="" />
                     <p className="post-user">{user?.username}</p>
                 </div>
                 {post.user_id === sessionUser.id && <i onClick={openDeletePostModal} className="fas fa-ellipsis-h options"></i>}
-            </div>
+            </div> */}
             {isVideo ? (
-                <video className="post-image" src={post?.content} controls></video>
+                <video className="profile-post-image" src={post?.content} onClick={openProfileModal} controls></video>
             ):(
-                <img className="post-image" src={post?.content} alt="" />
+                <img className="profile-post-image" src={post?.content} onClick={openProfileModal} alt="" />
             )}
-            <div className="post-interaction-icons-container">
+                                {/* Interactions */}
+            {/* <div className="post-interaction-icons-container">
                 {post.likes && sessionUser.id in post.likes ? (
-                    <i onClick={removeLike} className="fas fa-heart feed-like-icon-filled"></i>
+                    <i onClick={removeLike} className="fas fa-heart profile-like-icon-filled"></i>
                 ): (
                     <i onClick={addLike} className={`far fa-heart ${heartPulse}`}></i>
                 )}
-                <i onClick={focusComment} className="far fa-comment feed-comment-icon"></i>
+                <i onClick={focusComment} className="far fa-comment profile-comment-icon"></i>
             </div>
-            <p className="feed-likes-count">{likesArr.length} likes</p>
-            <div className="post-page-description-container">
+            <p className="profile-likes-count">{likesArr.length} likes</p> */}
+                                 {/* Description */}
+            {/* <div className="post-page-description-container">
                 <span className="post-description-user">{user?.username}</span>
                 <span className="post-page-description">{post?.description}</span>
-            </div>
-            {!showComments && (commentsArr.length > 1) && <div className="view-comments" onClick={() => setShowComments(true)}>View all {commentsArr?.length} comments</div>}
+            </div> */}
+                                   {/* Comments */}
+            {/* {!showComments && (commentsArr.length > 1) && <div className="view-comments" onClick={() => setShowComments(true)}>View all {commentsArr?.length} comments</div>}
             {commentsArr.length === 0 && <div className="view-comments">No comments</div>}
             <div className="comments-container">
                 {showComments === true ? (
                     commentsArr?.map((comment, index) => {
                         const commentUser = users[comment.user_id];
                         return (
-                            <div className="feed-comment" key={index}><span className="comment-user">{commentUser?.username}</span> {comment.description}</div>
+                            <div className="profile-comment" key={index}><span className="comment-user">{commentUser?.username}</span> {comment.description}</div>
                         )
                     })
                 ): (
-                    <div className="feed-comment"><span className="comment-user">{users[lastComment?.user_id]?.username}</span> {lastComment?.description}</div>
+                    <div className="profile-comment"><span className="comment-user">{users[lastComment?.user_id]?.username}</span> {lastComment?.description}</div>
                 )}
-            </div>
-            <form
-                className="feed-new-comment-form"
+            </div> */}
+                                 {/* Add Comment */}
+            {/* <form
+                className="profile-new-comment-form"
                 onSubmit={submitComment}
             >
                 <textarea
                     ref = {commentRef}
                     rows="1"
                     placeholder="Add a comment..."
-                    className="feed-new-comment-input"
+                    className="profile-new-comment-input"
                     value={comment}
                     onChange={(e) => setComment(e.target.value)}
                 />
-                <button className={`feed-new-comment-button disabled-${comment.replace(/\s/g, '').length === 0}`} disabled={comment.replace(/\s/g, '').length === 0}>Post</button>
-            </form>
+                <button className={`profile-new-comment-button disabled-${comment.replace(/\s/g, '').length === 0}`} disabled={comment.replace(/\s/g, '').length === 0}>Post</button>
+            </form> */}
         </div>
     )
 }
 
-export default FeedPostCard;
+export default UserPostCard;

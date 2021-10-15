@@ -42,11 +42,11 @@ function ExplorePostDetails({postKey, posts}) {
         await dispatch(getNonFollowedPostsThunk());
         await dispatch(getAllPostsThunk());
     }
-    
+
     const focusComment = () => {
         commentRef.current.focus();
     }
-    
+
     const addLike = async () => {
         const newLike = {
             'post_id': posts[postKey].id,
@@ -55,7 +55,7 @@ function ExplorePostDetails({postKey, posts}) {
         await dispatch(getNonFollowedPostsThunk());
         await dispatch(getAllPostsThunk());
     }
-    
+
     const removeLike = async () => {
         const likeToDelete = {
             'post_id': posts[postKey].id
@@ -149,7 +149,8 @@ function ExplorePostDetails({postKey, posts}) {
                         className="feed-new-comment-form"
                         onSubmit={submitComment}
                     >
-                    <textarea
+                    <input
+                        type='text'
                         ref = {commentRef}
                         rows="1"
                         placeholder="Add a comment..."

@@ -60,11 +60,11 @@ function FeedPostCard({postId}) {
         await dispatch(getFollowedUsersPostsThunk());
         await dispatch(getAllPostsThunk());
     }
-    
+
     const focusComment = () => {
         commentRef.current.focus();
     }
-    
+
     const addLike = async () => {
         const newLike = {
             'post_id': post.id,
@@ -74,7 +74,7 @@ function FeedPostCard({postId}) {
         await dispatch(getFollowedUsersPostsThunk());
         await dispatch(getAllPostsThunk());
     }
-    
+
     const removeLike = async () => {
         const likeToDelete = {
             'post_id': post.id
@@ -178,10 +178,10 @@ function FeedPostCard({postId}) {
                         const commentUser = users[comment.user_id];
                         const randomKey = (comment.id + index) / comment.id + comment.user_id
                         return (
-                            <div 
-                                key={randomKey} 
-                                onMouseEnter={() => setShowCommentOptions(comment)} 
-                                onMouseLeave={() => setShowCommentOptions(false)} 
+                            <div
+                                key={randomKey}
+                                onMouseEnter={() => setShowCommentOptions(comment)}
+                                onMouseLeave={() => setShowCommentOptions(false)}
                                 className="comment-row"
                             >
                                 <div className="feed-comment"><span className="comment-user">{commentUser?.username}</span> {comment.description}</div>
@@ -193,8 +193,8 @@ function FeedPostCard({postId}) {
                     })
                 ): (
                     <div
-                        onMouseEnter={() => setShowCommentOptions(lastComment)} 
-                        onMouseLeave={() => setShowCommentOptions(false)} 
+                        onMouseEnter={() => setShowCommentOptions(lastComment)}
+                        onMouseLeave={() => setShowCommentOptions(false)}
                         className="comment-row"
                     >
                         <div className="feed-comment"><span className="comment-user">{users[lastComment?.user_id]?.username}</span> {lastComment?.description}</div>
@@ -208,7 +208,8 @@ function FeedPostCard({postId}) {
                 className="feed-new-comment-form"
                 onSubmit={submitComment}
             >
-                <textarea
+                <input
+                    type='text'
                     ref = {commentRef}
                     rows="1"
                     placeholder="Add a comment..."

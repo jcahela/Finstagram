@@ -15,8 +15,7 @@ function ExplorePage() {
     }, [dispatch])
 
     const posts = useSelector(state => state.nonFollowedUsersPosts);
-    // console.log(posts);
-    // may have to use useState for explore_posts to persist between renders
+    
     const explore_posts = {...posts}
 
     function openExplorePostModal(postKey) {

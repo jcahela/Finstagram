@@ -26,7 +26,6 @@ const User = () => {
         setPosts(sessionUsersPosts);
         setLoaded(true);
       } else if (Object.keys(sessionUser.followed).includes(userId)) {
-          console.log('this is Object.keys(sessionUser.followed).includes(userId)');
           let followedPostsArr = Object.values(followedUsersPosts).filter(post => (
             post.user_id === +userId
           ))

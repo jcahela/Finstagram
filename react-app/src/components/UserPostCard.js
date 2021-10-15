@@ -7,68 +7,40 @@ import { getNonFollowedPostsThunk } from '../store/nonFollowedUsersPosts';
 import DeletePostModal from './DeletePostModal';
 import { useModal } from '../context/Modal';
 // TODO: Add getFollowedPostsThunk to submitComment as well
-import './UserPostCard.css'
+import './ExplorePostDetails.css'
 
 function UserPostCard({ postKey, posts }) {
-    // const { toggleModal, setModalContent } = useModal();
-    // const [showComments, setShowComments] = useState(false);
-    const [heartPulse, setHeartPulse] = useState('profile-like-icon');
     const [comment, setComment] = useState('')
     const commentRef = useRef();
     const dispatch = useDispatch();
-    // const users = useSelector(state => state.users)
     const sessionUser = useSelector(state => state.session.user);
-    const sessionUsersPosts = useSelector(state => state.sessionUsersPosts);
-    const followedUsersPosts = useSelector(state => state.followedUsersPosts);
-    const nonFollowedUsersPosts = useSelector(state => state.nonFollowedUsersPosts);
-    // const user = users[post?.user_id]
-    // let likesArr = [];
-    // let commentsArr = [];
-    // let lastComment;
-    // if (post?.likes) likesArr = Object.values(post.likes)
-    // if (post?.comments) commentsArr = Object.values(post.comments)
-    // if (commentsArr) lastComment = commentsArr[commentsArr.length -1]
-    let something = useSelector(state => state.nonFollowedUsersPosts)
-    console.log(postKey,something, "======================================================")
-    let post = posts[postKey];
 
-    let users = useSelector(state => state.users)
+    // console.log(postKey,something, "======================================================")
+    let post = posts[postKey];
 
     let user_id = posts[postKey].user_id
 
-    let commentsObj = useSelector(state => state.nonFollowedUsersPosts[postKey].comments);
+    let users = useSelector(state => state.users)
 
-    let likesObj = useSelector(state => state.nonFollowedUsersPosts[postKey].likes);
+    const commentsObj = useSelector(state => {
+        if (sessionUser.id === +user_id) {
+            return state.sessionUsersPosts[postKey].comments;
+        } else if (Object.keys(sessionUser.followed).includes(user_id)) {
+            return state.followedUsersPosts[postKey].comments;
+        } else {
+            return state.nonFollowedUsersPosts[postKey].comments;
+        }
+    });
 
-    if (sessionUser.id === +user_id) {
-
-
-      } else if (Object.keys(sessionUser.followed).includes(user_id)) {
-        let followedPostsArr = Object.values(followedUsersPosts).filter(post => (
-          post.user_id === user_id
-        ))
-
-        let followedPosts = {}
-
-        followedPostsArr.forEach(post => (
-          followedPosts[post.id] = post
-        ))
-
-
-      } else {
-
-        let nonFollowedPostsArr = Object.values(nonFollowedUsersPosts).filter(post => (
-          post.user_id === user_id
-        ))
-
-        let nonFollowedPosts = {};
-
-        nonFollowedPostsArr.forEach(post => (
-          nonFollowedPosts[post.id] = post
-        ))
-
-
-      }
+    const likesObj = useSelector(state => {
+        if (sessionUser.id === +user_id) {
+            return state.sessionUsersPosts[postKey].likes;
+        } else if (Object.keys(sessionUser.followed).includes(user_id)) {
+            return state.followedUsersPosts[postKey].likes;
+        } else {
+            return state.nonFollowedUsersPosts[postKey].likes;
+        }
+    });
 
     const isVideo = post?.content?.slice(-3) === 'mp4' ||
                     post?.content?.slice(-3) === 'mov' ||
@@ -100,7 +72,6 @@ function UserPostCard({ postKey, posts }) {
         const newLike = {
             'post_id': post.id,
         }
-        setHeartPulse('feed-like-icon-pressed');
         await dispatch(addLikeThunk(newLike));
         await dispatch(getSessionUsersPostsThunk());
         await dispatch(getNonFollowedPostsThunk());
@@ -110,20 +81,19 @@ function UserPostCard({ postKey, posts }) {
         const likeToDelete = {
             'post_id': post.id
         }
-        setHeartPulse('feed-like-icon');
         await dispatch(removeLikeThunk(likeToDelete));
         await dispatch(getSessionUsersPostsThunk());
         await dispatch(getNonFollowedPostsThunk());
     }
 
     return (
-        <div className="profile-post-container">
+        <div className="details-container">
                                   {/* Header */}
-            <div className="profile-post-image-container">
+            <div className="details-image-container">
                 {isVideo ? (
-                    <video className="profile-post-image" src={post?.content} controls></video>
+                    <video className="detail-image" src={post?.content} controls></video>
                 ):(
-                    <img className="profile-post-image" src={post?.content} alt="" />
+                    <img className="detail-image" src={post?.content} alt="" />
                 )}
             </div>
             <div className="details">

@@ -75,7 +75,7 @@ function ExplorePostDetails({postKey, posts}) {
         await dispatch(followUserThunk(userId))
         await dispatch(authenticate())
     }
-    
+
     const unfollowUser = async (userId) => {
         await dispatch(unfollowUserThunk(userId))
         await dispatch(authenticate())
@@ -96,7 +96,7 @@ function ExplorePostDetails({postKey, posts}) {
             <div className="details">
                 <div className="user-info">
                     <img src={users[user_id].profile_picture} className="explore-profile-pic" alt="this is something"/>
-                    <p className="user-name">{users[user_id].username}</p> <span>•</span> 
+                    <p className="user-name">{users[user_id].username}</p> <span>•</span>
                     { user_id in followedUsers ? (
                         <span onClick={() => unfollowUser(user_id)} className="explore-following">Following</span>
                     ):(

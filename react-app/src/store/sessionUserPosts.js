@@ -114,7 +114,7 @@ export const removeLikeThunk = (likeToRemove) => async (dispatch) => {
 }
 
 export const removePostThunk = (postId) => async (dispatch) => {
-    const response = await fetch(`/api/posts/${postId}`, {
+    await fetch(`/api/posts/${postId}`, {
         method: 'DELETE'
     })
 
@@ -139,7 +139,7 @@ function sessionUserPostsReducer(state = initialState, action) {
             return newState;
         case REMOVE_POST:
             const postId = action.payload;
-            delete newState.postId
+            delete newState[postId]
             return newState;
         default:
             return state

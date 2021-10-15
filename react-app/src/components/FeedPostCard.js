@@ -3,17 +3,19 @@ import { useState, useRef } from 'react';
 import { addCommentThunk, addLikeThunk, removeLikeThunk } from '../store/sessionUserPosts';
 import { useDispatch } from 'react-redux';
 import { getSessionUsersPostsThunk } from '../store/sessionUserPosts';
-import { getNonFollowedPostsThunk } from '../store/nonFollowedUsersPosts';
+import { getFollowedUsersPostsThunk } from '../store/followedUsersPosts'
+import EditDeleteCommentModal from './EditDeleteCommentModal';
 import DeletePostModal from './DeletePostModal';
 import { useModal } from '../context/Modal';
-// TODO: Add getFollowedPostsThunk to submitComment as well
 import './FeedPostCard.css'
 
 function FeedPostCard({post}) {
     const { toggleModal, setModalContent } = useModal();
     const [showComments, setShowComments] = useState(false);
+    const [showCommentOptions, setShowCommentOptions] = useState(false);
     const [comment, setComment] = useState('')
     const commentRef = useRef();
+    const commentOptionsRef = useRef();
     const dispatch = useDispatch();
     const users = useSelector(state => state.users)
     const sessionUser = useSelector(state => state.session.user)
@@ -44,7 +46,7 @@ function FeedPostCard({post}) {
         setComment('');
         await dispatch(addCommentThunk(newComment));
         await dispatch(getSessionUsersPostsThunk());
-        await dispatch(getNonFollowedPostsThunk());
+        await dispatch(getFollowedUsersPostsThunk());
     }
     
     const focusComment = () => {
@@ -57,7 +59,7 @@ function FeedPostCard({post}) {
         }
         await dispatch(addLikeThunk(newLike));
         await dispatch(getSessionUsersPostsThunk());
-        await dispatch(getNonFollowedPostsThunk());
+        await dispatch(getFollowedUsersPostsThunk());
     }
     
     const removeLike = async () => {
@@ -66,12 +68,19 @@ function FeedPostCard({post}) {
         }
         await dispatch(removeLikeThunk(likeToDelete));
         await dispatch(getSessionUsersPostsThunk());
-        await dispatch(getNonFollowedPostsThunk());
+        await dispatch(getFollowedUsersPostsThunk());
     }
 
     const openDeletePostModal = () => {
         setModalContent((
             <DeletePostModal postId={post.id} />
+        ));
+        toggleModal();
+    }
+
+    const openCommentOptionsModal = (comment) => {
+        setModalContent((
+            <EditDeleteCommentModal comment={comment}/>
         ));
         toggleModal();
     }
@@ -109,12 +118,32 @@ function FeedPostCard({post}) {
                 {showComments === true ? (
                     commentsArr?.map((comment, index) => {
                         const commentUser = users[comment.user_id];
+                        const randomKey = (comment.id + index) / comment.id + comment.user_id
                         return (
-                            <div className="feed-comment" key={index}><span className="comment-user">{commentUser?.username}</span> {comment.description}</div>
+                            <div 
+                                key={randomKey} 
+                                onMouseEnter={() => setShowCommentOptions(comment)} 
+                                onMouseLeave={() => setShowCommentOptions(false)} 
+                                className="comment-row"
+                            >
+                                <div className="feed-comment"><span className="comment-user">{commentUser?.username}</span> {comment.description}</div>
+                                <div className="comment-options-container">
+                                    {showCommentOptions === comment && comment.user_id === sessionUser.id && <i onClick={() => openCommentOptionsModal(comment)} ref={commentOptionsRef} className={`fas fa-ellipsis-h comment-options-icon`}></i>}
+                                </div>
+                            </div>
                         )
                     })
                 ): (
-                    <div className="feed-comment"><span className="comment-user">{users[lastComment?.user_id]?.username}</span> {lastComment?.description}</div>
+                    <div
+                        onMouseEnter={() => setShowCommentOptions(lastComment)} 
+                        onMouseLeave={() => setShowCommentOptions(false)} 
+                        className="comment-row"
+                    >
+                        <div className="feed-comment"><span className="comment-user">{users[lastComment?.user_id]?.username}</span> {lastComment?.description}</div>
+                        <div className="comment-options-container">
+                            {showCommentOptions === lastComment && lastComment?.user_id === sessionUser.id && <i onClick={() => openCommentOptionsModal(lastComment)} ref={commentOptionsRef} className={`fas fa-ellipsis-h comment-options-icon`}></i>}
+                        </div>
+                    </div>
                 )}
             </div>
             <form 

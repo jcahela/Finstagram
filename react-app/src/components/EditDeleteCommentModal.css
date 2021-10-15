@@ -1,0 +1,40 @@
+.editdelete-comment-container {
+    height: fit-content;
+    width: 400px;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.edit-comment-button,
+.delete-comment-button,
+.editdelete-comment-cancel {
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+}
+
+.edit-comment-button:hover,
+.delete-comment-button:hover,
+.editdelete-comment-cancel:hover {
+    cursor: pointer;
+}
+
+.edit-comment-button,
+.delete-comment-button {
+    color: red;
+    font-weight: 600;
+    border-bottom: 1px solid rgb(197, 197, 197);
+}
+
+.edit-comment-button {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+
+.editdelete-comment-cancel {
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}

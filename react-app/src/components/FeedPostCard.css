@@ -35,7 +35,8 @@
     font-size: 25px;
 }
 
-.options:hover {
+.options:hover,
+.comment-options-icon:hover {
     cursor: pointer;
 }
 
@@ -88,6 +89,10 @@
     margin-bottom: 5px;
 }
 
+.post-page-description-container {
+    margin-bottom: 20px;
+}
+
 .view-comments {
     color: #838383;
     font-size: 15px;
@@ -102,6 +107,25 @@
 .comments-container {
     height: fit-content;
 }
+
+.comment-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.comment-options-container {
+    max-width: 40px;
+    min-width: 40px;
+}
+
+.comment-options-icon {
+    margin-right: 20px;
+    font-weight: lighter;
+    font-size: 20px;
+}
+
 
 .feed-comment {
     margin-bottom: 5px;

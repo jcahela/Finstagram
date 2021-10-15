@@ -63,6 +63,14 @@
     font-weight: lighter;
 }
 
+.feed-like-icon-pressed {
+    font-size: 25px;
+    margin-right: 20px;
+    font-weight: lighter;
+    transform: translate(0px, -3px);
+    animation: pulse;
+}
+
 .profile-like-icon:hover,
 .profile-comment-icon:hover,
 .profile-like-icon-filled:hover {

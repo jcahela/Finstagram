@@ -1,0 +1,126 @@
+.hover-user-card-container {
+    z-index: 500;
+    height: fit-content;
+    width: 400px;
+    background-color: white;
+    border: 1px solid #cfcfcf;
+    box-shadow: 0px 0px 3px 0px rgba(206, 203, 185, 0.79);
+    border-radius: 15px;
+    position: absolute;
+    top: 30px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.hover-user-card-header {
+    display: flex;
+    padding: 20px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom: 1px solid #8383834d;
+}
+
+.hover-user-card-profile-pic {
+    height: 50px;
+    width: 50px;
+    margin-right: 15px;
+}
+
+.hover-user-card-username {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.hover-user-card-profile-pic:hover,
+.hover-user-card-username:hover {
+    cursor: pointer;
+}
+
+.hover-user-card-fullname {
+    font-size: 14px;
+    color:#A3A3A3
+}
+
+.hover-user-card-stats {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    border-bottom: 1px solid #8383834d;
+}
+
+.hover-user-card-posts-amount,
+.hover-user-card-followers-amount,
+.hover-user-card-followed-amount { 
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.hover-user-card-posts-label,
+.hover-user-card-followers-label,
+.hover-user-card-followed-label {
+    font-size: 14px;
+    color:#A3A3A3
+}
+
+.hover-user-card-stats > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hover-user-card-three-posts {
+    display: flex;
+    width: 100%;
+}
+
+.hover-card-image-1 {
+    margin-left: 1px;
+}
+
+.hover-card-image-3 {
+    margin-right: 1px;
+}
+
+.hover-user-card-post-image-div {
+    flex: 1 1 0px;
+    height: 120px;
+}
+
+.hover-user-card-post-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hover-user-card-following-button,
+.hover-user-card-follow-button {
+    border: 1px solid #83838350;
+    width: 160px;
+    text-align: center;
+    margin: 15px auto;
+    padding: 7px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.hover-user-card-follow-button {
+    background-color: #0095F6;
+    color: white;
+}
+
+.hover-user-card-follow-blank {
+    width: 160px;
+    text-align: center;
+    margin: 15px auto;
+    padding: 14px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.hover-user-card-following-button:hover,
+.hover-user-card-follow-button:hover {
+    cursor: pointer;
+}

@@ -6,6 +6,7 @@ import { getSessionUsersPostsThunk } from '../store/sessionUserPosts';
 import { getFollowedUsersPostsThunk } from '../store/followedUsersPosts'
 import EditDeleteCommentModal from './EditDeleteCommentModal';
 import DeletePostModal from './DeletePostModal';
+import HoverUserCard from './HoverUserCard';
 import { useModal } from '../context/Modal';
 import './FeedPostCard.css'
 
@@ -14,6 +15,7 @@ function FeedPostCard({post}) {
     const [showComments, setShowComments] = useState(false);
     const [showCommentOptions, setShowCommentOptions] = useState(false);
     const [comment, setComment] = useState('')
+    const [showHoverUserCard, setShowHoverUserCard] = useState(false);
     const commentRef = useRef();
     const commentOptionsRef = useRef();
     const likeRef = useRef();
@@ -21,6 +23,7 @@ function FeedPostCard({post}) {
     const users = useSelector(state => state.users)
     const sessionUser = useSelector(state => state.session.user)
     const user = users[post?.user_id]
+
     let likesArr = [];
     let commentsArr = [];
     let lastComment;
@@ -97,12 +100,34 @@ function FeedPostCard({post}) {
         likeIcon.style.transform = 'scale(1)'
     }
 
+    let timeOutOn;
+    let timeOutOff;
+
+    const openHoverUserCard = () => {
+        if (timeOutOff) {
+            clearTimeout(timeOutOff)
+        }
+        timeOutOn = setTimeout(() => {
+            setShowHoverUserCard(true)
+        }, 500)
+    }
+
+    const closeHoverUserCard = async () => {
+        if (timeOutOn) {
+            clearTimeout(timeOutOn)
+        }
+        timeOutOff = setTimeout(() => {
+            setShowHoverUserCard(false)
+        }, 500)
+    }
+
     return (
         <div className="post-container">
             <div className="post-header">
-                <div className="post-header-user-info">
-                    <img className="post-profile-picture" src={user?.profile_picture} alt="" />
-                    <p className="post-user">{user?.username}</p>
+                <div onMouseLeave={closeHoverUserCard} className="post-header-user-info">
+                    <img onMouseOver={openHoverUserCard} className="post-profile-picture" src={user?.profile_picture} alt="" />
+                    <p onMouseOver={openHoverUserCard} className="post-user">{user?.username}</p>
+                    {showHoverUserCard && <HoverUserCard user={users[post.user_id]}/>}
                 </div>
                 {post.user_id === sessionUser.id && <i onClick={openDeletePostModal} className="fas fa-ellipsis-h options"></i>}
             </div>
@@ -113,7 +138,7 @@ function FeedPostCard({post}) {
             )}
             <div className="post-interaction-icons-container">
                 {post.likes && sessionUser.id in post.likes ? (
-                    <i ref={likeRef} onMouseDown={buttonClickAnimationShrink} onMouseUp={buttonClickAnimationGrow}  onClick={removeLike} className="fas fa-heart feed-like-icon-filled"></i>
+                    <i ref={likeRef} onMouseDown={buttonClickAnimationShrink} onMouseUp={buttonClickAnimationGrow} onClick={removeLike} className="fas fa-heart feed-like-icon-filled"></i>
                 ): (
                     <i ref={likeRef} onMouseDown={buttonClickAnimationShrink} onMouseUp={buttonClickAnimationGrow} onClick={addLike} className={`far fa-heart feed-like-icon`}></i>
                 )}

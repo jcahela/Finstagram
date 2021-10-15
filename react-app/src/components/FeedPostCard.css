@@ -15,6 +15,7 @@
 .post-header-user-info {
     display: flex;
     align-items: center;
+    position: relative;
 }
 
 .post-profile-picture {
@@ -27,6 +28,11 @@
 .post-user {
     font-size: 14px;
     font-weight: 600;
+}
+
+.post-profile-picture:hover,
+.post-user:hover {
+    cursor: pointer;
 }
 
 .options {

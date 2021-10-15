@@ -1,3 +1,4 @@
+import { removeFollowedUser } from "./session"
 
 // constants
 const GET_SESSION_USER_POSTS = 'sessionUsersPosts/GET_SESSION_USER_POSTS'
@@ -154,8 +155,19 @@ export const editCommentThunk = (comment) => async (dispatch) => {
         const data = await response.json();
         return data;
     }
+}
 
-    
+export const followUserThunk = (userId) => async (dispatch) => {
+    const response = await fetch(`/api/users/follow/${userId}`, {
+        method: 'POST'
+    })
+}
+
+export const unfollowUserThunk = (userId) => async (dispatch) => {
+    const response = await fetch(`/api/users/follow/${userId}`, {
+        method: 'DELETE'
+    })
+    await dispatch(removeFollowedUser(userId))
 }
 
 function sessionUserPostsReducer(state = initialState, action) {

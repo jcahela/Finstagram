@@ -7,12 +7,17 @@ import { getFollowedUsersPostsThunk } from '../store/followedUsersPosts';
 
 function FeedPage() {
     const dispatch = useDispatch();
-    const sessionUsersPosts = useSelector(state => state.sessionUsersPosts);
-    const followedUsersPosts = useSelector(state => state.followedUsersPosts);
-    const feedPosts = [...Object.values(sessionUsersPosts), ...Object.values(followedUsersPosts)];
-    const feedPostsOrdered = feedPosts.sort((a, b) => (a.id < b.id ? 1: -1))
-
-    feedPosts.forEach(post => console.log(post.created_at))
+    const feedPostsOrdered = useSelector(state => {
+        const sessionUsersPosts = state.sessionUsersPosts;
+        const followedUsersPosts = state.followedUsersPosts;
+        const feedPostsObj = {
+            ...sessionUsersPosts,
+            ...followedUsersPosts
+        }
+        const feedPosts = Object.values(feedPostsObj);
+        const postsOrdered = feedPosts.sort((a, b) => (a.id < b.id ? 1: -1))
+        return postsOrdered
+    });
 
     useEffect(() => {
         dispatch(getFollowedUsersPostsThunk());

@@ -62,7 +62,14 @@
     margin-left: 5px;
 }
 
-.explore-follow:hover {
+.explore-following {
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: 5px;
+}
+
+.explore-follow:hover,
+.explore-following:hover {
     cursor: pointer;
 }
 

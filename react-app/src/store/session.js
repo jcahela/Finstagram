@@ -1,6 +1,7 @@
 // constants
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
+const REMOVE_FOLLOWED_USER = 'session/REMOVE_FOLLOWED_USER'
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -9,6 +10,11 @@ const setUser = (user) => ({
 
 const removeUser = () => ({
   type: REMOVE_USER,
+})
+
+export const removeFollowedUser = (userId) => ({
+  type: REMOVE_FOLLOWED_USER,
+  payload: userId
 })
 
 const initialState = { user: null };
@@ -100,11 +106,18 @@ export const signUp = (firstname, lastname, username, email, password) => async 
 }
 
 export default function reducer(state = initialState, action) {
+  const newState = {...state}
   switch (action.type) {
     case SET_USER:
       return { user: action.payload }
     case REMOVE_USER:
       return { user: null }
+    case REMOVE_FOLLOWED_USER:
+      const userId = action.payload;
+      console.log(newState, 'THIS IS WHAT NEWSTATE LOOKS LIKE IN SESSION REDUCER')
+      const sessionUserFollowedObj = newState.user.followed;
+      delete sessionUserFollowedObj[userId]
+      return newState;
     default:
       return state;
   }

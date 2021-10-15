@@ -21,7 +21,7 @@ const NavBar = () => {
   }
 
   function sendToProfile() {
-    history.push(`/`)
+    history.push(`/users/${user.id}`);
   }
 
   function openPostFormModal() {
@@ -85,11 +85,8 @@ const NavBar = () => {
                     className="profile-button-container"
                     onClick={sendToProfile}
                   >
-                    <NavLink to={`/users/${user.id}`} exact={true} activeClassName='active'>
                       <i className="far fa-user-circle profile-icon"></i>
-                      {console.log('ID!', user.id)}
                         Profile
-                    </NavLink>
                   </div>
                   <div className="logout-button-container">
                     <LogoutButton />

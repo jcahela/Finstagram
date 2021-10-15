@@ -30,7 +30,6 @@ export const getSessionUsersPostsThunk = () => async (dispatch) => {
     const response = await fetch('/api/posts/')
     if (response.ok) {
         const posts = await response.json();
-        console.log('this is thunk for posts', posts);
         await dispatch(getSessionUsersPosts(posts))
         return null
     }
@@ -41,6 +40,7 @@ export const addNewPostThunk = (formData) => async (dispatch) => {
         method: 'POST',
         body: formData
     })
+
     if (response.ok) {
         const newPost = await response.json();
         await dispatch(addNewPost(newPost))
@@ -114,7 +114,7 @@ export const removeLikeThunk = (likeToRemove) => async (dispatch) => {
 }
 
 export const removePostThunk = (postId) => async (dispatch) => {
-    const response = await fetch(`/api/posts/${postId}`, {
+    await fetch(`/api/posts/${postId}`, {
         method: 'DELETE'
     })
 
@@ -127,7 +127,6 @@ function sessionUserPostsReducer(state = initialState, action) {
         case GET_SESSION_USER_POSTS:
             const posts = action.payload;
             const postsObj = {};
-            console.log('this is reducer posts', action);
             posts.posts.forEach(post => postsObj[post.id] = post)
             newState = postsObj;
             return newState;
@@ -139,7 +138,6 @@ function sessionUserPostsReducer(state = initialState, action) {
             newState[post.id] = post;
             return newState;
         case REMOVE_POST:
-            const postId = action.payload;
             delete newState.postId
             return newState;
         default:

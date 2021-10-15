@@ -85,10 +85,9 @@
 }
 
 .explore-comment-section {
+    flex-basis: 200px;
     flex-grow: 1;
-    /* flex: 2_; */
-    /* overflow-y: scroll; */
-    overflow: auto;
+    overflow-y: auto;
 }
 
 .explore-comment-text {

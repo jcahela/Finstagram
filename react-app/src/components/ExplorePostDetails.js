@@ -33,6 +33,15 @@ function ExplorePostDetails({postKey, posts}) {
         dispatch(getUsersThunk())
     }, [dispatch])
 
+    const textareaHandler = (e) => {
+        e.preventDefault();
+        setComment(e.target.value)
+
+        const comment = commentRef.current.value;
+        if (/^\s*$/.test(comment)) return;
+        else if (/\n$/.test(comment)) submitComment(e);
+    }
+
     const submitComment = async (e) => {
         e.preventDefault();
         const newComment = {
@@ -46,11 +55,11 @@ function ExplorePostDetails({postKey, posts}) {
         await dispatch(getNonFollowedPostsThunk());
         await dispatch(getAllPostsThunk());
     }
-    
+
     const focusComment = () => {
         commentRef.current.focus();
     }
-    
+
     const addLike = async () => {
         const newLike = {
             'post_id': posts[postKey].id,
@@ -59,7 +68,7 @@ function ExplorePostDetails({postKey, posts}) {
         await dispatch(getNonFollowedPostsThunk());
         await dispatch(getAllPostsThunk());
     }
-    
+
     const removeLike = async () => {
         const likeToDelete = {
             'post_id': posts[postKey].id
@@ -89,19 +98,12 @@ function ExplorePostDetails({postKey, posts}) {
         await dispatch(authenticate())
     }
 
-    // comments(pin): {}
-    // content(pin):"https://picsum.photos/200/300"
-    // description(pin):"Beautiful Lorem Picsum Image"
-    // id(pin):3
-    // likes(pin): {}
-    // user_id(pin):2
-
     const sendToProfile = () => {
         closeModal();
         history.push(`/users/${user_id}`)
     }
 
-    const isVideo = 
+    const isVideo =
         posts[postKey]?.content?.slice(-3) === 'mp4' ||
         posts[postKey]?.content?.slice(-3) === 'mov' ||
         posts[postKey]?.content?.slice(-3) === 'wmv' ||
@@ -176,9 +178,9 @@ function ExplorePostDetails({postKey, posts}) {
                         placeholder="Add a comment..."
                         className="feed-new-comment-input"
                         value={comment}
-                        onChange={(e) => setComment(e.target.value)}
+                        onChange={textareaHandler}
                     />
-                    <button className={`feed-new-comment-button disabled-${comment.replace(/\s/g, '').length === 0}`} disabled={comment.replace(/\s/g, '').length === 0}>Post</button>
+                    <button className={`feed-new-comment-button disabled-${/^\s*$/.test(comment)}`} disabled={/^\s*$/.test(comment)}>Post</button>
                     </form>
                 </div>
             </div>

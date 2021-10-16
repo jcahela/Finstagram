@@ -7,7 +7,8 @@ import { getNonFollowedPostsThunk } from '../store/nonFollowedUsersPosts';
 import DeletePostModal from './DeletePostModal';
 import { useModal } from '../context/Modal';
 // TODO: Add getFollowedPostsThunk to submitComment as well
-import './ExplorePostDetails.css'
+import './ExplorePostDetails.css';
+import './UserPostCard.css';
 
 function UserPostCard({ profileVidRef, postKey, posts }) {
     const [comment, setComment] = useState('')
@@ -15,7 +16,6 @@ function UserPostCard({ profileVidRef, postKey, posts }) {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
 
-    // console.log(postKey,something, "======================================================")
     let post = posts[postKey];
 
     let user_id = posts[postKey].user_id
@@ -49,6 +49,16 @@ function UserPostCard({ profileVidRef, postKey, posts }) {
                     post?.content?.slice(-4) === 'webm' ||
                     post?.content?.slice(-5) === 'html5';
 
+
+    const textareaHandler = (e) => {
+        e.preventDefault();
+        setComment(e.target.value)
+
+        const comment = commentRef.current.value;
+        console.log(/^\s*$/.test(comment));
+        if (/^\s*$/.test(comment)) return;
+        else if (/\n$/.test(comment)) submitComment(e);
+    }
 
     const submitComment = async (e) => {
         e.preventDefault();
@@ -132,11 +142,11 @@ function UserPostCard({ profileVidRef, postKey, posts }) {
                                 {/* Interactions */}
                 <div className="explore-post-interaction-icons-container">
                     {likesObj && sessionUser.id in likesObj ? (
-                        <i onClick={removeLike} className="fas fa-heart feed-like-icon-filled"></i>
+                        <i onClick={removeLike} className="fas fa-heart profile-like-icon-filled"></i>
                     ): (
-                        <i onClick={addLike} className="far fa-heart feed-like-icon"></i>
+                        <i onClick={addLike} className="far fa-heart profile-like-icon"></i>
                     )}
-                    <i onClick={focusComment} className="far fa-comment feed-comment-icon"></i>
+                    <i onClick={focusComment} className="far fa-comment profile-comment-icon"></i>
                 </div>
                 <div className="explore-likes-counter-container">
                     <p className="explore-likes-counter">{Object.keys(likesObj).length} likes</p>
@@ -144,18 +154,18 @@ function UserPostCard({ profileVidRef, postKey, posts }) {
                                  {/* Add Comment */}
                 <div className="explore-comment-input">
                     <form
-                        className="feed-new-comment-form"
+                        className="profile-new-comment-form"
                         onSubmit={submitComment}
                     >
                     <textarea
                         ref = {commentRef}
                         rows="1"
                         placeholder="Add a comment..."
-                        className="feed-new-comment-input"
+                        className="profile-new-comment-input"
                         value={comment}
-                        onChange={(e) => setComment(e.target.value)}
+                        onChange={textareaHandler}
                     />
-                    <button className={`feed-new-comment-button disabled-${comment.replace(/\s/g, '').length === 0}`} disabled={comment.replace(/\s/g, '').length === 0}>Post</button>
+                    <button className={`profile-new-comment-button disabled-${/^\s*$/.test(comment)}`} disabled={/^\s*$/.test(comment)}>Post</button>
                     </form>
                 </div>
             </div>

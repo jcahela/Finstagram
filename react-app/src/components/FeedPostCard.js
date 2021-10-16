@@ -48,6 +48,15 @@ function FeedPostCard({postId}) {
                     post?.content?.slice(-5) === 'html5'
 
 
+    const textareaHandler = (e) => {
+        e.preventDefault();
+        setComment(e.target.value);
+        const comment = commentRef.current.value;
+
+        if (/^\s*$/.test(comment)) return;
+        else if (/\n$/.test(comment)) submitComment(e);
+    }
+
     const submitComment = async (e) => {
         e.preventDefault();
         const newComment = {
@@ -62,11 +71,11 @@ function FeedPostCard({postId}) {
         await dispatch(getFollowedUsersPostsThunk());
         await dispatch(getAllPostsThunk());
     }
-    
+
     const focusComment = () => {
         commentRef.current.focus();
     }
-    
+
     const addLike = async () => {
         const newLike = {
             'post_id': post.id,
@@ -76,7 +85,7 @@ function FeedPostCard({postId}) {
         await dispatch(getFollowedUsersPostsThunk());
         await dispatch(getAllPostsThunk());
     }
-    
+
     const removeLike = async () => {
         const likeToDelete = {
             'post_id': post.id
@@ -176,18 +185,18 @@ function FeedPostCard({postId}) {
                 <span className="post-description-user">{user?.username}</span>
                 <span className="post-page-description">{post?.description}</span>
             </div>
-            {!showComments && (commentsArr.length > 1) && <div className="view-comments" onClick={() => setShowComments(true)}>View all {commentsArr?.length} comments</div>}
-            {commentsArr.length === 0 && <div className="view-comments">No comments</div>}
+            {!showComments && (commentsArr.length > 1) && <div className="view-comments pointer-cursor" onClick={() => setShowComments(true)}>View all {commentsArr?.length} comments</div>}
+            {commentsArr.length === 0 && <div className="view-comments default-cursor">No comments</div>}
             <div className="comments-container">
                 {showComments === true ? (
                     commentsArr?.map((comment, index) => {
                         const commentUser = users[comment.user_id];
                         const randomKey = (comment.id + index) / comment.id + comment.user_id
                         return (
-                            <div 
-                                key={randomKey} 
-                                onMouseEnter={() => setShowCommentOptions(comment)} 
-                                onMouseLeave={() => setShowCommentOptions(false)} 
+                            <div
+                                key={randomKey}
+                                onMouseEnter={() => setShowCommentOptions(comment)}
+                                onMouseLeave={() => setShowCommentOptions(false)}
                                 className="comment-row"
                             >
                                 <div className="feed-comment"><span className="comment-user">{commentUser?.username}</span> {comment.description}</div>
@@ -199,8 +208,8 @@ function FeedPostCard({postId}) {
                     })
                 ): (
                     <div
-                        onMouseEnter={() => setShowCommentOptions(lastComment)} 
-                        onMouseLeave={() => setShowCommentOptions(false)} 
+                        onMouseEnter={() => setShowCommentOptions(lastComment)}
+                        onMouseLeave={() => setShowCommentOptions(false)}
                         className="comment-row"
                     >
                         <div className="feed-comment"><span className="comment-user">{users[lastComment?.user_id]?.username}</span> {lastComment?.description}</div>
@@ -220,9 +229,9 @@ function FeedPostCard({postId}) {
                     placeholder="Add a comment..."
                     className="feed-new-comment-input"
                     value={comment}
-                    onChange={(e) => setComment(e.target.value)}
+                    onChange={textareaHandler}
                 />
-                <button className={`feed-new-comment-button disabled-${comment.replace(/\s/g, '').length === 0}`} disabled={comment.replace(/\s/g, '').length === 0}>Post</button>
+                <button className={`feed-new-comment-button disabled-${/^\s*$/.test(comment)}`} disabled={/^\s*$/.test(comment)}>Post</button>
             </form>
         </div>
     )

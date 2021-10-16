@@ -1,3 +1,7 @@
+.pointer_cursor { cursor: pointer; }
+
+.default-cursor { cursor: default; }
+
 .profile-post-container {
     cursor: pointer;
     width: fit-content;
@@ -5,6 +9,7 @@
     margin: 2vw;
     border-radius: 10px;
 }
+
 
 .post-header {
     height: 60px;

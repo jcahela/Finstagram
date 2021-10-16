@@ -1,3 +1,7 @@
+.pointer-cursor { cursor: pointer; }
+
+.default-cursor { cursor: default; }
+
 .post-container {
     border: 1px solid #83838360;
     height: fit-content;
@@ -94,6 +98,7 @@
 .post-page-description-container,
 .comments-container,
 .view-comments {
+    cursor: pointer;
     font-size: 14px;
     padding-left: 15px;
     margin-bottom: 5px;
@@ -107,6 +112,7 @@
     color: #838383;
     font-size: 15px;
 }
+
 
 .post-description-user,
 .comment-user {
@@ -139,6 +145,8 @@
 
 .feed-comment {
     margin-bottom: 5px;
+    width: 80%;
+    overflow-wrap: break-word;
 }
 
 .feed-new-comment-form {
@@ -150,7 +158,6 @@
     width: 100%;
     min-height: fit-content;
     padding: 18px 18px;
-    word-wrap: break-word;
     resize: none;
 }
 

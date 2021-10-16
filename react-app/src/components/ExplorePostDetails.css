@@ -44,6 +44,10 @@
     margin-right: 12px;
 }
 
+.explore-profile-pic:hover {
+    cursor: pointer;
+}
+
 .user-name {
     font-size: 14px;
     font-weight: 600;
@@ -88,6 +92,11 @@
     flex-basis: 200px;
     flex-grow: 1;
     overflow-y: auto;
+    scrollbar-width: none; /* hide scrollbar in firefox */
+}
+
+.explore-comment-section::-webkit-scrollbar {
+    width: 0; /* hide scrollbar in chrome */
 }
 
 .explore-comment-text {
@@ -107,11 +116,13 @@
     display: flex;
     align-items: flex-start;
     padding: 10px;
+    
 }
 
 .explore-post-interaction-icons-container {
-    margin-left: 10px;
+    padding: 10px;
     margin-bottom: 5px;
+    border-top: 1px solid #83838360;
 }
 
 .explore-likes-counter {
@@ -119,6 +130,7 @@
     font-weight: 600;
     margin-left: 10px;
     cursor: pointer;
+    margin-bottom: 10px;
 }
 
 /* .explore-comment-input {

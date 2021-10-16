@@ -4,7 +4,7 @@
     grid-auto-rows: 300px;
     max-width: 975px;
     min-width: 300px;
-    margin: 0 auto;
+    margin: 30px auto;
     grid-gap: 30px;
     grid-auto-flow: dense;
 }

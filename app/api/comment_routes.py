@@ -28,13 +28,11 @@ def edit_comment(comment_id):
     if comment.validate_on_submit():
         commentToUpdate = Comment.query.filter(Comment.id == comment_id).first()
         if commentToUpdate.user_id != current_user.id:
-            return {
-                "error": "You are not authorized to edit this comment"
-            }
+            return {"errors": ["You are not permitted to edit this comment"]}, 400
         commentToUpdate.description = comment.data['description']
         db.session.add(commentToUpdate)
         db.session.commit()
         return {
             "message": "successful"
         }
-    return {'errors': validation_errors_to_error_messages(comment.errors)}, 401
+    return {'errors': ["You cannot post an empty comment"]}, 401

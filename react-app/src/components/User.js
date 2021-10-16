@@ -16,7 +16,6 @@ const User = () => {
   const followedUsersPosts = useSelector(state => state.followedUsersPosts);
   const nonFollowedUsersPosts = useSelector(state => state.nonFollowedUsersPosts);
 
-
   useEffect(() => {
     (async () => {
       if (sessionUser.id === +userId) {

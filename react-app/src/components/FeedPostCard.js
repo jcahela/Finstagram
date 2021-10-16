@@ -48,11 +48,9 @@ function FeedPostCard({postId}) {
 
     const textareaHandler = (e) => {
         e.preventDefault();
-        setComment(e.target.val)
-
+        setComment(e.target.value);
         const comment = commentRef.current.value;
-        const hasEnter = comment.match(/\n/);
-        if (hasEnter) submitComment(e);
+        if (comment.match(/\n/)) submitComment(e);
     }
 
     const submitComment = async (e) => {
@@ -225,7 +223,7 @@ function FeedPostCard({postId}) {
                     value={comment}
                     onChange={textareaHandler}
                 />
-                <button className={`feed-new-comment-button disabled-${comment.replace(/\s/g, '').length === 0}`} disabled={comment.replace(/\s/g, '').length === 0}>Post</button>
+                <button className={`feed-new-comment-button`} disabled='false'>Post</button>
             </form>
         </div>
     )

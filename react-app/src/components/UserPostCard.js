@@ -15,7 +15,6 @@ function UserPostCard({ postKey, posts }) {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
 
-    // console.log(postKey,something, "======================================================")
     let post = posts[postKey];
 
     let user_id = posts[postKey].user_id
@@ -49,6 +48,15 @@ function UserPostCard({ postKey, posts }) {
                     post?.content?.slice(-4) === 'webm' ||
                     post?.content?.slice(-5) === 'html5';
 
+
+    const textareaHandler = (e) => {
+        e.preventDefault();
+        setComment(e.target.val)
+
+        const comment = commentRef.current.value;
+        const hasEnter = comment.match(/\n/);
+        if (hasEnter) submitComment(e);
+    }
 
     const submitComment = async (e) => {
         e.preventDefault();
@@ -153,7 +161,7 @@ function UserPostCard({ postKey, posts }) {
                         placeholder="Add a comment..."
                         className="feed-new-comment-input"
                         value={comment}
-                        onChange={(e) => setComment(e.target.value)}
+                        onChange={textareaHandler}
                     />
                     <button className={`feed-new-comment-button disabled-${comment.replace(/\s/g, '').length === 0}`} disabled={comment.replace(/\s/g, '').length === 0}>Post</button>
                     </form>

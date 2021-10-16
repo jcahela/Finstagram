@@ -57,7 +57,7 @@ function UserPostCard({ postKey, posts }) {
         const comment = commentRef.current.value;
         console.log(/^\s*$/.test(comment));
         if (/^\s*$/.test(comment)) return;
-        else if (/\n/.test(comment)) submitComment(e);
+        else if (/\n$/.test(comment)) submitComment(e);
     }
 
     const submitComment = async (e) => {

@@ -35,7 +35,7 @@ function ExplorePostDetails({postKey, posts}) {
 
         const comment = commentRef.current.value;
         if (/^\s*$/.test(comment)) return;
-        else if (/\n/.test(comment)) submitComment(e);
+        else if (/\n$/.test(comment)) submitComment(e);
     }
 
     const submitComment = async (e) => {

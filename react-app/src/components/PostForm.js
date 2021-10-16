@@ -11,7 +11,6 @@ const PostForm = () => {
     const [contentFile, setContentFile] = useState('');
     const [contentLoading, setContentLoading] = useState(false);
     const [errors, setErrors] = useState([]);
-    const history = useHistory();
     const dispatch = useDispatch();
     const { closeModal } = useModal();
 

@@ -4,6 +4,7 @@ import { getSessionUsersPostsThunk, editCommentThunk } from "../store/sessionUse
 import { getFollowedUsersPostsThunk } from "../store/followedUsersPosts";
 import { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
+import { getAllPostsThunk } from "../store/allPosts";
 import './EditCommentModal.css'
 
 function EditCommentModal({ comment }) {
@@ -11,6 +12,7 @@ function EditCommentModal({ comment }) {
     const descriptionRef = useRef();
     const { closeModal, setModalContent } = useModal();
     const [ description, setDescription ] = useState(comment.description);
+    const [ editCommentErrors, setEditCommentErrors ] = useState([])
 
     useEffect(() => {
         const descriptionTag = descriptionRef.current;
@@ -30,10 +32,13 @@ function EditCommentModal({ comment }) {
             'description': description,
             'post_id': comment.post_id
         }
-        await dispatch(editCommentThunk(newComment));
-        await dispatch(getSessionUsersPostsThunk());
-        await dispatch(getFollowedUsersPostsThunk());
-        closeModal();
+        const data = await dispatch(editCommentThunk(newComment));
+        if (data) {
+            setEditCommentErrors(data)
+        } else {
+            await dispatch(getAllPostsThunk());
+            closeModal();
+        }
     }
 
     const cancelEditComment = (e) => {
@@ -54,6 +59,11 @@ function EditCommentModal({ comment }) {
                     onChange={(e) => setDescription(e.target.value)}
                 >
                 </textarea>
+                <div className="edit-comment-form-errors">
+                    {editCommentErrors.map((error, ind) => (
+                        <div key={ind}>{error}</div>
+                    ))}
+                </div>
                 <button className="edit-comment-form-button">Edit Comment</button>
                 <button onClick={cancelEditComment} className="edit-comment-form-cancel">Cancel</button>
             </form>

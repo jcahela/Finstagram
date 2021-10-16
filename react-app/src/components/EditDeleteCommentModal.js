@@ -1,18 +1,17 @@
 import { useModal } from "../context/Modal"
-import { removeCommentThunk, getSessionUsersPostsThunk } from "../store/sessionUserPosts";
-import { getFollowedUsersPostsThunk } from "../store/followedUsersPosts";
+import { removeCommentThunk } from "../store/sessionUserPosts";
+import { getAllPostsThunk } from "../store/allPosts";
 import { useDispatch } from "react-redux";
 import EditCommentModal from "./EditCommentModal";
 import './EditDeleteCommentModal.css'
 
 function EditDeleteCommentModal({ comment }) {
     const dispatch = useDispatch();
-    const { closeModal, toggleModal, setModalContent } = useModal();
+    const { closeModal, setModalContent } = useModal();
 
     const deleteComment = async () => {
         await dispatch(removeCommentThunk(comment.id));
-        await dispatch(getSessionUsersPostsThunk());
-        await dispatch(getFollowedUsersPostsThunk());
+        await dispatch(getAllPostsThunk());
         closeModal();
     }
 

@@ -159,9 +159,15 @@ export const editCommentThunk = (comment) => async (dispatch) => {
     })
 
     if (response.ok) {
+        return null;
+    } else if (response.status < 500) {
         const data = await response.json();
-        return data;
-    }
+        if (data.errors) {
+          return data.errors;
+        }
+      } else {
+        return ['An error occurred. Please try again.']
+      }
 }
 
 export const followUserThunk = (userId) => async (dispatch) => {

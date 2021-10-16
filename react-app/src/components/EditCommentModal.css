@@ -26,6 +26,14 @@
     margin-bottom: 20px;
 }
 
+.edit-comment-form-errors {
+    display: flex;
+    flex-direction: column;
+    color: red;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
 .edit-comment-form-button {
     background-color: #0095F6;
     color: white;

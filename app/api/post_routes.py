@@ -131,3 +131,19 @@ def remove_post(post_id):
     return {
             "post": post.to_dict()
         }
+
+@post_routes.route('/<int:post_id>', methods=['PATCH'])
+@login_required
+def edit_post(post_id):
+    post = Post.query.filter(Post.id == post_id).first()
+    if post.user_id != current_user.id:
+        return {"errors": ["You are not permitted to edit this post"]}, 400
+    new_description = request.json['description']
+    if new_description.isspace():
+        new_description = ''
+    post.description = request.json['description']
+    db.session.add(post)
+    db.session.commit()
+    return {
+        "post": post.to_dict()
+    }

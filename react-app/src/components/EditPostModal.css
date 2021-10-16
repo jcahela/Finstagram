@@ -1,0 +1,54 @@
+.edit-post-container {
+    background-color: #fff;
+    padding: 20px;
+}
+
+.edit-post-go-back {
+    color: blue;
+    margin-bottom: 10px;
+}
+
+.edit-post-go-back:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.edit-post-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-post-form-description {
+    border: 1px solid #838383;
+    padding: 10px;
+    resize: none;
+    margin-bottom: 20px;
+}
+
+.edit-post-form-errors {
+    display: flex;
+    flex-direction: column;
+    color: red;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.edit-post-form-button {
+    background-color: #0095F6;
+    color: white;
+    padding: 10px 0;
+    border-radius: 4px;
+}
+
+.edit-post-form-cancel {
+    border: 1px solid #838383;
+    border-radius: 4px;
+    height: 40px;
+    margin-top: 10px;
+}
+
+.edit-post-form-button:hover,
+.edit-post-form-cancel:hover {
+    cursor: pointer;
+}

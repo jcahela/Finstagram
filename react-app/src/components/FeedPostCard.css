@@ -1,9 +1,14 @@
+.pointer-cursor { cursor: pointer; }
+
+.default-cursor { cursor: default; }
+
 .post-container {
     border: 1px solid #83838360;
     height: fit-content;
     margin-bottom: 30px;
     border-radius: 2px;
 }
+
 
 .post-header {
     height: 60px;
@@ -90,6 +95,7 @@
 .post-page-description-container,
 .comments-container,
 .view-comments {
+    cursor: pointer;
     font-size: 14px;
     padding-left: 15px;
     margin-bottom: 5px;
@@ -103,6 +109,7 @@
     color: #838383;
     font-size: 15px;
 }
+
 
 .post-description-user,
 .comment-user {

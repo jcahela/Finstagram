@@ -2,7 +2,7 @@
 className={`feed-new-comment-button disabled-${/^\s*$/.test(comment)}`} disabled={/^\s*$/.test(comment)}
 
 if (/^\s*$/.test(comment)) return;
-else if (/\n/.test(comment)) submitComment(e);
+else if (/\n$/.test(comment)) submitComment(e);
 
 
 // Redacted

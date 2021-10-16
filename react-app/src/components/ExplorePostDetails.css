@@ -1,7 +1,12 @@
+.pointer-cursor { cursor: pointer; }
+
+.default-cursor { cursor: default; }
+
 .details-container {
     display: flex;
     background-color: #fff;
 }
+
 
 .details-image-container {
     min-width: 480px;

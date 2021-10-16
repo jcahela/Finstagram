@@ -179,8 +179,8 @@ function FeedPostCard({postId}) {
                 <span className="post-description-user">{user?.username}</span>
                 <span className="post-page-description">{post?.description}</span>
             </div>
-            {!showComments && (commentsArr.length > 1) && <div className="view-comments" onClick={() => setShowComments(true)}>View all {commentsArr?.length} comments</div>}
-            {commentsArr.length === 0 && <div className="view-comments">No comments</div>}
+            {!showComments && (commentsArr.length > 1) && <div className="view-comments pointer-cursor" onClick={() => setShowComments(true)}>View all {commentsArr?.length} comments</div>}
+            {commentsArr.length === 0 && <div className="view-comments default-cursor">No comments</div>}
             <div className="comments-container">
                 {showComments === true ? (
                     commentsArr?.map((comment, index) => {

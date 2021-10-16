@@ -10,6 +10,7 @@ const PostForm = () => {
     const [description, setDescription] = useState('');
     const [contentFile, setContentFile] = useState('');
     const [contentLoading, setContentLoading] = useState(false);
+    const [errors, setErrors] = useState([]);
     const history = useHistory();
     const dispatch = useDispatch();
     const { closeModal } = useModal();
@@ -27,11 +28,15 @@ const PostForm = () => {
         
         setContentLoading(true);
         
-        await dispatch(addNewPostThunk(formData));
+        const data = await dispatch(addNewPostThunk(formData));
         setContentLoading(false);
-        await dispatch(getSessionUsersPostsThunk());
-        await dispatch(getAllPostsThunk())
-        closeModal();
+        if (data) {
+            setErrors(data)
+        } else {
+            await dispatch(getSessionUsersPostsThunk());
+            await dispatch(getAllPostsThunk())
+            closeModal();
+        }
     }
 
     return (
@@ -49,16 +54,21 @@ const PostForm = () => {
                 className={`post-file-button content-${contentFile !== ''}`} 
                 htmlFor="post-file"
             >{contentFile === '' ? "Upload Image/Video": "Added"}
-            </label>
-            {contentLoading && (
-                <p>Loading...</p>
-            )}
             <input 
                 id="post-file"
                 className="post-file-input"
                 type="file"
                 onChange={updateFile}
             />
+            </label>
+            {contentLoading && (
+                <p>Loading...</p>
+            )}
+            <div className="post-form-errors">
+                {errors.map((error, ind) => (
+                  <div key={ind}>{error}</div>
+            ))}
+              </div>
             <button className="post-form-button">Submit</button>
         </form>
     )

@@ -29,6 +29,7 @@
     justify-content: center;
     align-items: center;
     font-weight: bold;
+    position: relative;
 }
 
 .post-file-button:hover {
@@ -36,10 +37,8 @@
 }
 
 .post-file-input {
-    margin-bottom: 20px;
     position: absolute;
-    bottom: 20px;
-    opacity: 0;
+    z-index: -1;
 }
 
 .content-true {
@@ -55,4 +54,12 @@
 
 .post-form-button:hover {
     cursor: pointer;
+}
+
+.post-form-errors {
+    display: flex;
+    flex-direction: column;
+    color: red;
+    align-items: center;
+    margin-bottom: 20px;
 }

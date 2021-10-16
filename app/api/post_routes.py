@@ -59,12 +59,12 @@ def explore_posts():
 def add_post():
     # aws upload and error handling
     if "content" not in request.files:
-        return {"errors": "content required"}, 400
+        return {"errors": ["You must upload an image or video"]}, 400
 
     content = request.files["content"]
 
     if not allowed_file(content.filename):
-        return {"errors": "file type not permitted"}, 400
+        return {"errors": ["That file type is not permitted"]}, 400
 
     content.filename = get_unique_filename(content.filename)
 

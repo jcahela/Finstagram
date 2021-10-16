@@ -5,11 +5,15 @@ import { addCommentThunk, addLikeThunk, removeLikeThunk, followUserThunk, unfoll
 import { getNonFollowedPostsThunk } from '../store/nonFollowedUsersPosts';
 import { authenticate } from '../store/session';
 import { getAllPostsThunk } from '../store/allPosts';
+import { useHistory } from 'react-router-dom'
+import { useModal } from '../context/Modal';
 import './ExplorePostDetails.css';
 import './FeedPostCard.css';
 
 function ExplorePostDetails({postKey, posts}) {
     let dispatch = useDispatch();
+    const { closeModal } = useModal();
+    const history = useHistory();
     const [comment, setComment] = useState('')
     const commentRef = useRef();
     const likeRef = useRef();
@@ -94,15 +98,32 @@ function ExplorePostDetails({postKey, posts}) {
         await dispatch(authenticate())
     }
 
+    const sendToProfile = () => {
+        closeModal();
+        history.push(`/users/${user_id}`)
+    }
+
+    const isVideo =
+        posts[postKey]?.content?.slice(-3) === 'mp4' ||
+        posts[postKey]?.content?.slice(-3) === 'mov' ||
+        posts[postKey]?.content?.slice(-3) === 'wmv' ||
+        posts[postKey]?.content?.slice(-3) === 'avi' ||
+        posts[postKey]?.content?.slice(-4) === 'webm' ||
+        posts[postKey]?.content?.slice(-5) === 'html5';
+
     return (
         <div className="details-container">
             <div className="details-image-container">
-                <img src={posts[postKey].content} className="detail-image" alt="This is something"/>
+                { isVideo ? (
+                    <video src={posts[postKey].content} className="detail-image" alt="This is something" autoPlay muted controls/>
+                ):(
+                    <img src={posts[postKey].content} className="detail-image" alt="This is something"/>
+                )}
             </div>
             <div className="details">
                 <div className="user-info">
-                    <img src={users[user_id].profile_picture} className="explore-profile-pic" alt="this is something"/>
-                    <p className="user-name">{users[user_id].username}</p> <span>•</span>
+                    <img onClick={sendToProfile} src={users[user_id].profile_picture} className="explore-profile-pic" alt="this is something"/>
+                    <p onClick={sendToProfile} className="user-name">{users[user_id].username}</p> <span>•</span>
                     { user_id in followedUsers ? (
                         <span onClick={() => unfollowUser(user_id)} className="explore-following">Following</span>
                     ):(

@@ -11,6 +11,7 @@ import HoverUserCard from './HoverUserCard';
 import { useModal } from '../context/Modal';
 import { followUserThunk } from '../store/sessionUserPosts';
 import { authenticate } from '../store/session';
+import { useHistory } from 'react-router-dom';
 import './FeedPostCard.css'
 
 function FeedPostCard({postId}) {
@@ -27,6 +28,7 @@ function FeedPostCard({postId}) {
     const likeRef = useRef();
     const followRef = useRef();
     const dispatch = useDispatch();
+    const history = useHistory();
     const users = useSelector(state => state.users)
     const sessionUser = useSelector(state => state.session.user)
     const user = users[post?.user_id]
@@ -128,7 +130,7 @@ function FeedPostCard({postId}) {
         }
         timeOutOn = setTimeout(() => {
             setShowHoverUserCard(true)
-        }, 500)
+        }, 600)
     }
 
     const closeHoverUserCard = async () => {
@@ -148,12 +150,16 @@ function FeedPostCard({postId}) {
         setIsFollowing(true)
     }
 
+    const sendToProfile = (userId) => {
+        history.push(`/users/${userId}`)
+    }
+
     return (
         <div className="post-container">
             <div className="post-header">
                 <div onMouseLeave={closeHoverUserCard} className="post-header-user-info">
-                    <img onMouseOver={openHoverUserCard} className="post-profile-picture" src={user?.profile_picture} alt="" />
-                    <p onMouseOver={openHoverUserCard} className="post-user">{user?.username}</p>
+                    <img onClick={() => sendToProfile(post?.user_id)} onMouseOver={openHoverUserCard} className="post-profile-picture" src={user?.profile_picture} alt="" />
+                    <p onClick={() => sendToProfile(post?.user_id)} onMouseOver={openHoverUserCard} className="post-user">{user?.username}</p>
                     { !(post?.user_id in followedUsers) && sessionUser.id !== post?.user_id && (
                         <span ref={followRef} onClick={() => followUser(post.user_id)} className="explore-follow">Follow</span>
                     )}
@@ -162,7 +168,7 @@ function FeedPostCard({postId}) {
                 {post?.user_id === sessionUser.id && <i onClick={openDeletePostModal} className="fas fa-ellipsis-h options"></i>}
             </div>
             {isVideo ? (
-                <video className="post-image" src={post?.content} controls></video>
+                <video className="post-image" src={post?.content} controls autoPlay muted></video>
             ):(
                 <img className="post-image" src={post?.content} alt="" />
             )}

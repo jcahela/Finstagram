@@ -39,6 +39,10 @@
     cursor: pointer;
 }
 
+.post-user:hover {
+    text-decoration: underline;
+}
+
 .options {
     margin-right: 20px;
     font-weight: lighter;

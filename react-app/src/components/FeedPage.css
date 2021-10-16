@@ -15,6 +15,32 @@
 .profile-container {
     height: 60px;
     width: 250px;
-    border: 1px solid;
+    display: flex;
+}
 
+.feed-profile-picture {
+    height: 100%;
+    width: auto;
+}
+
+.feed-profile-info-container {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.feed-profile-username {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.feed-profile-firstlastname {
+    font-size: 14px;
+    color: #838383;
+}
+
+.feed-profile-picture:hover,
+.feed-profile-username:hover {
+    cursor: pointer;
 }

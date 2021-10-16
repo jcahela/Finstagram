@@ -10,7 +10,7 @@ import { useModal } from '../context/Modal';
 import './ExplorePostDetails.css';
 import './UserPostCard.css';
 
-function UserPostCard({ postKey, posts }) {
+function UserPostCard({ profileVidRef, postKey, posts }) {
     const [comment, setComment] = useState('')
     const commentRef = useRef();
     const dispatch = useDispatch();
@@ -101,7 +101,7 @@ function UserPostCard({ postKey, posts }) {
                                   {/* Header */}
             <div className="details-image-container">
                 {isVideo ? (
-                    <video className="detail-image" src={post?.content} controls></video>
+                    <video className="detail-image" src={post?.content} controls autoPlay muted></video>
                 ):(
                     <img className="detail-image" src={post?.content} alt="" />
                 )}

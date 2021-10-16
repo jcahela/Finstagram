@@ -95,9 +95,6 @@
 }
 
 .explore-photo-description {
-    /* display: inline-block;
-    align-items: stretch;
-    box-sizing: border-box; */
     display: flex;
     align-items: flex-start;
     padding: 10px;
@@ -120,8 +117,3 @@
     margin-left: 10px;
     cursor: pointer;
 }
-
-/* .explore-comment-input {
-    min-height: 58px;
-    justify-self: flex-end;
-} */

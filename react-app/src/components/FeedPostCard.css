@@ -9,7 +9,6 @@
     border-radius: 2px;
 }
 
-
 .post-header {
     height: 60px;
     display: flex;
@@ -142,6 +141,8 @@
 
 .feed-comment {
     margin-bottom: 5px;
+    width: 100%;
+    overflow-wrap: break-word;
 }
 
 .feed-new-comment-form {
@@ -153,9 +154,7 @@
     width: 100%;
     min-height: fit-content;
     padding: 18px 18px;
-    /* word-wrap: break-word; */
     resize: none;
-    /* overflow-wrap: break-word; */
 }
 
 .feed-new-comment-input::placeholder {

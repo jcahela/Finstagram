@@ -70,15 +70,25 @@ function HoverUserCard({ isFollowing, setIsFollowing, followRef, user }) {
                 </div>
             </div>
             <div className="hover-user-card-three-posts">
-                <div className="hover-user-card-post-image-div hover-card-image-1">
-                    <img className="hover-user-card-post-image" src={usersThreePosts[0]?.content} alt="" />
-                </div>
-                <div className="hover-user-card-post-image-div">
-                    <img className="hover-user-card-post-image" src={usersThreePosts[1]?.content} alt="" />
-                </div>
-                <div className="hover-user-card-post-image-div hover-card-image-3">
-                    <img className="hover-user-card-post-image" src={usersThreePosts[2]?.content} alt="" />
-                </div>
+                {usersThreePosts.map((post, index) => {
+                    const isVideo = 
+                        post?.content?.slice(-3) === 'mp4' ||
+                        post?.content?.slice(-3) === 'mov' ||
+                        post?.content?.slice(-3) === 'wmv' ||
+                        post?.content?.slice(-3) === 'avi' ||
+                        post?.content?.slice(-4) === 'webm' ||
+                        post?.content?.slice(-5) === 'html5'
+
+                        return (
+                            <div className={`hover-user-card-post-image-div hover-card-image-${index+1}`}>
+                                { isVideo ? (
+                                    <video className="hover-user-card-post-image video-card" src={usersThreePosts[index]?.content} alt="" autoPlay muted/>
+                                ):(
+                                    <img className="hover-user-card-post-image" src={usersThreePosts[index]?.content} alt="" />
+                                )}
+                            </div>
+                        )
+                })}
             </div>
             { user.id !== sessionUser.id ? (
                 isFollowing || user.id in followedUsers ? (

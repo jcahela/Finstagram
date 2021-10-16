@@ -44,6 +44,10 @@
     margin-right: 12px;
 }
 
+.explore-profile-pic:hover {
+    cursor: pointer;
+}
+
 .user-name {
     font-size: 14px;
     font-weight: 600;

@@ -96,6 +96,8 @@
 
 .explore-comment-text {
     font-size: 14px;
+    width: fit-content;
+    overflow-wrap: break-word;
 }
 
 .explore-photo-description {
@@ -105,8 +107,6 @@
 }
 
 .explore-commenter-container {
-    display: flex;
-    align-items: flex-start;
     padding: 10px;
 }
 

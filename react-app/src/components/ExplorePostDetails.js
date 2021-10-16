@@ -29,6 +29,15 @@ function ExplorePostDetails({postKey, posts}) {
         dispatch(getUsersThunk())
     }, [dispatch])
 
+    const textareaHandler = (e) => {
+        e.preventDefault();
+        setComment(e.target.value)
+
+        const comment = commentRef.current.value;
+        const hasEnter = comment.match(/\n/);
+        if (hasEnter) submitComment(e);
+    }
+
     const submitComment = async (e) => {
         e.preventDefault();
         const newComment = {
@@ -84,13 +93,6 @@ function ExplorePostDetails({postKey, posts}) {
         await dispatch(unfollowUserThunk(userId))
         await dispatch(authenticate())
     }
-
-    // comments(pin): {}
-    // content(pin):"https://picsum.photos/200/300"
-    // description(pin):"Beautiful Lorem Picsum Image"
-    // id(pin):3
-    // likes(pin): {}
-    // user_id(pin):2
 
     return (
         <div className="details-container">
@@ -149,14 +151,13 @@ function ExplorePostDetails({postKey, posts}) {
                         className="feed-new-comment-form"
                         onSubmit={submitComment}
                     >
-                    <input
-                        type='text'
+                    <textarea
                         ref = {commentRef}
                         rows="1"
                         placeholder="Add a comment..."
                         className="feed-new-comment-input"
                         value={comment}
-                        onChange={(e) => setComment(e.target.value)}
+                        onChange={textareaHandler}
                     />
                     <button className={`feed-new-comment-button disabled-${comment.replace(/\s/g, '').length === 0}`} disabled={comment.replace(/\s/g, '').length === 0}>Post</button>
                     </form>

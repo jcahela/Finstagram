@@ -146,8 +146,9 @@
     width: 100%;
     min-height: fit-content;
     padding: 18px 18px;
-    word-wrap: break-word;
+    /* word-wrap: break-word; */
     resize: none;
+    /* overflow-wrap: break-word; */
 }
 
 .feed-new-comment-input::placeholder {

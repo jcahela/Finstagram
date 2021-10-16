@@ -223,7 +223,7 @@ function FeedPostCard({postId}) {
                     value={comment}
                     onChange={textareaHandler}
                 />
-                <button className={`feed-new-comment-button`} disabled='false'>Post</button>
+                <button className={`feed-new-comment-button disabled-${/^\s*$/.test(comment)}`} disabled={/^\s*$/.test(comment)}>Post</button>
             </form>
         </div>
     )

@@ -34,8 +34,8 @@ function ExplorePostDetails({postKey, posts}) {
         setComment(e.target.value)
 
         const comment = commentRef.current.value;
-        const hasEnter = comment.match(/\n/);
-        if (hasEnter) submitComment(e);
+        if (/^\s*$/.test(comment)) return;
+        else if (/\n/.test(comment)) submitComment(e);
     }
 
     const submitComment = async (e) => {
@@ -159,7 +159,7 @@ function ExplorePostDetails({postKey, posts}) {
                         value={comment}
                         onChange={textareaHandler}
                     />
-                    <button className={`feed-new-comment-button disabled-${comment.replace(/\s/g, '').length === 0}`} disabled={comment.replace(/\s/g, '').length === 0}>Post</button>
+                    <button className={`feed-new-comment-button disabled-${/^\s*$/.test(comment)}`} disabled={/^\s*$/.test(comment)}>Post</button>
                     </form>
                 </div>
             </div>

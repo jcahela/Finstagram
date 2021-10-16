@@ -50,7 +50,9 @@ function FeedPostCard({postId}) {
         e.preventDefault();
         setComment(e.target.value);
         const comment = commentRef.current.value;
-        if (comment.match(/\n/)) submitComment(e);
+
+        if (/^\s*$/.test(comment)) return;
+        else if (/\n/.test(comment)) submitComment(e);
     }
 
     const submitComment = async (e) => {

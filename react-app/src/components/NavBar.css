@@ -86,11 +86,15 @@
     box-shadow: 0px 0px 5px 1px #dfdfdf;
     position: absolute;
     background-color: white;
-    bottom: -80px;
-    left: -180px;
+    bottom: -70px;
+    left: -170px;
     width: 200px;
     border-radius: 5px;
     z-index: 500;
+}
+
+.logout-comp {
+    margin-left: 6px;
 }
 
 .profile-button-container,

@@ -2,23 +2,38 @@
     display: none;
 }
 
-#email-input {
-
+.expanded {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
 }
 
-#email-submit-button {
+#invisible {
+    display: none;
+}
+
+.email-span {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.email-input { margin: 5px; }
+
+.email-submit-button {
+    cursor: pointer;
     border: 10px solid black;
 }
 
 .profile-post-container {
-    cursor: pointer;
     height: fit-content;
     width: 400px;
     border-radius: 20px;
     padding: 20px;
 }
 
-.profile-post-div,
+.profile-share-div,
 .profile-post-cancel {
     user-select: none;
     height: 60px;
@@ -28,22 +43,27 @@
     background-color: #fff;
 }
 
-.profile-post-div:hover {
-    color: white;
-    background-color: #4c68d7;
+.profile-post-cancel {
+    cursor: pointer;
 }
+
 
 .profile-post-cancel:hover {
     color: white;
     background-color: #e95950;
 }
 
-.profile-post-div {
+.profile-share-div {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     color: #4c68d7;
     font-weight: 600;
     border-bottom: 1px solid rgb(197, 197, 197);
+}
+
+.profile-share-div:hover {
+    color: white;
+    background-color: #4c68d7;
 }
 
 .profile-post-cancel {

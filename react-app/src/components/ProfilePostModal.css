@@ -43,6 +43,13 @@
     cursor: pointer;
 }
 
+.profile-post-delete {
+    cursor: pointer;
+}
+.profile-post-cancel {
+    cursor: pointer;
+}
+
 .profile-post-cancel:hover {
     color: white;
     background-color: #e95950;

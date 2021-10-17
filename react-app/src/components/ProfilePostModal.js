@@ -1,8 +1,12 @@
 import { useState, useRef } from 'react';
+import { useDispatch } from "react-redux";
 import { useModal } from '../context/Modal';
+import { removePostThunk, getSessionUsersPostsThunk } from "../store/sessionUserPosts";
+
 import './ProfilePostModal.css';
 
 const SharePostModal = ({ post, user, isVideo }) => {
+    const dispatch = useDispatch();
     const emailInputRef = useRef(null);
     const { closeModal } = useModal();
     const [toggleState, setToggleState] = useState(false);
@@ -30,6 +34,12 @@ const SharePostModal = ({ post, user, isVideo }) => {
         window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
     }
 
+    const deletePost = async () => {
+        await dispatch(removePostThunk(post.id));
+        await dispatch(getSessionUsersPostsThunk());
+        closeModal();
+    }
+
     return (
         <div className='profile-post-container'>
             <div  className='profile-share-div email-share-div'>
@@ -43,6 +53,7 @@ const SharePostModal = ({ post, user, isVideo }) => {
                 <button type='button' id='email-submit-button' onClick={emailHandler} className={visibility}></button>
             </div> */}
             <div onClick={closeModal} className='profile-post-cancel'>Cancel</div>
+            <div onClick={deletePost} className='profile-post-delete'>Delete</div>
         </div>
     )
 }

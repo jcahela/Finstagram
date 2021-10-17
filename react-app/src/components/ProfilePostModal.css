@@ -53,14 +53,14 @@
 }
 
 .profile-post-cancel {
-    color: #e95950;
+    color: #fbad50;
     border-radius: 0 0 20px 20px;
 }
 
 .profile-post-cancel:hover {
     cursor: pointer;
     color: white;
-    background-color: #e95950;
+    background-color: #fbad50;
 }
 
 .profile-post-options {

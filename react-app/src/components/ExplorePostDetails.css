@@ -117,7 +117,7 @@
 
 .explore-commenter-container {
     padding: 10px;
-    
+    display: flex;
 }
 
 .explore-post-interaction-icons-container {

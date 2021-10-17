@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useModal } from '../context/Modal';
-import DeletePostModal from './DeletePostModal';
 import UserPostCard from './UserPostCard';
 import './User.css'
 
@@ -53,20 +52,13 @@ const User = () => {
 
   }
 
-  const openProfilePostModal = (postKey) => {
+  const openProfileModal = (postKey) => {
     setModalContent((
       <UserPostCard profileVidRef={profileVidRef} postKey={postKey} posts={profile_posts} />
     ))
     profileVidRef?.current?.pause();
     toggleModal();
   }
-
-  const openDeletePostModal = (key) => {
-    setModalContent((
-        <DeletePostModal postId={key} />
-    ));
-    toggleModal();
- }
 
   if (!loaded) {
     return null;
@@ -101,11 +93,10 @@ const User = () => {
         return (
           <div className="profile-posts" onMouseOver={() => setStats(`${key}`)} onMouseLeave={() => setStats(false)}>
               { isVideo ? (
-                <video ref={profileVidRef} src={profile_posts[key].content} onClick={() => openProfilePostModal(key)} alt="something" className="profile-posts video-post" key={profile_posts[key].id} autoPlay muted></video>
+                <video ref={profileVidRef} src={profile_posts[key].content} onClick={() => openProfileModal(key)} alt="something" className="profile-posts video-post" key={profile_posts[key].id} autoPlay muted></video>
               ):(
-                <img src={profile_posts[key].content} onClick={() => openProfilePostModal(key)} alt="something" className="profile-posts" key={profile_posts[key].id}/>
+                <img src={profile_posts[key].content} onClick={() => openProfileModal(key)} alt="something" className="profile-posts" key={profile_posts[key].id}/>
               )}
-              {stats === key && <i onClick={() => openDeletePostModal(key)} className="fas fa-share options" arial-hidden="true"></i>}
               {stats === key && <span className={`material-icons like-icon`}>favorite</span>}
               {stats === key && <span className="likes-count">{Object.keys(profile_posts[key].likes).length}</span>}
               {stats === key && <i className="fas fa-comment comment-icon"></i>}

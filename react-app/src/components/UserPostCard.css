@@ -51,10 +51,12 @@
 .options {
     position: relative;
     bottom: 100%;
-    left: 90%;
+    left: 89%;
     font-weight: lighter;
     font-size: 25px;
-    /* background-color: red; */
+    border-radius: 50%;
+    background-color: white;
+    border: 2px solid black;
 }
 
 .options:hover {

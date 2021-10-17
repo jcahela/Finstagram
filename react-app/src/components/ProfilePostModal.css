@@ -1,0 +1,53 @@
+.invisible {
+    display: none;
+}
+
+#email-input {
+
+}
+
+#email-submit-button {
+    border: 10px solid black;
+}
+
+.profile-post-container {
+    cursor: pointer;
+    height: fit-content;
+    width: 400px;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.profile-post-div,
+.profile-post-cancel {
+    user-select: none;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+}
+
+.profile-post-div:hover {
+    color: white;
+    background-color: #4c68d7;
+}
+
+.profile-post-cancel:hover {
+    color: white;
+    background-color: #e95950;
+}
+
+.profile-post-div {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    color: #4c68d7;
+    font-weight: 600;
+    border-bottom: 1px solid rgb(197, 197, 197);
+}
+
+.profile-post-cancel {
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    color: #e95950;
+}

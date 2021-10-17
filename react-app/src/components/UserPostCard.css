@@ -2,6 +2,37 @@
 
 .default-cursor { cursor: default; }
 
+#profile-header-container {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+    'a . .'
+    'b . .'
+    'c c c';
+}
+
+
+#header-username {
+    border: solid 5px black;
+    grid-area: a;
+}
+
+#header-name {
+    border: solid 5px black;
+    grid-area: b;
+}
+
+#header-section-3 {
+    grid-area: c;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
+
+
+
 .profile-post-container {
     cursor: pointer;
     width: fit-content;
@@ -9,7 +40,6 @@
     margin: 2vw;
     border-radius: 10px;
 }
-
 
 .post-header {
     height: 60px;

@@ -61,17 +61,17 @@ const User = () => {
   }
 
   return (
-    <div className="profile-posts-container">
-
-      <div id='profile-header-container'>
-        <div>{sessionUser.username}</div>
-        <div>{Object.values(sessionUsersPosts).length} <span>posts</span></div>
-        <div>{Object.values(sessionUser.followers).length} <span>followers</span></div>
-        <div>{Object.values(sessionUser.followed).length} <span>following</span></div>
-        <div>{sessionUser.firstname} {sessionUser.lastname}</div>
+    <>
+    <div id='profile-header-container'>
+      <div id='header-username'>{sessionUser.username}</div>
+      <div id='header-name'>{sessionUser.firstname} {sessionUser.lastname}</div>
+      <div id='header-section-3'>
+        <div id='header-posts'>{Object.values(sessionUsersPosts).length} <span>posts</span></div>
+        <div id='header-followers'>{Object.values(sessionUser.followers).length} <span>followers</span></div>
+        <div id='header-following'>{Object.values(sessionUser.followed).length} <span>following</span></div>
       </div>
-
-
+    </div>
+    <div className="profile-posts-container">
       {Object.keys(profile_posts).map((key) => {
         const isVideo =
         profile_posts[key]?.content?.slice(-3) === 'mp4' ||
@@ -96,6 +96,7 @@ const User = () => {
         )
       })}
     </div>
+    </>
   )
 }
 

@@ -1,4 +1,5 @@
 import { removeFollowedUser } from "./session"
+import { addLike, removeLike } from "./allPosts"
 
 // constants
 const GET_SESSION_USER_POSTS = 'sessionUsersPosts/GET_SESSION_USER_POSTS'
@@ -86,8 +87,10 @@ export const addCommentThunk = (comment) => async (dispatch) => {
 }
 
 export const addLikeThunk = (like) => async (dispatch) => {
-    const { post_id } = like;
-
+    const { post_id, id, email, firstname, lastname, username } = like
+    const user = {
+        post_id, id, email, firstname, lastname, username
+    }
     const response = await fetch(`/api/posts/${post_id}/likes`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -95,6 +98,8 @@ export const addLikeThunk = (like) => async (dispatch) => {
             post_id
         })
     })
+
+    dispatch(addLike(user))
 
     if (response.ok) {
         return null
@@ -109,11 +114,17 @@ export const addLikeThunk = (like) => async (dispatch) => {
 }
 
 export const removeLikeThunk = (likeToRemove) => async (dispatch) => {
-    const { post_id } = likeToRemove;
+    const { post_id, user_id } = likeToRemove;
+    const likeInfo = {
+        'removePostId': post_id,
+        'removeUserId': user_id
+    }
 
     const response = await fetch(`/api/posts/${post_id}/likes`, {
         method: 'DELETE'
     })
+
+    dispatch(removeLike(likeInfo))
 
     if (response.ok) {
         return null

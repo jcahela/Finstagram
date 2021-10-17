@@ -79,20 +79,22 @@ function FeedPostCard({postId}) {
     const addLike = async () => {
         const newLike = {
             'post_id': post.id,
+            'id': sessionUser.id,
+            'email': sessionUser.email,
+            'firstname': sessionUser.firstname,
+            'lastname': sessionUser.lastname,
+            'username': sessionUser.username
         }
         await dispatch(addLikeThunk(newLike));
-        await dispatch(getSessionUsersPostsThunk());
-        await dispatch(getFollowedUsersPostsThunk());
         await dispatch(getAllPostsThunk());
     }
 
     const removeLike = async () => {
         const likeToDelete = {
-            'post_id': post.id
+            'post_id': post.id,
+            'user_id': sessionUser.id
         }
         await dispatch(removeLikeThunk(likeToDelete));
-        await dispatch(getSessionUsersPostsThunk());
-        await dispatch(getFollowedUsersPostsThunk());
         await dispatch(getAllPostsThunk());
     }
 

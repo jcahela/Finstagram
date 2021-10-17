@@ -63,18 +63,22 @@ function ExplorePostDetails({postKey, posts}) {
     const addLike = async () => {
         const newLike = {
             'post_id': posts[postKey].id,
+            'id': sessionUser.id,
+            'email': sessionUser.email,
+            'firstname': sessionUser.firstname,
+            'lastname': sessionUser.lastname,
+            'username': sessionUser.username
         }
         await dispatch(addLikeThunk(newLike));
-        await dispatch(getNonFollowedPostsThunk());
         await dispatch(getAllPostsThunk());
     }
 
     const removeLike = async () => {
         const likeToDelete = {
-            'post_id': posts[postKey].id
+            'post_id': posts[postKey].id,
+            'user_id': sessionUser.id
         }
         await dispatch(removeLikeThunk(likeToDelete));
-        await dispatch(getNonFollowedPostsThunk());
         await dispatch(getAllPostsThunk());
     }
 

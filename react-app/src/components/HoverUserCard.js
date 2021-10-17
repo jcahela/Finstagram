@@ -1,11 +1,9 @@
 import { useSelector } from 'react-redux'
-import { useEffect } from 'react'
 import { unfollowUserThunk, followUserThunk } from '../store/sessionUserPosts'
 import { authenticate } from '../store/session'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import './HoverUserCard.css'
-import { getFollowedUsersPostsThunk } from '../store/followedUsersPosts'
 
 function HoverUserCard({ isFollowing, setIsFollowing, followRef, user }) {
     const dispatch = useDispatch();

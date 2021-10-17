@@ -154,6 +154,10 @@ function FeedPostCard({postId}) {
         history.push(`/users/${userId}`)
     }
 
+    const sendToUserProfile = (commentUserId) => {
+        history.push(`/users/${commentUserId}`)
+    }
+
     return (
         <div className="post-container">
             <div className="post-header">
@@ -182,7 +186,7 @@ function FeedPostCard({postId}) {
             </div>
             <p className="feed-likes-count">{likesArr.length} likes</p>
             <div className="post-page-description-container">
-                <span className="post-description-user">{user?.username}</span>
+                <span onClick={() => sendToProfile(post?.user_id)} className="post-description-user">{user?.username}</span>
                 <span className="post-page-description">{post?.description}</span>
             </div>
             {!showComments && (commentsArr.length > 1) && <div className="view-comments pointer-cursor" onClick={() => setShowComments(true)}>View all {commentsArr?.length} comments</div>}
@@ -199,7 +203,7 @@ function FeedPostCard({postId}) {
                                 onMouseLeave={() => setShowCommentOptions(false)}
                                 className="comment-row"
                             >
-                                <div className="feed-comment"><span className="comment-user">{commentUser?.username}</span> {comment.description}</div>
+                                <div className="feed-comment"><span onClick={() => sendToUserProfile(comment.user_id)} className="comment-user">{commentUser?.username}</span> {comment.description}</div>
                                 <div className="comment-options-container">
                                     {showCommentOptions === comment && comment.user_id === sessionUser.id && <i onClick={() => openCommentOptionsModal(comment)} ref={commentOptionsRef} className={`fas fa-ellipsis-h comment-options-icon`}></i>}
                                 </div>
@@ -212,7 +216,7 @@ function FeedPostCard({postId}) {
                         onMouseLeave={() => setShowCommentOptions(false)}
                         className="comment-row"
                     >
-                        <div className="feed-comment"><span className="comment-user">{users[lastComment?.user_id]?.username}</span> {lastComment?.description}</div>
+                        <div className="feed-comment"><span onClick={() => sendToUserProfile(lastComment?.user_id)} className="comment-user">{users[lastComment?.user_id]?.username}</span> {lastComment?.description}</div>
                         <div className="comment-options-container">
                             {showCommentOptions === lastComment && lastComment?.user_id === sessionUser.id && <i onClick={() => openCommentOptionsModal(lastComment)} ref={commentOptionsRef} className={`fas fa-ellipsis-h comment-options-icon`}></i>}
                         </div>

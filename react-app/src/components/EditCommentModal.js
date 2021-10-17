@@ -1,7 +1,6 @@
 import EditDeleteCommentModal from "./EditDeleteCommentModal"
 import { useModal } from "../context/Modal"
-import { getSessionUsersPostsThunk, editCommentThunk } from "../store/sessionUserPosts";
-import { getFollowedUsersPostsThunk } from "../store/followedUsersPosts";
+import { editCommentThunk } from "../store/sessionUserPosts";
 import { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { getAllPostsThunk } from "../store/allPosts";

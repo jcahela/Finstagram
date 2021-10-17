@@ -98,7 +98,7 @@
 .post-page-description-container,
 .comments-container,
 .view-comments {
-    cursor: pointer;
+    cursor: default;
     font-size: 14px;
     padding-left: 15px;
     margin-bottom: 5px;
@@ -120,6 +120,12 @@
     margin-right: 6px;
 }
 
+.comment-user:hover,
+.post-description-user:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .comments-container {
     height: fit-content;
 }
@@ -128,6 +134,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 10px;
 }
 
 

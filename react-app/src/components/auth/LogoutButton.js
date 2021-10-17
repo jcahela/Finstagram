@@ -10,7 +10,12 @@ const LogoutButton = () => {
     await dispatch(removeSessionUsersPosts());
   };
 
-  return <button className="logout-comp" onClick={onLogout}>Logout</button>;
+  return (
+      <div className="logout-button-container" onClick={onLogout}>
+        <i class="fas fa-sign-out-alt"></i>
+        <button className="logout-comp">Logout</button>
+      </div>
+    )
 };
 
 export default LogoutButton;

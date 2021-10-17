@@ -4,13 +4,11 @@ import { addCommentThunk, addLikeThunk, removeLikeThunk } from '../store/session
 import { useDispatch } from 'react-redux';
 import { getSessionUsersPostsThunk } from '../store/sessionUserPosts';
 import { getNonFollowedPostsThunk } from '../store/nonFollowedUsersPosts';
-import DeletePostModal from './DeletePostModal';
-import { useModal } from '../context/Modal';
 // TODO: Add getFollowedPostsThunk to submitComment as well
 import './ExplorePostDetails.css';
 import './UserPostCard.css';
 
-function UserPostCard({ profileVidRef, postKey, posts }) {
+function UserPostCard({ postKey, posts }) {
     const [comment, setComment] = useState('')
     const commentRef = useRef();
     const dispatch = useDispatch();

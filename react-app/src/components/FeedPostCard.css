@@ -80,7 +80,8 @@
 
 .feed-like-icon:hover,
 .feed-comment-icon:hover,
-.feed-like-icon-filled:hover {
+.feed-like-icon-filled:hover,
+.feed-likes-count:hover {
     cursor: pointer;
 }
 

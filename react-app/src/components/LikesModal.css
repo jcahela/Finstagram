@@ -1,0 +1,83 @@
+.likes-modal-container {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    border-radius: 15px;
+    height: fit-content;
+    max-height: 400px;
+}
+
+.likes-modal-content-container {
+    overflow: auto;
+}
+
+.likes-modal-header {
+    text-align: center;
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    border-bottom: solid 1px #838383;
+    padding: 10px;
+}
+
+.likes-modal-user-row-container {
+    display: flex;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    align-items: center;
+    position: relative;
+}
+
+.likes-modal-user-row-0 {
+    margin-top: 10px;
+}
+
+.likes-modal-user-profile-picture {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+}
+
+.likes-modal-user-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+}
+
+.likes-modal-user-username {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.likes-modal-user-firstlast {
+    font-size: 14px;
+    color: #838383;
+    margin-top: 3px;
+}
+
+.likes-modal-following-button,
+.likes-modal-follow-button {
+    border: 1px solid #83838350;
+    text-align: center;
+    padding: 7px 12px;
+    height: fit-content;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 10px;
+}
+
+.likes-modal-follow-button {
+    background-color: #0095F6;
+    color: white;
+}
+
+.likes-modal-following-button:hover,
+.likes-modal-follow-button:hover {
+    cursor: pointer;
+}

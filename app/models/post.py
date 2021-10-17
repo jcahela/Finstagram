@@ -46,6 +46,8 @@ class Post(db.Model):
                 'lastname': user.lastname,
                 'username': user.username,
                 'email': user.email,
+                'profile_picture': user.profile_picture,
+                'id': user.id
             }
         return all_users
 

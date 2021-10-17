@@ -20,13 +20,13 @@ const NavBar = () => {
 
   function openDropdown() {
     if (timeoutDropdown) clearTimeout(timeoutDropdown)
-    setDropdown(!dropdown)
+    setDropdown(true)
   }
 
   function closeDropdown() {
     timeoutDropdown = setTimeout(() => {
       setDropdown(false)
-    }, 400)
+    }, 600)
   }
 
   function sendToProfile() {
@@ -89,7 +89,7 @@ const NavBar = () => {
             >
               <img className={`profile-picture dropdown-${dropdown}`} src={user.profile_picture} alt="User profile avatar" />
               {dropdown &&
-                <div onMouseLeave={closeDropdown} className="profile-dropdown">
+                <div onMouseLeave={closeDropdown} onMouseEnter={openDropdown} className="profile-dropdown">
                   <div
                     className="profile-button-container"
                     onClick={sendToProfile}

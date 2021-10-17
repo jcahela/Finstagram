@@ -39,7 +39,7 @@ function ExplorePage() {
                         explore_posts[key]?.content?.slice(-4) === 'webm' ||
                         explore_posts[key]?.content?.slice(-5) === 'html5';
                     return (
-                        <div className="explore-posts" onMouseOver={() => setStats(`${key}`)} onMouseLeave={() => setStats(false)}>
+                        <div key={key} className="explore-posts" onMouseOver={() => setStats(`${key}`)} onMouseLeave={() => setStats(false)}>
                             { isVideo ? (
                                 <video ref={videoRef} src={explore_posts[key].content} onClick={() => openExplorePostModal(key)} alt="something" className="explore-posts" key={explore_posts[key].id} autoPlay muted/>
                             ):(

@@ -9,11 +9,14 @@
     grid-template-areas:
     'a a .'
     '. b .'
-    'c c c';
+    '. c .';
+}
+
+.header-profile-div {
+
 }
 
 .header-username {
-    border: solid 5px black;
     grid-area: a;
 }
 
@@ -23,25 +26,22 @@
     justify-content: space-around;
 }
 
-.header-name {
-    border: solid 5px black;
+.header-section-2 {
     grid-area: b;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
 }
 
-.header-section-3 {
+.header-name {
     grid-area: c;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-start;
 }
 
-.profile-post-container {
-    cursor: pointer;
+
+.profile-posts-container {
     width: fit-content;
     height: fit-content;
-    margin: 2vw;
-    border-radius: 10px;
 }
 
 .header-profile-img {
@@ -49,9 +49,12 @@
 }
 
 .options {
-    margin-right: 20px;
+    position: relative;
+    bottom: 100%;
+    left: 90%;
     font-weight: lighter;
     font-size: 25px;
+    /* background-color: red; */
 }
 
 .options:hover {

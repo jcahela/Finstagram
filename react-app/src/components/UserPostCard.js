@@ -11,6 +11,7 @@ import './ExplorePostDetails.css';
 import './UserPostCard.css';
 
 function UserPostCard({ profileVidRef, postKey, posts }) {
+    const { toggleModal, setModalContent } = useModal();
     const [comment, setComment] = useState('')
     const commentRef = useRef();
     const dispatch = useDispatch();
@@ -96,9 +97,17 @@ function UserPostCard({ profileVidRef, postKey, posts }) {
         await dispatch(getNonFollowedPostsThunk());
     }
 
+    const openDeletePostModal = () => {
+        setModalContent((
+            <DeletePostModal postId={post.id} />
+        ));
+        toggleModal();
+    }
+
     return (
         <div className="details-container">
                                   {/* Header */}
+            {post?.user_id === sessionUser.id && <i onClick={openDeletePostModal} className="fas fa-ellipsis-h options"></i>}
             <div className="details-image-container">
                 {isVideo ? (
                     <video className="detail-image" src={post?.content} controls autoPlay muted></video>

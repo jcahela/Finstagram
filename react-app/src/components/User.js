@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useModal } from '../context/Modal';
+import DeletePostModal from './DeletePostModal';
 import UserPostCard from './UserPostCard';
 import './User.css'
 
@@ -48,13 +49,24 @@ const User = () => {
 
   let profile_posts = {...posts};
 
-  function openProfilePostModal(postKey) {
+  const profilePictureHandler = (e) => {
+
+  }
+
+  const openProfilePostModal = (postKey) => {
     setModalContent((
       <UserPostCard profileVidRef={profileVidRef} postKey={postKey} posts={profile_posts} />
     ))
     profileVidRef?.current?.pause();
     toggleModal();
   }
+
+  const openDeletePostModal = (key) => {
+    setModalContent((
+        <DeletePostModal postId={key} />
+    ));
+    toggleModal();
+ }
 
   if (!loaded) {
     return null;
@@ -64,15 +76,17 @@ const User = () => {
     <>
     <div className='profile-header-container'>
       <div className='header-section-1'>
-        <div className='header-profile-div'><img className='header-profile-img' src={sessionUser.profile_picture} alt='profile' /></div>
+        <div className='header-profile-div' onClick={profilePictureHandler}>
+          <img className='header-profile-img' src={sessionUser.profile_picture} alt='profile' />
+        </div>
         <div className='header-username'>{sessionUser.username}</div>
       </div>
-        <div className='header-name'>{sessionUser.firstname} {sessionUser.lastname}</div>
-      <div className='header-section-3'>
+      <div className='header-section-2'>
         <div className='header-posts'>{Object.values(sessionUsersPosts).length} <span>posts</span></div>
         <div className='header-followers'>{Object.values(sessionUser.followers).length} <span>followers</span></div>
         <div className='header-following'>{Object.values(sessionUser.followed).length} <span>following</span></div>
       </div>
+      <div className='header-name'>{sessionUser.firstname} {sessionUser.lastname}</div>
     </div>
     <div className="profile-posts-container">
       {Object.keys(profile_posts).map((key) => {
@@ -91,6 +105,7 @@ const User = () => {
               ):(
                 <img src={profile_posts[key].content} onClick={() => openProfilePostModal(key)} alt="something" className="profile-posts" key={profile_posts[key].id}/>
               )}
+              {stats === key && <i onClick={() => openDeletePostModal(key)} className="fas fa-share options" arial-hidden="true"></i>}
               {stats === key && <span className={`material-icons like-icon`}>favorite</span>}
               {stats === key && <span className="likes-count">{Object.keys(profile_posts[key].likes).length}</span>}
               {stats === key && <i className="fas fa-comment comment-icon"></i>}

@@ -18,7 +18,7 @@ function FeedPostCard({postId}) {
     const { toggleModal, setModalContent } = useModal();
     const [showComments, setShowComments] = useState(false);
     const [showCommentOptions, setShowCommentOptions] = useState(false);
-    const [comment, setComment] = useState('')
+    const [comment, setComment] = useState('');
     const [showHoverUserCard, setShowHoverUserCard] = useState(false);
     const followedUsers = useSelector(state => state.session.user?.followed) || {}
     const post = useSelector(state => state.allPosts[postId])

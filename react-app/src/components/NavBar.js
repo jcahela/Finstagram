@@ -16,8 +16,17 @@ const NavBar = () => {
   const history = useHistory();
   const { toggleModal, setModalContent } = useModal();
 
-  function toggleDropdown() {
-    setDropdown(!dropdown);
+  let timeoutDropdown;
+
+  function openDropdown() {
+    if (timeoutDropdown) clearTimeout(timeoutDropdown)
+    setDropdown(!dropdown)
+  }
+
+  function closeDropdown() {
+    timeoutDropdown = setTimeout(() => {
+      setDropdown(false)
+    }, 400)
   }
 
   function sendToProfile() {
@@ -76,11 +85,11 @@ const NavBar = () => {
           {user && (
             <div
               className={`profile-picture-container`}
-              onClick={toggleDropdown}
+              onClick={openDropdown}
             >
               <img className={`profile-picture dropdown-${dropdown}`} src={user.profile_picture} alt="User profile avatar" />
               {dropdown &&
-                <div className="profile-dropdown">
+                <div onMouseLeave={closeDropdown} className="profile-dropdown">
                   <div
                     className="profile-button-container"
                     onClick={sendToProfile}
@@ -88,9 +97,7 @@ const NavBar = () => {
                       <i className="far fa-user-circle profile-icon"></i>
                         Profile
                   </div>
-                  <div className="logout-button-container">
-                    <LogoutButton />
-                  </div>
+                  <LogoutButton />
                 </div>
               }
             </div>

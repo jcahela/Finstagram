@@ -23,7 +23,7 @@ function ExplorePage() {
         setModalContent((
           <ExplorePostDetails postKey={postKey} posts={explore_posts}/>
         ))
-        videoRef.current.pause();
+        videoRef?.current?.pause();
         toggleModal();
     }
 

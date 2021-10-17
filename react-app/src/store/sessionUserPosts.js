@@ -5,6 +5,7 @@ const GET_SESSION_USER_POSTS = 'sessionUsersPosts/GET_SESSION_USER_POSTS'
 const REMOVE_SESSION_USER_POSTS = 'sessionUsersPosts/REMOVE_SESSION_USER_POSTS'
 const ADD_NEW_POST = 'sessionUsersPosts/ADD_NEW_POST'
 const REMOVE_POST = 'sessionUsersPosts/REMOVE_POST'
+const EDIT_POST = 'sessionUsersPosts/EDIT_POST'
 
 const getSessionUsersPosts = (posts) => ({
     type: GET_SESSION_USER_POSTS,
@@ -23,6 +24,11 @@ const addNewPost = (post) => ({
 const removePost = (postId) => ({
     type: REMOVE_POST,
     payload: postId
+})
+
+const editPost = (post) => ({
+    type: EDIT_POST,
+    payload: post
 })
 
 const initialState = { };
@@ -183,6 +189,30 @@ export const unfollowUserThunk = (userId) => async (dispatch) => {
     await dispatch(removeFollowedUser(userId))
 }
 
+export const editPostThunk = (post) => async (dispatch) => {
+    const { id, description } = post;
+    const response = await fetch(`/api/posts/${id}`, {
+        method: 'PATCH',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            description: description
+        })
+    })
+
+    if (response.ok) {
+        const data = await response.json();
+        await dispatch(editPost(data))
+        return null;
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+          return data.errors;
+        }
+      } else {
+        return ['An error occurred. Please try again.']
+      }
+}
+
 function sessionUserPostsReducer(state = initialState, action) {
     let newState = {...state}
     switch(action.type) {
@@ -203,6 +233,11 @@ function sessionUserPostsReducer(state = initialState, action) {
             const postId = action.payload;
             delete newState[postId]
             return newState;
+        case EDIT_POST:
+            const editedPost = action.payload.post
+            const editedPostId = editedPost.id
+            newState[editedPostId] = editedPost
+            return newState
         default:
             return state
     }

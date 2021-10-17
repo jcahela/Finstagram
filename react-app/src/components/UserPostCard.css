@@ -41,9 +41,7 @@
 .profile-ellipsis {
     cursor: pointer;
     position: relative;
-    left: 95%;
-    margin-top: 2%;
-    height: fit-content;
+    left: 80px;
 }
 
 .profile-posts-container {

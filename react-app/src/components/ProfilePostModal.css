@@ -9,10 +9,6 @@
     justify-content: center;
 }
 
-#invisible {
-    display: none;
-}
-
 .email-span {
     cursor: pointer;
     display: flex;
@@ -46,7 +42,6 @@
 .profile-post-cancel {
     cursor: pointer;
 }
-
 
 .profile-post-cancel:hover {
     color: white;

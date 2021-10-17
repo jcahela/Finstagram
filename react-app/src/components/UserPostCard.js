@@ -110,24 +110,24 @@ function UserPostCard({ profileVidRef, postKey, posts }) {
     return (
         <div className="details-container">
                                   {/* Header */}
-            {post?.user_id === sessionUser.id && <i onClick={() => openProfilePostModal(post.id, isVideo)} className="fas fa-ellipsis-h profile-ellipsis" arial-hidden="true"></i>}
             <div className="details-image-container">
                 {isVideo ? (
                     <video className="detail-image" src={post?.content} controls autoPlay muted></video>
-                ):(
-                    <img className="detail-image" src={post?.content} alt="" />
-                )}
+                    ):(
+                        <img className="detail-image" src={post?.content} alt="" />
+                        )}
             </div>
             <div className="details">
                 <div className="user-info">
-                    <img src={users[user_id].profile_picture} className="explore-profile-pic" alt="this is something"/>
+                    <img src={users[user_id].profile_picture} className="explore-profile-pic" alt="user profile"/>
                     <p className="user-name">{users[user_id].firstname} {users[user_id].lastname}</p> <span>•</span> <span className="explore-follow">Follow</span>
+                <span>{post?.user_id === sessionUser.id && <i onClick={() => openProfilePostModal(post.id, isVideo)} className="fas fa-ellipsis-h profile-ellipsis" arial-hidden="true"></i>}</span>
                 </div>
                 <div className="explore-comment-section">
                                  {/* Description */}
                     <div className="explore-photo-description">
                         {/* This div contains the photos description along with username */}
-                        <img src={users[user_id].profile_picture} className="explore-profile-pic" alt="this is something"/>
+                        <img src={users[user_id].profile_picture} className="explore-profile-pic" alt="commenter profile"/>
                         <p>
                             <span className="user-name-description">{users[user_id].firstname} {users[user_id].lastname}</span>
                             <span className="explore-comment-text">{posts[postKey].description}</span>

@@ -62,13 +62,16 @@ const User = () => {
 
   return (
     <>
-    <div id='profile-header-container'>
-      <div id='header-username'>{sessionUser.username}</div>
-      <div id='header-name'>{sessionUser.firstname} {sessionUser.lastname}</div>
-      <div id='header-section-3'>
-        <div id='header-posts'>{Object.values(sessionUsersPosts).length} <span>posts</span></div>
-        <div id='header-followers'>{Object.values(sessionUser.followers).length} <span>followers</span></div>
-        <div id='header-following'>{Object.values(sessionUser.followed).length} <span>following</span></div>
+    <div className='profile-header-container'>
+      <div className='header-section-1'>
+        <div className='header-profile-div'><img className='header-profile-img' src={sessionUser.profile_picture} alt='profile' /></div>
+        <div className='header-username'>{sessionUser.username}</div>
+      </div>
+        <div className='header-name'>{sessionUser.firstname} {sessionUser.lastname}</div>
+      <div className='header-section-3'>
+        <div className='header-posts'>{Object.values(sessionUsersPosts).length} <span>posts</span></div>
+        <div className='header-followers'>{Object.values(sessionUser.followers).length} <span>followers</span></div>
+        <div className='header-following'>{Object.values(sessionUser.followed).length} <span>following</span></div>
       </div>
     </div>
     <div className="profile-posts-container">

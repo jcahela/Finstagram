@@ -2,36 +2,39 @@
 
 .default-cursor { cursor: default; }
 
-#profile-header-container {
+.profile-header-container {
     display: grid;
     grid-template-rows: repeat(3, 1fr);
     grid-template-columns: repeat(3, 1fr);
     grid-template-areas:
-    'a . .'
-    'b . .'
+    'a a .'
+    '. b .'
     'c c c';
 }
 
-
-#header-username {
+.header-username {
     border: solid 5px black;
     grid-area: a;
 }
 
-#header-name {
-    border: solid 5px black;
-    grid-area: b;
+.header-section-1 {
+    grid-area: a;
+    display: flex;
+    justify-content: space-around;
 }
 
-#header-section-3 {
+.header-name {
+    border: solid 5px black;
+    grid-area: b;
+    display: flex;
+    justify-content: center;
+}
+
+.header-section-3 {
     grid-area: c;
     display: flex;
     justify-content: space-evenly;
 }
-
-
-
-
 
 .profile-post-container {
     cursor: pointer;
@@ -41,28 +44,8 @@
     border-radius: 10px;
 }
 
-.post-header {
-    height: 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.post-header-user-info {
-    display: flex;
-    align-items: center;
-}
-
-.post-profile-picture {
+.header-profile-img {
     height: 30px;
-    border-radius: 50%;
-    margin-left: 20px;
-    margin-right: 15px;
-}
-
-.post-user {
-    font-size: 14px;
-    font-weight: 600;
 }
 
 .options {

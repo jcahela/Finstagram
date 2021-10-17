@@ -15,10 +15,12 @@ import { getSessionUsersPostsThunk } from './store/sessionUserPosts';
 import { getFollowedUsersPostsThunk } from './store/followedUsersPosts';
 import { getNonFollowedPostsThunk } from './store/nonFollowedUsersPosts';
 import { getAllPostsThunk } from './store/allPosts';
+import { useModal } from './context/Modal';
 
 import Modal from './components/Modal';
 
 function App() {
+  const { closeModal } = useModal();
   const [loaded, setLoaded] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
@@ -40,6 +42,14 @@ function App() {
       if (currentSessionUser) await dispatch(getNonFollowedPostsThunk());
     })();
   }, [dispatch, currentSessionUser]);
+
+  useEffect(() => {
+    (() => {
+      window.onpopstate = () => {
+        closeModal();
+      };      
+    })()
+  })
 
   if (!loaded) {
     return null;

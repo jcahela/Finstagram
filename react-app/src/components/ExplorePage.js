@@ -16,14 +16,14 @@ function ExplorePage() {
     }, [dispatch])
 
     const posts = useSelector(state => state.nonFollowedUsersPosts);
-    
+
     const explore_posts = {...posts}
 
     function openExplorePostModal(postKey) {
         setModalContent((
           <ExplorePostDetails postKey={postKey} posts={explore_posts}/>
         ))
-        videoRef.current.pause();
+        videoRef?.current?.pause();
         toggleModal();
     }
 
@@ -31,7 +31,7 @@ function ExplorePage() {
         <>
             <div className="explore-page-container">
                 {Object.keys(explore_posts).map((key) => {
-                    const isVideo = 
+                    const isVideo =
                         explore_posts[key]?.content?.slice(-3) === 'mp4' ||
                         explore_posts[key]?.content?.slice(-3) === 'mov' ||
                         explore_posts[key]?.content?.slice(-3) === 'wmv' ||

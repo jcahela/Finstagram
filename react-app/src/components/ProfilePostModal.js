@@ -23,7 +23,7 @@ const SharePostModal = ({ post }) => {
 
     return (
         <div className='share-post-container'>
-            <div onClick={sharePost} className='share-post-div'>
+            <div onClick={sharePost} className='profile-post-div'>
                 <span>Send Email</span>
                 <input ref={emailInputRef} type='email' id='email-input' className={visibility} />
                 <button type='button' id='email-submit-button' onClick={emailHandler} className={visibility}></button>

@@ -70,7 +70,6 @@
     border-radius: 50%;
     box-sizing: border-box;
     padding: 2px;
-    padding-bottom: 3px;
     margin: 0 auto;
 }
 
@@ -83,7 +82,7 @@
 }
 
 .profile-dropdown {
-    box-shadow: 0px 0px 5px 1px #dfdfdf;
+    box-shadow: 0px 0px 1px 1px #dfdfdf;
     position: absolute;
     background-color: white;
     bottom: -70px;

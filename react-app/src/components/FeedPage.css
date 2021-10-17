@@ -21,6 +21,7 @@
 .feed-profile-picture {
     height: 100%;
     width: auto;
+    border-radius: 50%;
 }
 
 .feed-profile-info-container {

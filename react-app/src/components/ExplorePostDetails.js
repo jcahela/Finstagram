@@ -103,6 +103,11 @@ function ExplorePostDetails({postKey, posts}) {
         history.push(`/users/${user_id}`)
     }
 
+    const sendToUsersProfile = (commentUserId) => {
+        closeModal();
+        history.push(`/users/${commentUserId}`)
+    }
+
     const isVideo =
         posts[postKey]?.content?.slice(-3) === 'mp4' ||
         posts[postKey]?.content?.slice(-3) === 'mov' ||
@@ -133,9 +138,9 @@ function ExplorePostDetails({postKey, posts}) {
                 <div className="explore-comment-section">
                     <div className="explore-photo-description">
                         {/* This div contains the photos description along with username */}
-                        <img src={users[user_id].profile_picture} className="explore-profile-pic" alt="this is something"/>
+                        <img onClick={sendToProfile} src={users[user_id].profile_picture} className="explore-profile-pic" alt="this is something"/>
                         <p>
-                            <span className="user-name-description">{users[user_id].username}</span>
+                            <span onClick={sendToProfile} className="user-name-description">{users[user_id].username}</span>
                             <span className="explore-comment-text">{posts[postKey].description}</span>
                         </p>
                     </div>
@@ -145,9 +150,9 @@ function ExplorePostDetails({postKey, posts}) {
                                 const commentUser = users[comment.user_id];
                                 return (
                                     <div key={comment.id} className="explore-commenter-container">
-                                        <img src={commentUser.profile_picture} className="explore-profile-pic" alt="this is something"/>
+                                        <img onClick={() => sendToUsersProfile(comment.user_id)} src={commentUser.profile_picture} className="explore-profile-pic" alt="this is something"/>
                                         <p>
-                                            <span className="user-name-description">{commentUser.username}</span>
+                                            <span onClick={() => sendToUsersProfile(comment.user_id)} className="user-name-description">{commentUser.username}</span>
                                             <span className="explore-comment-text">{comment.description}</span>
                                         </p>
                                     </div>

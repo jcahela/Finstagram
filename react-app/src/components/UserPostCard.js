@@ -109,7 +109,7 @@ function UserPostCard({ profileVidRef, postKey, posts }) {
     return (
         <div className="details-container">
                                   {/* Header */}
-            {post?.user_id === sessionUser.id && <i onClick={() => openProfilePostModal(post.id)} className="fas fa-ellipsis-h profile-post-div" arial-hidden="true"></i>}
+            {post?.user_id === sessionUser.id && <i onClick={() => openProfilePostModal(post.id)} className="fas fa-ellipsis-h profile-ellipsis" arial-hidden="true"></i>}
             <div className="details-image-container">
                 {isVideo ? (
                     <video className="detail-image" src={post?.content} controls autoPlay muted></video>

@@ -38,6 +38,13 @@
     justify-content: flex-start;
 }
 
+.profile-ellipsis {
+    cursor: pointer;
+    position: relative;
+    left: 95%;
+    margin-top: 2%;
+    height: fit-content;
+}
 
 .profile-posts-container {
     width: fit-content;

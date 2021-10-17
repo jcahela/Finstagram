@@ -14,7 +14,7 @@ const SharePostModal = ({ post, user, isVideo }) => {
         if (!toggleState) {
             setVisibility('');
             setExpanded('');
-            setEmailSpanText('Send to');
+            setEmailSpanText(`Send ${isVideo ? 'video' : 'photo'} to`);
         } else {
             setVisibility('invisible');
             setExpanded('expanded')

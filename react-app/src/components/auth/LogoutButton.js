@@ -12,7 +12,7 @@ const LogoutButton = () => {
 
   return (
       <div className="logout-button-container" onClick={onLogout}>
-        <i class="fas fa-sign-out-alt"></i>
+        <i className="fas fa-sign-out-alt"></i>
         <button className="logout-comp">Logout</button>
       </div>
     )

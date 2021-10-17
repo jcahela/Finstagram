@@ -29,8 +29,9 @@
     padding: 20px;
 }
 
-.profile-share-div,
-.profile-post-cancel {
+.profile-post-options,
+.profile-post-cancel,
+.profile-post-delete {
     user-select: none;
     height: 60px;
     display: flex;
@@ -39,37 +40,36 @@
     background-color: #fff;
 }
 
-.profile-post-cancel {
-    cursor: pointer;
-}
-
 .profile-post-delete {
     cursor: pointer;
-}
-.profile-post-cancel {
-    cursor: pointer;
+    color: #e95950;
+    border-radius: 20px 20px 0 0;
+    border-bottom: 1px solid rgb(197, 197, 197);
 }
 
-.profile-post-cancel:hover {
+.profile-post-delete:hover {
     color: white;
     background-color: #e95950;
 }
 
-.profile-share-div {
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+.profile-post-cancel {
+    color: #e95950;
+    border-radius: 0 0 20px 20px;
+}
+
+.profile-post-cancel:hover {
+    cursor: pointer;
+    color: white;
+    background-color: #e95950;
+}
+
+.profile-post-options {
     color: #4c68d7;
     font-weight: 600;
     border-bottom: 1px solid rgb(197, 197, 197);
 }
 
-.profile-share-div:hover {
+.profile-post-options:hover {
     color: white;
     background-color: #4c68d7;
-}
-
-.profile-post-cancel {
-    border-bottom-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    color: #e95950;
 }

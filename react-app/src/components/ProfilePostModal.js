@@ -42,7 +42,8 @@ const SharePostModal = ({ post, user, isVideo }) => {
 
     return (
         <div className='profile-post-container'>
-            <div  className='profile-share-div email-share-div'>
+            <div onClick={deletePost} className='profile-post-delete'>Delete</div>
+            <div  className='profile-post-options email-share-div'>
                 <span className={`email-span ${expanded}`} onClick={emailToggler}>{emailSpanText}</span>
                 <input ref={emailInputRef} type='email' className={`email-input ${visibility}`} aria-label='someone@email.com' placeholder='someone@email.com' />
                 <button type='button' className={`email-submit-button ${visibility}`} onClick={emailHandler}></button>
@@ -53,7 +54,6 @@ const SharePostModal = ({ post, user, isVideo }) => {
                 <button type='button' id='email-submit-button' onClick={emailHandler} className={visibility}></button>
             </div> */}
             <div onClick={closeModal} className='profile-post-cancel'>Cancel</div>
-            <div onClick={deletePost} className='profile-post-delete'>Delete</div>
         </div>
     )
 }

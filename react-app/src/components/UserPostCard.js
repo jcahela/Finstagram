@@ -98,10 +98,11 @@ function UserPostCard({ profileVidRef, postKey, posts }) {
         await dispatch(getNonFollowedPostsThunk());
     }
 
-    const openProfilePostModal = (postID) => {
+    const openProfilePostModal = (postID, isVideo) => {
+        console.log('is video', isVideo);
         const post = sessionUsersPosts[postID];
         setModalContent((
-            <ProfilePostModal post={post} />
+            <ProfilePostModal post={post} user={sessionUser} isVideo={isVideo}/>
         ));
         toggleModal();
     }
@@ -109,7 +110,7 @@ function UserPostCard({ profileVidRef, postKey, posts }) {
     return (
         <div className="details-container">
                                   {/* Header */}
-            {post?.user_id === sessionUser.id && <i onClick={() => openProfilePostModal(post.id)} className="fas fa-ellipsis-h profile-ellipsis" arial-hidden="true"></i>}
+            {post?.user_id === sessionUser.id && <i onClick={() => openProfilePostModal(post.id, isVideo)} className="fas fa-ellipsis-h profile-ellipsis" arial-hidden="true"></i>}
             <div className="details-image-container">
                 {isVideo ? (
                     <video className="detail-image" src={post?.content} controls autoPlay muted></video>

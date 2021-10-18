@@ -8,7 +8,6 @@ import { getNonFollowedPostsThunk } from '../store/nonFollowedUsersPosts';
 import EditDeleteCommentModal from './EditDeleteCommentModal';
 import ProfilePostModal from './ProfilePostModal';
 import { useModal } from '../context/Modal';
-// TODO: Add getFollowedPostsThunk to submitComment as well
 import './ExplorePostDetails.css';
 import './UserPostCard.css';
 
@@ -128,10 +127,6 @@ function UserPostCard({ profileVidRef, postKey, posts }) {
         toggleModal();
     }
 
-    const sendToProfile = (userId) => {
-        history.push(`/users/${userId}`)
-    }
-
     const sendToUserProfile = (commentUserId) => {
         history.push(`/users/${commentUserId}`)
     }
@@ -171,7 +166,7 @@ function UserPostCard({ profileVidRef, postKey, posts }) {
                                         onMouseEnter={() => setShowCommentOptions(comment)}
                                         onMouseLeave={() => setShowCommentOptions(false)}
                                     >
-                                        <img src={commentUser.profile_picture} className="explore-profile-pic" alt="this is something"/>
+                                        <img onClick={() => sendToUserProfile(comment.user_id)} src={commentUser.profile_picture} className="explore-profile-pic" alt="this is something"/>
                                             <div className="feed-comment"><span onClick={() => sendToUserProfile(comment.user_id)} className="comment-user">{commentUser?.username}</span> {comment.description}</div>
                                             <div>{showCommentOptions === comment && comment.user_id === sessionUser.id && <i onClick={() => openCommentOptionsModal(comment)} ref={commentOptionsRef} className={`fas fa-ellipsis-h comment-options-icon`}></i>}</div>
                                     </div>
@@ -180,26 +175,6 @@ function UserPostCard({ profileVidRef, postKey, posts }) {
                         }
                     </div>
                 </div>
-
-                {/* <div className="comments-container">
-                        {commentsArr?.map((comment, index) => {
-                            const commentUser = users[comment.user_id];
-                            const randomKey = (comment.id + index) / comment.id + comment.user_id;
-                            return (
-                                <div
-                                    key={randomKey}
-                                    onMouseEnter={() => setShowCommentOptions(comment)}
-                                    onMouseLeave={() => setShowCommentOptions(false)}
-                                    className="comment-row"
-                                >
-                                    <div className="feed-comment"><span onClick={() => sendToUserProfile(comment.user_id)} className="comment-user">{commentUser?.username}</span> {comment.description}</div>
-                                    <div className="comment-options-container">
-                                        {showCommentOptions === comment && comment.user_id === sessionUser.id && <i onClick={() => openCommentOptionsModal(comment)} ref={commentOptionsRef} className={`fas fa-ellipsis-h comment-options-icon`}></i>}
-                                    </div>
-                                </div>
-                            )
-                        })}
-                </div> */}
                 <div className="explore-post-interaction-icons-container">
                     {likesObj && sessionUser.id in likesObj ? (
                         <i onClick={removeLike} className="fas fa-heart profile-like-icon-filled"></i>

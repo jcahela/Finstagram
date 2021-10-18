@@ -1,6 +1,5 @@
 import { useState } from "react"
 import './PostForm.css'
-import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { addNewPostThunk, getSessionUsersPostsThunk } from "../store/sessionUserPosts"
 import { useModal } from '../context/Modal'

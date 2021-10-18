@@ -1,4 +1,5 @@
 import { removeFollowedUser } from "./session"
+import { addLike, removeLike } from "./allPosts"
 
 // constants
 const GET_SESSION_USER_POSTS = 'sessionUsersPosts/GET_SESSION_USER_POSTS'
@@ -86,8 +87,10 @@ export const addCommentThunk = (comment) => async (dispatch) => {
 }
 
 export const addLikeThunk = (like) => async (dispatch) => {
-    const { post_id } = like;
-
+    const { post_id, id, email, firstname, lastname, username, profile_picture } = like
+    const user = {
+        post_id, id, email, firstname, lastname, username, profile_picture
+    }
     const response = await fetch(`/api/posts/${post_id}/likes`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -95,6 +98,8 @@ export const addLikeThunk = (like) => async (dispatch) => {
             post_id
         })
     })
+
+    dispatch(addLike(user))
 
     if (response.ok) {
         return null
@@ -109,11 +114,17 @@ export const addLikeThunk = (like) => async (dispatch) => {
 }
 
 export const removeLikeThunk = (likeToRemove) => async (dispatch) => {
-    const { post_id } = likeToRemove;
+    const { post_id, user_id } = likeToRemove;
+    const likeInfo = {
+        'removePostId': post_id,
+        'removeUserId': user_id
+    }
 
     const response = await fetch(`/api/posts/${post_id}/likes`, {
         method: 'DELETE'
     })
+
+    dispatch(removeLike(likeInfo))
 
     if (response.ok) {
         return null
@@ -180,6 +191,10 @@ export const followUserThunk = (userId) => async (dispatch) => {
     const response = await fetch(`/api/users/follow/${userId}`, {
         method: 'POST'
     })
+    if (response.ok) {
+        const data = await response.json()
+        return data;
+    }
 }
 
 export const unfollowUserThunk = (userId) => async (dispatch) => {
@@ -187,6 +202,11 @@ export const unfollowUserThunk = (userId) => async (dispatch) => {
         method: 'DELETE'
     })
     await dispatch(removeFollowedUser(userId))
+    
+    if (response.ok) {
+        const data = await response.json()
+        return data;
+    }
 }
 
 export const editPostThunk = (post) => async (dispatch) => {

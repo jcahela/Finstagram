@@ -12,6 +12,7 @@ import { useModal } from '../context/Modal';
 import { followUserThunk } from '../store/sessionUserPosts';
 import { authenticate } from '../store/session';
 import { useHistory } from 'react-router-dom';
+import LikesModal from './LikesModal';
 import './FeedPostCard.css'
 
 function FeedPostCard({postId}) {
@@ -79,20 +80,23 @@ function FeedPostCard({postId}) {
     const addLike = async () => {
         const newLike = {
             'post_id': post.id,
+            'id': sessionUser.id,
+            'email': sessionUser.email,
+            'firstname': sessionUser.firstname,
+            'lastname': sessionUser.lastname,
+            'username': sessionUser.username,
+            'profile_picture': sessionUser.profile_picture,
         }
         await dispatch(addLikeThunk(newLike));
-        await dispatch(getSessionUsersPostsThunk());
-        await dispatch(getFollowedUsersPostsThunk());
         await dispatch(getAllPostsThunk());
     }
 
     const removeLike = async () => {
         const likeToDelete = {
-            'post_id': post.id
+            'post_id': post.id,
+            'user_id': sessionUser.id
         }
         await dispatch(removeLikeThunk(likeToDelete));
-        await dispatch(getSessionUsersPostsThunk());
-        await dispatch(getFollowedUsersPostsThunk());
         await dispatch(getAllPostsThunk());
     }
 
@@ -158,6 +162,13 @@ function FeedPostCard({postId}) {
         history.push(`/users/${commentUserId}`)
     }
 
+    const openLikesModal = () => {
+        setModalContent((
+            <LikesModal likesList={post.likes}/>
+        ));
+        toggleModal();
+    }
+
     return (
         <div className="post-container">
             <div className="post-header">
@@ -184,7 +195,7 @@ function FeedPostCard({postId}) {
                 )}
                 <i onClick={focusComment} className="far fa-comment feed-comment-icon"></i>
             </div>
-            <p className="feed-likes-count">{likesArr.length} likes</p>
+            <p onClick={openLikesModal} className="feed-likes-count">{likesArr.length} likes</p>
             <div className="post-page-description-container">
                 <span onClick={() => sendToProfile(post?.user_id)} className="post-description-user">{user?.username}</span>
                 <span className="post-page-description">{post?.description}</span>

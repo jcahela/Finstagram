@@ -3,24 +3,31 @@
 .default-cursor { cursor: default; }
 
 .profile-header-container {
+    margin: 90px auto;
+
     display: grid;
     grid-template-rows: repeat(3, 1fr);
     grid-template-columns: repeat(3, 1fr);
     grid-template-areas:
-    'a a .'
+    'a . .'
     '. b .'
     '. c .';
 }
 
-.header-profile-div {
-
-}
-
 .header-username {
     grid-area: a;
+    position: relative;
+    left: 75%;
+    bottom: 300%;
 }
 
 .header-section-1 {
+    grid-area: a;
+    position: relative;
+    left: 50%;
+}
+
+.header-section-1a {
     grid-area: a;
     display: flex;
     justify-content: space-around;
@@ -28,6 +35,13 @@
 
 .header-section-2 {
     grid-area: b;
+    position: relative;
+    bottom: 200%;
+    left: 20%;
+    width: 40%;
+}
+
+.header-section-2a {
     display: flex;
     justify-content: space-between;
 }
@@ -44,13 +58,13 @@
     left: 80px;
 }
 
-.profile-posts-container {
-    width: fit-content;
-    height: fit-content;
-}
-
 .header-profile-img {
-    height: 30px;
+    width: 155px;
+    border-radius: 50%;
+    position: absolute;
+    margin-left: 40%;
+    margin-right: 10%;
+    bottom: -350%;
 }
 
 .options {

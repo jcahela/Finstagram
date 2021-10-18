@@ -19,7 +19,6 @@ const User = () => {
   const [loaded, setLoaded] = useState(false);
   const [posts, setPosts] = useState();
   let [stats, setStats] = useState(false);
-  // const [currentUserPosts, setCurrentUserPosts] = useState(ses)
 
 
   useEffect(() => {
@@ -78,16 +77,17 @@ const User = () => {
   return (
     <>
     <div className='profile-header-container'>
-      <div className='header-section-1'>
-        <div className='header-profile-div' onClick={profilePictureHandler}>
-          <img className='header-profile-img' src={currentUser?.profile_picture} alt='profile' />
-        </div>
-        <div className='header-username'>{currentUser?.username}</div>
+      <div className='header-section-1' onClick={profilePictureHandler}>
+        <div className='header-section-1a'></div>
+        <img className='header-profile-img' src={currentUser?.profile_picture} alt='profile' />
+        <span className='header-username'>{currentUser?.username}</span>
       </div>
       <div className='header-section-2'>
-        <div className='header-posts'>{Object.values(posts)?.length} <span>posts</span></div>
-        <div className='header-followers'>{currentUser?.followers ? Object.values(currentUser.followers).length : 0} <span>followers</span></div>
-        <div className='header-following'>{currentUser?.followers ? Object.values(currentUser.followed).length : 0} <span>following</span></div>
+        <div className='header-section-2a'>
+          <span className='header-posts default-cursor'><span className='bold'>{Object.values(posts)?.length}</span> posts</span>
+          <span className='header-followers default-cursor'><span className='bold'>{currentUser?.followers ? Object.values(currentUser.followers).length : 0}</span> followers</span>
+          <span className='header-following default-cursor'><span className='bold'>{currentUser?.followers ? Object.values(currentUser.followed).length : 0}</span> following</span>
+        </div>
       </div>
       <div className='header-name'>{currentUser?.firstname} {currentUser?.lastname}</div>
     </div>

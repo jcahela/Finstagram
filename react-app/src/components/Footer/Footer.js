@@ -8,14 +8,13 @@ export default function Footer() {
 
     const clickHandler = (e) => {
         const val = e.target.innerText;
-        if (val === 'About') history.push('/about');
-        else if (val === 'Contact') history.push('/contact');
+        if (val === 'Contact') history.push('/contact');
     }
 
     return (
         <div id='auth-footer'>
             <ul id='auth-footer-list'>
-                <li className="about-link" onClick={clickHandler}>About</li>
+                <a className="about-link" href="https://github.com/jcahela/Finstagram#about-the-project" target="_blank" rel="noreferrer">About</a>
                 <li className="contact-link" onClick={clickHandler}>Contact</li>
             </ul>
         </div>

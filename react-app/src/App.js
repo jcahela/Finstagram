@@ -19,6 +19,7 @@ import { useModal } from './context/Modal';
 import ScrollToTop from './components/ScrollToTop';
 
 import Modal from './components/Modal';
+import ContactPage from './components/ContactPage';
 
 function App() {
   const { closeModal } = useModal();
@@ -48,7 +49,7 @@ function App() {
     (() => {
       window.onpopstate = () => {
         closeModal();
-      };      
+      };
     })()
   })
 
@@ -86,6 +87,9 @@ function App() {
           <NavBar setIsOpen={setIsOpen} isOpen={isOpen}/>
           <ExplorePage />
         </ProtectedRoute>
+        <Route path='/contact' exact={true}>
+          <ContactPage />
+        </Route>
       </Switch>
     </BrowserRouter>
   );

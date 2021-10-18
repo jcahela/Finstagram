@@ -153,7 +153,6 @@ function UserPostCard({ profileVidRef, postKey, posts }) {
                 </div>
                 <div className="explore-comment-section">
                     <div className="explore-photo-description">
-                        This div contains the photos description along with username
                         <img src={users[user_id].profile_picture} className="explore-profile-pic" alt="commenter profile" />
                         <p>
                             <span className="user-name-description">{users[user_id].firstname} {users[user_id].lastname}</span>
@@ -164,6 +163,7 @@ function UserPostCard({ profileVidRef, postKey, posts }) {
                         {
                             Object.values(commentsObj)?.map((comment, index) => {
                                 const commentUser = users[comment.user_id];
+                                const randomKey = (comment.id + index) / comment.id + comment.user_id;
                                 return (
                                     <div className="explore-commenter-container">
                                         <img src={commentUser.profile_picture} className="explore-profile-pic" alt="this is something"/>
@@ -171,95 +171,59 @@ function UserPostCard({ profileVidRef, postKey, posts }) {
                                             <span className="user-name-description">{commentUser.firstname} {commentUser.lastname}</span>
                                             <span className="explore-comment-text">{comment.description}</span>
                                         </p>
+                                        
                                     </div>
                                 )
                             })
                         }
                     </div>
                 </div>
-            </div>
-            <div className="explore-post-interaction-icons-container">
-                {likesObj && sessionUser.id in likesObj ? (
-                    <i onClick={removeLike} className="fas fa-heart profile-like-icon-filled"></i>
-                ): (
-                    <i onClick={addLike} className="far fa-heart profile-like-icon"></i>
-                )}
-                    <i onClick={focusComment} className="far fa-comment profile-comment-icon"></i>
-                <div className="explore-likes-counter-container"></div>
-                <p className="explore-likes-counter">{Object.keys(likesObj).length} likes</p>
-            </div>
-            {!showComments && (commentsArr.length > 1) && <div className="view-comments pointer-cursor" onClick={() => setShowComments(true)}>View all {commentsArr?.length} comments</div>}
-            {commentsArr.length === 0 && <div className="view-comments default-cursor">No comments</div>}
-            <div className="comments-container">
-                {showComments === true ? (
-                    commentsArr?.map((comment, index) => {
-                        const commentUser = users[comment.user_id];
-                        const randomKey = (comment.id + index) / comment.id + comment.user_id
-                        return (
-                            <div
-                                key={randomKey}
-                                onMouseEnter={() => setShowCommentOptions(comment)}
-                                onMouseLeave={() => setShowCommentOptions(false)}
-                                className="comment-row"
-                            >
-                                <div className="feed-comment"><span onClick={() => sendToUserProfile(comment.user_id)} className="comment-user">{commentUser?.username}</span> {comment.description}</div>
-                                <div className="comment-options-container">
-                                    {showCommentOptions === comment && comment.user_id === sessionUser.id && <i onClick={() => openCommentOptionsModal(comment)} ref={commentOptionsRef} className={`fas fa-ellipsis-h comment-options-icon`}></i>}
+                {/* <div className="comments-container">
+                        {commentsArr?.map((comment, index) => {
+                            const commentUser = users[comment.user_id];
+                            const randomKey = (comment.id + index) / comment.id + comment.user_id;
+                            return (
+                                <div
+                                    key={randomKey}
+                                    onMouseEnter={() => setShowCommentOptions(comment)}
+                                    onMouseLeave={() => setShowCommentOptions(false)}
+                                    className="comment-row"
+                                >
+                                    <div className="feed-comment"><span onClick={() => sendToUserProfile(comment.user_id)} className="comment-user">{commentUser?.username}</span> {comment.description}</div>
+                                    <div className="comment-options-container">
+                                        {showCommentOptions === comment && comment.user_id === sessionUser.id && <i onClick={() => openCommentOptionsModal(comment)} ref={commentOptionsRef} className={`fas fa-ellipsis-h comment-options-icon`}></i>}
+                                    </div>
                                 </div>
-                            </div>
-                        )
-                    })
-                ) : (
-                    <div
-                        onMouseEnter={() => setShowCommentOptions(lastComment)}
-                        onMouseLeave={() => setShowCommentOptions(false)}
-                        className="comment-row"
-                    >
-                        <div className="feed-comment"><span onClick={() => sendToUserProfile(lastComment?.user_id)} className="comment-user">{users[lastComment?.user_id]?.username}</span> {lastComment?.description}</div>
-                        <div className="comment-options-container">
-                            {showCommentOptions === lastComment && lastComment?.user_id === sessionUser.id && <i onClick={() => openCommentOptionsModal(lastComment)} ref={commentOptionsRef} className={`fas fa-ellipsis-h comment-options-icon`}></i>}
-                        </div>
-                    </div>
+                            )
+                        })}
+                </div> */}
+                <div className="explore-post-interaction-icons-container">
+                    {likesObj && sessionUser.id in likesObj ? (
+                        <i onClick={removeLike} className="fas fa-heart profile-like-icon-filled"></i>
+                    ): (
+                        <i onClick={addLike} className="far fa-heart profile-like-icon"></i>
                     )}
+                        <i onClick={focusComment} className="far fa-comment profile-comment-icon"></i>
+                    <div className="explore-likes-counter-container"></div>
+                    <p className="explore-likes-counter">{Object.keys(likesObj).length} likes</p>
+                </div>
+                    <form
+                        className="feed-new-comment-form"
+                        onSubmit={submitComment}
+                    >
+                        <textarea
+                            ref = {commentRef}
+                            rows="1"
+                            placeholder="Add a comment..."
+                            className="feed-new-comment-input"
+                            value={comment}
+                            onChange={textareaHandler}
+                        />
+                        <button className={`feed-new-comment-button disabled-${/^\s*$/.test(comment)}`} disabled={/^\s*$/.test(comment)}>Post</button>
+                    </form>
             </div>
-                <form
-                    className="feed-new-comment-form"
-                    onSubmit={submitComment}
-                >
-                    <textarea
-                        ref = {commentRef}
-                        rows="1"
-                        placeholder="Add a comment..."
-                        className="feed-new-comment-input"
-                        value={comment}
-                        onChange={textareaHandler}
-                    />
-                    <button className={`feed-new-comment-button disabled-${/^\s*$/.test(comment)}`} disabled={/^\s*$/.test(comment)}>Post</button>
-                </form>
         </div>
     )
 }
 
 export default UserPostCard;
-
-
-// ! Redacted Code !
-{/* <div className="explore-comment-input">
-                        <form
-                            className="profile-new-comment-form"
-                            onSubmit={submitComment}
-                        >
-                        <textarea
-                            ref = {commentRef}
-                            rows="1"
-                            placeholder="Add a comment..."
-                            className="profile-new-comment-input"
-                            value={comment}
-                            onChange={textareaHandler}
-                        />
-                        <div className="comment-options-container">
-                            {showCommentOptions === comment && comment.user_id === sessionUser.id && <i onClick={() => openCommentOptionsModal(comment)} ref={commentOptionsRef} className={`fas fa-ellipsis-h comment-options-icon`}></i>}
-                        </div>
-                        <button className={`profile-new-comment-button disabled-${/^\s*$/.test(comment)}`} disabled={/^\s*$/.test(comment)}>Post</button>
-                        </form>
-                    </div> */}

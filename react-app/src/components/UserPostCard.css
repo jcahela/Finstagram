@@ -59,11 +59,16 @@
     justify-content: space-between;
 }
 
+.profile-header {
+    position: relative;
+    width: 100%;
+}
 
 .profile-ellipsis {
     cursor: pointer;
-    position: relative;
-    left: 80px;
+    position: absolute;
+    right: 10px;
+    top: -5px;
 }
 
 
@@ -145,13 +150,47 @@
     font-size: 15px;
 }
 
+.profile-comment-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.profile-profile-pic {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    margin-top: 5px;
+}
+
 .post-description-user,
 .comment-user {
     font-weight: 600;
     margin-right: 6px;
+    font-size: 14px;
+}
+
+.profile-comment-description {
+    font-size: 14px;
 }
 
 .comments-container {
+    height: fit-content;
+}
+
+.profile-user-info {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.060);
+    padding: 10px;
+}
+
+.profile-user-name {
+    font-size: 14px;
+    font-weight: 600;
+    width: fit-content;
     height: fit-content;
 }
 

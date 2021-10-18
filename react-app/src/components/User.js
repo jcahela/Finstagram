@@ -64,7 +64,7 @@ const User = () => {
 
   const openProfileModal = (postKey) => {
     setModalContent((
-      <UserPostCard profileVidRef={profileVidRef} postKey={postKey} posts={profile_posts} />
+      <UserPostCard postKey={postKey} posts={profile_posts} />
     ))
     profileVidRef?.current?.pause();
     toggleModal();

@@ -79,9 +79,9 @@ const User = () => {
     <div className='profile-header-container'>
       <div className='header-section-1'>
         <div className='header-profile-div' onClick={profilePictureHandler}>
-          <img className='header-profile-img' src={sessionUser.profile_picture} alt='profile' />
+          <img className='header-profile-img' src={currentUser?.profile_picture} alt='profile' />
         </div>
-        <div className='header-username'>{sessionUser.username}</div>
+        <div className='header-username'>{currentUser?.username}</div>
       </div>
       <div className='header-section-2'>
         {/* <div className='header-posts'>{Object.values(currentUser?.posts).length} <span>posts</span></div> */}

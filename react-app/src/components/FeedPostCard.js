@@ -179,8 +179,8 @@ function FeedPostCard({postId}) {
                         <span ref={followRef} onClick={() => followUser(post.user_id)} className="explore-follow">Follow</span>
                     )}
                     {showHoverUserCard && <HoverUserCard isFollowing={isFollowing} setIsFollowing={setIsFollowing} followRef={followRef} user={users[post.user_id]}/>}
-                </div>
                 {post?.user_id === sessionUser.id && <i onClick={openDeletePostModal} className="fas fa-ellipsis-h options"></i>}
+                </div>
             </div>
             {isVideo ? (
                 <video className="post-image" src={post?.content} controls autoPlay muted></video>

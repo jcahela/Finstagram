@@ -3,7 +3,7 @@
 .default-cursor { cursor: default; }
 
 .profile-header-container {
-    margin: 90px auto;
+    margin: 60px;
 
     display: grid;
     grid-template-rows: repeat(3, 1fr);
@@ -16,29 +16,42 @@
 
 .header-username {
     grid-area: a;
+    font-size: 25px;
+}
+
+.header-name {
+    grid-area: c;
     position: relative;
-    left: 75%;
-    bottom: 300%;
+    left: 25%;
+    bottom: 55%;
+}
+
+.header-profile-img {
+    width: 155px;
+    border-radius: 50%;
+    position: absolute;
+    margin-left: 25.5%;
+    top: 6%;
 }
 
 .header-section-1 {
     grid-area: a;
+    width: fit-content;
     position: relative;
-    left: 50%;
-}
-
-.header-section-1a {
-    grid-area: a;
-    display: flex;
-    justify-content: space-around;
+    left: 125%;
+    bottom: 165%;
 }
 
 .header-section-2 {
     grid-area: b;
     position: relative;
-    bottom: 200%;
-    left: 20%;
+    bottom: 100%;
+    left: 25%;
     width: 40%;
+}
+
+.header-section-1a {
+    grid-area: a;
 }
 
 .header-section-2a {
@@ -46,11 +59,6 @@
     justify-content: space-between;
 }
 
-.header-name {
-    grid-area: c;
-    display: flex;
-    justify-content: flex-start;
-}
 
 .profile-ellipsis {
     cursor: pointer;
@@ -58,14 +66,6 @@
     left: 80px;
 }
 
-.header-profile-img {
-    width: 155px;
-    border-radius: 50%;
-    position: absolute;
-    margin-left: 40%;
-    margin-right: 10%;
-    bottom: -350%;
-}
 
 .options {
     position: relative;
@@ -87,11 +87,6 @@
     min-height: 400px;
     max-height: 720px;
     height: auto;
-}
-
-.profile-post-image {
-    height: 25vw;
-    width: 25vw;
 }
 
 .post-interaction-icons-container {

@@ -77,9 +77,9 @@ const User = () => {
   return (
     <>
     <div className='profile-header-container'>
+        <img className='header-profile-img' src={currentUser?.profile_picture} alt='profile' />
       <div className='header-section-1' onClick={profilePictureHandler}>
         <div className='header-section-1a'></div>
-        <img className='header-profile-img' src={currentUser?.profile_picture} alt='profile' />
         <span className='header-username'>{currentUser?.username}</span>
       </div>
       <div className='header-section-2'>

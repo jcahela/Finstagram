@@ -190,7 +190,7 @@ Project Link: [https://finstagram-project.herokuapp.com/](https://finstagram-pro
 [license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/othneildrew
-[product-screenshot]: images/Finstagram_landing.gif
+[product-screenshot]: images/Finstagram-landing.gif
 [signup]: images/Finstagram-signup.png
 [login]: images/loginmodal.png
 [feed]: images/Finstagram-feed.png

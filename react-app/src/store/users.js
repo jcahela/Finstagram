@@ -12,7 +12,6 @@ const getUser = (user) => ({
     payload: user
 })
 
-const initialState = { };
 
 export const getUsersThunk = () => async (dispatch) => {
     const response = await fetch('/api/users/')
@@ -34,7 +33,9 @@ export const getUserThunk = (userID) => async (dispatch) => {
     }
 }
 
-export function usersReducer(state = initialState, action) {
+const initialState1 = {};
+
+export function usersReducer(state = initialState1, action) {
     let newState = {...state}
     switch (action.type) {
         case GET_USERS:
@@ -48,7 +49,9 @@ export function usersReducer(state = initialState, action) {
     }
 }
 
-export function userReducer(state = initialState, action) {
+const initialState2 = {};
+
+export function userReducer(state = initialState2, action) {
     let newState = {...state}
     switch (action.type) {
         case GET_USER:

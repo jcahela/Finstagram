@@ -30,7 +30,6 @@ def get_all_posts():
         "posts": [post.to_dict() for post in posts]
     }
 
-
 @post_routes.route('/feed')
 @login_required
 def get_feed_posts():

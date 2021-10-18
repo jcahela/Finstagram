@@ -9,8 +9,6 @@ import { getUserThunk } from '../store/users';
 const User = () => {
   const dispatch = useDispatch();
   const { toggleModal, setModalContent } = useModal();
-  const [posts, setPosts] = useState();
-  let [stats, setStats] = useState(false);
   const { userId }  = useParams();
   const profileVidRef = useRef();
   const currentUser = useSelector(state => state.user);
@@ -19,6 +17,9 @@ const User = () => {
   const followedUsersPosts = useSelector(state => state.followedUsersPosts);
   const nonFollowedUsersPosts = useSelector(state => state.nonFollowedUsersPosts);
   const [loaded, setLoaded] = useState(false);
+  const [posts, setPosts] = useState();
+  let [stats, setStats] = useState(false);
+  // const [currentUserPosts, setCurrentUserPosts] = useState(ses)
 
 
   useEffect(() => {
@@ -84,9 +85,9 @@ const User = () => {
         <div className='header-username'>{currentUser?.username}</div>
       </div>
       <div className='header-section-2'>
-        {/* <div className='header-posts'>{Object.values(currentUser?.posts).length} <span>posts</span></div> */}
-        {/* <div className='header-followers'>{Object.values(currentUser?.followers).length} <span>followers</span></div> */}
-        {/* <div className='header-following'>{Object.values(currentUser?.followed).length} <span>following</span></div> */}
+        <div className='header-posts'>{Object.values(posts)?.length} <span>posts</span></div>
+        <div className='header-followers'>{currentUser?.followers ? Object.values(currentUser.followers).length : 0} <span>followers</span></div>
+        <div className='header-following'>{currentUser?.followers ? Object.values(currentUser.followed).length : 0} <span>following</span></div>
       </div>
       <div className='header-name'>{currentUser?.firstname} {currentUser?.lastname}</div>
     </div>
@@ -105,7 +106,7 @@ const User = () => {
               { isVideo ? (
                 <video ref={profileVidRef} src={profile_posts[key].content} onClick={() => openProfileModal(key)} alt="something" className="profile-posts video-post" key={profile_posts[key].id} autoPlay muted></video>
               ):(
-                <img src={profile_posts[key].content} onClick={() => openProfileModal(key)} alt="something" className="profile-posts" key={profile_posts[key].id}/>
+                <img src={profile_posts[key].content} onClick={() => openProfileModal(key)} alt="something" className="profile-posts" key={profile_posts[key].id} />
               )}
               {stats === key && <span className={`material-icons like-icon`}>favorite</span>}
               {stats === key && <span className="likes-count">{Object.keys(profile_posts[key].likes).length}</span>}

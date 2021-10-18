@@ -193,7 +193,7 @@ Project Link: [https://finstagram-project.herokuapp.com/](https://finstagram-pro
 [product-screenshot]: images/Finstagram_landing.gif
 [signup]: images/Finstagram-signup.png
 [login]: images/loginmodal.png
-[feed]: images/Finstagram-feed.png
+[feed]: images/Finstagram-feed.gif
 [addPost]: images/Finstagram-add-post.gif
 [editPost]: images/Finstagram-edit-post.gif
 [deletePost]: images/Finstagram-delete-post.gif

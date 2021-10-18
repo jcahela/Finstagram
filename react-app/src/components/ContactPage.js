@@ -17,13 +17,13 @@ function ContactPage() {
                     <div className="contact-profile-container">
                         <img src="images/Alejandro_Grant_linkedin_profile_pic.jpeg" alt="Alejandro Grant profile-pic" className="profile-pic"/>
                         <h1 className="contact-text">Alejandro Grant</h1>
-                        <a href="https://www.linkedin.com/in/alejandro-c-grant/" target="_blank" rel="noreferrer"><img src={"images/LI-Logo.png"} alt="linkedin logo" className="linkedin-logo"/></a>
+                        <a href="https://www.linkedin.com/in/alejandro-c-grant/" target="_blank" rel="noreferrer"><img src="images/LI-Logo.png" alt="linkedin logo" className="linkedin-logo"/></a>
                         <a href="https://github.com/MasterGrant137" target="_blank" rel="noreferrer"><img src="images/GitHub_Logo.png" alt="github logo" className="github-logo"/></a>
                     </div>
                     <div className="contact-profile-container">
                         <img src="images/Josue_Lugaro_linkedin_profile_pic.jpeg" alt="Josue Lugaro profile-pic" className="profile-pic"/>
                         <h1 className="contact-text">Josue Lugaro</h1>
-                        <a href="https://www.linkedin.com/in/josue-e-j-lugaro-3462131b8/" target="_blank" rel="noreferrer"><img src={"images/LI-Logo.png"} alt="linkedin logo" className="linkedin-logo"/></a>
+                        <a href="https://www.linkedin.com/in/josue-e-j-lugaro-3462131b8/" target="_blank" rel="noreferrer"><img src="images/LI-Logo.png" alt="linkedin logo" className="linkedin-logo"/></a>
                         <a href="https://github.com/JosueLugaro" target="_blank" rel="noreferrer"><img src="images/GitHub_Logo.png" alt="github logo" className="github-logo"/></a>
                     </div>
                 </div>

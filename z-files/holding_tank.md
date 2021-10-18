@@ -59,13 +59,17 @@
 
 
 
+```jsx
+<div className="user-name-description">{commentUser.firstname} {commentUser.lastname}</div>
+<div className="explore-comment-text">{comment.description}</div>
+```
 
 
 ```jsx
 <div
 
 >
-    <div className="feed-comment"><span onClick={() => sendToUserProfile(comment.user_id)} className="comment-user">{commentUser?.username}</span> {comment.description}</div>
+
     <div className="comment-options-container">
 
     </div>
@@ -79,6 +83,8 @@
 
 
 ```jsx
+<div className="feed-comment"><span onClick={() => sendToUserProfile(comment.user_id)} className="comment-user">{commentUser?.username}</span> {comment.description}</div>
+
 key={randomKey}
     onMouseEnter={() => setShowCommentOptions(comment)}
     onMouseLeave={() => setShowCommentOptions(false)}

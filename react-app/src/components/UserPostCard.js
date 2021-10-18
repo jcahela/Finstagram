@@ -172,12 +172,8 @@ function UserPostCard({ profileVidRef, postKey, posts }) {
                                         onMouseLeave={() => setShowCommentOptions(false)}
                                     >
                                         <img src={commentUser.profile_picture} className="explore-profile-pic" alt="this is something"/>
-                                        <p>
-                                            <span className="user-name-description">{commentUser.firstname} {commentUser.lastname}</span>
-                                            <span className="explore-comment-text">{comment.description}</span>
-                                            <span>{showCommentOptions === comment && comment.user_id === sessionUser.id && <i onClick={() => openCommentOptionsModal(comment)} ref={commentOptionsRef} className={`fas fa-ellipsis-h comment-options-icon`}></i>}</span>
-                                        </p>
-
+                                            <div className="feed-comment"><span onClick={() => sendToUserProfile(comment.user_id)} className="comment-user">{commentUser?.username}</span> {comment.description}</div>
+                                            <div>{showCommentOptions === comment && comment.user_id === sessionUser.id && <i onClick={() => openCommentOptionsModal(comment)} ref={commentOptionsRef} className={`fas fa-ellipsis-h comment-options-icon`}></i>}</div>
                                     </div>
                                 )
                             })

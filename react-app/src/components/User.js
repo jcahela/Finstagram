@@ -85,8 +85,8 @@ const User = () => {
       </div>
       <div className='header-section-2'>
         {/* <div className='header-posts'>{Object.values(currentUser?.posts).length} <span>posts</span></div> */}
-        <div className='header-followers'>{Object.values(currentUser?.followers).length} <span>followers</span></div>
-        <div className='header-following'>{Object.values(currentUser?.followed).length} <span>following</span></div>
+        {/* <div className='header-followers'>{Object.values(currentUser?.followers).length} <span>followers</span></div> */}
+        {/* <div className='header-following'>{Object.values(currentUser?.followed).length} <span>following</span></div> */}
       </div>
       <div className='header-name'>{currentUser?.firstname} {currentUser?.lastname}</div>
     </div>

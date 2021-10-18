@@ -22,9 +22,10 @@
     height: 100%;
     object-fit: cover;
     position: relative;
+    cursor: pointer;
 }
 
-.profile-posts img:hover {
-    cursor: pointer;
+.profile-posts img:hover,
+.profile-posts video:hover {
     filter:brightness(70%);
 }

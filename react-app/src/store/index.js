@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import session from './session';
-import usersReducer from './users';
+import { usersReducer, userReducer } from './users';
 import sessionUserPostsReducer from './sessionUserPosts';
 import nonFollowedUsersPostsReducer from './nonFollowedUsersPosts';
 import followedUsersPostsReducer from './followedUsersPosts';
@@ -10,6 +10,7 @@ import allPostsReducer from './allPosts';
 const rootReducer = combineReducers({
   session,
   'users': usersReducer,
+  'user': userReducer,
   'sessionUsersPosts': sessionUserPostsReducer,
   'nonFollowedUsersPosts': nonFollowedUsersPostsReducer,
   'followedUsersPosts': followedUsersPostsReducer,

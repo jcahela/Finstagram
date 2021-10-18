@@ -23,7 +23,7 @@ def session_user_posts():
 
 @post_routes.route('/all')
 def get_all_posts():
-    """Get all posts"""
+    """Get all posts."""
     posts = Post.query.all()
 
     return {

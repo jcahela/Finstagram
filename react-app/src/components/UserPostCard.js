@@ -142,16 +142,16 @@ function UserPostCard({ profileVidRef, postKey, posts }) {
             </div>
             <div className="details">
                 <div className="user-info">
-                    <img src={users[user_id].profile_picture} className="explore-profile-pic" alt="user profile"/>
-                    <p className="user-name">{users[user_id].firstname} {users[user_id].lastname}</p> <span>•</span> <span className="explore-follow">Follow</span>
+                    <img src={users[user_id]?.profile_picture} className="explore-profile-pic" alt="user profile"/>
+                    <p className="user-name">{users[user_id]?.firstname} {users[user_id]?.lastname}</p> <span>•</span> <span className="explore-follow">Follow</span>
                     <span>{post?.user_id === sessionUser.id && <i onClick={() => openProfilePostModal(post.id, isVideo)} className="fas fa-ellipsis-h profile-ellipsis" arial-hidden="true"></i>}</span>
                 </div>
                 <div className="explore-comment-section">
                     <div className="explore-photo-description">
-                        <img src={users[user_id].profile_picture} className="explore-profile-pic" alt="commenter profile" />
+                        <img src={users[user_id]?.profile_picture} className="explore-profile-pic" alt="commenter profile" />
                         <p>
-                            <span className="user-name-description">{users[user_id].firstname} {users[user_id].lastname}</span>
-                            <span className="explore-comment-text">{posts[postKey].description}</span>
+                            <span className="user-name-description">{users[user_id]?.firstname} {users[user_id]?.lastname}</span>
+                            <span className="explore-comment-text">{posts[postKey]?.description}</span>
                         </p>
                     </div>
                     <div className="explore-comments-div">
@@ -166,7 +166,7 @@ function UserPostCard({ profileVidRef, postKey, posts }) {
                                         onMouseEnter={() => setShowCommentOptions(comment)}
                                         onMouseLeave={() => setShowCommentOptions(false)}
                                     >
-                                        <img onClick={() => sendToUserProfile(comment.user_id)} src={commentUser.profile_picture} className="explore-profile-pic" alt="this is something"/>
+                                        <img onClick={() => sendToUserProfile(comment?.user_id)} src={commentUser?.profile_picture} className="explore-profile-pic" alt="this is something"/>
                                             <div className="feed-comment"><span onClick={() => sendToUserProfile(comment.user_id)} className="comment-user">{commentUser?.username}</span> {comment.description}</div>
                                             <div>{showCommentOptions === comment && comment.user_id === sessionUser.id && <i onClick={() => openCommentOptionsModal(comment)} ref={commentOptionsRef} className={`fas fa-ellipsis-h comment-options-icon`}></i>}</div>
                                     </div>

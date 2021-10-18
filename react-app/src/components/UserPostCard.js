@@ -165,19 +165,26 @@ function UserPostCard({ profileVidRef, postKey, posts }) {
                                 const commentUser = users[comment.user_id];
                                 const randomKey = (comment.id + index) / comment.id + comment.user_id;
                                 return (
-                                    <div className="explore-commenter-container">
+                                    <div
+                                        className="comment-row explore-commenter-container"
+                                        key={randomKey}
+                                        onMouseEnter={() => setShowCommentOptions(comment)}
+                                        onMouseLeave={() => setShowCommentOptions(false)}
+                                    >
                                         <img src={commentUser.profile_picture} className="explore-profile-pic" alt="this is something"/>
                                         <p>
                                             <span className="user-name-description">{commentUser.firstname} {commentUser.lastname}</span>
                                             <span className="explore-comment-text">{comment.description}</span>
+                                            <span>{showCommentOptions === comment && comment.user_id === sessionUser.id && <i onClick={() => openCommentOptionsModal(comment)} ref={commentOptionsRef} className={`fas fa-ellipsis-h comment-options-icon`}></i>}</span>
                                         </p>
-                                        
+
                                     </div>
                                 )
                             })
                         }
                     </div>
                 </div>
+
                 {/* <div className="comments-container">
                         {commentsArr?.map((comment, index) => {
                             const commentUser = users[comment.user_id];

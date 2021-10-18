@@ -42,3 +42,47 @@
 {/* {!showComments && (commentsArr.length > 1) && <div className="view-comments pointer-cursor" onClick={() => setShowComments(true)}>View all {commentsArr?.length} comments</div>}
             {commentsArr.length === 0 && <div className="view-comments default-cursor">No comments</div>} */}
 ```
+
+```jsx
+<div
+    key={randomKey}
+    onMouseEnter={() => setShowCommentOptions(comment)}
+    onMouseLeave={() => setShowCommentOptions(false)}
+    className="comment-row"
+>
+    <div className="feed-comment"><span onClick={() => sendToUserProfile(comment.user_id)} className="comment-user">{commentUser?.username}</span> {comment.description}</div>
+    <div className="comment-options-container">
+        {showCommentOptions === comment && comment.user_id === sessionUser.id && <i onClick={() => openCommentOptionsModal(comment)} ref={commentOptionsRef} className={`fas fa-ellipsis-h comment-options-icon`}></i>}
+    </div>
+</div>
+```
+
+
+
+
+
+```jsx
+<div
+
+>
+    <div className="feed-comment"><span onClick={() => sendToUserProfile(comment.user_id)} className="comment-user">{commentUser?.username}</span> {comment.description}</div>
+    <div className="comment-options-container">
+
+    </div>
+</div>
+```
+
+
+
+
+
+
+
+```jsx
+key={randomKey}
+    onMouseEnter={() => setShowCommentOptions(comment)}
+    onMouseLeave={() => setShowCommentOptions(false)}
+    className="comment-row"
+
+ <span>{showCommentOptions === comment && comment.user_id === sessionUser.id && <i onClick={() => openCommentOptionsModal(comment)} ref={commentOptionsRef} className={`fas fa-ellipsis-h comment-options-icon`}></i>}</span>
+```

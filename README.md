@@ -149,7 +149,7 @@ From any page where there are user posts or comments, you can click on a user's 
 
 <b>Issue</b>: Though it may seem simple, having multiple people work on a project in tandem created some interesting challenges when it came to maximizing the efficiency of our coding, while preventing each of us from stepping on the others toes when it comes to editing the same files.
 
-<b>Solution</b>: Constant communication and planning helped us stay efficient so that we could each work on a separate feature of the website, and when we had to work on the same files/features, talking out how to organize merge conflicts helped enormously so that we could keep the ball rolling on coding out the project.<b>Issue</b>:
+<b>Solution</b>: Constant communication and planning helped us stay efficient so that we could each work on a separate feature of the website, and when we had to work on the same files/features, talking out how to organize merge conflicts helped enormously so that we could keep the ball rolling on coding out the project.
 
 ## Features to Implement Next
 ### Loading Time Efficiency

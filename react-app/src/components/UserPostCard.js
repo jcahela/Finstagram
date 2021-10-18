@@ -1,18 +1,27 @@
-import { useSelector } from 'react-redux';
 import { useState, useRef } from 'react';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { addCommentThunk, addLikeThunk, removeLikeThunk } from '../store/sessionUserPosts';
 import { useDispatch } from 'react-redux';
 import { getSessionUsersPostsThunk } from '../store/sessionUserPosts';
 import { getNonFollowedPostsThunk } from '../store/nonFollowedUsersPosts';
-// TODO: Add getFollowedPostsThunk to submitComment as well
+import EditDeleteCommentModal from './EditDeleteCommentModal';
+import ProfilePostModal from './ProfilePostModal';
+import { useModal } from '../context/Modal';
 import './ExplorePostDetails.css';
 import './UserPostCard.css';
 
-function UserPostCard({ postKey, posts }) {
+function UserPostCard({ profileVidRef, postKey, posts }) {
+    const { toggleModal, setModalContent } = useModal();
+    const [showComments, setShowComments] = useState(false);
+    const [showCommentOptions, setShowCommentOptions] = useState(false);
     const [comment, setComment] = useState('')
     const commentRef = useRef();
+    const commentOptionsRef = useRef();
     const dispatch = useDispatch();
+    const history = useHistory();
     const sessionUser = useSelector(state => state.session.user);
+    const sessionUsersPosts = useSelector(state => state.sessionUsersPosts);
 
     let post = posts[postKey];
 
@@ -40,6 +49,13 @@ function UserPostCard({ postKey, posts }) {
         }
     });
 
+    let likesArr = [];
+    let commentsArr = [];
+    let lastComment;
+    if (post?.likes) likesArr = Object.values(post.likes)
+    if (post?.comments) commentsArr = Object.values(post.comments)
+    if (commentsArr) lastComment = commentsArr[commentsArr.length -1]
+
     const isVideo = post?.content?.slice(-3) === 'mp4' ||
                     post?.content?.slice(-3) === 'mov' ||
                     post?.content?.slice(-3) === 'wmv' ||
@@ -56,6 +72,14 @@ function UserPostCard({ postKey, posts }) {
         console.log(/^\s*$/.test(comment));
         if (/^\s*$/.test(comment)) return;
         else if (/\n$/.test(comment)) submitComment(e);
+    }
+
+    const openCommentOptionsModal = (comment) => {
+        setModalContent((
+            <EditDeleteCommentModal comment={comment}/>
+        ));
+        console.log(comment)
+        toggleModal();
     }
 
     const submitComment = async (e) => {
@@ -94,78 +118,87 @@ function UserPostCard({ postKey, posts }) {
         await dispatch(getNonFollowedPostsThunk());
     }
 
+    const openProfilePostModal = (postID, isVideo) => {
+        console.log('is video', isVideo);
+        const post = sessionUsersPosts[postID];
+        setModalContent((
+            <ProfilePostModal post={post} user={sessionUser} isVideo={isVideo}/>
+        ));
+        toggleModal();
+    }
+
+    const sendToUserProfile = (commentUserId) => {
+        history.push(`/users/${commentUserId}`)
+    }
+
     return (
         <div className="details-container">
-                                  {/* Header */}
             <div className="details-image-container">
                 {isVideo ? (
                     <video className="detail-image" src={post?.content} controls autoPlay muted></video>
-                ):(
+                    ):(
                     <img className="detail-image" src={post?.content} alt="" />
-                )}
+                    )}
             </div>
             <div className="details">
                 <div className="user-info">
-                    <img src={users[user_id].profile_picture} className="explore-profile-pic" alt="this is something"/>
-                    <p className="user-name">{users[user_id].firstname} {users[user_id].lastname}</p> <span>•</span> <span className="explore-follow">Follow</span>
+                    <img src={users[user_id]?.profile_picture} className="explore-profile-pic" alt="user profile"/>
+                    <p className="user-name">{users[user_id]?.firstname} {users[user_id]?.lastname}</p> <span>•</span> <span className="explore-follow">Follow</span>
+                    <span>{post?.user_id === sessionUser.id && <i onClick={() => openProfilePostModal(post.id, isVideo)} className="fas fa-ellipsis-h profile-ellipsis" arial-hidden="true"></i>}</span>
                 </div>
                 <div className="explore-comment-section">
-                                 {/* Description */}
                     <div className="explore-photo-description">
-                        {/* This div contains the photos description along with username */}
-                        <img src={users[user_id].profile_picture} className="explore-profile-pic" alt="this is something"/>
+                        <img src={users[user_id]?.profile_picture} className="explore-profile-pic" alt="commenter profile" />
                         <p>
-                            <span className="user-name-description">{users[user_id].firstname} {users[user_id].lastname}</span>
-                            <span className="explore-comment-text">{posts[postKey].description}</span>
+                            <span className="user-name-description">{users[user_id]?.firstname} {users[user_id]?.lastname}</span>
+                            <span className="explore-comment-text">{posts[postKey]?.description}</span>
                         </p>
                     </div>
-                                   {/* Comments */}
                     <div className="explore-comments-div">
                         {
                             Object.values(commentsObj)?.map((comment, index) => {
                                 const commentUser = users[comment.user_id];
+                                const randomKey = (comment.id + index) / comment.id + comment.user_id;
                                 return (
-                                    <div className="explore-commenter-container">
-                                        <img src={commentUser.profile_picture} className="explore-profile-pic" alt="this is something"/>
-                                        <p>
-                                            <span className="user-name-description">{commentUser.firstname} {commentUser.lastname}</span>
-                                            <span className="explore-comment-text">{comment.description}</span>
-                                        </p>
+                                    <div
+                                        className="comment-row explore-commenter-container"
+                                        key={randomKey}
+                                        onMouseEnter={() => setShowCommentOptions(comment)}
+                                        onMouseLeave={() => setShowCommentOptions(false)}
+                                    >
+                                        <img onClick={() => sendToUserProfile(comment?.user_id)} src={commentUser?.profile_picture} className="explore-profile-pic" alt="this is something"/>
+                                            <div className="feed-comment"><span onClick={() => sendToUserProfile(comment.user_id)} className="comment-user">{commentUser?.username}</span> {comment.description}</div>
+                                            <div>{showCommentOptions === comment && comment.user_id === sessionUser.id && <i onClick={() => openCommentOptionsModal(comment)} ref={commentOptionsRef} className={`fas fa-ellipsis-h comment-options-icon`}></i>}</div>
                                     </div>
                                 )
                             })
                         }
                     </div>
                 </div>
-                                {/* Interactions */}
                 <div className="explore-post-interaction-icons-container">
                     {likesObj && sessionUser.id in likesObj ? (
                         <i onClick={removeLike} className="fas fa-heart profile-like-icon-filled"></i>
                     ): (
                         <i onClick={addLike} className="far fa-heart profile-like-icon"></i>
                     )}
-                    <i onClick={focusComment} className="far fa-comment profile-comment-icon"></i>
-                </div>
-                <div className="explore-likes-counter-container">
+                        <i onClick={focusComment} className="far fa-comment profile-comment-icon"></i>
+                    <div className="explore-likes-counter-container"></div>
                     <p className="explore-likes-counter">{Object.keys(likesObj).length} likes</p>
                 </div>
-                                 {/* Add Comment */}
-                <div className="explore-comment-input">
                     <form
-                        className="profile-new-comment-form"
+                        className="feed-new-comment-form"
                         onSubmit={submitComment}
                     >
-                    <textarea
-                        ref = {commentRef}
-                        rows="1"
-                        placeholder="Add a comment..."
-                        className="profile-new-comment-input"
-                        value={comment}
-                        onChange={textareaHandler}
-                    />
-                    <button className={`profile-new-comment-button disabled-${/^\s*$/.test(comment)}`} disabled={/^\s*$/.test(comment)}>Post</button>
+                        <textarea
+                            ref = {commentRef}
+                            rows="1"
+                            placeholder="Add a comment..."
+                            className="feed-new-comment-input"
+                            value={comment}
+                            onChange={textareaHandler}
+                        />
+                        <button className={`feed-new-comment-button disabled-${/^\s*$/.test(comment)}`} disabled={/^\s*$/.test(comment)}>Post</button>
                     </form>
-                </div>
             </div>
         </div>
     )

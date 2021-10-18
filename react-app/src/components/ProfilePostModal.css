@@ -1,0 +1,75 @@
+.invisible {
+    display: none;
+}
+
+.expanded {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.email-span {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.email-input { margin: 5px; }
+
+.email-submit-button {
+    cursor: pointer;
+    border: 10px solid black;
+}
+
+.profile-post-container {
+    height: fit-content;
+    width: 400px;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.profile-post-options,
+.profile-post-cancel,
+.profile-post-delete {
+    user-select: none;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+}
+
+.profile-post-delete {
+    cursor: pointer;
+    color: #e95950;
+    border-radius: 20px 20px 0 0;
+    border-bottom: 1px solid rgb(197, 197, 197);
+}
+
+.profile-post-delete:hover {
+    color: white;
+    background-color: #e95950;
+}
+
+.profile-post-cancel {
+    color: #fbad50;
+    border-radius: 0 0 20px 20px;
+}
+
+.profile-post-cancel:hover {
+    cursor: pointer;
+    color: white;
+    background-color: #fbad50;
+}
+
+.profile-post-options {
+    color: #4c68d7;
+    font-weight: 600;
+    border-bottom: 1px solid rgb(197, 197, 197);
+}
+
+.profile-post-options:hover {
+    color: white;
+    background-color: #4c68d7;
+}

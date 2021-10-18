@@ -3,40 +3,62 @@
 .default-cursor { cursor: default; }
 
 .profile-header-container {
+    margin: 60px;
+
     display: grid;
     grid-template-rows: repeat(3, 1fr);
     grid-template-columns: repeat(3, 1fr);
     grid-template-areas:
-    'a a .'
+    'a . .'
     '. b .'
     '. c .';
 }
 
-.header-profile-div {
-
-}
-
 .header-username {
     grid-area: a;
-}
-
-.header-section-1 {
-    grid-area: a;
-    display: flex;
-    justify-content: space-around;
-}
-
-.header-section-2 {
-    grid-area: b;
-    display: flex;
-    justify-content: space-between;
+    font-size: 25px;
 }
 
 .header-name {
     grid-area: c;
-    display: flex;
-    justify-content: flex-start;
+    position: relative;
+    left: 25%;
+    bottom: 55%;
 }
+
+.header-profile-img {
+    width: 155px;
+    border-radius: 50%;
+    position: absolute;
+    margin-left: 25.5%;
+    top: 6%;
+}
+
+.header-section-1 {
+    grid-area: a;
+    width: fit-content;
+    position: relative;
+    left: 125%;
+    bottom: 165%;
+}
+
+.header-section-2 {
+    grid-area: b;
+    position: relative;
+    bottom: 100%;
+    left: 25%;
+    width: 40%;
+}
+
+.header-section-1a {
+    grid-area: a;
+}
+
+.header-section-2a {
+    display: flex;
+    justify-content: space-between;
+}
+
 
 .profile-ellipsis {
     cursor: pointer;
@@ -44,14 +66,6 @@
     left: 80px;
 }
 
-.profile-posts-container {
-    width: fit-content;
-    height: fit-content;
-}
-
-.header-profile-img {
-    height: 30px;
-}
 
 .options {
     position: relative;
@@ -73,11 +87,6 @@
     min-height: 400px;
     max-height: 720px;
     height: auto;
-}
-
-.profile-post-image {
-    height: 25vw;
-    width: 25vw;
 }
 
 .post-interaction-icons-container {

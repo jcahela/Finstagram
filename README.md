@@ -70,7 +70,7 @@ Instagram is a well known website with a lot of interesting social media aspects
 Users can signup and login to use Finstagram, and can login as a demo user to experience the website quickly.
 
 [![Product Name Screen Shot][signup]](https://finstagram-project.herokuapp.com/signup)
-[![Product Name Screen Shot][product]](https://finstagram-project.herokuapp.com/login)
+[![Product Name Screen Shot][product-screenshot]](https://finstagram-project.herokuapp.com/login)
 <br>
 <br>
 Once logged in, the user is directed to the Feed page, where logged-in users can view a feed of posts from users they follow, as well as their own posts.
@@ -190,7 +190,7 @@ Project Link: [https://finstagram-project.herokuapp.com/](https://finstagram-pro
 [license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/othneildrew
-[product-screenshot]: images/Finstagram-landing.gif
+[product-screenshot]: images/Finstagram_landing.gif
 [signup]: images/Finstagram-signup.png
 [login]: images/loginmodal.png
 [feed]: images/Finstagram-feed.png

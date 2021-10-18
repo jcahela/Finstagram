@@ -87,9 +87,9 @@ export const addCommentThunk = (comment) => async (dispatch) => {
 }
 
 export const addLikeThunk = (like) => async (dispatch) => {
-    const { post_id, id, email, firstname, lastname, username } = like
+    const { post_id, id, email, firstname, lastname, username, profile_picture } = like
     const user = {
-        post_id, id, email, firstname, lastname, username
+        post_id, id, email, firstname, lastname, username, profile_picture
     }
     const response = await fetch(`/api/posts/${post_id}/likes`, {
         method: 'POST',
@@ -191,6 +191,10 @@ export const followUserThunk = (userId) => async (dispatch) => {
     const response = await fetch(`/api/users/follow/${userId}`, {
         method: 'POST'
     })
+    if (response.ok) {
+        const data = await response.json()
+        return data;
+    }
 }
 
 export const unfollowUserThunk = (userId) => async (dispatch) => {
@@ -198,6 +202,11 @@ export const unfollowUserThunk = (userId) => async (dispatch) => {
         method: 'DELETE'
     })
     await dispatch(removeFollowedUser(userId))
+    
+    if (response.ok) {
+        const data = await response.json()
+        return data;
+    }
 }
 
 export const editPostThunk = (post) => async (dispatch) => {

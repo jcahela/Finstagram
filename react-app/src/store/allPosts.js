@@ -38,9 +38,9 @@ export default function allPostsReducer(state = initialState, action) {
             newState = postsObj;
             return newState;
         case ADD_LIKE:
-            const { post_id, id, email, firstname, lastname, username } = action.payload
+            const { post_id, id, email, firstname, lastname, username, profile_picture } = action.payload
             const likedUser = {
-                email, firstname, lastname, username
+                email, firstname, lastname, username, id, profile_picture
             }
             newState[post_id].likes[id] = likedUser
             return newState

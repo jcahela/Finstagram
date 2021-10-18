@@ -199,6 +199,7 @@ Project Link: [https://finstagram-project.herokuapp.com/](https://finstagram-pro
 [deletePost]: images/Finstagram-delete-post.gif
 [likeUnlike]: images/Finstagram-like-unlike-post.gif
 [addComment]: images/Finstagram-add-comment.gif
+[editComment]: images/Finstagram-edit-comment.gif
 [deleteComment]: images/Finstagram-delete-comment.gif
 [addComment]: images/Finstagram-add-comment.gif
 [viewHover]: images/Finstagram-hover-info.gif

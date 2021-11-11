@@ -54,7 +54,11 @@ function App() {
   })
 
   if (!loaded) {
-    return null;
+    return (
+      <div className="loading-container">
+        <img className="loading-gif"src="https://i.stack.imgur.com/MEBIB.gif" alt="" />
+      </div>
+    );
   }
 
   return (

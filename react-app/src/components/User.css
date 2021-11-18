@@ -17,7 +17,7 @@
     margin: auto;
     grid-gap: 30px;
     grid-auto-flow: dense;
-
+    margin-bottom: 1%;
 }
 
 .profile-posts {

@@ -5,6 +5,7 @@ import { useModal } from '../context/Modal';
 import UserPostCard from './UserPostCard';
 import './User.css'
 import { getUserThunk } from '../store/users';
+import ProfileFollowModal from './ProfileFollowModal';
 
 const User = () => {
   const dispatch = useDispatch();
@@ -30,26 +31,30 @@ const User = () => {
       if (sessionUser.id === +userId) {
         setPosts(sessionUsersPosts);
         setLoaded(true);
-        console.log(currentUser);
       } else if (Object.keys(sessionUser.followed).includes(userId)) {
-          console.log(currentUser);
+
           let followedPostsArr = Object.values(followedUsersPosts).filter(post => (
             post.user_id === +userId
           ))
+
         let followedPosts = {}
+
         followedPostsArr.forEach(post => (
           followedPosts[post.id] = post
         ))
+
         setPosts(followedPosts);
         setLoaded(true);
       } else {
         let nonFollowedPostsArr = Object.values(nonFollowedUsersPosts).filter(post => (
           post.user_id === +userId
         ))
+
         let nonFollowedPosts = {};
         nonFollowedPostsArr.forEach(post => (
           nonFollowedPosts[post.id] = post
         ))
+
         setPosts(nonFollowedPosts);
         setLoaded(true);
       }
@@ -70,9 +75,24 @@ const User = () => {
     toggleModal();
   }
 
+  const openFollowersModal = (followers) => {
+    setModalContent((
+      <ProfileFollowModal followList={currentUser.followers} followers={followers}/>
+    ))
+    toggleModal();
+  }
+
+  const openFollowingModal = () => {
+    setModalContent((
+      <ProfileFollowModal followList={currentUser.followed}/>
+    ))
+    toggleModal();
+  }
+
   if (!loaded) {
     return null;
   }
+
 
   return (
     <>
@@ -85,8 +105,8 @@ const User = () => {
       <div className='header-section-2'>
         <div className='header-section-2a'>
           <span className='header-posts default-cursor'><span className='bold'>{Object.values(posts)?.length}</span> posts</span>
-          <span className='header-followers default-cursor'><span className='bold'>{currentUser?.followers ? Object.values(currentUser.followers).length : 0}</span> followers</span>
-          <span className='header-following default-cursor'><span className='bold'>{currentUser?.followers ? Object.values(currentUser.followed).length : 0}</span> following</span>
+          <span className='header-followers pointer-cursor' onClick={() => openFollowersModal(true)}><span className='bold'>{currentUser?.followers ? Object.values(currentUser.followers).length : 0}</span> followers</span>
+          <span className='header-following pointer-cursor' onClick={openFollowingModal}><span className='bold'>{currentUser?.followers ? Object.values(currentUser.followed).length : 0}</span> following</span>
         </div>
       </div>
       <div className='header-name'>{currentUser?.firstname} {currentUser?.lastname}</div>

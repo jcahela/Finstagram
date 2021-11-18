@@ -2,14 +2,14 @@ import { useSelector } from 'react-redux'
 import { followUserThunk, unfollowUserThunk } from '../store/sessionUserPosts'
 import { authenticate } from '../store/session'
 import { useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom';
 import { useModal } from '../context/Modal';
+import { useHistory } from 'react-router-dom';
 import './LikesModal.css'
 
-function LikesModal({ likesList }) {
+function ProfileFollowModal({ followList, followers }) {
     const dispatch = useDispatch();
     const history = useHistory();
-    const likesArr = Object.values(likesList)
+    const followArr = Object.values(followList)
     const sessionUser = useSelector(state => state.session.user)
     const { closeModal } = useModal();
 
@@ -30,11 +30,11 @@ function LikesModal({ likesList }) {
 
     return (
         <div className="likes-modal-container">
-            <h1 className="likes-modal-header">Likes</h1>
+            <h1 className="likes-modal-header">{followers ? "Followers" : "Following"}</h1>
             <div className="likes-modal-content-container">
-                {likesArr.map((user, index) => (
+                {followArr.map((user, index) => (
                     <div key={user.id} className={`likes-modal-user-row-container likes-modal-user-row-${index}`}>
-                        <img className="likes-modal-user-profile-picture" src={user.profile_picture} alt=""  onClick={() => sendToProfile(user.id)}/>
+                        <img className="likes-modal-user-profile-picture" src={user.profile_picture} alt="" onClick={() => sendToProfile(user.id)}/>
                         <div className="likes-modal-user-info">
                             <p className="likes-modal-user-username" onClick={() => sendToProfile(user.id)}>{user.username}</p>
                             <p className="likes-modal-user-firstlast">{user.firstname} {user.lastname}</p>
@@ -53,7 +53,4 @@ function LikesModal({ likesList }) {
     )
 }
 
-export default LikesModal
-
-// <span onClick={() => unfollowUser(user.id)} className="hover-user-card-following-button">Following</span>
-// <span onClick={() => followUser(user.id)} className="hover-user-card-follow-button">Follow</span>
+export default ProfileFollowModal

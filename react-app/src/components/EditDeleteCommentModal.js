@@ -16,7 +16,6 @@ function EditDeleteCommentModal({ comment }) {
     }
 
     const openEditCommentModal = () => {
-        console.log(comment)
         setModalContent((
             <EditCommentModal comment={comment}/>
         ))

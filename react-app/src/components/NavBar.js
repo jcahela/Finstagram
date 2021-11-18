@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import HomeLight from './icons/HomeLight';
@@ -11,22 +11,35 @@ import PostForm from './PostForm';
 
 const NavBar = () => {
   const location = useLocation();
+  const node = useRef();
   const [dropdown, setDropdown] = useState(false)
   const user = useSelector(state => state.session.user)
   const history = useHistory();
   const { toggleModal, setModalContent } = useModal();
 
-  let timeoutDropdown;
-
-  function openDropdown() {
-    if (timeoutDropdown) clearTimeout(timeoutDropdown)
-    setDropdown(true)
+  const handleClick = e => {
+    if (node.current.contains(e.target)) {
+      return
+    }
+    console.log("outside", dropdown)
+    setDropdown(false);
   }
 
-  function closeDropdown() {
-    timeoutDropdown = setTimeout(() => {
+  useEffect(() => {
+    document.addEventListener("click", handleClick);
+
+    return () => {
+      document.removeEventListener("click", handleClick);
+    }
+  }, []);
+
+
+  function interactDropdown() {
+    if (dropdown) {
       setDropdown(false)
-    }, 600)
+    } else {
+      setDropdown(true)
+    }
   }
 
   function sendToProfile() {
@@ -51,8 +64,8 @@ const NavBar = () => {
             <i onClick={openPostFormModal} className="far fa-plus-square new-post-button"></i>
           </div>
           <div>
-            <NavLink to='/feed' exact={true} activeClassName='active'>
-              { location.pathname === '/feed' ? (
+            <NavLink to='/feed' exact={true} activeClassName='active' >
+              { location.pathname === '/feed' && !dropdown ? (
                 <HomeDark className="home-icon"/>
                 ) : (
                 <HomeLight className="home-icon"/>
@@ -60,7 +73,7 @@ const NavBar = () => {
             </NavLink>
           </div>
           <div>
-            <NavLink to='/explore' exact={true} activeClassName='active'>
+            <NavLink to='/explore' exact={true} activeClassName='active' >
               { location.pathname === '/explore' ? (
                 <i className="fas fa-compass explore-icon"></i>
                 ) : (
@@ -83,17 +96,22 @@ const NavBar = () => {
             </div>
           }
           {user && (
+            <>
             <div
               className={`profile-picture-container`}
-              onClick={openDropdown}
+
+              ref={node}
             >
-              <img className={`profile-picture dropdown-${dropdown}`} src={user.profile_picture} alt="User profile avatar" />
+              <img className={`profile-picture dropdown-${dropdown}`} src={user.profile_picture} alt="User profile avatar" onClick={interactDropdown}/>
               {dropdown &&
-                <div onMouseLeave={closeDropdown} onMouseEnter={openDropdown} className="profile-dropdown">
+                <div className="profile-dropdown">
                   <div
                     className="profile-button-container"
-                    onClick={sendToProfile}
-                  >
+                    onClick={() => {
+                      sendToProfile()
+                      setDropdown(false);
+                    }}
+                    >
                       <i className="far fa-user-circle profile-icon"></i>
                         Profile
                   </div>
@@ -101,6 +119,7 @@ const NavBar = () => {
                 </div>
               }
             </div>
+            </>
           )}
       </div>
 

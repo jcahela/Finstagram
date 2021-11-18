@@ -4,9 +4,9 @@ import { authenticate } from '../store/session'
 import { useDispatch } from 'react-redux'
 import './LikesModal.css'
 
-function LikesModal({ likesList }) {
+function ProfileFollowModal({ followList, followers }) {
     const dispatch = useDispatch();
-    const likesArr = Object.values(likesList)
+    const followArr = Object.values(followList)
     const sessionUser = useSelector(state => state.session.user)
 
     const unfollowUser = async (userId) => {
@@ -21,9 +21,9 @@ function LikesModal({ likesList }) {
 
     return (
         <div className="likes-modal-container">
-            <h1 className="likes-modal-header">Likes</h1>
+            <h1 className="likes-modal-header">{followers ? "Followers" : "Following"}</h1>
             <div className="likes-modal-content-container">
-                {likesArr.map((user, index) => (
+                {followArr.map((user, index) => (
                     <div key={user.id} className={`likes-modal-user-row-container likes-modal-user-row-${index}`}>
                         <img className="likes-modal-user-profile-picture" src={user.profile_picture} alt="" />
                         <div className="likes-modal-user-info">
@@ -44,7 +44,4 @@ function LikesModal({ likesList }) {
     )
 }
 
-export default LikesModal
-
-// <span onClick={() => unfollowUser(user.id)} className="hover-user-card-following-button">Following</span>
-// <span onClick={() => followUser(user.id)} className="hover-user-card-follow-button">Follow</span>
+export default ProfileFollowModal

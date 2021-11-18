@@ -76,10 +76,12 @@ class User(db.Model, UserMixin):
         followed_ids = {}
         for user in users:
             followed_ids[user.id] = {
+                'id': user.id,
                 'firstname': user.firstname,
                 'lastname': user.lastname,
                 'username': user.username,
                 'email': user.email,
+                'profile_picture': user.profile_picture
             }
         return followed_ids
 
@@ -88,10 +90,12 @@ class User(db.Model, UserMixin):
         follower_ids = {}
         for user in users:
             follower_ids[user.id] = {
+                'id': user.id,
                 'firstname': user.firstname,
                 'lastname': user.lastname,
                 'username': user.username,
                 'email': user.email,
+                'profile_picture': user.profile_picture
             }
         return follower_ids
 

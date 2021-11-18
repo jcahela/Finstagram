@@ -48,6 +48,11 @@
 .likes-modal-user-username {
     font-size: 14px;
     font-weight: 600;
+    cursor: pointer;
+}
+
+.likes-modal-user-username:hover {
+    text-decoration: underline;
 }
 
 .likes-modal-user-firstlast {

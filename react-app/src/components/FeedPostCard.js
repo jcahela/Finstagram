@@ -111,7 +111,6 @@ function FeedPostCard({postId}) {
         setModalContent((
             <EditDeleteCommentModal comment={comment}/>
         ));
-        console.log(comment)
         toggleModal();
     }
 

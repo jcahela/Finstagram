@@ -69,7 +69,6 @@ function UserPostCard({ postKey, posts }) {
         setComment(e.target.value)
 
         const comment = commentRef.current.value;
-        console.log(/^\s*$/.test(comment));
         if (/^\s*$/.test(comment)) return;
         else if (/\n$/.test(comment)) submitComment(e);
     }
@@ -78,7 +77,6 @@ function UserPostCard({ postKey, posts }) {
         setModalContent((
             <EditDeleteCommentModal comment={comment}/>
         ));
-        console.log(comment)
         toggleModal();
     }
 
@@ -122,7 +120,6 @@ function UserPostCard({ postKey, posts }) {
     }
 
     const openProfilePostModal = (postID, isVideo) => {
-        console.log('is video', isVideo);
         const post = sessionUsersPosts[postID];
         setModalContent((
             <ProfilePostModal post={post} user={sessionUser} isVideo={isVideo}/>

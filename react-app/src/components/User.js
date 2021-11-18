@@ -31,26 +31,30 @@ const User = () => {
       if (sessionUser.id === +userId) {
         setPosts(sessionUsersPosts);
         setLoaded(true);
-        console.log(currentUser);
       } else if (Object.keys(sessionUser.followed).includes(userId)) {
-          console.log(currentUser);
+
           let followedPostsArr = Object.values(followedUsersPosts).filter(post => (
             post.user_id === +userId
           ))
+
         let followedPosts = {}
+
         followedPostsArr.forEach(post => (
           followedPosts[post.id] = post
         ))
+
         setPosts(followedPosts);
         setLoaded(true);
       } else {
         let nonFollowedPostsArr = Object.values(nonFollowedUsersPosts).filter(post => (
           post.user_id === +userId
         ))
+
         let nonFollowedPosts = {};
         nonFollowedPostsArr.forEach(post => (
           nonFollowedPosts[post.id] = post
         ))
+
         setPosts(nonFollowedPosts);
         setLoaded(true);
       }
@@ -89,7 +93,6 @@ const User = () => {
     return null;
   }
 
-  // window.location.pathname.includes('/feed')
 
   return (
     <>

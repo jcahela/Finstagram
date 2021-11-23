@@ -24,3 +24,28 @@
 .carousel-image {
     width: 100%;
 }
+
+@media (max-width: 980px) {
+    .carousel-holder {
+        display: none;
+    }
+
+    .carousel {
+        display: none;
+    }
+
+    .carousel-image {
+        display: none;
+    }
+
+    .login-content-container {
+        border: 1px solid green;
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        right: 50%;
+        transform: translate(50%, -50%);
+        min-width: 302px;
+        min-height: 422px;
+    }
+}

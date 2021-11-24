@@ -5,18 +5,20 @@
 .post-container {
     border: 1px solid #83838360;
     height: fit-content;
+    width: 100%;
     margin-bottom: 30px;
     border-radius: 2px;
 }
 
 .post-header {
     height: 60px;
+    width: 100%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 
 .post-header-user-info {
+    width: 100%;
     display: flex;
     align-items: center;
     position: relative;
@@ -43,12 +45,11 @@
     text-decoration: underline;
 }
 
-.options {
+.feed-post-options {
+    margin-left: auto;
     margin-right: 20px;
     font-weight: lighter;
     font-size: 25px;
-    position: relative;
-    left: 460px;
 }
 
 .options:hover,

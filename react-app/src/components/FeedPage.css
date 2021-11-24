@@ -45,3 +45,13 @@
 .feed-profile-username:hover {
     cursor: pointer;
 }
+
+@media (max-width: 870px) {
+    .profile-container {
+        display: none;
+    }
+
+    .feed-container {
+        margin: 0 auto;
+    }
+}

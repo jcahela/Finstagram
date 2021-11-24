@@ -55,3 +55,9 @@
         margin: 0 auto;
     }
 }
+
+@media (max-width: 600px) {
+    .feed-container {
+        width: 100vw;
+    }
+}

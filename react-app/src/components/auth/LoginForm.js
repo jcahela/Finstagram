@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import { getSessionUsersPostsThunk } from '../../store/sessionUserPosts';
-import Footer from '../Footer/Footer';
 import { Link } from 'react-router-dom';
 import { Fade } from 'react-slideshow-image'
 import "react-slideshow-image/dist/styles.css"
@@ -106,7 +105,7 @@ const LoginForm = () => {
   }
 
   return (
-    <div className='auth-page'>
+    <>
       <div className="login-content-container">
         <div className="carousel-holder" style={{backgroundImage:"url('https://cdn.discordapp.com/attachments/886336420552269847/897622826859773972/landing-carousel-holder.png')"}}>
           <div className="slide-container carousel">
@@ -180,12 +179,15 @@ const LoginForm = () => {
             </div>
           </form>
           <div className="link-to-auth-container">
-                Don't have an account? <Link className="outer-auth-link"  to="/signup"><span className="inner-auth-link">Sign up</span></Link>
+                Don't have an account? <Link id="outer-auth-link"  to="/signup"><span className="inner-auth-link">Sign up</span></Link>
           </div>
         </div>
       </div>
-      <Footer />
-    </div>
+      <div class='auth-footer'>
+        <a className="about-link" href="https://github.com/jcahela/Finstagram#about-the-project" target="_blank" rel="noreferrer">About</a>
+        <Link to="/contact">Contact</Link>
+      </div>
+    </>
   );
 };
 

@@ -1,7 +1,15 @@
+body {
+    background-color: #fafafa;
+}
+
 .login-content-container {
     display: flex;
-    margin: 125px 125px 0 0;
-    align-items: flex-start;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    min-width: 302px;
+    min-height: 422px;
 }
 
 .carousel-holder {
@@ -25,6 +33,19 @@
     width: 100%;
 }
 
+.auth-footer {
+    display: flex;
+    width: fit-content;
+    position: absolute;
+    bottom: 3px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+.about-link {
+    margin-right: 40px;
+}
+
 @media (max-width: 980px) {
     .carousel-holder {
         display: none;
@@ -36,16 +57,5 @@
 
     .carousel-image {
         display: none;
-    }
-
-    .login-content-container {
-        border: 1px solid green;
-        margin: 0;
-        position: absolute;
-        top: 50%;
-        right: 50%;
-        transform: translate(50%, -50%);
-        min-width: 302px;
-        min-height: 422px;
     }
 }

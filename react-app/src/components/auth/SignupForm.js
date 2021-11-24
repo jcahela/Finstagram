@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import { signUp } from '../../store/session';
-import Footer from '../Footer/Footer';
+// import Footer from '../Footer/Footer';
 import './auth_css/Auth.css';
 import './auth_css/SignupForm.css';
 
@@ -150,7 +150,7 @@ const SignUpForm = () => {
             Have an account? <Link className="outer-auth-link" to="/login"><span className='inner-auth-link'>Log in</span></Link>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

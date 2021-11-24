@@ -1,19 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap');
 
-* {
-    box-sizing: border-box;
-}
-
-.auth-page {
-    height: 100vh;
-    background-color: #fafafa;
-    padding-top: 35px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 .auth-form {
     border: 1px solid #dbdbdb;
     text-align: center;
@@ -24,7 +10,6 @@
     border: 1px solid #dbdbdb;
     text-align: center;
     border-radius: 10px;
-
     background: linear-gradient(25deg, #fccc63, #fbad50, #e95950, #bc2a8d, #8a3ab9, #833AB4);
     background-size: 300% 300%;
     animation: login-spread 3s ease-in-out infinite;
@@ -127,23 +112,12 @@
     background-color: white;
 }
 
-.outer-auth-link {
+#outer-auth-link {
     margin-left: 4px;
     font-weight: 600;
-    text-decoration: none!important;
+    text-decoration: none;
 }
 
 .inner-auth-link {
     color: #0095F6;
-}
-
-#auth-footer {
-    display: grid;
-    justify-content: center;
-}
-
-#auth-footer-list {
-    list-style-type: none;
-    display: flex;
-    justify-content: space-around;
 }

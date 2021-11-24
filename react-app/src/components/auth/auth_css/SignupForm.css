@@ -1,3 +1,10 @@
+.signup-form-and-link-container {
+    width: fit-content;
+    position: absolute;
+    top: 50%; right: 50%;
+    transform: translate(50%, -50%);
+}
+
 #signup-form {
     height: 525px;
     width: 350px;
@@ -24,4 +31,9 @@
     font-size: 14px;
     bottom: 10px;
     width: 100%;
+}
+
+#signup-form-login-link {
+    margin-left: 5px;
+    text-decoration: none;
 }

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import { signUp } from '../../store/session';
-// import Footer from '../Footer/Footer';
 import './auth_css/Auth.css';
 import './auth_css/SignupForm.css';
 
@@ -69,8 +68,8 @@ const SignUpForm = () => {
   }
 
   return (
-    <div className='auth-page'>
-      <div className="form-and-link-container">
+    <>
+      <div className="signup-form-and-link-container">
         <form onSubmit={onSignUp} id='signup-form' className={easterEgg} autoComplete='off'>
           <div id="signup-logo-div" className='auth-logo-div' onClick={themeToggleHandler}>
             <span className='auth-logo'>Finstagram</span>
@@ -147,11 +146,14 @@ const SignUpForm = () => {
           </div>
         </form>
         <div className="link-to-auth-container">
-            Have an account? <Link className="outer-auth-link" to="/login"><span className='inner-auth-link'>Log in</span></Link>
+            Have an account? <Link id="signup-form-login-link" className="outer-auth-link" to="/login"><span className='inner-auth-link'>Log in</span></Link>
         </div>
       </div>
-      {/* <Footer /> */}
-    </div>
+      <div class='auth-footer'>
+        <a className="about-link" href="https://github.com/jcahela/Finstagram#about-the-project" target="_blank" rel="noreferrer">About</a>
+        <Link to="/contact">Contact</Link>
+      </div>
+    </>
   );
 };
 

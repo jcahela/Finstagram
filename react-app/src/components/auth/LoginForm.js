@@ -89,8 +89,9 @@ const LoginForm = () => {
 
     if (data) {
       setErrors(data);
+    } else {
+      await dispatch(getSessionUsersPostsThunk());
     }
-    await dispatch(getSessionUsersPostsThunk());
   };
 
   const loginAsDemo = async (e) => {

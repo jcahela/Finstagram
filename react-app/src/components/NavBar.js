@@ -21,7 +21,6 @@ const NavBar = () => {
     if (node.current.contains(e.target)) {
       return
     }
-    console.log("outside", dropdown)
     setDropdown(false);
   }
 

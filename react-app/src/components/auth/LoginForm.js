@@ -75,7 +75,18 @@ const LoginForm = () => {
 
   const onLogin = async (e) => {
     e.preventDefault();
+
+    let errors = [];
+
+    if (email.trim() === '') errors.push("email : This field is required.");
+    if (password.trim() === '') errors.push("password : This field is required.");
+
+    if (errors.length) {
+      return setErrors(errors)
+    }
+
     const data = await dispatch(login(email, password));
+
     if (data) {
       setErrors(data);
     }
@@ -183,7 +194,7 @@ const LoginForm = () => {
           </div>
         </div>
       </div>
-      <div class='auth-footer'>
+      <div className='auth-footer'>
         <a className="about-link" href="https://github.com/jcahela/Finstagram#about-the-project" target="_blank" rel="noreferrer">About</a>
         <Link to="/contact">Contact</Link>
       </div>

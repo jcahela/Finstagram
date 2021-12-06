@@ -20,17 +20,25 @@ const PostForm = () => {
 
     const submitPost = async (e) => {
         e.preventDefault();
+
+        let errors = [];
+
+        if (contentFile === '') errors.push("You must upload an image or video")
+
+        if (errors.length) return setErrors(errors);
+
         const formData = new FormData();
         formData.append("content", contentFile)
         formData.append("description", description)
-        
+
         setContentLoading(true);
-        
+
         const data = await dispatch(addNewPostThunk(formData));
         setContentLoading(false);
         if (data) {
             setErrors(data)
         } else {
+            setErrors([]);
             await dispatch(getSessionUsersPostsThunk());
             await dispatch(getAllPostsThunk())
             closeModal();
@@ -42,17 +50,17 @@ const PostForm = () => {
             <span className='post-form-logo'>Post</span>
             <textarea
                 className="post-description"
-                cols="30" 
+                cols="30"
                 rows="10"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Description"
             ></textarea>
-            <label 
-                className={`post-file-button content-${contentFile !== ''}`} 
+            <label
+                className={`post-file-button content-${contentFile !== ''}`}
                 htmlFor="post-file"
             >{contentFile === '' ? "Upload Image/Video": "Added"}
-            <input 
+            <input
                 id="post-file"
                 className="post-file-input"
                 type="file"

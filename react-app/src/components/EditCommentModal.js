@@ -26,11 +26,19 @@ function EditCommentModal({ comment }) {
 
     const editComment = async (e) => {
         e.preventDefault();
+
+        let errors = [];
+
         const newComment = {
             'id': comment.id,
             'description': description,
             'post_id': comment.post_id
         }
+
+        if (description.trim() === '') errors.push('You cannot post an empty comment');
+
+        if (errors.length) return setEditCommentErrors(errors);
+
         const data = await dispatch(editCommentThunk(newComment));
         if (data) {
             setEditCommentErrors(data)
@@ -49,10 +57,10 @@ function EditCommentModal({ comment }) {
         <div className="edit-comment-container">
             <div className="edit-comment-go-back" onClick={backToOptions}>Go back</div>
             <form className="edit-comment-form" onSubmit={editComment}>
-                <textarea 
+                <textarea
                     className="edit-comment-form-description"
                     ref={descriptionRef}
-                    cols="30" 
+                    cols="30"
                     rows="10"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
